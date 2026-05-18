@@ -21,6 +21,7 @@ The project is in the hardware rebuild phase. The current plan is to preserve th
 | [AGENTS.md](AGENTS.md) | Assistant operating rules and rebuild safety constraints. |
 | [docs/plex_server_rebuild_wip_tracker.md](docs/plex_server_rebuild_wip_tracker.md) | Active rebuild checklist, current status, next action, and live observations. |
 | [docs/plex_server_hardware_inventory.md](docs/plex_server_hardware_inventory.md) | Stable hardware, storage, software, and service inventory. |
+| [docs/plex_server_software_inventory.md](docs/plex_server_software_inventory.md) | Software recovery inventory, official download links, app roles, and app connections. |
 | [docs/plex_server_hardware_troubleshooting_history_log.md](docs/plex_server_hardware_troubleshooting_history_log.md) | Historical diagnostics already attempted on the failed platform. |
 | [docs/plex_storage_migration_rebuild_documentation.md](docs/plex_storage_migration_rebuild_documentation.md) | Storage, drive-letter, Plex metadata, and application recovery guide. |
 
@@ -28,5 +29,6 @@ The project is in the hardware rebuild phase. The current plan is to preserve th
 
 - Put new physical rebuild observations in the WIP tracker.
 - Put confirmed component, drive, app, and service facts in the inventory.
+- Put software download links, app relationships, and recovery/admin utilities in the software inventory.
 - Put old failed-platform diagnostic evidence in the troubleshooting history.
 - Put drive-letter recovery, Disk Management findings, Plex metadata, and app path notes in the storage migration guide.
