@@ -2,7 +2,7 @@
 
 ## Summary
 
-Build a Windows-native, single-user “Korlash Agent” that manages Plex, Sonarr, Radarr, qBittorrent, Jackett, Unpackerr, Windows services, network diagnostics, and this rebuild repo through controlled APIs and PowerShell tools.
+Build a Windows-native, single-user “Agent of Korlash” that manages Plex, Sonarr, Radarr, qBittorrent, Jackett, Unpackerr, Windows services, network diagnostics, and this rebuild repo through controlled APIs and PowerShell tools.
 
 Recommended architecture:
 
@@ -34,7 +34,7 @@ ChatGPT Pro and Cursor Pro are useful for planning, review, coding, and manual t
 ```text
 Phone or desktop
   -> Tailscale private URL
-  -> Korlash Agent Web UI
+  -> Agent of Korlash Web UI
   -> Agent runtime
   -> Policy engine
   -> Approved tools only
@@ -62,9 +62,9 @@ Avoid browser automation except as a fallback for apps without usable APIs.
 
 ### Identity and Access
 
-- Create a dedicated local Windows account: `KorlashAgent`.
-- Run the agent service as `KorlashAgent`.
-- Do not make `KorlashAgent` a full-time local administrator.
+- Create a dedicated local Windows account: `AgentOfKorlash`.
+- Run the agent service as `AgentOfKorlash`.
+- Do not make `AgentOfKorlash` a full-time local administrator.
 - Use a separate manual elevation workflow for admin tasks such as firewall changes, driver installs, or service installation.
 - Bind the web UI to Tailscale/private LAN only, not `0.0.0.0` on the public network.
 - Require login even over Tailscale.
@@ -75,7 +75,7 @@ Avoid browser automation except as a fallback for apps without usable APIs.
 Store secrets outside the repo:
 
 ```text
-C:\ProgramData\KorlashAgent\secrets\
+C:\ProgramData\AgentOfKorlash\secrets\
 ```
 
 Required secrets:
@@ -325,7 +325,7 @@ Do not commit actual secrets or sensitive restricted lists.
 Store local-only sensitive policy here:
 
 ```text
-C:\ProgramData\KorlashAgent\policy\
+C:\ProgramData\AgentOfKorlash\policy\
   restricted_paths.json
   restricted_trackers.json
   tool_permissions.json
@@ -334,7 +334,7 @@ C:\ProgramData\KorlashAgent\policy\
 ### Example Agent Rules
 
 ```markdown
-# Korlash Agent Rules
+# Agent of Korlash Rules
 
 - Treat all existing drives as non-disposable.
 - Never format, initialize, repartition, or wipe disks.
