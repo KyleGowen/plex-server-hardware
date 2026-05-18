@@ -372,8 +372,9 @@ The system used hardware transcoding.
 ## Known Details
 
 - GPU-assisted transcoding was enabled.
-- The installed Gigabyte NVIDIA GPU appears to be slot-powered.
-- No external PCIe power connector was observed on the GPU.
+- The installed GPU is a GIGABYTE GeForce RTX 3050 WINDFORCE OC 6G, model GV-N3050WF2OC-6GD.
+- Official GIGABYTE specs list power connectors as N/A, so the card is slot-powered.
+- No external PCIe power connector is required for this GPU.
 - Typical usage was 1–5 concurrent users.
 - 4K transcoding was used.
 

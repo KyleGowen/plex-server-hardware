@@ -32,7 +32,7 @@ Use this as the main stable-facts reference. Rebuild procedures live in the WIP 
 |---|---|---|---|
 | Motherboard | ASUS Sabertooth Z97 Mark II | Suspected failed | LGA1150 / Intel Z97 chipset / DDR3 platform |
 | Power Supply | Corsair RM750e | Likely functional | ATX modular PSU; standby power present |
-| GPU | Gigabyte GeForce RTX | Likely functional | Appears slot-powered; no external PCIe power connector observed |
+| GPU | GIGABYTE GeForce RTX 3050 WINDFORCE OC 6G, GV-N3050WF2OC-6GD | Likely functional | Slot-powered per official specs; no external PCIe power connector required |
 | CPU | Intel Haswell-era CPU | Unknown / possibly functional | Exact CPU model not yet identified |
 | CPU Cooler | Intel stock cooler | Functional mechanically | CPU fan spins continuously |
 | RAM | DDR3 DIMMs | Likely functional | Two sticks tested individually |
@@ -102,22 +102,35 @@ Use this as the main stable-facts reference. Rebuild procedures live in the WIP 
 
 # GPU
 
-## Gigabyte GeForce RTX
+## GIGABYTE GeForce RTX 3050 WINDFORCE OC 6G
 
 | Attribute | Value |
 |---|---|
-| Manufacturer | Gigabyte |
-| Family | NVIDIA GeForce RTX |
-| External PCIe Power | None observed |
+| Manufacturer | GIGABYTE |
+| Model | GeForce RTX 3050 WINDFORCE OC 6G |
+| Model Number | GV-N3050WF2OC-6GD |
+| Manufacturer Product Page | https://www.gigabyte.com/us/Graphics-Card/GV-N3050WF2OC-6GD |
+| Local Manual | manuals/gigabyte-geforce-rtx-3050-windforce-oc-6g-gv-n3050wf2oc-6gd-quick-guide.pdf |
+| GPU | NVIDIA GeForce RTX 3050 |
+| VRAM | 6GB GDDR6 |
+| Memory Bus | 96-bit |
+| PCIe Interface | PCIe 4.0 |
+| Core Clock | 1477 MHz |
+| Display Outputs | 2x DisplayPort 1.4a, 2x HDMI 2.1 |
+| Maximum Digital Resolution | 7680x4320 |
+| Card Size | 191mm x 111mm x 36mm |
+| Recommended PSU | 300W |
+| External PCIe Power | None required; official spec lists power connectors as N/A |
 | Estimated Status | Likely functional |
 | Plex Role | Hardware transcoding / NVIDIA encoder path |
 
 ## GPU Notes
 
+- Exact GPU model confirmed from purchase screenshot on 2026-05-18.
 - GPU was tested removed.
 - GPU was reinstalled and reseated.
 - No behavior change in either state.
-- The card appears to be slot-powered only.
+- The card is slot-powered only per official GIGABYTE specifications.
 - GPU failure is currently considered unlikely.
 
 ---
@@ -317,7 +330,7 @@ The storage rack appears to contain:
 | Component | Reuse Confidence | Notes |
 |---|---|---|
 | Corsair RM750e PSU | High | Partial power behavior suggests PSU is likely okay |
-| Gigabyte RTX GPU | High | Tested in/out with no behavior change |
+| GIGABYTE GeForce RTX 3050 WINDFORCE OC 6G GPU | High | Tested in/out with no behavior change |
 | SATA OS SSD | Unknown but important | Preserve and test first in rebuild |
 | SATA HDD media drives | High | No evidence of storage-related failure |
 | SilverStone GD07 case | High | Reusable chassis |

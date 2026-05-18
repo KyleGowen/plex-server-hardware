@@ -33,7 +33,7 @@ Purchased:
 Reused:
 - Case: SilverStone GD07
 - PSU: Corsair RM750e
-- GPU: Gigabyte GeForce RTX, likely reused if needed
+- GPU: GIGABYTE GeForce RTX 3050 WINDFORCE OC 6G, GV-N3050WF2OC-6GD, slot-powered
 - OS drive: existing 2.5-inch SATA SSD
 - Media drives: existing 5x 3.5-inch SATA HDDs
 

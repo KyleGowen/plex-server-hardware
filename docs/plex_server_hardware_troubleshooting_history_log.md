@@ -14,7 +14,7 @@ Use this file as the historical repair log for the non-booting Plex server.
 |---|---|
 | Motherboard | ASUS Sabertooth Z97 Mark II |
 | PSU | Corsair RM750e |
-| GPU | Gigabyte GeForce RTX |
+| GPU | GIGABYTE GeForce RTX 3050 WINDFORCE OC 6G, GV-N3050WF2OC-6GD |
 | Platform | Intel Haswell / LGA1150 |
 | RAM | DDR3 DIMMs |
 | Cooling | Intel stock CPU cooler |
@@ -75,7 +75,7 @@ Observed:
 
 Action:
 
-- Removed the Gigabyte RTX GPU completely.
+- Removed the GIGABYTE GeForce RTX 3050 WINDFORCE OC 6G GPU completely.
 
 Purpose:
 
@@ -94,13 +94,13 @@ Result:
 
 Actions:
 
-- Reinstalled the Gigabyte RTX GPU.
+- Reinstalled the GIGABYTE GeForce RTX 3050 WINDFORCE OC 6G GPU.
 - Verified GPU seating.
 
 Observation:
 
-- GPU appears slot-powered only.
-- No external PCIe power connector was observed on the card.
+- GPU appeared slot-powered only during inspection.
+- No external PCIe power connector was observed on the card; later model confirmation shows official power connector spec is N/A.
 
 Purpose:
 
@@ -328,7 +328,7 @@ Motherboard failure on the ASUS Sabertooth Z97 Mark II.
 ## Components Likely Still Functional
 
 - Corsair RM750e PSU.
-- Gigabyte RTX GPU.
+- GIGABYTE GeForce RTX 3050 WINDFORCE OC 6G GPU.
 - DDR3 RAM.
 - SATA HDD media drives.
 - SATA OS SSD.

@@ -44,7 +44,7 @@ This file is intended to be added to the **Plex Server Hardware** project knowle
 |---|---|---|---|
 | Case | SilverStone GD07 | Reuse | ATX-compatible HTPC/server-style case |
 | PSU | Corsair RM750e | Reuse | Should have enough wattage for the new build |
-| GPU | Gigabyte GeForce RTX | Likely reuse | Previously appeared slot-powered; useful for display and possible NVIDIA transcoding |
+| GPU | GIGABYTE GeForce RTX 3050 WINDFORCE OC 6G, GV-N3050WF2OC-6GD | Likely reuse | Slot-powered; useful for display and possible NVIDIA transcoding |
 | OS Drive | 2.5-inch SATA SSD | Preserve | Contains Windows 10 and application install; boot this first by itself |
 | Media Drives | 5x 3.5-inch SATA HDDs | Preserve | Do not format, initialize, or randomly reorder |
 | SATA cabling | Existing SATA data/power cables | Reuse if good | Confirm enough cables for 6 SATA drives |
@@ -84,7 +84,7 @@ This file is intended to be added to the **Plex Server Hardware** project knowle
   - 24-pin ATX motherboard cable
   - 8-pin CPU EPS cable
   - Enough SATA power connectors for 6 drives
-  - PCIe GPU power cable only if GPU requires it
+- No PCIe GPU power cable needed for the confirmed GV-N3050WF2OC-6GD card
 - Do not mix modular PSU cables from other power supplies.
 
 ---
@@ -370,7 +370,7 @@ After rebuild succeeds, create/update these project files:
 | CPU Cooler | Noctua NH-U9S chromax.black |
 | Case | SilverStone GD07, reused |
 | PSU | Corsair RM750e, reused |
-| GPU | Gigabyte GeForce RTX, reused if needed |
+| GPU | GIGABYTE GeForce RTX 3050 WINDFORCE OC 6G, GV-N3050WF2OC-6GD, reused if needed |
 | OS Storage | Existing 2.5-inch SATA SSD |
 | Media Storage | Existing 5x 3.5-inch SATA HDDs |
 

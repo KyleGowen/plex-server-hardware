@@ -11,10 +11,9 @@ Reference PDFs collected for the Plex server rebuild.
 | Noctua NH-U9S chromax.black | `noctua-nh-u9s-chromax-black-installation-manual.pdf` | Rendered from a visible PDF mirror after Noctua's official PDF host returned HTTP 429 to downloads |
 | Corsair RM750e PSU | `corsair-rm750e-rme-series-power-supply-manual.pdf` | Corsair RMe Series manual |
 | SilverStone GD07 case | `silverstone-gd07-manual.pdf` | GD07 manual PDF mirror; SilverStone product page was not directly fetchable by command-line download |
-| Gigabyte GeForce RTX GPU | `gigabyte-graphics-card-quick-guide.pdf` | Generic Gigabyte graphics card quick guide; exact GPU model is still unknown |
+| GIGABYTE GeForce RTX 3050 WINDFORCE OC 6G GPU | `gigabyte-geforce-rtx-3050-windforce-oc-6g-gv-n3050wf2oc-6gd-quick-guide.pdf` | Official GIGABYTE graphics card quick guide linked from the GV-N3050WF2OC-6GD support/manual page |
 
 ## Notes
 
 - Do not use these manuals as permission to rewire storage destructively. Preserve the OS SSD and media HDDs.
-- For the GPU, replace the generic Gigabyte quick guide with the exact model manual once the card model number is confirmed from the label.
 - For the RAM, replace the THOR RGB setup sheet if the exact THOR Z non-RGB product PDF becomes available.
