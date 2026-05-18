@@ -4,7 +4,7 @@
 
 This file documents the known hardware inventory, storage layout, operating assumptions, and rebuild-relevant unknowns for the Plex server.
 
-Use this as the main hardware reference during motherboard replacement, platform upgrade planning, storage migration, and Plex service recovery.
+Use this as the main stable-facts reference. Rebuild procedures live in the WIP tracker, and storage/app recovery procedures live in the storage migration guide.
 
 ---
 
@@ -326,93 +326,7 @@ The storage rack appears to contain:
 
 ---
 
-# Rebuild Options
-
-## Option 1 — Replace Motherboard Only
-
-Acquire a compatible used board:
-
-- LGA1150 socket.
-- Z97 or H97 chipset.
-- DDR3 support.
-- Enough SATA ports or expansion support.
-
-Reuse:
-
-- Existing CPU.
-- Existing DDR3 RAM.
-- Existing GPU.
-- Existing PSU.
-- Existing storage.
-- Existing case.
-
-### Pros
-
-- Lowest cost.
-- Minimal platform change.
-- Higher chance Windows boots without major repair.
-
-### Cons
-
-- Used LGA1150 boards are old.
-- Reliability may be limited.
-- Less future-proof.
-- No major Plex performance improvement.
-
----
-
-## Option 2 — Modern Platform Upgrade
-
-Replace:
-
-- Motherboard.
-- CPU.
-- RAM.
-
-Reuse:
-
-- GPU.
-- PSU.
-- Storage drives.
-- Case.
-
-### Pros
-
-- Modern BIOS/UEFI.
-- Better long-term reliability.
-- NVMe support.
-- Lower power consumption.
-- Modern Intel Quick Sync option if using an appropriate Intel CPU.
-- Better Plex transcoding flexibility.
-
-### Cons
-
-- Higher cost.
-- Windows may need driver cleanup, repair, or reinstall.
-- Must be careful with drive-letter preservation.
-
----
-
-# Rebuild Rules
-
-## Do Not Randomly Reorder Drives
-
-Do not randomly reorder SATA drives during migration.
-
-Even without RAID, Windows drive-letter assignments and application paths may depend on disk identity and mounting history. Reordering may not destroy data, but it can cause Plex, Sonarr, Radarr, qBittorrent, Jackett, and Unpacker to lose track of configured paths.
-
-## Before Removing Drives
-
-1. Photograph the storage rack from multiple angles.
-2. Photograph SATA data cable routing.
-3. Photograph SATA power cable routing.
-4. Label each physical drive.
-5. Label each SATA cable if possible.
-6. Record which motherboard or expansion-card port each cable connects to.
-7. Record visible model numbers and capacities from each drive label.
-8. Keep the OS SSD clearly marked and separate from media drives.
-
-## Suggested Drive Labels
+# Drive Labels
 
 | Label | Meaning |
 |---|---|
@@ -426,62 +340,7 @@ Even without RAID, Windows drive-letter assignments and application paths may de
 
 ---
 
-# Minimal First-Boot Rebuild Sequence
-
-## Phase 1 — OS SSD Only
-
-Install only:
-
-- Replacement motherboard.
-- CPU.
-- RAM.
-- PSU.
-- GPU if needed for display.
-- OS SSD only.
-
-Do not connect media HDDs yet.
-
-Verify:
-
-- BIOS/UEFI sees the OS SSD.
-- Windows Boot Manager appears if present.
-- Windows 10 starts or attempts repair.
-- Keyboard works.
-- Display works.
-- No unexpected boot loops.
-
-## Phase 2 — Stabilize Windows
-
-Once Windows boots:
-
-1. Install motherboard chipset drivers.
-2. Install LAN/network drivers if needed.
-3. Install NVIDIA drivers for the GPU.
-4. Confirm Windows activation status.
-5. Confirm system date/time.
-6. Confirm Device Manager has no major missing devices.
-7. Avoid launching Plex until media drive letters are checked.
-
-## Phase 3 — Reconnect Media Drives Incrementally
-
-For each drive:
-
-1. Shut down.
-2. Connect one media HDD.
-3. Boot Windows.
-4. Open Disk Management.
-5. Confirm the drive appears.
-6. Confirm the filesystem is intact.
-7. Record the assigned drive letter.
-8. Compare with expected Plex/Sonarr/Radarr/qBittorrent paths.
-9. Correct the drive letter if needed.
-10. Repeat for the next drive.
-
----
-
-# Plex Recovery Notes
-
-## Likely Metadata Location
+# Plex Metadata Fact To Verify
 
 The exact previous Plex metadata location is unknown.
 
@@ -491,16 +350,7 @@ Most likely default Windows location:
 C:\Users\<WindowsUser>\AppData\Local\Plex Media Server
 ```
 
-## Preserve Before Reinstalling
-
-Before reinstalling Plex or wiping anything:
-
-1. Check whether the OS SSD is readable.
-2. Search the OS SSD for `Plex Media Server`.
-3. Preserve the Plex data directory if found.
-4. Preserve `Preferences.xml` if found.
-5. Preserve library metadata, plug-in support files, and database files.
-6. Only reinstall Plex after copying or confirming the existing metadata location.
+Detailed Plex recovery procedure is maintained in [plex_storage_migration_rebuild_documentation.md](plex_storage_migration_rebuild_documentation.md).
 
 ---
 
@@ -541,10 +391,4 @@ The rebuild should be manageable because the system used:
 - No reverse proxy.
 - No static IP or custom hostname dependency.
 
-The most important preservation tasks are:
-
-1. Preserve the OS SSD.
-2. Do not format or initialize media drives.
-3. Label all drives before migration.
-4. Restore original drive letters before launching Plex or automation tools.
-5. Preserve Plex metadata before reinstalling Plex.
+Operational checklists and current next actions are maintained in [plex_server_rebuild_wip_tracker.md](plex_server_rebuild_wip_tracker.md).

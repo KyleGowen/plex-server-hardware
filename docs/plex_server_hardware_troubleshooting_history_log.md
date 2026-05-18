@@ -336,56 +336,6 @@ Motherboard failure on the ASUS Sabertooth Z97 Mark II.
 
 ---
 
-# Recommended Future Actions
-
-## Option 1 — Replace Motherboard Only
-
-Acquire a compatible replacement:
-
-- LGA1150 motherboard.
-- Z97 or H97 chipset board.
-
-Reuse:
-
-- Existing CPU.
-- Existing DDR3 RAM.
-- Existing GPU.
-- Existing PSU.
-- Existing storage.
-- Existing case.
-
-Risk:
-
-- Used LGA1150 boards are old and may have limited future reliability.
-
----
-
-## Option 2 — Modern Platform Upgrade
-
-Replace:
-
-- Motherboard.
-- CPU.
-- RAM.
-
-Reuse:
-
-- GPU.
-- PSU.
-- Storage drives.
-- Case.
-
-Benefits:
-
-- Modern BIOS/UEFI.
-- NVMe support.
-- Lower power consumption.
-- Improved Plex transcoding options.
-- Better long-term reliability.
-- Modern Intel Quick Sync option if using an appropriate Intel CPU.
-
----
-
 # Tests That Should Not Be Repeated
 
 These have already been completed with no behavioral changes observed:
@@ -417,14 +367,8 @@ These have already been completed with no behavioral changes observed:
 
 ---
 
-# Rebuild Reminder
+# Current Rebuild References
 
-Before rebuilding or migrating the machine:
+The active rebuild plan is maintained in [plex_server_rebuild_wip_tracker.md](plex_server_rebuild_wip_tracker.md).
 
-1. Label the OS SSD separately.
-2. Label every HDD by physical bay position.
-3. Photograph SATA cable routing.
-4. Boot the replacement system with only the OS SSD first.
-5. Add media drives incrementally.
-6. Restore original Windows drive letters before launching Plex, Sonarr, Radarr, qBittorrent, Jackett, or Unpacker.
-7. Do not format or initialize any media drive unless it is confirmed blank.
+Storage and application migration steps are maintained in [plex_storage_migration_rebuild_documentation.md](plex_storage_migration_rebuild_documentation.md).
