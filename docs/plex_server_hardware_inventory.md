@@ -38,6 +38,8 @@ Use this as the main stable-facts reference. Rebuild procedures live in the WIP 
 | RAM | DDR3 DIMMs | Likely functional | Two sticks tested individually |
 | Case | SilverStone GD07 | Reusable | Home theater / server-style chassis |
 | Case Fans | Multiple chassis fans | Mixed behavior | Some spin; lower chassis fans do not spin despite being plugged into motherboard |
+| Extra Case Fan | Thermaltake TT-1225 / A1225L12S | Installed in case | DC brushless 120 mm fan; 12V, 0.30A; label photographed in empty case; source notes in `manuals/case-fan-source-notes.md` |
+| Extra Case Fan | SilverStone CC12025L12S | Installed in case | 120 mm case fan; 12V, 0.07A; label photographed in empty case; source notes in `manuals/case-fan-source-notes.md` |
 | OS Storage | 2.5-inch SATA SSD | Important / preserve | Windows 10 and application drive |
 | Media Storage | Multiple 3.5-inch SATA HDDs | Preserve | Used for Plex media storage |
 | SATA Cabling | SATA power + data cabling | Partially disconnected during diagnostics | Should be labeled before rebuild |
@@ -186,6 +188,10 @@ RAM failure is currently considered unlikely.
 ## Case / Fan Notes
 
 - Multiple chassis fans are present.
+- Two extra installed case fans have been identified from photos:
+  - Thermaltake TT-1225 / A1225L12S, DC brushless, 12V, 0.30A.
+  - SilverStone CC12025L12S, 12V, 0.07A.
+- Standalone retail manuals were not found for these fans; source notes and available spec/datasheet links are tracked in `manuals/case-fan-source-notes.md`.
 - Some fans spin when powered.
 - Lower chassis fans do not spin despite being connected to the motherboard.
 - This may indicate motherboard fan-control or Super I/O failure rather than fan failure.

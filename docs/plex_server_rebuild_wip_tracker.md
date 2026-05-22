@@ -48,7 +48,7 @@ This file is intended to be added to the **Plex Server Hardware** project knowle
 | OS Drive | 2.5-inch SATA SSD | Preserve | Contains Windows 10 and application install; boot this first by itself |
 | Media Drives | 5x 3.5-inch SATA HDDs | Preserve | Do not format, initialize, or randomly reorder |
 | SATA cabling | Existing SATA data/power cables | Reuse if good | Confirm enough cables for 6 SATA drives |
-| Case fans | Existing case fans | Reuse initially | Reassess noise and airflow after rebuild |
+| Case fans | Existing case fans, plus extra Thermaltake TT-1225 / A1225L12S and SilverStone CC12025L12S fans | Reuse initially | Two extra installed case fans identified from empty-case photos; reassess noise and airflow after rebuild |
 
 ---
 
@@ -150,6 +150,12 @@ Suggested labels:
 # Assembly Plan
 
 ## Phase 1 — Bench / Minimal Assembly
+
+Primary references:
+
+- [MSI quick start extract](../manuals/msi-pro-z790-a-wifi-ii-quick-start.pdf)
+- [MSI full motherboard user guide](../manuals/msi-pro-z790-a-wifi-ii-user-guide.pdf)
+- [Noctua NH-U9S installation manual](../manuals/noctua-nh-u9s-chromax-black-installation-manual.pdf)
 
 Install only:
 
