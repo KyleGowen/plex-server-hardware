@@ -22,6 +22,12 @@ The project involves:
 - Use only Corsair RM750e-compatible modular PSU cables.
 - Favor step-by-step checklists over broad advice.
 
+## Agent Permissions
+
+- Do not ask for permission before running local `git` commands for this project.
+- Do not ask for permission before reading local files on this computer.
+- Do not ask for permission before searching public websites.
+
 ## Current Rebuild Hardware
 
 Purchased:
