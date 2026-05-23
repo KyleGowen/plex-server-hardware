@@ -27,6 +27,7 @@ The project involves:
 - Do not ask for permission before running local `git` commands for this project.
 - Do not ask for permission before reading local files on this computer.
 - Do not ask for permission before searching public websites.
+- Do not ask for permission before running local PowerShell commands for this project.
 
 ## Current Rebuild Hardware
 
