@@ -15,7 +15,7 @@ Use this as the main stable-facts reference. Rebuild procedures live in the WIP 
 | Primary Role | Plex media server |
 | Operating System | Windows 10 |
 | Plex Deployment | Native Windows installation |
-| Containerization | None |
+| Containerization | Docker chosen for Sonarr, Radarr, qBittorrent, Jackett, and Unpackerr |
 | Virtualization | None observed |
 | Storage Architecture | SATA drives with separate Windows drive letters |
 | RAID / Pooling | None known |
@@ -256,7 +256,7 @@ Captured from read-only Windows disk and volume queries on 2026-05-23 after all 
 ## Drive Letter Preservation Notes
 
 - Current media drive letters are `D:`, `E:`, `F:`, `G:`, `H:`, `I:`, and `J:`.
-- Do not launch Plex, Sonarr, Radarr, qBittorrent, Jackett, or Unpacker after any future recabling until these drive letters are confirmed.
+- Do not launch Plex, Sonarr, Radarr, qBittorrent, Jackett, or Unpackerr after any future recabling until these drive letters are confirmed.
 - The `G:` volume label is `Broken Power Pin`; inspect and document the physical drive/cable before relying on it for writes.
 - `E:` and `I:` are nearly full and should be treated carefully during imports, downloads, or library moves.
 
@@ -271,7 +271,7 @@ Captured from read-only Windows disk and volume queries on 2026-05-23 after all 
 | Operating System | Windows 10 |
 | Installation Type | Native install on SATA SSD |
 | Boot Device | Dedicated 2.5-inch SATA SSD |
-| Containerization | None |
+| Containerization | Docker Desktop chosen for media automation stack |
 | Virtualization | None observed |
 
 ## Plex
@@ -292,14 +292,14 @@ Captured from read-only Windows disk and volume queries on 2026-05-23 after all 
 
 ## Media Management Stack
 
-| Application | Purpose |
-|---|---|
-| Plex Media Server | Media streaming and transcoding |
-| Sonarr | TV series management |
-| Radarr | Movie management |
-| qBittorrent | Torrent client |
-| Jackett | Indexer aggregation |
-| Unpacker | Post-download extraction / processing |
+| Application | Purpose | Forward Deployment |
+|---|---|---|
+| Plex Media Server | Media streaming and transcoding | Native Windows |
+| Sonarr | TV series management | Docker container |
+| Radarr | Movie management | Docker container |
+| qBittorrent | Torrent client | Docker container |
+| Jackett | Indexer aggregation | Docker container |
+| Unpackerr | Post-download extraction / processing | Docker container |
 
 ---
 
@@ -382,7 +382,7 @@ Detailed Plex recovery procedure is maintained in [plex_storage_migration_rebuil
 | Sonarr root folders | Needed for TV library repair |
 | Radarr root folders | Needed for movie library repair |
 | Jackett config location | Needed for indexer recovery |
-| Unpacker config paths | Needed for post-download automation |
+| Unpackerr config paths | Needed for post-download automation |
 | SATA expansion card model, if present | Needed for driver/manual lookup |
 | BIOS SATA mode | AHCI/RAID mode can affect boot behavior |
 
@@ -396,9 +396,9 @@ The rebuild should be manageable because the system used:
 
 - Windows 10.
 - Native Plex installation.
+- Docker containers for Sonarr, Radarr, qBittorrent, Jackett, and Unpackerr going forward.
 - Independent SATA drives.
 - Separate Windows drive letters.
-- No Docker.
 - No RAID.
 - No storage pool.
 - No reverse proxy.

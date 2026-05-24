@@ -2,15 +2,17 @@
 
 Documentation for rebuilding the Korlash Windows-native Plex media server after suspected motherboard failure.
 
+Current software direction: keep Plex Media Server native on Windows, and move the media automation stack to Docker containers for Sonarr, Radarr, qBittorrent, Jackett, and Unpackerr.
+
 ## Current Status
 
-The project is in the hardware rebuild phase. The current plan is to preserve the existing Windows 10 OS SSD and all media drives, assemble the replacement Intel platform, boot first with the OS SSD only, then reconnect media drives incrementally after Windows is stable.
+The project is in the hardware rebuild phase. The current plan is to preserve the existing Windows 10 OS SSD and all media drives, assemble the replacement Intel platform, boot first with the OS SSD only, then reconnect media drives incrementally after Windows is stable. After drive letters are confirmed, Plex stays native Windows and the media automation tools move forward under Docker.
 
 ## Safety Rules
 
 - Do not format, initialize, repartition, or wipe any existing media drive.
 - Do not reinstall Windows over the OS SSD before searching for Plex metadata.
-- Do not launch Plex, Sonarr, Radarr, qBittorrent, Jackett, or Unpacker until drive letters are confirmed.
+- Do not launch Plex, Sonarr, Radarr, qBittorrent, Jackett, or Unpackerr until drive letters are confirmed.
 - Use only Corsair RM750e-compatible modular PSU cables.
 - Restore original drive letters before normal media service operation.
 

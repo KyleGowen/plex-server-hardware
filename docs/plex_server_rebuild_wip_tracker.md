@@ -23,6 +23,7 @@ This file is intended to be added to the **Plex Server Hardware** project knowle
 | Storage architecture | Windows-native separate SATA drive letters |
 | RAID / pooling | None known |
 | Plex deployment | Native Windows install |
+| Media automation deployment | Docker containers for Sonarr, Radarr, qBittorrent, Jackett, and Unpackerr |
 | Current priority | Receive parts, inspect, assemble minimal boot system |
 
 ---
@@ -208,6 +209,8 @@ Checklist:
 - [ ] Confirm Windows activation status.
 - [ ] Search OS SSD for Plex data folder.
 - [ ] Back up Plex metadata if found before making major changes.
+- [ ] Confirm Docker Desktop is installed or install it after Windows and drivers are stable.
+- [ ] Do not start the Docker media stack until drive letters and container volume mappings are confirmed.
 
 ---
 
@@ -247,6 +250,25 @@ Drive tracking table:
 
 Do not allow applications to mass-reorganize, rescan destructively, or move files until drive letters are confirmed.
 
+Current deployment decision:
+
+- Plex remains a native Windows install.
+- Sonarr, Radarr, qBittorrent, Jackett, and Unpackerr should run as Docker containers.
+- Use Docker volume mappings that preserve the confirmed Windows drive letters and avoid moving media files just to satisfy container paths.
+
+## Docker Media Stack
+
+- [ ] Confirm Docker Desktop starts successfully.
+- [ ] Confirm the Docker daemon/API is reachable from PowerShell.
+- [ ] Confirm Docker Compose is usable.
+- [ ] Create or verify `docker-compose.media.yml`.
+- [ ] Create or verify the matching `.env`.
+- [ ] Define host config folders for Sonarr, Radarr, qBittorrent, Jackett, and Unpackerr.
+- [ ] Define read/write media and download volume mappings after drive letters are confirmed.
+- [ ] Start containers only after mappings are reviewed.
+- [ ] Confirm restart policy for each container.
+- [ ] Confirm container logs do not show permission or missing-path errors.
+
 ## Plex
 
 - [ ] Confirm Plex Media Server data directory exists.
@@ -263,7 +285,8 @@ Do not allow applications to mass-reorganize, rescan destructively, or move file
 
 ## Sonarr
 
-- [ ] Confirm Sonarr opens.
+- [ ] Confirm Sonarr container opens.
+- [ ] Confirm Sonarr config volume is persistent.
 - [ ] Confirm root folders.
 - [ ] Confirm download client settings.
 - [ ] Confirm completed download handling.
@@ -271,7 +294,8 @@ Do not allow applications to mass-reorganize, rescan destructively, or move file
 
 ## Radarr
 
-- [ ] Confirm Radarr opens.
+- [ ] Confirm Radarr container opens.
+- [ ] Confirm Radarr config volume is persistent.
 - [ ] Confirm root folders.
 - [ ] Confirm download client settings.
 - [ ] Confirm completed download handling.
@@ -279,6 +303,9 @@ Do not allow applications to mass-reorganize, rescan destructively, or move file
 
 ## qBittorrent
 
+- [ ] Confirm qBittorrent container opens.
+- [ ] Confirm qBittorrent config volume is persistent.
+- [ ] Confirm Web UI credentials are changed from defaults.
 - [ ] Confirm default save path.
 - [ ] Confirm incomplete downloads path.
 - [ ] Confirm completed downloads path.
@@ -287,12 +314,15 @@ Do not allow applications to mass-reorganize, rescan destructively, or move file
 
 ## Jackett
 
-- [ ] Confirm service/app opens.
+- [ ] Confirm Jackett container opens.
+- [ ] Confirm Jackett config volume is persistent.
 - [ ] Confirm indexers remain configured.
 - [ ] Test one indexer.
 
-## Unpacker
+## Unpackerr
 
+- [ ] Confirm Unpackerr container starts.
+- [ ] Confirm Unpackerr config volume is persistent.
 - [ ] Confirm watched folders.
 - [ ] Confirm extraction destination.
 - [ ] Test on a small/non-critical file if needed.
@@ -325,6 +355,8 @@ Because the server sits in the room where TV is watched, quiet operation matters
 | Only 6 SATA ports available | Current drives fit exactly; add PCIe SATA/HBA card for future expansion |
 | eBay CPU is open-box/OEM | Inspect and test quickly within return window |
 | Plex metadata location unknown | Search OS SSD before reinstalling Plex |
+| Docker volume mappings may point at wrong drives | Confirm Windows drive letters first, then review all host paths before starting containers |
+| Docker Desktop may not start at boot/login | Confirm Docker Desktop startup behavior and container restart policies before relying on automation |
 | Modular PSU cable mismatch | Use only Corsair-compatible RM750e cables |
 | Noise in TV room | Tune fan curves and consider replacing old case fans if needed |
 
@@ -336,7 +368,8 @@ Because the server sits in the room where TV is watched, quiet operation matters
 - [ ] Do not initialize any existing media drive in Disk Management.
 - [ ] Do not reinstall Windows over the OS SSD before checking Plex metadata.
 - [ ] Do not randomly reorder drives.
-- [ ] Do not launch Plex/Sonarr/Radarr/qBittorrent before verifying drive letters.
+- [ ] Do not launch Plex or the Docker media stack before verifying drive letters.
+- [ ] Do not start Sonarr/Radarr/qBittorrent/Jackett/Unpackerr containers until host volume mappings are reviewed.
 - [ ] Do not mix modular PSU cables from another power supply.
 - [ ] Do not assume the eBay CPU includes a cooler.
 - [ ] Do not enable aggressive overclocking or unstable RAM settings during first boot.
@@ -353,11 +386,13 @@ After rebuild succeeds, create/update these project files:
 - [ ] PSU cable map.
 - [ ] Fan header map.
 - [ ] Plex library path map.
-- [ ] Sonarr root folder map.
-- [ ] Radarr root folder map.
-- [ ] qBittorrent category/path map.
-- [ ] Jackett config notes.
-- [ ] Unpacker config notes.
+- [ ] Docker compose file and `.env` notes.
+- [ ] Docker volume map for media, downloads, and app config.
+- [ ] Sonarr container/root folder map.
+- [ ] Radarr container/root folder map.
+- [ ] qBittorrent container/category/path map.
+- [ ] Jackett container/config notes.
+- [ ] Unpackerr container/config notes.
 - [ ] BIOS settings notes.
 - [ ] Driver versions installed.
 - [ ] Plex hardware transcoding test result.

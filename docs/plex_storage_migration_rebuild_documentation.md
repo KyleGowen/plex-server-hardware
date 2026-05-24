@@ -12,7 +12,7 @@ Use this during the Plex server rebuild so the OS SSD, media drives, drive-lette
 
 ## High-Level Summary
 
-The existing Plex server used a simple Windows-native storage layout:
+The existing Plex server used a simple Windows-native storage layout. The rebuild keeps Windows-native storage and Plex, but moves the media automation stack forward under Docker.
 
 | Area | Current State |
 |---|---|
@@ -23,14 +23,14 @@ The existing Plex server used a simple Windows-native storage layout:
 | Drive Organization | Separate Windows drive letters |
 | RAID | None known |
 | Drive Pooling | None known |
-| Docker | Not used |
+| Docker | Chosen for Sonarr, Radarr, qBittorrent, Jackett, and Unpackerr going forward |
 | Virtualization | Not used |
 
 ## Important Rebuild Implication
 
-Because the system was using independent Windows drive letters rather than RAID, ZFS, Unraid, Docker volumes, or a storage pool, the rebuild should be simpler than a typical NAS migration.
+Because the system uses independent Windows drive letters rather than RAID, ZFS, Unraid, or a storage pool, the rebuild should be simpler than a typical NAS migration.
 
-The goal is to preserve or restore the original Windows drive-letter layout so Plex, Sonarr, Radarr, qBittorrent, Jackett, and Unpacker can find their existing paths.
+The goal is to preserve or restore the original Windows drive-letter layout so native Plex and the Docker containers for Sonarr, Radarr, qBittorrent, Jackett, and Unpackerr can be mapped to the correct media and download folders.
 
 ---
 
@@ -179,11 +179,12 @@ Use:
 - Windows Disk Management
 - File Explorer
 - Plex library folder paths
-- Sonarr root folders
-- Radarr root folders
-- qBittorrent download paths
-- Jackett configuration paths if applicable
-- Unpacker watched/completed folder paths
+- Docker host volume mappings
+- Sonarr container root folders
+- Radarr container root folders
+- qBittorrent container download paths
+- Jackett container configuration paths if applicable
+- Unpackerr watched/completed folder paths
 
 ### Drive Letter Recovery Strategy
 
@@ -191,8 +192,9 @@ If a media path is broken, do not move files first. Instead:
 
 1. Identify which physical drive contains the expected folders.
 2. Change that drive's letter in Disk Management.
-3. Reopen the relevant application.
-4. Confirm the original path resolves again.
+3. Update the Docker host volume mapping only if the restored drive letter still does not match the intended path.
+4. Reopen the relevant application or container.
+5. Confirm the original path resolves again.
 
 ---
 
@@ -253,16 +255,17 @@ After reconnecting media drives, verify:
 
 # Media Management Stack Recovery
 
-The previous stack was Windows-native and included:
+The previous stack was Windows-native. The chosen forward plan is native Windows Plex plus Docker containers for the media automation stack.
 
 | Application | Purpose | Migration Concern |
 |---|---|---|
 | Plex Media Server | Media streaming and transcoding | Library paths and metadata location |
-| Sonarr | TV series management | Root folders and download client paths |
-| Radarr | Movie management | Root folders and download client paths |
-| qBittorrent | Torrent client | Download folders and incomplete/completed paths |
-| Jackett | Indexer aggregation | Service config and indexer settings |
-| Unpacker | Post-download extraction | Watched folders and extraction output paths |
+| Docker Desktop / Compose | Container runtime and orchestration | Daemon availability, compose file, `.env`, restart behavior |
+| Sonarr container | TV series management | Persistent config volume, root folders, download client paths |
+| Radarr container | Movie management | Persistent config volume, root folders, download client paths |
+| qBittorrent container | Torrent client | Persistent config volume, Web UI credentials, incomplete/completed paths |
+| Jackett container | Indexer aggregation | Persistent config volume, API key, indexer settings |
+| Unpackerr container | Post-download extraction | Persistent config volume, watched folders, extraction output paths |
 
 ## Recovery Order
 
@@ -271,19 +274,31 @@ Recommended application recovery order:
 1. Windows boot and driver stability
 2. Drive letters
 3. Folder visibility
-4. qBittorrent paths
-5. Sonarr/Radarr root folders
-6. Jackett indexers
-7. Unpacker paths
-8. Plex libraries
-9. Plex remote access
-10. Plex hardware transcoding
+4. Docker Desktop and Compose availability
+5. Docker compose file and volume mappings
+6. qBittorrent paths
+7. Sonarr/Radarr root folders
+8. Jackett indexers
+9. Unpackerr paths
+10. Plex libraries
+11. Plex remote access
+12. Plex hardware transcoding
+
+## Docker Path Mapping Notes
+
+Before starting the media containers:
+
+- Confirm Windows drive letters `D:` through `J:` are stable.
+- Confirm `I:` remains the torrent/download drive before mapping qBittorrent paths.
+- Prefer stable, documented container paths such as `/media/movies1`, `/media/tv1`, and `/downloads` instead of changing Windows drive letters or moving files.
+- Keep each application's config in a persistent host folder, not only inside an ephemeral container layer.
+- Review the compose file before first start so no container writes to the wrong media drive.
 
 ---
 
 # qBittorrent Migration Notes
 
-qBittorrent paths may break if drive letters change.
+qBittorrent paths may break if drive letters or Docker volume mappings are wrong.
 
 Check:
 
@@ -292,7 +307,7 @@ Check:
 - Completed downloads path
 - Watched folders
 - Category-specific paths
-- Sonarr/Radarr download client integration
+- Sonarr/Radarr download client integration through the Docker network or published host port
 
 Do not resume all torrents until paths are verified.
 
@@ -300,7 +315,7 @@ Do not resume all torrents until paths are verified.
 
 # Sonarr / Radarr Migration Notes
 
-Sonarr and Radarr are sensitive to path changes.
+Sonarr and Radarr are sensitive to path changes. In Docker, both the host drive-letter mapping and the in-container path must be correct.
 
 Check:
 
@@ -310,6 +325,8 @@ Check:
 - Completed download handling
 - Import paths
 - Permissions/access to media drives
+- Container volume mappings
+- Remote path mappings if Sonarr/Radarr and qBittorrent see different paths
 
 If paths are broken, prefer restoring original drive letters rather than mass-editing paths.
 
@@ -397,7 +414,9 @@ The following information is still missing and should be documented during the r
 | Sonarr root folders | Needed for TV library repair |
 | Radarr root folders | Needed for movie library repair |
 | Jackett config location | Needed for indexer recovery |
-| Unpacker config paths | Needed for post-download automation |
+| Unpackerr config paths | Needed for post-download automation |
+| Docker compose file and `.env` | Needed to reproduce the container stack |
+| Docker volume mapping plan | Needed to prevent containers writing to the wrong drive |
 | SATA expansion card model | Needed for driver/manual lookup |
 | BIOS SATA mode | AHCI/RAID mode can affect boot behavior |
 
@@ -435,11 +454,15 @@ Use this checklist when the replacement system is assembled.
 
 ## Application Recovery
 
-- [ ] qBittorrent paths verified
-- [ ] Sonarr root folders verified
-- [ ] Radarr root folders verified
-- [ ] Jackett opens and indexers remain configured
-- [ ] Unpacker paths verified
+- [ ] Docker Desktop starts
+- [ ] Docker Compose works
+- [ ] Docker media stack compose file reviewed
+- [ ] Docker media stack volume mappings verified
+- [ ] qBittorrent container paths verified
+- [ ] Sonarr container root folders verified
+- [ ] Radarr container root folders verified
+- [ ] Jackett container opens and indexers remain configured
+- [ ] Unpackerr container paths verified
 - [ ] Plex libraries open
 - [ ] Plex metadata appears intact
 - [ ] Hardware transcoding enabled
@@ -456,17 +479,19 @@ Once the rebuild succeeds, create or update the following:
 2. Drive inventory with model, serial, capacity, and drive letter
 3. SATA port map
 4. Plex library path map
-5. Sonarr/Radarr root folder map
-6. qBittorrent category/path map
-7. Backup plan for Plex metadata
-8. Backup plan for app configs
-9. Remote access / router configuration notes
+5. Docker compose and `.env` documentation
+6. Docker volume mapping table
+7. Sonarr/Radarr root folder map
+8. qBittorrent category/path map
+9. Backup plan for Plex metadata
+10. Backup plan for app configs
+11. Remote access / router configuration notes
 
 ---
 
 # Summary
 
-The storage migration risk is manageable because the old server used a simple Windows-native, non-RAID, non-Docker architecture.
+The storage migration risk is manageable because the old server used simple Windows-native, non-RAID storage with independent drive letters. The new Docker plan adds container path mapping risk, so drive letters and Docker volumes must be verified before starting automation containers.
 
 The critical success factors are:
 
@@ -476,4 +501,4 @@ The critical success factors are:
 4. Reconnect the OS SSD first, by itself.
 5. Add media drives incrementally.
 6. Restore original drive letters before launching automation tools.
-7. Verify Plex, Sonarr, Radarr, qBittorrent, Jackett, and Unpacker paths before normal use.
+7. Verify Plex paths, Docker volume mappings, and Sonarr/Radarr/qBittorrent/Jackett/Unpackerr paths before normal use.

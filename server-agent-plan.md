@@ -2,7 +2,7 @@
 
 ## Summary
 
-Build a Windows-native, single-user “Agent of Korlash” that manages Plex, Sonarr, Radarr, qBittorrent, Jackett, Unpackerr, Windows services, network diagnostics, and this rebuild repo through controlled APIs and PowerShell tools.
+Build a Windows-native, single-user “Agent of Korlash” that manages native Plex plus Docker-hosted Sonarr, Radarr, qBittorrent, Jackett, Unpackerr, Windows services, network diagnostics, and this rebuild repo through controlled APIs, Docker/Compose inspection, and PowerShell tools.
 
 Recommended architecture:
 
@@ -25,7 +25,8 @@ ChatGPT Pro and Cursor Pro are useful for planning, review, coding, and manual t
 | Web UI | Local single-user chat dashboard | One point of contact from desktop or phone |
 | Private access | Tailscale | Phone access without exposing ports publicly |
 | Automation host | Windows Task Scheduler + Windows services | Health checks, scheduled reports, background jobs |
-| Tool layer | Local API adapters and PowerShell scripts | Safe control over Plex stack and Windows |
+| Docker host | Docker Desktop / Compose | Runs Sonarr, Radarr, qBittorrent, Jackett, and Unpackerr |
+| Tool layer | Local API adapters, Docker/Compose commands, and PowerShell scripts | Safe control over Plex stack, containers, and Windows |
 | Repo context | Local clone of `KyleGowen/plex-server-hardware` | Rules, inventory, drive maps, troubleshooting history |
 | Logs | Append-only local audit logs | Track every request, tool call, approval, and config change |
 
@@ -52,7 +53,8 @@ Use official/local APIs first:
 | Radarr | Radarr REST API | Movie lookup, add movie, quality profile selection, search |
 | qBittorrent | Web API | Torrent state, categories, paths, tracker inspection with restricted trackers filtered |
 | Jackett | Jackett API / Torznab endpoints | Indexer status and search diagnostics |
-| Unpackerr | Config file + logs + Windows service control | Verify watched paths, restart service, inspect failures |
+| Unpackerr | Config file + logs + Docker container control | Verify watched paths, restart container, inspect failures |
+| Docker / Compose | Docker CLI / Compose file | Container status, logs, restart policy, image/version checks |
 | Windows | PowerShell 7 scripts | Services, firewall, network, disk letters, event logs, scheduled tasks |
 | Repo | Local filesystem + Git | Read docs, update logs/rules after approved changes |
 
@@ -282,7 +284,7 @@ Add scheduled checks:
 | Sonarr/Radarr reachable | Every 15 minutes |
 | qBittorrent reachable | Every 15 minutes |
 | Jackett reachable | Every 30 minutes |
-| Unpackerr service running | Every 30 minutes |
+| Unpackerr container running | Every 30 minutes |
 | Disk free space | Hourly |
 | Drive SMART summary | Daily |
 | Failed imports / stuck queue | Daily |
@@ -483,7 +485,7 @@ Evolve toward:
 
 ### Recovery Tests
 
-- Stop Sonarr manually, then ask the agent what is wrong.
+- Stop the Sonarr container manually, then ask the agent what is wrong.
 - Break a test root-folder path in a controlled way, then verify the agent detects the mismatch.
 - Create a fake failed import, then verify the agent explains the likely cause.
 - Confirm every write action appears in the audit log.
@@ -491,7 +493,8 @@ Evolve toward:
 ## Assumptions and Defaults
 
 - The server remains Windows 10 native.
-- Docker is avoided for v1.
+- Docker is the chosen runtime for Sonarr, Radarr, qBittorrent, Jackett, and Unpackerr.
+- Plex remains a native Windows install.
 - qBittorrent remains the downloader.
 - Jackett remains the indexer layer.
 - Unpacker means Unpackerr.
