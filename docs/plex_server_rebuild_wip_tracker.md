@@ -319,7 +319,9 @@ Current deployment decision:
 - [x] Confirm Sonarr connection.
 - [x] Confirm Radarr connection.
 - [x] Configure English language profile.
-- [ ] Add subtitle provider credentials.
+- [x] Enable subtitle providers: `opensubtitlescom`, `podnapisi`, and `subdl`.
+- [x] Add SubDL API key locally in Bazarr config; keep the key out of repo docs and commits.
+- [ ] Add OpenSubtitles.com credentials if that provider should be used as a primary source.
 - [ ] Test one manual subtitle search/download after provider setup.
 - [ ] Do not run bulk subtitle searches until providers and media write behavior are confirmed.
 

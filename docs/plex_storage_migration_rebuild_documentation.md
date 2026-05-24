@@ -409,9 +409,11 @@ Confirmed in Bazarr on 2026-05-24.
 | Movie media mounts | `/movies/movies1`, `/movies/movies2`, `/movies/movies3` |
 | Language profile | `English` |
 | Default profile | Enabled for newly synced series and movies |
-| Subtitle providers | Not configured yet |
+| Subtitle providers | `opensubtitlescom`, `podnapisi`, and `subdl` enabled |
+| SubDL credential | API key configured locally in Bazarr; treat as secret and do not commit |
+| OpenSubtitles.com credential | Not configured yet; add later if OpenSubtitles should be a primary source |
 
-Bazarr can talk to Sonarr and Radarr and has a clean health check. Add subtitle provider credentials before relying on automatic subtitle downloads. Do not run bulk subtitle searches until Sonarr/Radarr imports, provider settings, and subtitle write behavior are confirmed.
+Bazarr can talk to Sonarr and Radarr and has a clean health check. Provider status was last verified as good for `opensubtitlescom`, `podnapisi`, and `subdl`. Do not run bulk subtitle searches until one controlled subtitle search/download confirms provider behavior, media-path write behavior, and Plex subtitle visibility.
 
 ---
 
