@@ -38,7 +38,7 @@ The goal is to preserve or restore the original Windows drive-letter layout so P
 
 ## Rack Overview
 
-The storage rack contains:
+Earlier visual inspection of the storage rack appeared to contain:
 
 - 6 total installed drives
 - 5x 3.5-inch SATA HDDs
@@ -47,40 +47,27 @@ The storage rack contains:
 - Mixed drive models and generations
 - One visible empty bay in the center section
 
-## Physical Drive Layout — Front View
+Current Windows inventory after all currently available media drives were plugged in shows:
 
-### Left Section
+- 8 fixed SATA drives total
+- 1x Samsung 2.5-inch SATA SSD used as the Windows OS/application drive
+- 7x SATA HDD media/data drives
+- 1x SanDisk USB removable drive also connected; not part of server storage
 
-| Position | Drive Type | Notes |
-|---|---|---|
-| Upper Left / Dangling Mounted Drive | 2.5-inch SATA SSD | Windows 10 OS and application drive. Mounted above lower HDD stack. |
-| Lower Left Stack | 3.5-inch HDD | Older HDD mounted beneath SSD. Likely legacy archive/media drive. |
+The detailed drive table with models, serials, sizes, volume labels, drive letters, and health status is maintained in [plex_server_hardware_inventory.md](plex_server_hardware_inventory.md).
 
-### Center Section
+# Confirmed Drive Inventory
 
-| Position | Drive Type | Notes |
-|---|---|---|
-| Center Left Bay | Empty | Available expansion slot. |
-| Center Right Bay | 3.5-inch HDD | Drive with visible green PCB edge. |
+As of the 2026-05-23 Windows inventory, the OS drive and all currently connected media drives are identified. Keep the canonical table in [plex_server_hardware_inventory.md](plex_server_hardware_inventory.md) so there is one stable inventory source.
 
-### Right Section
+Current fixed SATA storage summary:
 
-| Position | Drive Type | Notes |
-|---|---|---|
-| Right Bay 1 | 3.5-inch HDD | Silver enclosure. |
-| Right Bay 2 | 3.5-inch HDD | Visible green PCB edge. |
-| Right Bay 3 | 3.5-inch HDD | Silver enclosure. |
-| Right Bay 4 | 3.5-inch HDD | Silver enclosure. |
-
----
-
-# Confirmed / Partially Identified Drives
-
-| Drive | Model | Capacity | Role | Notes |
-|---|---|---:|---|---|
-| Seagate Exos X24 | ST20000NM000H | 20TB | Media/archive storage | Enterprise recertified drive. |
-| OS SSD | Unknown | Unknown | Windows 10 boot/app drive | Dedicated 2.5-inch SATA SSD mounted at top-left of rack. |
-| Additional HDDs | Unknown | Unknown | Media storage | Need labels/model capture before disassembly. |
+| Role | Count | Models / Labels |
+|---|---:|---|
+| Windows OS/application SSD | 1 | Samsung SSD 840 EVO 250GB, `C:` |
+| 20 TB media/data HDDs | 4 | ST20000NM000H-3KV103 on `D:`, `G:`, `H:`, `I:` |
+| 16 TB media HDD | 1 | ST16000NE000-3UN101 on `J:` |
+| 8 TB media HDDs | 2 | ST8000DM004-2CX188 on `E:`, `F:` |
 
 ---
 
@@ -107,19 +94,9 @@ Perform the following before disassembly:
 7. Record visible model numbers and capacities from each drive label.
 8. Keep the OS SSD clearly marked and separate from media drives.
 
-## Suggested Drive Labels
+## Physical Labeling Status
 
-Use simple physical labels such as:
-
-| Label | Meaning |
-|---|---|
-| OS-SSD | Windows 10 boot/application SSD |
-| HDD-L1 | Lower-left HDD |
-| HDD-C1 | Center-right HDD |
-| HDD-R1 | Right bay 1 |
-| HDD-R2 | Right bay 2 |
-| HDD-R3 | Right bay 3 |
-| HDD-R4 | Right bay 4 |
+No verified physical drive labels are recorded in this document yet. Before future recabling or drive replacement, correlate each physical drive label with its model, serial number, Windows disk number, drive letter, and SATA port.
 
 ---
 
@@ -412,9 +389,8 @@ The following information is still missing and should be documented during the r
 
 | Missing Item | Why It Matters |
 |---|---|
-| OS SSD brand/model/capacity | Helps assess reliability and replacement need |
-| Exact drive letters | Needed to restore Plex and automation paths |
-| Full HDD model/capacity list | Needed for future inventory and replacement planning |
+| Physical bay-to-Windows disk mapping | Needed before future SATA recabling or drive replacement |
+| SATA port map | Needed for driver/manual lookup and predictable future servicing |
 | Plex metadata location | Needed for full Plex restore |
 | Windows username used for Plex | Helps locate AppData folder |
 | qBittorrent save paths | Needed to prevent broken torrents |

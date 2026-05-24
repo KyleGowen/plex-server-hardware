@@ -41,7 +41,7 @@ Use this as the main stable-facts reference. Rebuild procedures live in the WIP 
 | Extra Case Fan | Thermaltake TT-1225 / A1225L12S | Installed in case | DC brushless 120 mm fan; 12V, 0.30A; label photographed in empty case; source notes in `manuals/case-fan-source-notes.md` |
 | Extra Case Fan | SilverStone CC12025L12S | Installed in case | 120 mm case fan; 12V, 0.07A; label photographed in empty case; source notes in `manuals/case-fan-source-notes.md` |
 | OS Storage | 2.5-inch SATA SSD | Important / preserve | Windows 10 and application drive |
-| Media Storage | Multiple 3.5-inch SATA HDDs | Preserve | Used for Plex media storage |
+| Media Storage | 7x SATA HDDs detected in Windows | Preserve | Used for Plex media storage; all currently online/healthy as of 2026-05-23 inventory |
 | SATA Cabling | SATA power + data cabling | Partially disconnected during diagnostics | Should be labeled before rebuild |
 
 ---
@@ -205,57 +205,60 @@ RAM failure is currently considered unlikely.
 | Area | Current State |
 |---|---|
 | OS Drive | Dedicated 2.5-inch SATA SSD |
-| Media Drives | Multiple 3.5-inch SATA HDDs |
+| Media Drives | 7x SATA HDDs detected in Windows |
 | Drive Organization | Independent Windows drive letters |
 | RAID | None known |
 | Pooling | None known |
 | Filesystem Strategy | Standard Windows-mounted drives |
 | Storage Interface | SATA |
 
-## Physical Drive Rack Summary
+## Verified Physical / Connection Status
 
-The storage rack appears to contain:
+The following facts are verified from the current Windows inventory captured on 2026-05-23:
 
-- 6 total installed drives.
-- 5x 3.5-inch SATA HDDs.
-- 1x 2.5-inch SATA SSD used as the Windows OS/application drive.
-- Mixed drive models and generations.
-- One visible empty bay in the center section.
+| Item | Verified State |
+|---|---|
+| Fixed SATA drives detected | 8 total |
+| OS/application drive | 1x Samsung SSD 840 EVO 250GB on `C:` |
+| Media/data HDDs | 7x SATA HDDs on `D:`, `E:`, `F:`, `G:`, `H:`, `I:`, and `J:` |
+| Removable drive present | 1x SanDisk Cruzer Glide 3.0 USB Device on `K:`; not part of Plex storage |
+| Physical bay-to-disk mapping | Not yet verified |
+| SATA port-to-disk mapping | Not yet verified |
+| Physical labels on drives | Not yet verified in this document |
 
-## Physical Drive Layout — Front View
-
-### Left Section
-
-| Position | Drive Type | Notes |
-|---|---|---|
-| Upper Left / Dangling Mounted Drive | 2.5-inch SATA SSD | Windows 10 OS and application drive; mounted above lower HDD stack |
-| Lower Left Stack | 3.5-inch HDD | Older HDD; likely legacy archive/media drive |
-
-### Center Section
-
-| Position | Drive Type | Notes |
-|---|---|---|
-| Center Left Bay | Empty | Available expansion slot |
-| Center Right Bay | 3.5-inch HDD | Drive with visible green PCB edge |
-
-### Right Section
-
-| Position | Drive Type | Notes |
-|---|---|---|
-| Right Bay 1 | 3.5-inch HDD | Silver enclosure |
-| Right Bay 2 | 3.5-inch HDD | Visible green PCB edge |
-| Right Bay 3 | 3.5-inch HDD | Silver enclosure |
-| Right Bay 4 | 3.5-inch HDD | Silver enclosure |
+Do not infer physical bay position from Windows disk number. Before future recabling or drive replacement, correlate each physical drive label with its model, serial number, Windows disk number, and drive letter.
 
 ---
 
-# Confirmed / Partially Identified Drives
+# Confirmed Drive Inventory
 
-| Drive | Model | Capacity | Role | Notes |
-|---|---|---:|---|---|
-| Seagate Exos X24 | ST20000NM000H | 20TB | Media/archive storage | Enterprise recertified drive |
-| OS SSD | Unknown | Unknown | Windows 10 boot/app drive | Dedicated 2.5-inch SATA SSD mounted at top-left of rack |
-| Additional HDDs | Unknown | Unknown | Media storage | Need label/model capture before disassembly |
+Captured from read-only Windows disk and volume queries on 2026-05-23 after all currently available media drives were plugged in.
+
+## Fixed SATA Drives
+
+| Windows Disk # | Drive Letter | Volume Label | Model | Serial | Nominal Capacity | Windows Size | Free | Used | Partition Style | Health | Role / Notes |
+|---:|---|---|---|---|---:|---:|---:|---:|---|---|---|
+| 0 | D: | Movies 1 | ST20000NM000H-3KV103 | ZYD022FT | 20 TB | 18.19 TiB | 18.10 TiB | 0.5% | GPT | Healthy | Media drive |
+| 1 | E: | Movies 3 | ST8000DM004-2CX188 | ZCT0QF7Y | 8 TB | 7.28 TiB | 0.09 TiB | 98.7% | GPT | Healthy | Media drive; nearly full |
+| 2 | F: | Movies 2 | ST8000DM004-2CX188 | ZCT1AK4D | 8 TB | 7.28 TiB | 2.37 TiB | 67.4% | GPT | Healthy | Media drive |
+| 3 | C: | unlabeled | Samsung SSD 840 EVO 250GB | S1DDNWAF903275D | 250 GB | 0.23 TiB | 0.14 TiB | 39.0% | MBR | Healthy | Windows OS/application SSD; also has System Reserved partition |
+| 4 | H: | TV 2 | ST20000NM000H-3KV103 | ZYD02EQ2 | 20 TB | 18.19 TiB | 8.24 TiB | 54.7% | GPT | Healthy | Media drive |
+| 5 | I: | Torrent | ST20000NM000H-3KV103 | ZYE00444 | 20 TB | 18.19 TiB | 0.69 TiB | 96.2% | GPT | Healthy | Torrent/download drive; nearly full |
+| 6 | G: | Broken Power Pin | ST20000NM000H-3KV103 | ZYD046SE | 20 TB | 18.19 TiB | 18.19 TiB | 0.0% | GPT | Healthy | Media/data drive; label suggests known physical connector issue to inspect |
+| 7 | J: | TV 1 | ST16000NE000-3UN101 | ZVTBPM4J | 16 TB | 14.55 TiB | 3.26 TiB | 77.6% | GPT | Healthy | Media drive |
+
+## Removable / Non-Server Storage
+
+| Windows Disk # | Drive Letter | Volume Label | Model | Serial | Nominal Capacity | Windows Size | Health | Notes |
+|---:|---|---|---|---|---:|---:|---|---|
+| 8 | K: | ESD-USB | SanDisk Cruzer Glide 3.0 USB Device | 4C530001070519122443 | 32 GB | 0.03 TiB | Healthy | Removable USB installer/media; not part of Plex storage |
+
+## Drive Letter Preservation Notes
+
+- Current media drive letters are `D:`, `E:`, `F:`, `G:`, `H:`, `I:`, and `J:`.
+- Do not launch Plex, Sonarr, Radarr, qBittorrent, Jackett, or Unpacker after any future recabling until these drive letters are confirmed.
+- The `G:` volume label is `Broken Power Pin`; inspect and document the physical drive/cable before relying on it for writes.
+- `E:` and `I:` are nearly full and should be treated carefully during imports, downloads, or library moves.
 
 ---
 
@@ -338,24 +341,16 @@ The storage rack appears to contain:
 | Corsair RM750e PSU | High | Partial power behavior suggests PSU is likely okay |
 | GIGABYTE GeForce RTX 3050 WINDFORCE OC 6G GPU | High | Tested in/out with no behavior change |
 | SATA OS SSD | Unknown but important | Preserve and test first in rebuild |
-| SATA HDD media drives | High | No evidence of storage-related failure |
+| SATA HDD media drives | High | 7 media/data HDDs detected online and healthy in Windows on 2026-05-23 |
 | SilverStone GD07 case | High | Reusable chassis |
 | DDR3 RAM | Moderate to high | Tested individually; likely okay |
 | Intel CPU | Moderate | Less likely than motherboard, but exact status unconfirmed |
 
 ---
 
-# Drive Labels
+# Physical Labeling Status
 
-| Label | Meaning |
-|---|---|
-| OS-SSD | Windows 10 boot/application SSD |
-| HDD-L1 | Lower-left HDD |
-| HDD-C1 | Center-right HDD |
-| HDD-R1 | Right bay 1 |
-| HDD-R2 | Right bay 2 |
-| HDD-R3 | Right bay 3 |
-| HDD-R4 | Right bay 4 |
+No verified physical drive labels are recorded in this inventory yet. Use the confirmed drive table above as the current source of truth until each physical bay and SATA cable is matched to a serial number.
 
 ---
 
@@ -379,9 +374,8 @@ Detailed Plex recovery procedure is maintained in [plex_storage_migration_rebuil
 |---|---|
 | Exact CPU model | Needed for specs, performance, reuse planning |
 | RAM capacity / model | Needed for inventory and compatibility |
-| OS SSD brand/model/capacity | Helps assess reliability and replacement need |
-| Exact Windows drive letters | Needed to restore Plex and automation paths |
-| Full HDD model/capacity list | Needed for future inventory and replacement planning |
+| Physical bay-to-Windows disk mapping | Needed before future SATA recabling or drive replacement |
+| SATA port map | Needed to preserve predictable rebuild documentation |
 | Plex metadata location | Needed for full Plex restore |
 | Windows username used for Plex | Helps locate AppData folder |
 | qBittorrent save paths | Needed to prevent broken torrents |
