@@ -39,6 +39,10 @@ The project involves:
 - When interacting with Sonarr, Radarr, Lidarr, or Prowlarr, try the configured `mcp_arr` MCP server first.
 - If `mcp_arr` is unavailable or lacks the needed API credentials, fall back to local files, documented API calls, or the service UI as appropriate.
 - Do not use `mcp_arr` to launch, repair, add, move, search, or mutate media paths until drive letters and root folders have been confirmed.
+- When interacting with qBittorrent or torrent download state, try the configured `torrent_manager` MCP server first.
+- Use `torrent_manager` read-only tools first for status, torrent lists, session stats, and disk-space checks.
+- Do not use `torrent_manager` to add, start, stop, remove, delete, move, or recheck torrents until qBittorrent categories, save paths, incomplete paths, and root-folder mappings have been confirmed.
+- If `torrent_manager` is unavailable or lacks needed credentials, fall back to local qBittorrent config/log files, documented Web API calls, or the qBittorrent Web UI as appropriate.
 
 ## Current Rebuild Hardware
 
