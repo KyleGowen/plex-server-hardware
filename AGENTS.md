@@ -22,6 +22,14 @@ The project involves:
 - Use only Corsair RM750e-compatible modular PSU cables.
 - Favor step-by-step checklists over broad advice.
 
+## Secret Handling
+
+- Treat tracker credentials, service usernames/passwords, cookies, passkeys, API keys, tokens, and invite/account details as local secrets.
+- Never commit secrets to this repository, generated scripts, documentation, `.env` examples, logs intended for git, or GitHub.
+- Before staging, committing, pushing, or opening a PR, scan changed files for secrets and remove or redact anything sensitive.
+- Prefer reading service API keys from local config files or environment variables at runtime instead of hard-coding them in scripts.
+- When reporting command output, redact secrets unless the user explicitly asks to view a credential for immediate local use.
+
 ## Agent Permissions
 
 - Do not ask for permission before running local `git` commands for this project.
