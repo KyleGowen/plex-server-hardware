@@ -25,9 +25,16 @@ The project involves:
 ## Agent Permissions
 
 - Do not ask for permission before running local `git` commands for this project.
+- Do not ask for permission before running local `docker` or `docker compose` commands for this project.
 - Do not ask for permission before reading local files on this computer.
 - Do not ask for permission before searching public websites.
 - Do not ask for permission before running local PowerShell commands for this project.
+
+## MCP Usage
+
+- When interacting with Sonarr, Radarr, Lidarr, or Prowlarr, try the configured `mcp_arr` MCP server first.
+- If `mcp_arr` is unavailable or lacks the needed API credentials, fall back to local files, documented API calls, or the service UI as appropriate.
+- Do not use `mcp_arr` to launch, repair, add, move, search, or mutate media paths until drive letters and root folders have been confirmed.
 
 ## Current Rebuild Hardware
 

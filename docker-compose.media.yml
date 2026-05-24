@@ -1,0 +1,92 @@
+name: plex-media-stack
+
+services:
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    volumes:
+      - ${MEDIA_STACK_CONFIG}/sonarr:/config
+      - ${DOWNLOADS_ROOT}:/downloads
+      - ${TV_1_ROOT}:/tv/tv1
+      - ${TV_2_ROOT}:/tv/tv2
+    ports:
+      - "${WEBUI_HOST_IP}:${SONARR_PORT}:8989"
+    restart: unless-stopped
+
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    volumes:
+      - ${MEDIA_STACK_CONFIG}/radarr:/config
+      - ${DOWNLOADS_ROOT}:/downloads
+      - ${MOVIES_1_ROOT}:/movies/movies1
+      - ${MOVIES_2_ROOT}:/movies/movies2
+      - ${MOVIES_3_ROOT}:/movies/movies3
+    ports:
+      - "${WEBUI_HOST_IP}:${RADARR_PORT}:7878"
+    restart: unless-stopped
+
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    volumes:
+      - ${MEDIA_STACK_CONFIG}/prowlarr:/config
+    ports:
+      - "${WEBUI_HOST_IP}:${PROWLARR_PORT}:9696"
+    restart: unless-stopped
+
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+      - WEBUI_PORT=${QBITTORRENT_WEBUI_PORT}
+      - TORRENTING_PORT=${QBITTORRENT_TORRENT_PORT}
+    volumes:
+      - ${MEDIA_STACK_CONFIG}/qbittorrent:/config
+      - ${DOWNLOADS_ROOT}:/downloads
+    ports:
+      - "${WEBUI_HOST_IP}:${QBITTORRENT_WEBUI_PORT}:${QBITTORRENT_WEBUI_PORT}"
+      - "${QBITTORRENT_TORRENT_PORT}:${QBITTORRENT_TORRENT_PORT}"
+      - "${QBITTORRENT_TORRENT_PORT}:${QBITTORRENT_TORRENT_PORT}/udp"
+    restart: unless-stopped
+
+  unpackerr:
+    image: golift/unpackerr:latest
+    container_name: unpackerr
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - ${MEDIA_STACK_CONFIG}/unpackerr:/config
+      - ${DOWNLOADS_ROOT}:/downloads
+    restart: unless-stopped
+
+  jackett:
+    image: lscr.io/linuxserver/jackett:latest
+    container_name: jackett
+    profiles:
+      - legacy-jackett
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    volumes:
+      - ${MEDIA_STACK_CONFIG}/jackett:/config
+      - ${DOWNLOADS_ROOT}:/downloads
+    ports:
+      - "${WEBUI_HOST_IP}:${JACKETT_PORT}:9117"
+    restart: unless-stopped

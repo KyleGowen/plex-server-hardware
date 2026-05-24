@@ -38,11 +38,12 @@ These applications are part of the confirmed Plex/media stack. Plex remains nati
 | Software | Role | Deployment Target | Current Install State | Official Page / Image Source | Config / Data Path | Port / URL | Startup Mode | Connects To | Recovery Notes |
 |---|---|---|---|---|---|---|---|---|---|
 | Plex Media Server | Media library server, metadata manager, streaming server, and transcoding engine | Native Windows | Installed: `Plex Media Server 1.43.2.10687 (x64)`; `PlexUpdateService` running | [Plex Media Server downloads](https://www.plex.tv/media-server-downloads/) | `C:\Users\Kyle\AppData\Local\Plex Media Server` observed; verify before repair/reinstall | Typically `http://localhost:32400/web`; verify | Native app/service/update service | Media HDDs, Plex clients, NVIDIA GPU or Intel Quick Sync for hardware transcoding | Preserve the Plex data directory. Confirm library paths only after drive letters are restored. |
-| Sonarr | TV series monitoring, release selection, download automation, and import management | Docker container | Not installed natively; no container confirmed yet | Docker image to select in compose plan | Docker config volume to define | Typically `http://localhost:8989`; verify after container creation | Docker Desktop / compose | Jackett, qBittorrent, TV media folders, Plex libraries | Install via Docker only. Confirm root folders and download client settings before allowing imports or path edits. |
-| Radarr | Movie monitoring, release selection, download automation, and import management | Docker container | Not installed natively; no container confirmed yet | Docker image to select in compose plan | Docker config volume to define | Typically `http://localhost:7878`; verify after container creation | Docker Desktop / compose | Jackett, qBittorrent, movie media folders, Plex libraries | Install via Docker only. Confirm root folders and download client settings before allowing imports or path edits. |
-| qBittorrent | Torrent download client | Docker container | Not installed natively; no container confirmed yet | Docker image to select in compose plan | Docker config volume to define | Web UI port to define; common default is `8080` | Docker Desktop / compose | Sonarr, Radarr, download folders, incomplete/completed folders | Install via Docker only. Do not resume all torrents until default save path, incomplete path, completed path, and category paths are verified. |
-| Jackett | Torrent indexer aggregation and Torznab proxy | Docker container | Not installed natively; no container confirmed yet | Docker image to select in compose plan | Docker config volume to define | Typically `http://localhost:9117`; verify after container creation | Docker Desktop / compose | Sonarr, Radarr, torrent indexers | Install via Docker only. Confirm configured indexers and API key before changing Sonarr/Radarr indexer settings. |
-| Unpackerr | Automated archive extraction for completed downloads | Docker container | Not installed natively; no container confirmed yet | Docker image to select in compose plan | Docker config volume to define | Usually no web UI; verify container logs/config | Docker Desktop / compose | qBittorrent, Sonarr, Radarr, watched download folders, extraction destinations | Install via Docker only. Confirm watched folders and extraction destinations before enabling automatic extraction. |
+| Sonarr | TV series monitoring, release selection, download automation, and import management | Docker container | Running via `docker-compose.media.yml` | `lscr.io/linuxserver/sonarr:latest` | `C:\media-stack\config\sonarr` | `http://localhost:8989` | Docker Compose, `restart: unless-stopped` | Prowlarr, qBittorrent, TV media folders, Plex libraries | Confirm root folders and download client settings before allowing imports or path edits. |
+| Radarr | Movie monitoring, release selection, download automation, and import management | Docker container | Running via `docker-compose.media.yml` | `lscr.io/linuxserver/radarr:latest` | `C:\media-stack\config\radarr` | `http://localhost:7878` | Docker Compose, `restart: unless-stopped` | Prowlarr, qBittorrent, movie media folders, Plex libraries | Confirm root folders and download client settings before allowing imports or path edits. |
+| Prowlarr | Indexer management for Sonarr/Radarr | Docker container | Running via `docker-compose.media.yml` | `lscr.io/linuxserver/prowlarr:latest` | `C:\media-stack\config\prowlarr` | `http://localhost:9696` | Docker Compose, `restart: unless-stopped` | Sonarr, Radarr, torrent indexers | Active indexer layer for the Docker stack. Configure indexers and app sync after API keys are available. |
+| qBittorrent | Torrent download client | Docker container | Running via `docker-compose.media.yml` | `lscr.io/linuxserver/qbittorrent:latest` | `C:\media-stack\config\qbittorrent` | `http://localhost:8080` | Docker Compose, `restart: unless-stopped` | Sonarr, Radarr, download folders, incomplete/completed folders | Change the temporary/default Web UI password before normal use. Do not resume all torrents until default save path, incomplete path, completed path, and category paths are verified. |
+| Unpackerr | Automated archive extraction for completed downloads | Docker container | Running via `docker-compose.media.yml`; app integrations not configured yet | `golift/unpackerr:latest` | `C:\media-stack\config\unpackerr` | Usually no web UI; verify container logs/config | Docker Compose, `restart: unless-stopped` | qBittorrent, Sonarr, Radarr, watched download folders, extraction destinations | Configure Sonarr/Radarr API URLs and keys before relying on extraction automation. |
+| Jackett | Legacy torrent indexer aggregation and Torznab proxy | Optional Docker container profile | Not active; available as compose profile `legacy-jackett` | `lscr.io/linuxserver/jackett:latest` | `C:\media-stack\config\jackett` if enabled | `http://localhost:9117` if enabled | Docker Compose profile | Sonarr, Radarr, torrent indexers | Keep disabled unless there is a confirmed need to preserve old Jackett-specific indexer behavior. |
 
 ---
 
@@ -53,10 +54,10 @@ These applications are part of the confirmed Plex/media stack. Plex remains nati
 | Plex Media Server | Media HDDs | Reads organized movie and TV library folders | Confirm drive letters and library paths before scanning. |
 | Plex Media Server | Plex clients / remote access | Serves local and remote streams | Test only after library paths and network are stable. |
 | Plex Media Server | NVIDIA RTX 3050 / Intel iGPU | Hardware transcoding path | Confirm driver installation and Plex hardware transcoding setting. |
-| Sonarr | Jackett | Searches TV indexers through Torznab feeds | Confirm Jackett URL/API key and one test search. |
+| Sonarr | Prowlarr | Searches TV indexers through Torznab feeds | Confirm Prowlarr app sync/API key and one test search. |
 | Sonarr | qBittorrent | Sends approved TV releases to the torrent client | Confirm download client settings and category/path behavior. |
 | Sonarr | TV media folders | Imports completed TV downloads into the library | Confirm root folders after drive-letter recovery. |
-| Radarr | Jackett | Searches movie indexers through Torznab feeds | Confirm Jackett URL/API key and one test search. |
+| Radarr | Prowlarr | Searches movie indexers through Torznab feeds | Confirm Prowlarr app sync/API key and one test search. |
 | Radarr | qBittorrent | Sends approved movie releases to the torrent client | Confirm download client settings and category/path behavior. |
 | Radarr | Movie media folders | Imports completed movie downloads into the library | Confirm root folders after drive-letter recovery. |
 | qBittorrent | Download folders | Stores incomplete and completed torrent data | Confirm all paths before resuming torrents. |
@@ -105,12 +106,13 @@ Last checked from Windows on 2026-05-23.
 | Plex Media Server | Installed natively and running | Verify library paths, metadata health, remote access, and hardware transcoding after drive-letter checks. |
 | Docker Desktop | Installed | Get Docker daemon/API reachable from the CLI and decide whether it starts automatically at login/boot. |
 | Docker Compose | Bundled executable present | Make compose usable from the standard CLI or document the exact bundled executable path. |
-| Docker media compose file | Not found in this repo | Create `docker-compose.media.yml` and matching `.env` after final path choices are confirmed. |
-| Sonarr | No native install found; no container confirmed | Install as Docker container. |
-| Radarr | No native install found; no container confirmed | Install as Docker container. |
-| qBittorrent | No native install found; no container confirmed | Install as Docker container, then configure Web UI and safe download paths. |
-| Jackett | No native install found; no container confirmed | Install as Docker container, then restore/add indexers. |
-| Unpackerr | No native install found; no container confirmed | Install as Docker container, then configure watched folders and app API connections. |
+| Docker media compose file | Created in this repo as `docker-compose.media.yml` with `.env` | Review and commit if this becomes the canonical stack definition. |
+| Sonarr | Running as Docker container | Configure root folders and qBittorrent connection. |
+| Radarr | Running as Docker container | Configure root folders and qBittorrent connection. |
+| Prowlarr | Running as Docker container | Configure indexers and app sync to Sonarr/Radarr. |
+| qBittorrent | Running as Docker container | Change Web UI password and verify category paths; default container path `/downloads` maps to `I:\torrentfiles`. |
+| Unpackerr | Running as Docker container | Configure Sonarr/Radarr API URLs and keys; current logs show no Starr apps configured. |
+| Jackett | Not active; optional compose profile only | Skip unless old Jackett indexers must be preserved. |
 | 7-Zip | Installed | No action. |
 | Notepad++ | Installed | No action. |
 | Google Chrome | Installed | No action. |
@@ -120,7 +122,7 @@ Last checked from Windows on 2026-05-23.
 
 | Software | Reason |
 |---|---|
-| Prowlarr | Not part of the confirmed current stack, and the chosen recovery plan is Jackett-only. Consider later only after the existing setup is stable. |
+| Jackett as primary indexer | Prowlarr is now the active Docker indexer manager; keep Jackett disabled unless an old indexer requires it. |
 | SABnzbd / NZBGet | Not currently used; qBittorrent is the confirmed downloader. |
 | Overseerr / Jellyseerr | Not currently used; add later only if request management is wanted. |
 | VPN tools | Not currently used; do not add during recovery unless there is a confirmed network requirement. |
@@ -152,8 +154,10 @@ Use this checklist after Windows boots and before normal media service operation
 - The server remains Windows 10 native.
 - Docker is part of this rebuild for Sonarr, Radarr, qBittorrent, Jackett, and Unpackerr.
 - Plex remains a native Windows install.
+- Docker web UIs are published to Windows localhost through `WEBUI_HOST_IP=127.0.0.1`; qBittorrent's torrent port remains separately published for torrent traffic.
+- Docker download path `/downloads` maps to `I:\torrentfiles` for qBittorrent, Unpackerr, Sonarr, and Radarr.
 - Unraid, RAID, ZFS, and storage pooling are not part of this rebuild.
 - qBittorrent is the only confirmed downloader.
-- Jackett remains the active indexer layer.
+- Prowlarr is the active Docker indexer layer; Jackett is optional legacy fallback only.
 - `Unpacker` in earlier docs means Unpackerr.
-- Usenet tools, Prowlarr, Tautulli, Bazarr, Overseerr/Jellyseerr, VPN tools, and dedicated backup tools are not confirmed current installs.
+- Usenet tools, Tautulli, Bazarr, Overseerr/Jellyseerr, VPN tools, and dedicated backup tools are not confirmed current installs.

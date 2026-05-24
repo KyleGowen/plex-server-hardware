@@ -496,7 +496,7 @@ Evolve toward:
 - Docker is the chosen runtime for Sonarr, Radarr, qBittorrent, Jackett, and Unpackerr.
 - Plex remains a native Windows install.
 - qBittorrent remains the downloader.
-- Jackett remains the indexer layer.
+- Prowlarr is the active Docker indexer layer; Jackett is optional legacy fallback only.
 - Unpacker means Unpackerr.
 - Tailscale web UI is the chosen phone-access model.
 - Diagnostics are allowed without confirmation.
