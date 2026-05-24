@@ -49,11 +49,13 @@ The project involves:
 - When adding a series to Sonarr, set the series to `Monitored: true` unless the user explicitly asks for it to be unmonitored.
 - When adding a series, monitor normal seasons by default and leave specials/season 0 unmonitored unless the user asks otherwise.
 - Do not trigger an automatic search or download unless the user explicitly asks for a search/download action.
+- Sonarr's torrent download client should use the Docker qBittorrent service at `qbittorrent:8080`, category `tv-sonarr`, with shared download paths under `/downloads`.
 
 ## Radarr Rules
 
 - When adding a movie to Radarr, set the movie to `Monitored: true` unless the user explicitly asks for it to be unmonitored.
 - Do not trigger an automatic search or download unless the user explicitly asks for a search/download action.
+- Radarr's torrent download client should use the Docker qBittorrent service at `qbittorrent:8080`, category `radarr`, with shared download paths under `/downloads`.
 
 ## MCP Usage
 
