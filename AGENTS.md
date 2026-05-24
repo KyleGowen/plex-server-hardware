@@ -9,14 +9,14 @@ The project involves:
 - Preserving the existing Windows 10 OS SSD
 - Preserving all media HDDs
 - Avoiding destructive storage actions
-- Restoring drive letters before launching Plex/Sonarr/Radarr/qBittorrent/Jackett/Unpacker
+- Restoring drive letters before launching Plex/Sonarr/Radarr/Bazarr/qBittorrent/Jackett/Unpacker
 - Maintaining clear rebuild documentation
 
 ## Critical Safety Rules
 
 - Do not recommend formatting, initializing, repartitioning, or wiping any existing media drive unless the user explicitly confirms it is blank.
 - Do not assume a drive is disposable.
-- Do not launch or repair Plex/Sonarr/Radarr/qBittorrent paths before confirming drive letters.
+- Do not launch or repair Plex/Sonarr/Radarr/Bazarr/qBittorrent paths before confirming drive letters.
 - Do not randomly reorder SATA drives.
 - Preserve the OS SSD and search for Plex metadata before reinstalling Windows or Plex.
 - Use only Corsair RM750e-compatible modular PSU cables.
@@ -29,6 +29,12 @@ The project involves:
 - Do not ask for permission before reading local files on this computer.
 - Do not ask for permission before searching public websites.
 - Do not ask for permission before running local PowerShell commands for this project.
+
+## PowerShell Output Handling
+
+- When querying local HTTP APIs or service endpoints from PowerShell, prefer raw JSON responses and explicit parsing over PowerShell-formatted object tables.
+- Avoid relying on `Format-Table`, truncated table output, or nullable object display when deciding service health, IDs, paths, counts, or status fields.
+- For diagnostics, capture the raw response first, convert from JSON only when needed, and print the specific fields required for the next step.
 
 ## MCP Usage
 

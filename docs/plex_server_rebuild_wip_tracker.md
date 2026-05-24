@@ -253,7 +253,7 @@ Do not allow applications to mass-reorganize, rescan destructively, or move file
 Current deployment decision:
 
 - Plex remains a native Windows install.
-- Sonarr, Radarr, qBittorrent, Jackett, and Unpackerr should run as Docker containers.
+- Sonarr, Radarr, Bazarr, qBittorrent, Jackett, and Unpackerr should run as Docker containers.
 - Use Docker volume mappings that preserve the confirmed Windows drive letters and avoid moving media files just to satisfy container paths.
 
 ## Docker Media Stack
@@ -263,7 +263,7 @@ Current deployment decision:
 - [ ] Confirm Docker Compose is usable.
 - [ ] Create or verify `docker-compose.media.yml`.
 - [ ] Create or verify the matching `.env`.
-- [ ] Define host config folders for Sonarr, Radarr, qBittorrent, Jackett, and Unpackerr.
+- [ ] Define host config folders for Sonarr, Radarr, Bazarr, qBittorrent, Jackett, and Unpackerr.
 - [ ] Define read/write media and download volume mappings after drive letters are confirmed.
 - [ ] Start containers only after mappings are reviewed.
 - [ ] Confirm restart policy for each container.
@@ -285,21 +285,32 @@ Current deployment decision:
 
 ## Sonarr
 
-- [ ] Confirm Sonarr container opens.
-- [ ] Confirm Sonarr config volume is persistent.
-- [ ] Confirm root folders.
+- [x] Confirm Sonarr container opens.
+- [x] Confirm Sonarr config volume is persistent.
+- [x] Confirm root folders.
 - [ ] Confirm download client settings.
 - [ ] Confirm completed download handling.
 - [ ] Do not mass-edit paths unless drive-letter restoration fails.
 
 ## Radarr
 
-- [ ] Confirm Radarr container opens.
-- [ ] Confirm Radarr config volume is persistent.
-- [ ] Confirm root folders.
+- [x] Confirm Radarr container opens.
+- [x] Confirm Radarr config volume is persistent.
+- [x] Confirm root folders.
 - [ ] Confirm download client settings.
 - [ ] Confirm completed download handling.
 - [ ] Do not mass-edit paths unless drive-letter restoration fails.
+
+## Bazarr
+
+- [x] Confirm Bazarr container opens.
+- [x] Confirm Bazarr config volume is persistent.
+- [x] Confirm Sonarr connection.
+- [x] Confirm Radarr connection.
+- [x] Configure English language profile.
+- [ ] Add subtitle provider credentials.
+- [ ] Test one manual subtitle search/download after provider setup.
+- [ ] Do not run bulk subtitle searches until providers and media write behavior are confirmed.
 
 ## qBittorrent
 

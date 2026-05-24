@@ -47,6 +47,24 @@ services:
       - "${WEBUI_HOST_IP}:${PROWLARR_PORT}:9696"
     restart: unless-stopped
 
+  bazarr:
+    image: lscr.io/linuxserver/bazarr:latest
+    container_name: bazarr
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    volumes:
+      - ${MEDIA_STACK_CONFIG}/bazarr:/config
+      - ${TV_1_ROOT}:/tv/tv1
+      - ${TV_2_ROOT}:/tv/tv2
+      - ${MOVIES_1_ROOT}:/movies/movies1
+      - ${MOVIES_2_ROOT}:/movies/movies2
+      - ${MOVIES_3_ROOT}:/movies/movies3
+    ports:
+      - "${WEBUI_HOST_IP}:${BAZARR_PORT}:6767"
+    restart: unless-stopped
+
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest
     container_name: qbittorrent

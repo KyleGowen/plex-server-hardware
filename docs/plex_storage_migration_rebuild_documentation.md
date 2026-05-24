@@ -23,14 +23,14 @@ The existing Plex server used a simple Windows-native storage layout. The rebuil
 | Drive Organization | Separate Windows drive letters |
 | RAID | None known |
 | Drive Pooling | None known |
-| Docker | Chosen for Sonarr, Radarr, qBittorrent, Jackett, and Unpackerr going forward |
+| Docker | Chosen for Sonarr, Radarr, Bazarr, qBittorrent, Jackett, and Unpackerr going forward |
 | Virtualization | Not used |
 
 ## Important Rebuild Implication
 
 Because the system uses independent Windows drive letters rather than RAID, ZFS, Unraid, or a storage pool, the rebuild should be simpler than a typical NAS migration.
 
-The goal is to preserve or restore the original Windows drive-letter layout so native Plex and the Docker containers for Sonarr, Radarr, qBittorrent, Jackett, and Unpackerr can be mapped to the correct media and download folders.
+The goal is to preserve or restore the original Windows drive-letter layout so native Plex and the Docker containers for Sonarr, Radarr, Bazarr, qBittorrent, Jackett, and Unpackerr can be mapped to the correct media and download folders.
 
 ---
 
@@ -263,6 +263,7 @@ The previous stack was Windows-native. The chosen forward plan is native Windows
 | Docker Desktop / Compose | Container runtime and orchestration | Daemon availability, compose file, `.env`, restart behavior |
 | Sonarr container | TV series management | Persistent config volume, root folders, download client paths |
 | Radarr container | Movie management | Persistent config volume, root folders, download client paths |
+| Bazarr container | Subtitle management | Persistent config volume, Sonarr/Radarr API links, media folder write access, subtitle provider credentials |
 | qBittorrent container | Torrent client | Persistent config volume, Web UI credentials, incomplete/completed paths |
 | Jackett container | Indexer aggregation | Persistent config volume, API key, indexer settings |
 | Unpackerr container | Post-download extraction | Persistent config volume, watched folders, extraction output paths |
@@ -278,11 +279,12 @@ Recommended application recovery order:
 5. Docker compose file and volume mappings
 6. qBittorrent paths
 7. Sonarr/Radarr root folders
-8. Jackett indexers
-9. Unpackerr paths
-10. Plex libraries
-11. Plex remote access
-12. Plex hardware transcoding
+8. Bazarr ARR links and subtitle provider settings
+9. Jackett indexers
+10. Unpackerr paths
+11. Plex libraries
+12. Plex remote access
+13. Plex hardware transcoding
 
 ## Docker Path Mapping Notes
 
@@ -329,6 +331,47 @@ Check:
 - Remote path mappings if Sonarr/Radarr and qBittorrent see different paths
 
 If paths are broken, prefer restoring original drive letters rather than mass-editing paths.
+
+## Confirmed Sonarr TV Root Folders
+
+Confirmed in Sonarr on 2026-05-24.
+
+| Host Path | Container Path | Sonarr Status |
+|---|---|---|
+| `J:\TV Shows` | `/tv/tv1/TV Shows` | Root folder configured and accessible |
+| `H:\TV Shows` | `/tv/tv2/TV Shows` | Root folder configured and accessible |
+
+Existing show folders are visible to Sonarr as unmapped folders. Do not bulk-import or mass-edit series paths until download client settings, indexers, and import behavior are reviewed.
+
+## Confirmed Radarr Movie Root Folders
+
+Confirmed in Radarr on 2026-05-24.
+
+| Host Path | Container Path | Radarr Status |
+|---|---|---|
+| `D:\Movies` | `/movies/movies1/Movies` | Root folder configured and accessible |
+| `F:\Movies` | `/movies/movies2/Movies` | Root folder configured and accessible |
+| `E:\Movies` | `/movies/movies3/Movies` | Root folder configured and accessible |
+
+Do not bulk-import or mass-edit movie paths until download client settings, indexers, and import behavior are reviewed.
+
+## Confirmed Bazarr Subtitle Configuration
+
+Confirmed in Bazarr on 2026-05-24.
+
+| Item | Value |
+|---|---|
+| Web UI | `http://localhost:6767` |
+| Config path | `C:\media-stack\config\bazarr` |
+| Sonarr link | Enabled; Docker-network target `sonarr:8989` |
+| Radarr link | Enabled; Docker-network target `radarr:7878` |
+| TV media mounts | `/tv/tv1`, `/tv/tv2` |
+| Movie media mounts | `/movies/movies1`, `/movies/movies2`, `/movies/movies3` |
+| Language profile | `English` |
+| Default profile | Enabled for newly synced series and movies |
+| Subtitle providers | Not configured yet |
+
+Bazarr can talk to Sonarr and Radarr and has a clean health check. Add subtitle provider credentials before relying on automatic subtitle downloads. Do not run bulk subtitle searches until Sonarr/Radarr imports, provider settings, and subtitle write behavior are confirmed.
 
 ---
 
