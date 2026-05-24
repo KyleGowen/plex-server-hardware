@@ -75,9 +75,14 @@ The project involves:
 - A running Codex session may keep the old MCP server process after config changes. Restart or reload Codex MCP servers before expecting newly added `mcp_arr` credentials/tools to appear in the current tool list.
 - The configured `torrent_manager` login failed during this setup. Use it read-only first if available, but fall back to the qBittorrent Web API or Web UI when credentials are not accepted.
 - qBittorrent Web API login may return `HTTP 204 OK` with a session cookie rather than an `Ok.` body. Treat the status and `SID` cookie as the success signal.
+- Radarr's qBittorrent download client was fixed on 2026-05-24. It should have one enabled qBittorrent client using Docker-network host `qbittorrent`, port `8080`, category `radarr`, and shared `/downloads` paths. A healthy Radarr check should report zero download-client issues.
+- qBittorrent's default save path is `/downloads/` and incomplete path is `/downloads/incomplete/`, mapped from Windows `I:\torrentfiles`. Radarr and Sonarr share the `/downloads` mount, so no remote path mapping should be needed for this Docker stack.
+- If Radarr's qBittorrent credential needs to be repaired again, read it locally from existing app config/runtime state and do not print or commit it. The Sonarr qBittorrent client has previously had a working stored credential; treat it as a secret.
+- `C:\Program Files\Plex\Plex Media Server\Plex SQLite.exe` is available locally and can inspect Sonarr/Radarr SQLite databases when needed. Redact secrets from any output.
 - Plex did not automatically show `H2O: Just Add Water` immediately after Sonarr imported all 78 episodes. A manual TV library refresh from Plex Web made it appear, so future imported-but-missing Plex cases should consider a confirmed Plex library refresh after read-only checks.
 - Bazarr `episodeMissingCount` refers to missing subtitles, not missing episode files.
 - Native Radarr library import previously produced at least one bad match for a remake versus original movie. For bulk Radarr imports, prefer stricter API-based matching and skip ambiguous collection/mismatch cases rather than accepting questionable UI matches.
+- On 2026-05-24, the top-six Q1 2026 movie request was added/updated in Radarr as monitored Ultra-HD entries without triggering searches/downloads: `Project Hail Mary`, `Avatar: Fire and Ash`, `Hoppers`, `Scream 7`, `GOAT`, and `Zootopia 2`.
 
 ## MCP Usage
 

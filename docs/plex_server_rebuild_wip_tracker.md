@@ -24,7 +24,7 @@ This file is intended to be added to the **Plex Server Hardware** project knowle
 | RAID / pooling | None known |
 | Plex deployment | Native Windows install |
 | Media automation deployment | Docker containers for Sonarr, Radarr, qBittorrent, Jackett, and Unpackerr |
-| Current priority | Receive parts, inspect, assemble minimal boot system |
+| Current priority | Continue controlled media-stack verification after confirming drive letters and paths |
 
 ---
 
@@ -288,7 +288,7 @@ Current deployment decision:
 - [x] Confirm Sonarr container opens.
 - [x] Confirm Sonarr config volume is persistent.
 - [x] Confirm root folders.
-- [ ] Confirm download client settings.
+- [x] Confirm download client settings.
 - [ ] Confirm completed download handling.
 - [ ] Do not mass-edit paths unless drive-letter restoration fails.
 
@@ -297,9 +297,10 @@ Current deployment decision:
 - [x] Confirm Radarr container opens.
 - [x] Confirm Radarr config volume is persistent.
 - [x] Confirm root folders.
-- [ ] Confirm download client settings.
+- [x] Confirm download client settings.
 - [ ] Confirm completed download handling.
 - [ ] Do not mass-edit paths unless drive-letter restoration fails.
+- [x] Add/update requested Q1 2026 top-six movies as monitored Ultra-HD entries without triggering searches/downloads.
 
 ## Prowlarr
 
@@ -324,14 +325,14 @@ Current deployment decision:
 
 ## qBittorrent
 
-- [ ] Confirm qBittorrent container opens.
-- [ ] Confirm qBittorrent config volume is persistent.
+- [x] Confirm qBittorrent container opens.
+- [x] Confirm qBittorrent config volume is persistent.
 - [ ] Confirm Web UI credentials are changed from defaults.
-- [ ] Confirm default save path.
-- [ ] Confirm incomplete downloads path.
-- [ ] Confirm completed downloads path.
-- [ ] Confirm category paths.
-- [ ] Do not resume all torrents until paths are confirmed.
+- [x] Confirm default save path.
+- [x] Confirm incomplete downloads path.
+- [x] Confirm completed downloads path.
+- [ ] Confirm category behavior with a controlled Sonarr/Radarr grab.
+- [ ] Do not resume all torrents or trigger broad automatic searches until category behavior and import handling are confirmed.
 
 ## Jackett
 
@@ -411,7 +412,8 @@ After rebuild succeeds, create/update these project files:
 - [ ] Docker volume map for media, downloads, and app config.
 - [ ] Sonarr container/root folder map.
 - [ ] Radarr container/root folder map.
-- [ ] qBittorrent container/category/path map.
+- [x] qBittorrent container/path map.
+- [ ] qBittorrent category behavior notes.
 - [ ] Jackett container/config notes.
 - [ ] Unpackerr container/config notes.
 - [ ] BIOS settings notes.

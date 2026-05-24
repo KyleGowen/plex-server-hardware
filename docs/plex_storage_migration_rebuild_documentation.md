@@ -311,7 +311,18 @@ Check:
 - Category-specific paths
 - Sonarr/Radarr download client integration through the Docker network or published host port
 
-Do not resume all torrents until paths are verified.
+Confirmed on 2026-05-24:
+
+| Item | Value |
+|---|---|
+| Host download root | `I:\torrentfiles` |
+| Shared container download root | `/downloads` |
+| qBittorrent default save path | `/downloads/` |
+| qBittorrent incomplete path | `/downloads/incomplete/` |
+| Sonarr download client | `qbittorrent:8080`, category `tv-sonarr` |
+| Radarr download client | `qbittorrent:8080`, category `radarr` |
+
+Radarr, Sonarr, qBittorrent, and Unpackerr all mount the same host download root as `/downloads`, so remote path mapping should not be required for this Docker stack. Do not resume all torrents or trigger broad automatic searches until category behavior and completed import handling are confirmed with controlled tests.
 
 ---
 
@@ -354,6 +365,35 @@ Confirmed in Radarr on 2026-05-24.
 | `E:\Movies` | `/movies/movies3/Movies` | Root folder configured and accessible |
 
 Do not bulk-import or mass-edit movie paths until download client settings, indexers, and import behavior are reviewed.
+
+## Confirmed Radarr Download Client
+
+Confirmed in Radarr on 2026-05-24.
+
+| Item | Value |
+|---|---|
+| Client | qBittorrent |
+| Enabled | Yes |
+| Docker-network target | `qbittorrent:8080` |
+| Category | `radarr` |
+| Remove completed downloads | Enabled |
+| Remove failed downloads | Enabled |
+| Radarr health after fix | Healthy; zero issues |
+
+The prior Radarr warning was `No download client is available`. It was fixed by adding the qBittorrent client with the existing local qBittorrent credential. Treat that credential as a local secret; do not print it or commit it.
+
+## Recent Radarr Movie Adds
+
+On 2026-05-24, these movies were added or updated in Radarr as monitored `Ultra-HD` entries. No automatic search/download was triggered.
+
+| Movie | Radarr ID | Path |
+|---|---:|---|
+| `Project Hail Mary` | 1070 | `/movies/movies1/Movies/Project Hail Mary (2026)` |
+| `Avatar: Fire and Ash` | 1071 | `/movies/movies1/Movies/Avatar - Fire and Ash (2025)` |
+| `Hoppers` | 1072 | `/movies/movies1/Movies/Hoppers (2026)` |
+| `Scream 7` | 1073 | `/movies/movies1/Movies/Scream 7 (2026)` |
+| `GOAT` | 1074 | `/movies/movies1/Movies/GOAT (2026)` |
+| `Zootopia 2` | 111 | `/movies/movies1/Movies/Zootopia 2 (2025)` |
 
 ## Confirmed Bazarr Subtitle Configuration
 
