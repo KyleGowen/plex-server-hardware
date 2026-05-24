@@ -48,7 +48,7 @@ Use official/local APIs first:
 
 | Target | Primary Control Method | Notes |
 |---|---|---|
-| Plex | Plex HTTP API / Plex token | Libraries, scans, metadata, server status, sessions |
+| Plex | Plex HTTP API / Plex token | Use directly from the agent until a trustworthy Plex MCP server is selected. Start with read-only tools for libraries, scans, metadata, server status, and sessions; require confirmation for write actions. |
 | Sonarr | Sonarr REST API | Series lookup, add series, monitor seasons, search, import diagnostics |
 | Radarr | Radarr REST API | Movie lookup, add movie, quality profile selection, search |
 | qBittorrent | Web API | Torrent state, categories, paths, tracker inspection with restricted trackers filtered |
@@ -495,6 +495,7 @@ Evolve toward:
 - The server remains Windows 10 native.
 - Docker is the chosen runtime for Sonarr, Radarr, qBittorrent, Jackett, and Unpackerr.
 - Plex remains a native Windows install.
+- Until a good Plex MCP server is available and explicitly approved, the agent uses the Plex HTTP API directly rather than a Plex MCP server.
 - qBittorrent remains the downloader.
 - Prowlarr is the active Docker indexer layer; Jackett is optional legacy fallback only.
 - Unpacker means Unpackerr.

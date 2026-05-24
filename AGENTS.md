@@ -32,6 +32,10 @@ The project involves:
 
 ## MCP Usage
 
+- Until a trustworthy, well-maintained Plex MCP server is selected, interact with Plex through the Plex HTTP API directly from the agent.
+- Treat community Plex MCP servers as experimental. Do not give one a Plex token unless the user explicitly approves after review.
+- Prefer read-only Plex HTTP API actions first: server status, libraries, active sessions, metadata lookup, and scan status.
+- Require explicit confirmation before write actions such as library refreshes, metadata edits, deletes, or server setting changes.
 - When interacting with Sonarr, Radarr, Lidarr, or Prowlarr, try the configured `mcp_arr` MCP server first.
 - If `mcp_arr` is unavailable or lacks the needed API credentials, fall back to local files, documented API calls, or the service UI as appropriate.
 - Do not use `mcp_arr` to launch, repair, add, move, search, or mutate media paths until drive letters and root folders have been confirmed.
