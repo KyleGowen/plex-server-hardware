@@ -57,6 +57,26 @@ The project involves:
 - Do not trigger an automatic search or download unless the user explicitly asks for a search/download action.
 - Radarr's torrent download client should use the Docker qBittorrent service at `qbittorrent:8080`, category `radarr`, with shared download paths under `/downloads`.
 
+## Plex Rules
+
+- Use the Plex HTTP API directly for Plex checks until a trustworthy Plex MCP server is selected and approved.
+- Treat the Plex token as a secret. Read or receive it at runtime, use it only for local API calls, and never write it to this repository, logs intended for git, docs, scripts, or GitHub.
+- Prefer read-only Plex checks first: server identity, library sections, metadata lookup, search, active activities, and scan status.
+- If Sonarr or Radarr shows media imported on disk but Plex does not show it, check the relevant Plex library section and current Plex activities before proposing a refresh.
+- Plex library refreshes are allowed from the agent only after explicit user confirmation because they are write actions. For the current TV library, section `1` is `TV Shows`; for the current movie library, section `2` is `Movies`.
+- After a confirmed refresh, verify the expected show or movie appears in Plex instead of assuming the scan succeeded.
+
+## Operational Memory
+
+- The Plex token is not shown in the XML response body. It normally appears in the browser address bar or request URL as `X-Plex-Token=...`; ask for the URL or use the browser/network request path rather than searching pasted XML content.
+- PowerShell formatted object output has caused misleading nullable/table displays. For local service APIs, capture raw JSON or XML first and parse only the fields needed.
+- The configured `mcp_arr` server was unavailable or not credentialed during this setup. Try it first per MCP rules, but be ready to fall back to local config files, documented APIs, or service UIs without spending time debugging the MCP path.
+- The configured `torrent_manager` login failed during this setup. Use it read-only first if available, but fall back to the qBittorrent Web API or Web UI when credentials are not accepted.
+- qBittorrent Web API login may return `HTTP 204 OK` with a session cookie rather than an `Ok.` body. Treat the status and `SID` cookie as the success signal.
+- Plex did not automatically show `H2O: Just Add Water` immediately after Sonarr imported all 78 episodes. A manual TV library refresh from Plex Web made it appear, so future imported-but-missing Plex cases should consider a confirmed Plex library refresh after read-only checks.
+- Bazarr `episodeMissingCount` refers to missing subtitles, not missing episode files.
+- Native Radarr library import previously produced at least one bad match for a remake versus original movie. For bulk Radarr imports, prefer stricter API-based matching and skip ambiguous collection/mismatch cases rather than accepting questionable UI matches.
+
 ## MCP Usage
 
 - Until a trustworthy, well-maintained Plex MCP server is selected, interact with Plex through the Plex HTTP API directly from the agent.
