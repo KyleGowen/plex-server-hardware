@@ -40,7 +40,7 @@ These applications are part of the confirmed Plex/media stack. Plex remains nati
 | Plex Media Server | Media library server, metadata manager, streaming server, and transcoding engine | Native Windows | Installed: `Plex Media Server 1.43.2.10687 (x64)`; `PlexUpdateService` running | [Plex Media Server downloads](https://www.plex.tv/media-server-downloads/) | `C:\Users\Kyle\AppData\Local\Plex Media Server` observed; verify before repair/reinstall | Typically `http://localhost:32400/web`; verify | Native app/service/update service | Media HDDs, Plex clients, NVIDIA GPU or Intel Quick Sync for hardware transcoding | Preserve the Plex data directory. Confirm library paths only after drive letters are restored. |
 | Sonarr | TV series monitoring, release selection, download automation, and import management | Docker container | Running via `docker-compose.media.yml` | `lscr.io/linuxserver/sonarr:latest` | `C:\media-stack\config\sonarr` | `http://localhost:8989` | Docker Compose, `restart: unless-stopped` | Prowlarr, qBittorrent, TV media folders, Plex libraries | Confirm root folders and download client settings before allowing imports or path edits. |
 | Radarr | Movie monitoring, release selection, download automation, and import management | Docker container | Running via `docker-compose.media.yml` | `lscr.io/linuxserver/radarr:latest` | `C:\media-stack\config\radarr` | `http://localhost:7878` | Docker Compose, `restart: unless-stopped` | Prowlarr, qBittorrent, movie media folders, Plex libraries | Confirm root folders and download client settings before allowing imports or path edits. |
-| Prowlarr | Indexer management for Sonarr/Radarr | Docker container | Running via `docker-compose.media.yml` | `lscr.io/linuxserver/prowlarr:latest` | `C:\media-stack\config\prowlarr` | `http://localhost:9696` | Docker Compose, `restart: unless-stopped` | Sonarr, Radarr, torrent indexers | Active indexer layer for the Docker stack. Configure indexers and app sync after API keys are available. |
+| Prowlarr | Indexer management for Sonarr/Radarr | Docker container | Running via `docker-compose.media.yml` | `lscr.io/linuxserver/prowlarr:latest` | `C:\media-stack\config\prowlarr` | `http://localhost:9696` | Docker Compose, `restart: unless-stopped` | Sonarr, Radarr, torrent indexers | Active indexer layer for the Docker stack. MoreThanTV is configured and synced to Sonarr/Radarr; keep tracker credentials out of repo docs. |
 | Bazarr | Subtitle search, language profile management, and subtitle file automation | Docker container | Running via `docker-compose.media.yml`; connected to Sonarr/Radarr | `lscr.io/linuxserver/bazarr:latest` | `C:\media-stack\config\bazarr` | `http://localhost:6767` | Docker Compose, `restart: unless-stopped` | Sonarr, Radarr, TV/movie media folders | English language profile configured. No external subtitle provider credentials are configured yet, so add provider credentials before relying on automatic downloads. |
 | qBittorrent | Torrent download client | Docker container | Running via `docker-compose.media.yml` | `lscr.io/linuxserver/qbittorrent:latest` | `C:\media-stack\config\qbittorrent` | `http://localhost:8080` | Docker Compose, `restart: unless-stopped` | Sonarr, Radarr, download folders, incomplete/completed folders | Change the temporary/default Web UI password before normal use. Do not resume all torrents until default save path, incomplete path, completed path, and category paths are verified. |
 | Unpackerr | Automated archive extraction for completed downloads | Docker container | Running via `docker-compose.media.yml`; app integrations not configured yet | `golift/unpackerr:latest` | `C:\media-stack\config\unpackerr` | Usually no web UI; verify container logs/config | Docker Compose, `restart: unless-stopped` | qBittorrent, Sonarr, Radarr, watched download folders, extraction destinations | Configure Sonarr/Radarr API URLs and keys before relying on extraction automation. |
@@ -55,10 +55,10 @@ These applications are part of the confirmed Plex/media stack. Plex remains nati
 | Plex Media Server | Media HDDs | Reads organized movie and TV library folders | Confirm drive letters and library paths before scanning. |
 | Plex Media Server | Plex clients / remote access | Serves local and remote streams | Test only after library paths and network are stable. |
 | Plex Media Server | NVIDIA RTX 3050 / Intel iGPU | Hardware transcoding path | Confirm driver installation and Plex hardware transcoding setting. |
-| Sonarr | Prowlarr | Searches TV indexers through Torznab feeds | Confirm Prowlarr app sync/API key and one test search. |
+| Sonarr | Prowlarr | Searches TV indexers through Torznab feeds | MoreThanTV synced from Prowlarr on 2026-05-24; indexer test passed. |
 | Sonarr | qBittorrent | Sends approved TV releases to the torrent client | Confirm download client settings and category/path behavior. |
 | Sonarr | TV media folders | Imports completed TV downloads into the library | Confirm root folders after drive-letter recovery. |
-| Radarr | Prowlarr | Searches movie indexers through Torznab feeds | Confirm Prowlarr app sync/API key and one test search. |
+| Radarr | Prowlarr | Searches movie indexers through Torznab feeds | MoreThanTV synced from Prowlarr on 2026-05-24; indexer test passed. |
 | Radarr | qBittorrent | Sends approved movie releases to the torrent client | Confirm download client settings and category/path behavior. |
 | Radarr | Movie media folders | Imports completed movie downloads into the library | Confirm root folders after drive-letter recovery. |
 | Bazarr | Sonarr / Radarr | Syncs series/movie metadata for subtitle management | Confirm API connectivity and language profiles. |
@@ -112,7 +112,7 @@ Last checked from Windows on 2026-05-23.
 | Sonarr | Running as Docker container | TV root folders configured: `/tv/tv1/TV Shows` and `/tv/tv2/TV Shows`. Still configure qBittorrent connection and import behavior before automation. |
 | Radarr | Running as Docker container | Movie root folders configured: `/movies/movies1/Movies`, `/movies/movies2/Movies`, and `/movies/movies3/Movies`. Still configure qBittorrent connection and import behavior before automation. |
 | Bazarr | Running as Docker container | Connected to Sonarr/Radarr; English profile configured. Still add subtitle provider credentials before expecting downloads. |
-| Prowlarr | Running as Docker container | Configure indexers and app sync to Sonarr/Radarr. |
+| Prowlarr | Running as Docker container | Sonarr/Radarr app links configured over the Docker network. MoreThanTV configured as the active Torznab indexer and synced to both apps. |
 | qBittorrent | Running as Docker container | Change Web UI password and verify category paths; default container path `/downloads` maps to `I:\torrentfiles`. |
 | Unpackerr | Running as Docker container | Configure Sonarr/Radarr API URLs and keys; current logs show no Starr apps configured. |
 | Jackett | Not active; optional compose profile only | Skip unless old Jackett indexers must be preserved. |
@@ -145,7 +145,8 @@ Use this checklist after Windows boots and before normal media service operation
 - [ ] Confirm Radarr container image, config volume, version, port, and restart policy.
 - [ ] Confirm Bazarr container image, config volume, version, port, ARR connectivity, language profiles, and subtitle providers.
 - [ ] Confirm qBittorrent container image, config volume, version, Web UI status, and all save paths.
-- [ ] Confirm Jackett container image, config volume, version, port, restart policy, and configured indexers.
+- [x] Confirm Prowlarr app sync to Sonarr/Radarr and test one configured indexer.
+- [ ] Confirm Jackett container image, config volume, version, port, restart policy, and configured indexers if legacy Jackett is needed.
 - [ ] Confirm Unpackerr container image, config volume, version, watched folders, and extraction destinations.
 - [ ] Confirm MSI, NVIDIA, and Intel driver installation status.
 - [ ] Record CrystalDiskInfo SMART status for the OS SSD and each media HDD.

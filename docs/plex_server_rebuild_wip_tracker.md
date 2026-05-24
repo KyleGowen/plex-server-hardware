@@ -301,6 +301,16 @@ Current deployment decision:
 - [ ] Confirm completed download handling.
 - [ ] Do not mass-edit paths unless drive-letter restoration fails.
 
+## Prowlarr
+
+- [x] Confirm Prowlarr container opens.
+- [x] Confirm Prowlarr config volume is persistent.
+- [x] Configure Sonarr app sync.
+- [x] Configure Radarr app sync.
+- [x] Configure MoreThanTV as a Torznab indexer.
+- [x] Test MoreThanTV through Prowlarr, Sonarr, and Radarr.
+- [x] Keep tracker credentials out of repo docs.
+
 ## Bazarr
 
 - [x] Confirm Bazarr container opens.
