@@ -44,6 +44,17 @@ The project involves:
 - Avoid relying on `Format-Table`, truncated table output, or nullable object display when deciding service health, IDs, paths, counts, or status fields.
 - For diagnostics, capture the raw response first, convert from JSON only when needed, and print the specific fields required for the next step.
 
+## Sonarr Rules
+
+- When adding a series to Sonarr, set the series to `Monitored: true` unless the user explicitly asks for it to be unmonitored.
+- When adding a series, monitor normal seasons by default and leave specials/season 0 unmonitored unless the user asks otherwise.
+- Do not trigger an automatic search or download unless the user explicitly asks for a search/download action.
+
+## Radarr Rules
+
+- When adding a movie to Radarr, set the movie to `Monitored: true` unless the user explicitly asks for it to be unmonitored.
+- Do not trigger an automatic search or download unless the user explicitly asks for a search/download action.
+
 ## MCP Usage
 
 - Until a trustworthy, well-maintained Plex MCP server is selected, interact with Plex through the Plex HTTP API directly from the agent.
