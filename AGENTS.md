@@ -38,6 +38,7 @@ The project involves:
 - Do not ask for permission before searching public websites.
 - Do not ask for permission before running local PowerShell commands for this project.
 - Do not ask for permission before running harmless local path checks for this project, including `Test-Path I:\torrentfiles`; always allow these checks.
+- Do not ask for permission before running read-only Sonarr MCP calls through the configured `mcp_arr` server, including `sonarr_get_download_clients`; always allow these checks.
 - Do not ask for permission before running harmless local wait commands such as `Start-Sleep -Seconds 60`.
 
 ## PowerShell Output Handling
