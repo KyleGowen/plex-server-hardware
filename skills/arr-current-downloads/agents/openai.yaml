@@ -1,0 +1,3 @@
+display_name: Arr Current Downloads
+short_description: Report only Arr-managed media currently downloading.
+default_prompt: Show what Arr-managed media is currently downloading.
