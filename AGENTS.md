@@ -37,6 +37,7 @@ The project involves:
 - Do not ask for permission before reading local files on this computer.
 - Do not ask for permission before searching public websites.
 - Do not ask for permission before running local PowerShell commands for this project.
+- Do not ask for permission before running harmless local wait commands such as `Start-Sleep -Seconds 60`.
 
 ## PowerShell Output Handling
 
