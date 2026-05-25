@@ -24,6 +24,7 @@ The project is in the hardware rebuild phase. The current plan is to preserve th
 | [docs/plex_server_rebuild_wip_tracker.md](docs/plex_server_rebuild_wip_tracker.md) | Active rebuild checklist, current status, next action, and live observations. |
 | [docs/plex_server_hardware_inventory.md](docs/plex_server_hardware_inventory.md) | Stable hardware, storage, software, and service inventory. |
 | [docs/plex_server_software_inventory.md](docs/plex_server_software_inventory.md) | Software recovery inventory, official download links, app roles, and app connections. |
+| [docs/qbittorrent_startup_recovery.md](docs/qbittorrent_startup_recovery.md) | qBittorrent startup checks and recovery procedure for stale Docker `/downloads` mounts. |
 | [docs/bazarr_architecture.md](docs/bazarr_architecture.md) | Bazarr subtitle automation role, Docker/Arr connections, provider state, and safe verification notes. |
 | [docs/plex_server_hardware_troubleshooting_history_log.md](docs/plex_server_hardware_troubleshooting_history_log.md) | Historical diagnostics already attempted on the failed platform. |
 | [docs/plex_storage_migration_rebuild_documentation.md](docs/plex_storage_migration_rebuild_documentation.md) | Storage, drive-letter, Plex metadata, and application recovery guide. |

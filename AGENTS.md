@@ -37,6 +37,7 @@ The project involves:
 - Do not ask for permission before reading local files on this computer.
 - Do not ask for permission before searching public websites.
 - Do not ask for permission before running local PowerShell commands for this project.
+- Do not ask for permission before running harmless local path checks for this project, including `Test-Path I:\torrentfiles`; always allow these checks.
 - Do not ask for permission before running harmless local wait commands such as `Start-Sleep -Seconds 60`.
 
 ## PowerShell Output Handling
@@ -78,6 +79,8 @@ The project involves:
 - qBittorrent Web API login may return `HTTP 204 OK` with a session cookie rather than an `Ok.` body. Treat the status and `SID` cookie as the success signal.
 - Radarr's qBittorrent download client was fixed on 2026-05-24. It should have one enabled qBittorrent client using Docker-network host `qbittorrent`, port `8080`, category `radarr`, and shared `/downloads` paths. A healthy Radarr check should report zero download-client issues.
 - qBittorrent's default save path is `/downloads/` and incomplete path is `/downloads/incomplete/`, mapped from Windows `I:\torrentfiles`. Radarr and Sonarr share the `/downloads` mount, so no remote path mapping should be needed for this Docker stack.
+- On 2026-05-25, qBittorrent started while `I:\torrentfiles` was absent or not visible to Docker. The container showed `/downloads` as a tiny full `137M` filesystem and torrents errored with `No space left on device`, even though Windows reported free space on `I:`. A qBittorrent container restart and container recreate did not fix the mount. The working fix was `wsl --shutdown`, restart Docker Desktop, `docker compose -f C:\plex-server\docker-compose.media.yml up -d`, verify `docker exec qbittorrent sh -c "df -h /downloads"` shows `I:\` with multi-terabyte capacity, then recheck/start torrents.
+- Before trusting qBittorrent after boot, drive reconnect, Docker restart, or storage work, verify both `Test-Path I:\torrentfiles` on Windows and `df -h /downloads` inside the qBittorrent container. If `/downloads` is tiny/full, do not keep restarting qBittorrent; restart Docker/WSL first.
 - If Radarr's qBittorrent credential needs to be repaired again, read it locally from existing app config/runtime state and do not print or commit it. The Sonarr qBittorrent client has previously had a working stored credential; treat it as a secret.
 - `C:\Program Files\Plex\Plex Media Server\Plex SQLite.exe` is available locally and can inspect Sonarr/Radarr SQLite databases when needed. Redact secrets from any output.
 - Plex did not automatically show `H2O: Just Add Water` immediately after Sonarr imported all 78 episodes. A manual TV library refresh from Plex Web made it appear, so future imported-but-missing Plex cases should consider a confirmed Plex library refresh after read-only checks.

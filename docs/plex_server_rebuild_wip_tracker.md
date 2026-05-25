@@ -333,6 +333,8 @@ Current deployment decision:
 - [x] Confirm default save path.
 - [x] Confirm incomplete downloads path.
 - [x] Confirm completed downloads path.
+- [x] Document 2026-05-25 stale Docker bind-mount incident where qBittorrent saw `/downloads` as a tiny full filesystem after `I:\torrentfiles` was absent at startup.
+- [ ] Add a startup check or manual boot procedure that verifies `docker exec qbittorrent sh -c "df -h /downloads"` reports the real `I:\` drive before torrents are resumed.
 - [ ] Confirm category behavior with a controlled Sonarr/Radarr grab.
 - [ ] Do not resume all torrents or trigger broad automatic searches until category behavior and import handling are confirmed.
 
@@ -380,6 +382,7 @@ Because the server sits in the room where TV is watched, quiet operation matters
 | eBay CPU is open-box/OEM | Inspect and test quickly within return window |
 | Plex metadata location unknown | Search OS SSD before reinstalling Plex |
 | Docker volume mappings may point at wrong drives | Confirm Windows drive letters first, then review all host paths before starting containers |
+| qBittorrent may start before `I:\torrentfiles` is mounted | Verify `Test-Path I:\torrentfiles` on Windows and `df -h /downloads` inside qBittorrent before resuming torrents; if Docker sees a tiny full `/downloads`, run `wsl --shutdown`, restart Docker Desktop, bring the compose stack up, then recheck/start torrents |
 | Docker Desktop may not start at boot/login | Confirm Docker Desktop startup behavior and container restart policies before relying on automation |
 | Modular PSU cable mismatch | Use only Corsair-compatible RM750e cables |
 | Noise in TV room | Tune fan curves and consider replacing old case fans if needed |
@@ -415,6 +418,7 @@ After rebuild succeeds, create/update these project files:
 - [ ] Sonarr container/root folder map.
 - [ ] Radarr container/root folder map.
 - [x] qBittorrent container/path map.
+- [x] qBittorrent stale mount recovery procedure.
 - [ ] qBittorrent category behavior notes.
 - [ ] Jackett container/config notes.
 - [ ] Unpackerr container/config notes.

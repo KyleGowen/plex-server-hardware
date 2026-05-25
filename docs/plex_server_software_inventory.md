@@ -42,7 +42,7 @@ These applications are part of the confirmed Plex/media stack. Plex remains nati
 | Radarr | Movie monitoring, release selection, download automation, and import management | Docker container | Running via `docker-compose.media.yml`; health check clean on 2026-05-24 | `lscr.io/linuxserver/radarr:latest` | `C:\media-stack\config\radarr` | `http://localhost:7878` | Docker Compose, `restart: unless-stopped` | Prowlarr, qBittorrent, movie media folders, Plex libraries | Root folders and qBittorrent client are configured. Confirm completed download handling before broad automation. |
 | Prowlarr | Indexer management for Sonarr/Radarr | Docker container | Running via `docker-compose.media.yml` | `lscr.io/linuxserver/prowlarr:latest` | `C:\media-stack\config\prowlarr` | `http://localhost:9696` | Docker Compose, `restart: unless-stopped` | Sonarr, Radarr, torrent indexers | Active indexer layer for the Docker stack. MoreThanTV is configured and synced to Sonarr/Radarr; keep tracker credentials out of repo docs. |
 | Bazarr | Subtitle search, language profile management, and subtitle file automation | Docker container | Running via `docker-compose.media.yml`; connected to Sonarr/Radarr | `lscr.io/linuxserver/bazarr:latest` | `C:\media-stack\config\bazarr` | `http://localhost:6767` | Docker Compose, `restart: unless-stopped` | Sonarr, Radarr, TV/movie media folders | English language profile configured. Providers enabled: `opensubtitlescom`, `podnapisi`, and `subdl`; SubDL API key configured locally. Test one controlled download before relying on automation. See `docs/bazarr_architecture.md`. |
-| qBittorrent | Torrent download client | Docker container | Running via `docker-compose.media.yml`; reachable from Radarr as `qbittorrent:8080` | `lscr.io/linuxserver/qbittorrent:latest` | `C:\media-stack\config\qbittorrent` | `http://localhost:8080` | Docker Compose, `restart: unless-stopped` | Sonarr, Radarr, download folders, incomplete/completed folders | Default path `/downloads/` and incomplete path `/downloads/incomplete/` are configured. Keep Web UI credentials secret and confirm category behavior before broad automated grabs. |
+| qBittorrent | Torrent download client | Docker container | Running via `docker-compose.media.yml`; reachable from Radarr as `qbittorrent:8080` | `lscr.io/linuxserver/qbittorrent:latest` | `C:\media-stack\config\qbittorrent` | `http://localhost:8080` | Docker Compose, `restart: unless-stopped` | Sonarr, Radarr, download folders, incomplete/completed folders | Default path `/downloads/` and incomplete path `/downloads/incomplete/` are configured. Windows host root is `I:\torrentfiles`. Before trusting qBittorrent after boot or drive reconnect, verify Docker sees `/downloads` as the real `I:\` drive with multi-terabyte capacity; see `docs/qbittorrent_startup_recovery.md`. |
 | Unpackerr | Automated archive extraction for completed downloads | Docker container | Running via `docker-compose.media.yml`; app integrations not configured yet | `golift/unpackerr:latest` | `C:\media-stack\config\unpackerr` | Usually no web UI; verify container logs/config | Docker Compose, `restart: unless-stopped` | qBittorrent, Sonarr, Radarr, watched download folders, extraction destinations | Configure Sonarr/Radarr API URLs and keys before relying on extraction automation. |
 | Jackett | Legacy torrent indexer aggregation and Torznab proxy | Optional Docker container profile | Not active; available as compose profile `legacy-jackett` | `lscr.io/linuxserver/jackett:latest` | `C:\media-stack\config\jackett` if enabled | `http://localhost:9117` if enabled | Docker Compose profile | Sonarr, Radarr, torrent indexers | Keep disabled unless there is a confirmed need to preserve old Jackett-specific indexer behavior. |
 
@@ -64,7 +64,7 @@ These applications are part of the confirmed Plex/media stack. Plex remains nati
 | Bazarr | Sonarr / Radarr | Syncs series/movie metadata for subtitle management | API connectivity and English language profile confirmed. |
 | Bazarr | Subtitle providers | Searches external subtitle sources | `opensubtitlescom`, `podnapisi`, and `subdl` enabled; SubDL API key configured locally. Keep provider credentials secret. |
 | Bazarr | TV/movie media folders | Writes external subtitle files beside media files | Confirm media write behavior with one controlled subtitle download before broad automatic searches. |
-| qBittorrent | Download folders | Stores incomplete and completed torrent data | Default save path `/downloads/`; incomplete path `/downloads/incomplete/`; Windows host root `I:\torrentfiles`. |
+| qBittorrent | Download folders | Stores incomplete and completed torrent data | Default save path `/downloads/`; incomplete path `/downloads/incomplete/`; Windows host root `I:\torrentfiles`. If qBit starts while `I:` is missing, Docker may mount `/downloads` as a tiny full filesystem and torrents will error until Docker/WSL is restarted. |
 | Unpackerr | qBittorrent / download folders | Extracts archived completed downloads | Confirm watched folders and output paths before enabling. |
 
 ---
@@ -147,6 +147,8 @@ Use this checklist after Windows boots and before normal media service operation
 - [x] Confirm Bazarr container image, config volume, version, port, ARR connectivity, language profiles, and subtitle providers.
 - [ ] Confirm Bazarr can write one downloaded subtitle beside the correct media file.
 - [x] Confirm qBittorrent default and incomplete save paths.
+- [x] Document qBittorrent stale Docker mount recovery after the 2026-05-25 `I:\torrentfiles` late-mount incident.
+- [ ] Add or run a qBittorrent startup guard that verifies `/downloads` reports the real `I:\` drive before torrents resume.
 - [ ] Confirm qBittorrent category behavior with a controlled test.
 - [x] Confirm Prowlarr app sync to Sonarr/Radarr and test one configured indexer.
 - [ ] Confirm Jackett container image, config volume, version, port, restart policy, and configured indexers if legacy Jackett is needed.
@@ -164,6 +166,7 @@ Use this checklist after Windows boots and before normal media service operation
 - Plex remains a native Windows install.
 - Docker web UIs are published to Windows localhost through `WEBUI_HOST_IP=127.0.0.1`; qBittorrent's torrent port remains separately published for torrent traffic.
 - Docker download path `/downloads` maps to `I:\torrentfiles` for qBittorrent, Unpackerr, Sonarr, and Radarr.
+- A healthy qBittorrent container must report `/downloads` as `I:\` with the real multi-terabyte capacity from inside Docker. If `/downloads` reports a tiny full filesystem, restart Docker/WSL with `wsl --shutdown`, start Docker Desktop again, bring the compose stack up, then recheck/start torrents.
 - Unraid, RAID, ZFS, and storage pooling are not part of this rebuild.
 - qBittorrent is the only confirmed downloader.
 - Prowlarr is the active Docker indexer layer; Jackett is optional legacy fallback only.
