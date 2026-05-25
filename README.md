@@ -28,6 +28,12 @@ The project is in the hardware rebuild phase. The current plan is to preserve th
 | [docs/plex_server_hardware_troubleshooting_history_log.md](docs/plex_server_hardware_troubleshooting_history_log.md) | Historical diagnostics already attempted on the failed platform. |
 | [docs/plex_storage_migration_rebuild_documentation.md](docs/plex_storage_migration_rebuild_documentation.md) | Storage, drive-letter, Plex metadata, and application recovery guide. |
 
+## Codex Skills
+
+| Skill | Purpose |
+|---|---|
+| [tools/codex-skills/overnight-media-audit/SKILL.md](tools/codex-skills/overnight-media-audit/SKILL.md) | Reusable read-only workflow for answering what media downloaded, imported, or got stuck overnight. |
+
 ## Update Rules
 
 - Put new physical rebuild observations in the WIP tracker.

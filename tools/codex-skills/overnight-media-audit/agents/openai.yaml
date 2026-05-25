@@ -1,0 +1,3 @@
+display_name: Overnight Media Audit
+short_description: Check overnight downloads, imports, health, and stuck queue items in the Plex Arr stack.
+default_prompt: What new media downloaded overnight?
