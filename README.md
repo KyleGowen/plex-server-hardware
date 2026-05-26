@@ -12,7 +12,7 @@ Current deployment:
 |---|---|
 | Plex | Native Windows install |
 | Media automation | Docker Compose stack |
-| Active Docker services | Sonarr, Radarr, Prowlarr, Bazarr, Tautulli, qBittorrent, Unpackerr |
+| Active Docker services | Sonarr, Radarr, Prowlarr, Bazarr, Tautulli, Uptime Kuma, qBittorrent, Unpackerr |
 | Optional legacy service | Jackett via the `legacy-jackett` compose profile |
 | Storage model | Windows drive letters mounted into containers |
 | Torrent root | `I:\torrentfiles`, mounted in containers as `/downloads` |
@@ -51,6 +51,7 @@ Each ecosystem service has its own reference file with purpose, deployment, and 
 | Prowlarr | [docs/services/prowlarr.md](docs/services/prowlarr.md) |
 | Bazarr | [docs/services/bazarr.md](docs/services/bazarr.md) |
 | Tautulli | [docs/services/tautulli.md](docs/services/tautulli.md) |
+| Uptime Kuma | [docs/services/uptime-kuma.md](docs/services/uptime-kuma.md) |
 | qBittorrent | [docs/services/qbittorrent.md](docs/services/qbittorrent.md) |
 | Unpackerr | [docs/services/unpackerr.md](docs/services/unpackerr.md) |
 | Jackett | [docs/services/jackett.md](docs/services/jackett.md) |
