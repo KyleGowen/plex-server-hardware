@@ -1,24 +1,27 @@
-# AGENTS.md — Plex Server Hardware Project
+# AGENTS.md - Plex Server Hardware Project
 
 ## Project Goal
 
-Help rebuild and document a Windows-native Plex media server after suspected motherboard failure.
+Help operate, stabilize, and document a rebuilt Windows-native Plex media server.
 
-The project involves:
-- Replacing the failed old platform with a modern Intel platform
-- Preserving the existing Windows 10 OS SSD
-- Preserving all media HDDs
-- Avoiding destructive storage actions
-- Restoring drive letters before launching Plex/Sonarr/Radarr/Bazarr/qBittorrent/Jackett/Unpacker
-- Maintaining clear rebuild documentation
+The rebuild from the failed ASUS platform to the modern Intel platform has been accomplished. The current unresolved problem is randomly timed crashing. Do not claim that this stability issue is solved until evidence and verification support that conclusion.
+
+The project now involves:
+
+- Preserving the existing Windows 10 OS SSD and all media HDDs.
+- Keeping Plex Media Server native on Windows.
+- Running Sonarr, Radarr, Prowlarr, Bazarr, Tautulli, qBittorrent, and Unpackerr in Docker.
+- Keeping Jackett disabled unless its optional `legacy-jackett` profile is intentionally needed.
+- Maintaining clear operational documentation and crash/stability notes.
 
 ## Critical Safety Rules
 
 - Do not recommend formatting, initializing, repartitioning, or wiping any existing media drive unless the user explicitly confirms it is blank.
 - Do not assume a drive is disposable.
-- Do not launch or repair Plex/Sonarr/Radarr/Bazarr/qBittorrent paths before confirming drive letters.
 - Do not randomly reorder SATA drives.
-- Preserve the OS SSD and search for Plex metadata before reinstalling Windows or Plex.
+- Do not casually change drive letters.
+- Confirm drive letters and root folders before repairing Plex, Sonarr, Radarr, Bazarr, Tautulli, qBittorrent, Jackett, or Unpackerr paths.
+- Confirm `I:\torrentfiles` on Windows and `/downloads` inside qBittorrent before trusting downloads after boot, crash, Docker restart, WSL restart, or storage work.
 - Use only Corsair RM750e-compatible modular PSU cables.
 - Favor step-by-step checklists over broad advice.
 
@@ -72,6 +75,7 @@ The project involves:
 
 ## Operational Memory
 
+- The current unresolved issue is random timed system crashing. Track observations in `docs/current_stability_crash_tracker.md`; do not document a root cause until confirmed.
 - The Plex token is not shown in the XML response body. It normally appears in the browser address bar or request URL as `X-Plex-Token=...`; ask for the URL or use the browser/network request path rather than searching pasted XML content.
 - PowerShell formatted object output has caused misleading nullable/table displays. For local service APIs, capture raw JSON or XML first and parse only the fields needed.
 - The configured `mcp_arr` server was unavailable or not credentialed during this setup. Try it first per MCP rules, but be ready to fall back to local config files, documented APIs, or service UIs without spending time debugging the MCP path.
@@ -86,6 +90,7 @@ The project involves:
 - If Radarr's qBittorrent credential needs to be repaired again, read it locally from existing app config/runtime state and do not print or commit it. The Sonarr qBittorrent client has previously had a working stored credential; treat it as a secret.
 - `C:\Program Files\Plex\Plex Media Server\Plex SQLite.exe` is available locally and can inspect Sonarr/Radarr SQLite databases when needed. Redact secrets from any output.
 - Plex did not automatically show `H2O: Just Add Water` immediately after Sonarr imported all 78 episodes. A manual TV library refresh from Plex Web made it appear, so future imported-but-missing Plex cases should consider a confirmed Plex library refresh after read-only checks.
+- Tautulli was added as a Docker container on 2026-05-25 using `lscr.io/linuxserver/tautulli:latest`, config path `C:\media-stack\config\tautulli`, and local Web UI `http://127.0.0.1:8181`. Initial validation showed container `tautulli` running, persistent config created, logs reporting `Tautulli is ready!`, and HTTP 200 from the welcome page. It still needs first-run Plex setup with a Plex token handled as a secret.
 - Bazarr `episodeMissingCount` refers to missing subtitles, not missing episode files.
 - Native Radarr library import previously produced at least one bad match for a remake versus original movie. For bulk Radarr imports, prefer stricter API-based matching and skip ambiguous collection/mismatch cases rather than accepting questionable UI matches.
 - On 2026-05-24, the top-six Q1 2026 movie request was added/updated in Radarr as monitored Ultra-HD entries without triggering searches/downloads: `Project Hail Mary`, `Avatar: Fire and Ash`, `Hoppers`, `Scream 7`, `GOAT`, and `Zootopia 2`.
@@ -104,32 +109,22 @@ The project involves:
 - Do not use `torrent_manager` to add, start, stop, remove, delete, move, or recheck torrents until qBittorrent categories, save paths, incomplete paths, and root-folder mappings have been confirmed.
 - If `torrent_manager` is unavailable or lacks needed credentials, fall back to local qBittorrent config/log files, documented Web API calls, or the qBittorrent Web UI as appropriate.
 
-## Current Rebuild Hardware
+## Current Rebuilt Hardware
 
-Purchased:
+Purchased and installed:
+
 - Motherboard: MSI PRO Z790-A WiFi II
 - CPU: Intel Core i5-14500 SRN3T
 - RAM: Lexar Thor Z DDR5 32GB Kit, 2x16GB, 6000MHz
 - CPU Cooler: Noctua NH-U9S chromax.black
 
 Reused:
+
 - Case: SilverStone GD07
 - PSU: Corsair RM750e
 - GPU: GIGABYTE GeForce RTX 3050 WINDFORCE OC 6G, GV-N3050WF2OC-6GD, slot-powered
-- OS drive: existing 2.5-inch SATA SSD
-- Media drives: existing 5x 3.5-inch SATA HDDs
-
-## Rebuild Strategy
-
-1. Assemble minimal system first.
-2. Boot with OS SSD only.
-3. Confirm BIOS sees CPU, RAM, and OS SSD.
-4. Boot Windows 10 if possible.
-5. Install drivers.
-6. Search for Plex metadata.
-7. Reconnect media drives one at a time.
-8. Record and restore drive letters.
-9. Only then launch Plex and media automation tools.
+- OS drive: Samsung SSD 840 EVO 250GB
+- Media/data drives: 7 fixed SATA HDDs from the 2026-05-23 Windows inventory
 
 ## Documentation Style
 

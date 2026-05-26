@@ -65,6 +65,19 @@ services:
       - "${WEBUI_HOST_IP}:${BAZARR_PORT}:6767"
     restart: unless-stopped
 
+  tautulli:
+    image: lscr.io/linuxserver/tautulli:latest
+    container_name: tautulli
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    volumes:
+      - ${MEDIA_STACK_CONFIG}/tautulli:/config
+    ports:
+      - "${WEBUI_HOST_IP}:${TAUTULLI_PORT}:8181"
+    restart: unless-stopped
+
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest
     container_name: qbittorrent
