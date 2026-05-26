@@ -22,7 +22,7 @@ Use this as the stable hardware and drive inventory. Current crash work lives in
 | RAID / pooling | None known |
 | Remote Plex access | Enabled historically |
 | Hardware transcoding | Enabled historically |
-| Current unresolved issue | Random timed crashing |
+| Current unresolved issue | Random timed crashing; still under soak after removing broken-pin HDD |
 
 ---
 
@@ -38,7 +38,7 @@ Use this as the stable hardware and drive inventory. Current crash work lives in
 | PSU | Corsair RM750e | Reused | Use only RM750e-compatible modular PSU cables |
 | GPU | GIGABYTE GeForce RTX 3050 WINDFORCE OC 6G, GV-N3050WF2OC-6GD | Reused | Slot-powered; useful for display and NVIDIA transcoding |
 | OS storage | Samsung SSD 840 EVO 250GB | Reused | Windows/application SSD on `C:` |
-| Media/data storage | 7 fixed SATA HDDs | Reused | Preserve all drives; do not format or initialize |
+| Media/data storage | 6 fixed SATA HDDs currently visible | Reused | Preserve all drives; do not format or initialize; broken-pin 20 TB drive is on hand but not installed |
 
 ---
 
@@ -63,9 +63,9 @@ The current crash issue is unresolved. These driver facts are starting context, 
 
 # Storage Inventory
 
-Captured from read-only Windows disk and volume queries on 2026-05-23 after all currently available media drives were plugged in.
+Captured from read-only Windows disk and volume queries on 2026-05-23 after all then-available media drives were plugged in. A newer post-drive-swap snapshot is recorded below and should be used for current operations.
 
-## Fixed SATA Drives
+## Historical Fixed SATA Drives From 2026-05-23
 
 | Windows Disk # | Drive Letter | Volume Label | Model | Serial | Nominal Capacity | Windows Size | Free | Used | Partition Style | Health | Role / Notes |
 |---:|---|---|---|---|---:|---:|---:|---:|---|---|---|
@@ -78,6 +78,40 @@ Captured from read-only Windows disk and volume queries on 2026-05-23 after all 
 | 6 | G: | Broken Power Pin | ST20000NM000H-3KV103 | ZYD046SE | 20 TB | 18.19 TiB | 18.19 TiB | 0.0% | GPT | Healthy | Media/data drive; label suggests known physical connector issue to inspect |
 | 7 | J: | TV 1 | ST16000NE000-3UN101 | ZVTBPM4J | 16 TB | 14.55 TiB | 3.26 TiB | 77.6% | GPT | Healthy | Media drive |
 
+## Current Fixed Volumes After 2026-05-25 Drive Swap
+
+Captured on 2026-05-26 after the broken-power-pin drive was removed and an 8 TB drive was installed.
+
+| Drive Letter | Volume Label | File System | Windows Size | Free | Health / Operational Status | Current role / notes |
+|---|---|---|---:|---:|---|---|
+| C: | unlabeled | NTFS | 0.23 TiB | 0.15 TiB | Healthy / OK | Windows OS/application SSD |
+| D: | Movies 1 | NTFS | 18.19 TiB | 10.69 TiB | Healthy / OK | Movie media drive |
+| E: | Movies 3 | NTFS | 7.28 TiB | 7.14 TiB | Healthy / OK | Movie media drive |
+| F: | Movies 2 | NTFS | 7.28 TiB | 2.36 TiB | Healthy / OK | Movie media drive |
+| G: | Empty | NTFS | 7.28 TiB | 7.19 TiB | Healthy / OK | Replacement 8 TB drive; do not assume disposable despite label |
+| I: | Torrent | NTFS | 18.19 TiB | 15.44 TiB | Healthy / OK | Torrent/download drive; `I:\torrentfiles` verified present |
+| J: | TV 1 | NTFS | 14.55 TiB | 3.24 TiB | Healthy / OK | TV media drive |
+
+Current physical disks detected on 2026-05-26:
+
+| Model | Serial | Nominal Capacity | Bus | Media Type | Health / Operational Status |
+|---|---|---:|---|---|---|
+| Samsung SSD 840 EVO 250GB | S1DDNWAF903275D | 250 GB | SATA | SSD | Healthy / OK |
+| ST16000NE000-3UN101 | ZVTBPM4J | 16 TB | SATA | HDD | Healthy / OK |
+| ST20000NM000H-3KV103 | ZYD022FT | 20 TB | SATA | HDD | Healthy / OK |
+| ST20000NM000H-3KV103 | ZYE00444 | 20 TB | SATA | HDD | Healthy / OK |
+| ST8000DM004-2CX188 | ZCT0QF7Y | 8 TB | SATA | HDD | Healthy / OK |
+| ST8000DM004-2CX188 | ZCT18865 | 8 TB | SATA | HDD | Healthy / OK |
+| ST8000DM004-2CX188 | ZCT1AK4D | 8 TB | SATA | HDD | Healthy / OK |
+
+The former `H:` / `TV 2` volume is absent in the 2026-05-26 snapshot. Do not repair paths, start imports, or write to `/tv/tv2` until the missing TV 2 drive and intended replacement plan are confirmed.
+
+## On-Hand / Not Installed Drives
+
+| Prior Drive Letter | Volume Label | Model | Serial | Nominal Capacity | Status | Notes |
+|---|---|---|---|---:|---|---|
+| G: | Broken Power Pin | ST20000NM000H-3KV103 | ZYD046SE | 20 TB | On hand, not installed | Removed after the 2026-05-25 10:38 PM crash and replaced by the older 8 TB `G:` drive. Physical power-pin damage; keep as parts/evidence and do not reinstall without a deliberate inspection plan. |
+
 ## Removable / Non-Server Storage
 
 | Windows Disk # | Drive Letter | Volume Label | Model | Serial | Nominal Capacity | Windows Size | Health | Notes |
@@ -86,12 +120,14 @@ Captured from read-only Windows disk and volume queries on 2026-05-23 after all 
 
 ## Drive Letter Preservation Notes
 
-- Current media/data drive letters are `D:`, `E:`, `F:`, `G:`, `H:`, `I:`, and `J:`.
+- Current detected media/data drive letters are `D:`, `E:`, `F:`, `G:`, `I:`, and `J:`. The former `H:` / `TV 2` drive is not currently present.
 - `I:` is the torrent/download drive and should contain `I:\torrentfiles`.
 - The Docker stack maps `I:\torrentfiles` to `/downloads`.
 - Do not trust qBittorrent after boot, crash, drive reconnect, or Docker restart until both Windows and Docker confirm the torrent path.
-- The `G:` volume label is `Broken Power Pin`; inspect and document the physical drive/cable before relying on it for writes.
-- `E:` and `I:` were nearly full in the 2026-05-23 inventory and should be treated carefully during imports, downloads, or library moves.
+- The old `G:` volume label was `Broken Power Pin`; that physically damaged drive has been removed from service. Current `G:` is an 8 TB replacement labeled `Empty`.
+- Keep the removed broken-pin drive and its associated cabling out of normal service unless there is an explicit recovery plan.
+- Do not trust Sonarr/Bazarr `/tv/tv2` paths while `H:` is absent; Docker currently shows that mount as a tiny full placeholder filesystem.
+- `E:` and `I:` were nearly full in the 2026-05-23 inventory, but the 2026-05-26 snapshot shows both with much more free space. Recheck live free space before imports, downloads, or library moves.
 
 ---
 

@@ -4,7 +4,7 @@
 
 Help operate, stabilize, and document a rebuilt Windows-native Plex media server.
 
-The rebuild from the failed ASUS platform to the modern Intel platform has been accomplished. The current unresolved problem is randomly timed crashing. Do not claim that this stability issue is solved until evidence and verification support that conclusion.
+The rebuild from the failed ASUS platform to the modern Intel platform has been accomplished. The random crashing improved after the broken-power-pin HDD was removed, but do not claim the stability issue is fully solved until a longer normal-operation soak supports that conclusion.
 
 The project now involves:
 
@@ -75,7 +75,9 @@ The project now involves:
 
 ## Operational Memory
 
-- The current unresolved issue is random timed system crashing. Track observations in `docs/current_stability_crash_tracker.md`; do not document a root cause until confirmed.
+- The current stability lead is the removed broken-power-pin HDD, its power connection, or related cabling. Track observations in `docs/current_stability_crash_tracker.md`; treat this as probable under soak, not a fully confirmed root cause yet.
+- As of 2026-05-26, the system survived the first overnight soak after the broken-pin drive was removed and an 8 TB `G:` drive was installed.
+- As of 2026-05-26, the former `H:` / TV 2 volume is absent. Do not allow Sonarr/Bazarr imports or subtitle writes to `/tv/tv2`; Docker showed `/tv/tv2` as a tiny full placeholder filesystem while `H:` was missing.
 - The Plex token is not shown in the XML response body. It normally appears in the browser address bar or request URL as `X-Plex-Token=...`; ask for the URL or use the browser/network request path rather than searching pasted XML content.
 - PowerShell formatted object output has caused misleading nullable/table displays. For local service APIs, capture raw JSON or XML first and parse only the fields needed.
 - The configured `mcp_arr` server was unavailable or not credentialed during this setup. Try it first per MCP rules, but be ready to fall back to local config files, documented APIs, or service UIs without spending time debugging the MCP path.
@@ -124,7 +126,7 @@ Reused:
 - PSU: Corsair RM750e
 - GPU: GIGABYTE GeForce RTX 3050 WINDFORCE OC 6G, GV-N3050WF2OC-6GD, slot-powered
 - OS drive: Samsung SSD 840 EVO 250GB
-- Media/data drives: 7 fixed SATA HDDs from the 2026-05-23 Windows inventory
+- Media/data drives: 6 fixed SATA HDD volumes currently detected after the 2026-05-25 drive swap; former broken-pin 20 TB drive is on hand but not installed
 
 ## Documentation Style
 

@@ -14,7 +14,7 @@ The storage migration/rebuild phase is complete enough for Windows, Plex, and th
 |---|---|
 | Operating system | Windows 10 on dedicated SATA SSD |
 | Plex install | Native Windows installation |
-| Media/data drives | 7 fixed SATA HDDs |
+| Media/data drives | 6 detected media/data HDD volumes plus the OS SSD after the 2026-05-25 drive swap |
 | Drive organization | Separate Windows drive letters |
 | RAID / pooling | None known |
 | Docker stack | Sonarr, Radarr, Prowlarr, Bazarr, Tautulli, qBittorrent, Unpackerr |
@@ -31,11 +31,11 @@ The canonical drive table is maintained in [plex_server_hardware_inventory.md](p
 |---|---:|---|
 | Windows OS/application SSD | 1 | `C:` Samsung SSD 840 EVO 250GB |
 | Movie media drives | 3 | `D:` Movies 1, `F:` Movies 2, `E:` Movies 3 |
-| TV media drives | 2 | `J:` TV 1, `H:` TV 2 |
+| TV media drives | 1 currently detected | `J:` TV 1; former `H:` TV 2 is absent |
 | Torrent/download drive | 1 | `I:` Torrent |
-| Extra media/data drive | 1 | `G:` Broken Power Pin |
+| Extra media/data drive | 1 | `G:` Empty replacement 8 TB drive |
 
-Older visual inspection suggested fewer HDDs in the rack. Treat that as historical/photo-based context only. The 2026-05-23 Windows inventory is the current canonical storage inventory.
+Older visual inspection suggested fewer HDDs in the rack. Treat that as historical/photo-based context only. The 2026-05-26 post-swap inventory in [plex_server_hardware_inventory.md](plex_server_hardware_inventory.md) is the current operational storage snapshot.
 
 ---
 
@@ -46,7 +46,8 @@ Older visual inspection suggested fewer HDDs in the rack. Treat that as historic
 - Do not move media folders to satisfy a broken app path until drive identity and current drive letter are verified.
 - Do not repair Plex, Sonarr, Radarr, Bazarr, Tautulli, qBittorrent, Jackett, or Unpackerr paths until drive letters and Docker mounts are confirmed.
 - Keep `I:\torrentfiles` as the host download root unless a separate migration plan explicitly changes it.
-- Treat `G:` with extra care because its volume label is `Broken Power Pin`; inspect physical cabling before relying on it for writes.
+- Keep the removed broken-pin drive and any suspect cabling out of service unless there is an explicit recovery plan.
+- Treat the missing `H:` / TV 2 path as unavailable. Do not import to, repair, or mass-edit `/tv/tv2` paths until the intended TV 2 drive plan is confirmed.
 
 ---
 
@@ -58,9 +59,9 @@ The Docker stack uses stable container paths mapped from Windows drive letters.
 |---|---|---|
 | `I:\torrentfiles` | `/downloads` | qBittorrent, Sonarr, Radarr, Unpackerr |
 | `J:\TV Shows` | `/tv/tv1/TV Shows` | Sonarr |
-| `H:\TV Shows` | `/tv/tv2/TV Shows` | Sonarr |
+| `H:\TV Shows` | `/tv/tv2/TV Shows` | Sonarr; currently unavailable because `H:` is absent |
 | `J:\` | `/tv/tv1` | Bazarr |
-| `H:\` | `/tv/tv2` | Bazarr |
+| `H:\` | `/tv/tv2` | Bazarr; currently unavailable because `H:` is absent |
 | `D:\Movies` | `/movies/movies1/Movies` | Radarr |
 | `F:\Movies` | `/movies/movies2/Movies` | Radarr |
 | `E:\Movies` | `/movies/movies3/Movies` | Radarr |
@@ -77,6 +78,8 @@ docker exec qbittorrent sh -c "df -h /downloads"
 ```
 
 Healthy Docker output should show `/downloads` mounted from `I:\` with multi-terabyte capacity. If Docker shows a tiny full filesystem, follow [qbittorrent_startup_recovery.md](qbittorrent_startup_recovery.md).
+
+On 2026-05-26, `/downloads` was healthy, but `/tv/tv2` showed as a tiny full placeholder filesystem because `H:` was absent. That is unsafe for imports and subtitle writes.
 
 ---
 
@@ -123,7 +126,7 @@ Confirmed in Sonarr on 2026-05-24.
 | Host path | Container path | Status |
 |---|---|---|
 | `J:\TV Shows` | `/tv/tv1/TV Shows` | Root folder configured and accessible |
-| `H:\TV Shows` | `/tv/tv2/TV Shows` | Root folder configured and accessible |
+| `H:\TV Shows` | `/tv/tv2/TV Shows` | Configured historically; currently unavailable because `H:` is absent |
 
 ## Radarr Movie Root Folders
 
@@ -143,7 +146,8 @@ Confirmed in Radarr on 2026-05-24.
 - [ ] Confirm SATA port-to-drive mapping.
 - [ ] Confirm PSU cable map.
 - [ ] Confirm fan header map.
-- [ ] Capture current SMART status for all fixed drives.
+- [x] Capture current Windows physical-disk health status for all detected fixed drives.
+- [ ] Capture detailed SMART attributes for all fixed drives.
 - [ ] Create a backup procedure for Plex metadata and Docker app configs.
 
 ---

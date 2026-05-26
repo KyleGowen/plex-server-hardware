@@ -13,10 +13,10 @@ This file is for evidence and non-destructive diagnostics only. Do not claim a r
 | Item | Current state |
 |---|---|
 | Issue | Randomly timed crashing |
-| Status | Unresolved |
+| Status | Improved under soak after removing broken-power-pin HDD; not yet closed |
 | Affected system | Rebuilt MSI PRO Z790-A WiFi II / Intel Core i5-14500 Windows 10 Plex server |
 | Known service state | Plex and Docker media stack can run |
-| Current evidence level | Multiple crash timestamps captured; Kernel-Power hard resets; post-BIOS WHEA/IOMMU clue seen before Wi-Fi BIOS disable |
+| Current evidence level | Multiple crash timestamps captured before drive removal; no new crash observed during first overnight soak after broken-pin drive was removed |
 
 ---
 
@@ -77,6 +77,7 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 | 2026-05-25 9:43:09 PM | Hard freeze reported by user: screen frozen, cursor would not move, keyboard and mouse had no effect | Reboot at 10:00:33 PM; `Kernel-Power 41`, `BugcheckCode=0`; new `WHEA-Logger` fatal hardware error at 10:00:51 PM; no matching new `HAL` IOMMU Event 15 |
 | 2026-05-25 10:07:39 PM | Crash after ME firmware update and controlled restart | Reboot at 10:37:47 PM; `Kernel-Power 41`, `BugcheckCode=0`; new `WHEA-Logger` fatal hardware error at 10:38:06 PM; no minidump or `MEMORY.DMP`; no matching new `HAL` IOMMU Event 15 |
 | 2026-05-25 10:38:06 PM | Crash occurred before the broken-power-pin HDD was removed | Reboot at 11:00:17 PM; `Kernel-Power 41`, `BugcheckCode=0`; new `WHEA-Logger` fatal hardware error at 11:00:34 PM; no minidump or `MEMORY.DMP`; broken-pin drive was replaced only after this crash |
+| 2026-05-26 10:32 AM | Overnight soak after broken-pin drive removal | Windows boot time `2026-05-25 11:00:17 PM`; uptime about 11.5 hours; no later Kernel-Power crash, WHEA, HAL, disk, NTFS, storahci, or bugcheck events found in the since-boot check beyond the previous crash record |
 
 ## 2026-05-25 Admin Hardening / Repair Pass
 
@@ -119,10 +120,26 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 
 - User identified a hard drive with a broken power pin that had been mounted as `G:`.
 - The crash recorded at previous shutdown `2026-05-25 10:38:06 PM` occurred before this drive was removed.
-- After that crash, user removed the broken-pin drive and replaced it with an older/smaller 8 TB HDD.
+- After that crash, user removed the broken-pin drive and replaced it with an 8 TB HDD.
 - Current Windows volume map after replacement shows `G:` labeled `Empty`, healthy, about 8 TB.
 - Current Windows volume map no longer shows the prior `H:` / `TV 2` volume.
-- Because the crash happened before removal, the broken-pin drive remains a plausible contributor until the system soaks with it absent.
+- The first overnight soak with the broken-pin drive absent reached about 11.5 hours without another crash.
+- Current diagnosis: the removed broken-pin drive, its power connection, or related SATA/power cabling is now the strongest stability lead. Keep this as a probable cause under observation, not a final root-cause claim, until normal operation remains stable for a longer soak window.
+- Do not reconnect the broken-pin drive or reuse its power/SATA cabling for normal service until there is an explicit recovery plan.
+- Because `H:` / `TV 2` is absent, do not trust `/tv/tv2` imports; Docker currently shows `/tv/tv2` as a tiny full placeholder filesystem, not the missing TV drive.
+
+## 2026-05-26 Overnight Soak And Upkeep Check
+
+- User reported the machine stayed up overnight after the broken-pin HDD was removed and an 8 TB drive was installed.
+- Windows reported current boot time `2026-05-25 11:00:17 PM`; check time `2026-05-26 10:32 AM`; uptime about 11.5 hours.
+- Since-boot event check found only the records tied to the previous `2026-05-25 10:38:06 PM` crash: `Kernel-Power 41`, `EventLog 6008`, and `WHEA-Logger 1`.
+- No newer matching hard-crash, HAL IOMMU, disk, NTFS, storahci, or bugcheck events were found in the since-boot filtered check.
+- `Get-PhysicalDisk` reported all detected fixed disks as `Healthy` / `OK`.
+- Current fixed volumes: `C:`, `D:` Movies 1, `E:` Movies 3, `F:` Movies 2, `G:` Empty, `I:` Torrent, and `J:` TV 1. `H:` / TV 2 is absent.
+- `Test-Path I:\torrentfiles` returned true.
+- qBittorrent container showed `/downloads` mounted from `I:\`, about `19T` total and `16T` available.
+- Docker localhost checks returned HTTP 200 for Sonarr, Radarr, Prowlarr, Bazarr, qBittorrent, Tautulli, and Uptime Kuma.
+- Sonarr/Bazarr `/tv/tv2` currently maps to a tiny full placeholder filesystem because `H:` is missing. Treat TV 2 paths as unavailable until the storage plan is updated.
 
 ## 2026-05-25 WHEA / IOMMU Finding
 
@@ -134,6 +151,18 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 - User disabled the Realtek Wi-Fi device in Device Manager, then later disabled Wi-Fi in BIOS.
 - The next captured crash after Windows-level Wi-Fi disable did not log a new WHEA/HAL IOMMU event, but still hard-reset with `BugcheckCode=0`.
 - Do not call the Realtek Wi-Fi the confirmed root cause yet; treat it as a strong lead that changed the event signature.
+
+## 2026-05-26 Docker Localhost Port Proxy Incident
+
+- User reported the Arr ecosystem was not responding.
+- Docker showed Sonarr, Radarr, Prowlarr, Bazarr, qBittorrent, Tautulli, Unpackerr, and Uptime Kuma containers still running.
+- Windows confirmed `I:\torrentfiles` existed.
+- qBittorrent container confirmed `/downloads` was correctly mounted as `I:\` with about `19T` total and `16T` available; this was not the prior tiny/full `/downloads` mount failure.
+- Inside-container checks returned normal service responses from Sonarr, Radarr, and Prowlarr.
+- Windows `127.0.0.1` checks against all published Docker ports returned empty replies through `com.docker.backend.exe`.
+- Recovery action: `docker compose -f C:\plex-server\docker-compose.media.yml restart`.
+- Post-restart validation: localhost ports responded normally again, and qBittorrent `/downloads` still mapped to `I:\`.
+- Treat this as a Docker Desktop Windows port-forward/proxy incident unless repeated evidence points elsewhere.
 
 ---
 
@@ -148,6 +177,9 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 - [ ] Confirm CPU and GPU temperatures at idle and during a controlled Plex playback/transcode.
 - [x] Capture Windows physical-disk health status for `C:` and all fixed media/data drives.
 - [x] Confirm qBittorrent `/downloads` mount after at least one crash before resuming torrents.
+- [x] Complete first overnight soak after removing the broken-pin HDD.
+- [ ] Continue normal-operation soak with the broken-pin drive absent before closing the crash issue.
+- [ ] Decide how to handle missing `H:` / TV 2 before allowing imports to `/tv/tv2`.
 - [ ] Review Docker Desktop/WSL logs only after Windows crash evidence is collected.
 - [ ] Avoid firmware, BIOS, storage-controller, or drive-letter changes until a diagnostic plan calls for them.
 
@@ -164,11 +196,12 @@ These are hypotheses, not conclusions:
 | GPU/display driver | NVIDIA driver was updated; Plex may use GPU transcoding |
 | Power delivery / PSU cabling | PSU is reused; modular cable safety remains important |
 | Thermals/fan control | Reused case and fans; fan map still needs documentation |
-| Storage or Docker/WSL timing | qBittorrent already had a stale mount incident after `I:` was unavailable |
+| Removed broken-pin HDD or its cabling | Stability improved immediately after the physically damaged drive was removed; strongest current lead |
+| Storage or Docker/WSL timing | qBittorrent already had a stale mount incident after `I:` was unavailable; `/tv/tv2` is now a missing-drive placeholder |
 | Sleep/power states | Random timing may correlate with idle/sleep/wake if enabled |
 
 ---
 
 # Current Rule
 
-Until the crash pattern is understood, treat service changes as secondary. Preserve data first, collect evidence second, and only then change drivers, BIOS settings, hardware configuration, or service behavior.
+The crash pattern is strongly improved after removing the broken-pin HDD, but do not mark the issue solved until the server survives a longer normal-operation soak. Preserve data first, keep the broken-pin drive out of service, avoid `/tv/tv2` writes while `H:` is absent, and continue collecting evidence before making more hardware or service changes.

@@ -4,7 +4,7 @@
 
 Track the current post-rebuild state, unresolved stability issue, service hardening work, and documentation follow-ups for the Plex media server.
 
-The original hardware rebuild is no longer the active phase. The server has been rebuilt on the replacement Intel platform, Windows boots, drivers were installed, and the Docker media stack is running. The active problem is randomly timed system crashing.
+The original hardware rebuild is no longer the active phase. The server has been rebuilt on the replacement Intel platform, Windows boots, drivers were installed, and the Docker media stack is running. The active problem is proving stability after the broken-power-pin HDD was removed.
 
 ---
 
@@ -13,7 +13,7 @@ The original hardware rebuild is no longer the active phase. The server has been
 | Area | Status |
 |---|---|
 | Hardware rebuild | Completed enough for Windows and services to run |
-| Current top priority | Random timed crashing, unresolved |
+| Current top priority | Continue stability soak after broken-pin HDD removal |
 | Operating system | Windows 10 Home build 19045, native install |
 | Plex deployment | Native Windows install |
 | Docker media stack | Running Sonarr, Radarr, Prowlarr, Bazarr, Tautulli, qBittorrent, and Unpackerr |
@@ -27,7 +27,7 @@ The original hardware rebuild is no longer the active phase. The server has been
 
 # Current Top Issue
 
-Randomly timed system crashing is reported by the user and is not solved yet.
+Randomly timed system crashing improved after the broken-power-pin HDD was removed and replaced with an 8 TB drive. The first overnight soak reached about 11.5 hours without a new crash, but the issue should not be marked solved until normal operation remains stable for a longer soak window.
 
 Track evidence and diagnostic steps in [current_stability_crash_tracker.md](current_stability_crash_tracker.md). Do not record a guessed root cause as fact.
 
@@ -42,6 +42,8 @@ Track evidence and diagnostic steps in [current_stability_crash_tracker.md](curr
 - [ ] BIOS settings relevant to stability, especially memory profile/XMP state.
 - [ ] CPU, GPU, and drive temperatures during idle and load.
 - [ ] SMART health for the OS SSD and media/data HDDs.
+- [ ] Continued no-crash soak with the removed broken-pin drive absent.
+- [ ] Decision on the missing `H:` / TV 2 path before allowing imports to `/tv/tv2`.
 
 ---
 
@@ -57,7 +59,7 @@ Track evidence and diagnostic steps in [current_stability_crash_tracker.md](curr
 | PSU | Corsair RM750e, reused |
 | GPU | GIGABYTE GeForce RTX 3050 WINDFORCE OC 6G, GV-N3050WF2OC-6GD, reused |
 | OS storage | Samsung SSD 840 EVO 250GB on `C:` |
-| Media/data storage | 7 fixed SATA HDDs on `D:`, `E:`, `F:`, `G:`, `H:`, `I:`, and `J:` |
+| Media/data storage | Current detected HDD volumes on `D:`, `E:`, `F:`, `G:`, `I:`, and `J:`; former `H:` / TV 2 absent after drive swap |
 
 Detailed hardware and drive inventory lives in [plex_server_hardware_inventory.md](plex_server_hardware_inventory.md).
 
@@ -86,18 +88,23 @@ Per-service docs live in [services](services).
 ## Stability / Crash Work
 
 - [ ] Collect crash timestamps and Event Viewer evidence.
+- [x] Record first overnight soak after removing the broken-pin HDD.
 - [ ] Confirm BIOS memory settings, including whether XMP is disabled or enabled.
 - [ ] Confirm CPU, GPU, and storage temperatures.
-- [ ] Record SMART status for every fixed drive.
+- [x] Record Windows physical-disk health for every currently detected fixed drive.
+- [ ] Record detailed SMART attributes for every currently detected fixed drive.
 - [ ] Confirm Windows sleep/power settings.
 - [ ] Confirm whether crashes occur under idle, Plex transcode, Docker download/import, or mixed load.
+- [ ] Keep removed broken-pin HDD and suspect cabling out of service during soak.
 - [ ] Avoid BIOS updates, firmware changes, or storage controller changes unless explicitly chosen as part of a stability plan.
 
 ## Storage / Docker Safety
 
 - [x] Confirm current fixed SATA drive inventory from Windows.
 - [x] Confirm qBittorrent download root is `I:\torrentfiles`.
+- [x] Confirm qBittorrent `/downloads` is mounted from `I:\` after the drive swap.
 - [x] Document qBittorrent stale Docker bind-mount recovery.
+- [ ] Do not allow Sonarr/Bazarr writes to `/tv/tv2` while `H:` is absent.
 - [ ] Add or run a qBittorrent startup guard that verifies `/downloads` reports the real `I:\` drive before torrents resume.
 - [ ] Document physical bay-to-drive mapping.
 - [ ] Document SATA port map.

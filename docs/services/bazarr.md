@@ -51,6 +51,7 @@ Enabled providers recorded during setup:
 - Do not run bulk subtitle searches until provider credentials, rate limits, path mappings, and write behavior are confirmed.
 - Test one manual subtitle search/download for a single known item first.
 - Confirm the subtitle file is written next to the correct media file.
+- Do not write subtitles under `/tv/tv2` while `H:` / TV 2 is absent. On 2026-05-26 Docker showed `/tv/tv2` as a tiny full placeholder filesystem, not the intended TV drive.
 - Do not refresh Plex for subtitle visibility without explicit confirmation.
 - Keep Bazarr, Sonarr, Radarr, and provider credentials out of repo docs and logs.
 
@@ -58,4 +59,5 @@ Enabled providers recorded during setup:
 
 - Add OpenSubtitles.com credentials if that provider should be primary.
 - Complete one controlled subtitle download/write test.
+- Decide the replacement/missing-drive plan for `H:` / TV 2 before any `/tv/tv2` subtitle write test.
 - Confirm Plex subtitle visibility only after file existence is verified.
