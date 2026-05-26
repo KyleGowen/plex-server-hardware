@@ -47,9 +47,9 @@ Uptime Kuma is bound to localhost through `WEBUI_HOST_IP=127.0.0.1`, so the Web 
 | Native Windows Plex HTTP endpoint | Lets Kuma monitor Plex at `host.docker.internal:32400` |
 | Stable Windows storage and Docker state | Helps avoid false alarms after crashes, Docker restarts, or stale WSL mounts |
 
-## Monitors To Create
+## Current Monitors
 
-After first-run admin setup, create monitors with these targets:
+These monitors were created after first-run admin setup:
 
 | Monitor | Type | URL / Host | Expected Result |
 |---|---|---|---|
@@ -60,6 +60,9 @@ After first-run admin setup, create monitors with these targets:
 | Bazarr | HTTP(s) | `http://bazarr:6767` | HTTP 200 |
 | Tautulli | HTTP(s) | `http://tautulli:8181` | HTTP 200 or redirect |
 | qBittorrent Web UI | HTTP(s) | `http://qbittorrent:8080` | HTTP 200 |
+| Uptime Kuma | HTTP(s) | `http://127.0.0.1:3001` | HTTP 200 |
+
+Unpackerr is not included as an HTTP monitor because this deployment does not expose a normal Web UI for it. Monitor Unpackerr through `docker compose ps`, logs, or a future Docker-container monitor only if Docker socket access is intentionally added and accepted.
 
 Do not store Plex tokens, Arr API keys, qBittorrent credentials, notification tokens, or webhook secrets in this repository. Uptime Kuma notification credentials belong only in its local config database.
 
@@ -83,6 +86,19 @@ Verified on 2026-05-25:
 | Docker DNS to qBittorrent | Pass: `http://qbittorrent:8080` returned HTTP 200 |
 | Docker-to-native Plex | Pass: `http://host.docker.internal:32400/identity` returned HTTP 200 |
 
+Verified after monitor creation on 2026-05-25:
+
+| Monitor | Latest Result |
+|---|---|
+| Bazarr | Up: `200 - OK` |
+| Plex | Up: `200 - OK` |
+| Prowlarr | Up: `200 - OK` |
+| Radarr | Up: `200 - OK` |
+| Sonarr | Up: `200 - OK` |
+| Tautulli | Up: `200 - OK` |
+| Uptime Kuma | Up: `200 - OK` |
+| qBittorrent | Up: `200 - OK` |
+
 ## Operational Rules
 
 - Use Uptime Kuma for visibility and alerting, not as proof that the random crashing issue is solved.
@@ -93,7 +109,5 @@ Verified on 2026-05-25:
 
 ## Current Gaps
 
-- Complete first-run admin account setup in the Web UI.
-- Add the monitors listed above after admin setup.
 - Add notification provider only after choosing a destination and keeping its token secret.
 - If desired, create a status page for local dashboard use only.
