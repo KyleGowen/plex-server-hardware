@@ -78,6 +78,15 @@ services:
       - "${WEBUI_HOST_IP}:${TAUTULLI_PORT}:8181"
     restart: unless-stopped
 
+  uptime-kuma:
+    image: louislam/uptime-kuma:1
+    container_name: uptime-kuma
+    volumes:
+      - ${MEDIA_STACK_CONFIG}/uptime-kuma:/app/data
+    ports:
+      - "${WEBUI_HOST_IP}:${UPTIME_KUMA_PORT}:3001"
+    restart: unless-stopped
+
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest
     container_name: qbittorrent

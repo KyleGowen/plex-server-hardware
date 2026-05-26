@@ -75,6 +75,7 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 | 2026-05-25 9:18:05 PM | Post-BIOS crash sequence | `WHEA-Logger` fatal hardware error; matching `HAL` IOMMU error at 9:17:48 PM |
 | 2026-05-25 9:27:17 PM | Crash after Realtek Wi-Fi was disabled in Windows Device Manager | `Kernel-Power 41`, `BugcheckCode=0`, no minidump, no `MEMORY.DMP`; no new WHEA/HAL IOMMU event after Wi-Fi disable |
 | 2026-05-25 9:43:09 PM | Hard freeze reported by user: screen frozen, cursor would not move, keyboard and mouse had no effect | Reboot at 10:00:33 PM; `Kernel-Power 41`, `BugcheckCode=0`; new `WHEA-Logger` fatal hardware error at 10:00:51 PM; no matching new `HAL` IOMMU Event 15 |
+| 2026-05-25 10:07:39 PM | Crash after ME firmware update and controlled restart | Reboot at 10:37:47 PM; `Kernel-Power 41`, `BugcheckCode=0`; new `WHEA-Logger` fatal hardware error at 10:38:06 PM; no minidump or `MEMORY.DMP`; no matching new `HAL` IOMMU Event 15 |
 
 ## 2026-05-25 Admin Hardening / Repair Pass
 
@@ -102,6 +103,16 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 - User chose restart later, then performed a controlled restart.
 - After the 2026-05-25 10:07 PM boot, Windows verified ME firmware `16.1.40.2765`.
 - No new WHEA or HAL IOMMU errors were observed immediately after the controlled restart.
+
+## 2026-05-25 Docker / WSL Isolation Test
+
+- After the post-ME-update crash, Docker containers were running again after reboot.
+- Verified `I:\torrentfiles` existed and qBittorrent `/downloads` was correctly mounted to `I:\` before stopping containers.
+- Stopped the Docker media stack with `docker compose -f C:\plex-server\docker-compose.media.yml stop`.
+- Stopped the remaining `torrent-mcp` container manually after it restarted.
+- Closed Docker Desktop backend processes and ran `wsl --shutdown`.
+- Confirmed no Docker Desktop, Docker backend, `vmmem`, or running Docker containers remained.
+- Current test posture: native Windows/Plex only, Docker/WSL quiet. If crashes continue in this state, Docker/WSL is less likely to be the direct trigger.
 
 ## 2026-05-25 WHEA / IOMMU Finding
 
