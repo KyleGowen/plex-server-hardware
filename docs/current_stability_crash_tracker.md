@@ -42,7 +42,7 @@ This file is for evidence and non-destructive diagnostics only. Do not claim a r
 | Memory speed | DDR5 currently reports `4800`; XMP does not appear active from Windows inventory |
 | Crash capture | Small memory dumps enabled; automatic reboot disabled; `C:\Windows\Minidump` created on 2026-05-25 |
 | Power-state hardening | Hibernation/Fast Startup disabled; PCIe Link State Power Management disabled; USB selective suspend disabled on 2026-05-25 |
-| Intel ME firmware | MSI ME firmware updater reported update from `16.1.38.2676` to `16.1.40.2765` succeeded on 2026-05-25; restart still pending at time of note |
+| Intel ME firmware | Updated from `16.1.38.2676` to `16.1.40.2765`; verified after restart on 2026-05-25 |
 
 Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.md).
 
@@ -99,7 +99,9 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 - Downloaded official MSI package `ME_16.1.40.2765.zip` from `https://download.msi.com/bos_exe/mb/ME_16.1.40.2765.zip`.
 - MSI wrapper signature verified as Micro-Star International; Intel updater signature verified as Intel Corporation.
 - MSI updater log at `tools/ME_16.1.40.2765/ME_16.1.40.2765/FWLog.txt` reported: `Old FW Version : 16.1.38.2676, New FW Version : 16.1.40.2765 : SUCCESS`.
-- User chose restart later; verify ME firmware version after the next reboot.
+- User chose restart later, then performed a controlled restart.
+- After the 2026-05-25 10:07 PM boot, Windows verified ME firmware `16.1.40.2765`.
+- No new WHEA or HAL IOMMU errors were observed immediately after the controlled restart.
 
 ## 2026-05-25 WHEA / IOMMU Finding
 
