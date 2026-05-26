@@ -1,0 +1,10 @@
+English;
+
+1.Unzip file.
+2.Execute MSI ME FW Tool.exe in windows and then it will automatically complete the entire ME FW update.
+
+
+繁中:
+
+1.解壓縮檔案.
+2.在 Windows中, 執行 MSI ME FW Tool.exe即會自動完成 ME Firmware更新.
