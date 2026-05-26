@@ -1,2 +1,0 @@
-1.Unzip file.
-2.Execute MSI ME FW Tool.exe in windows and then it will automatically complete the entire ME FW update.

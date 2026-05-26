@@ -66,4 +66,3 @@ This file records the hardware driver work completed before restart so the rebui
 5. Open Intel Driver & Support Assistant manually and apply only relevant Intel driver updates.
 6. Do not accept BIOS or firmware updates from DSA in this pass.
 7. Resume the rebuild from the documented storage-safe sequence: OS SSD first, then media drives one at a time only after Windows is stable.
-

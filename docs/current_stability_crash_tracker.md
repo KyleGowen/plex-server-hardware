@@ -76,6 +76,7 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 | 2026-05-25 9:27:17 PM | Crash after Realtek Wi-Fi was disabled in Windows Device Manager | `Kernel-Power 41`, `BugcheckCode=0`, no minidump, no `MEMORY.DMP`; no new WHEA/HAL IOMMU event after Wi-Fi disable |
 | 2026-05-25 9:43:09 PM | Hard freeze reported by user: screen frozen, cursor would not move, keyboard and mouse had no effect | Reboot at 10:00:33 PM; `Kernel-Power 41`, `BugcheckCode=0`; new `WHEA-Logger` fatal hardware error at 10:00:51 PM; no matching new `HAL` IOMMU Event 15 |
 | 2026-05-25 10:07:39 PM | Crash after ME firmware update and controlled restart | Reboot at 10:37:47 PM; `Kernel-Power 41`, `BugcheckCode=0`; new `WHEA-Logger` fatal hardware error at 10:38:06 PM; no minidump or `MEMORY.DMP`; no matching new `HAL` IOMMU Event 15 |
+| 2026-05-25 10:38:06 PM | Crash occurred before the broken-power-pin HDD was removed | Reboot at 11:00:17 PM; `Kernel-Power 41`, `BugcheckCode=0`; new `WHEA-Logger` fatal hardware error at 11:00:34 PM; no minidump or `MEMORY.DMP`; broken-pin drive was replaced only after this crash |
 
 ## 2026-05-25 Admin Hardening / Repair Pass
 
@@ -113,6 +114,15 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 - Closed Docker Desktop backend processes and ran `wsl --shutdown`.
 - Confirmed no Docker Desktop, Docker backend, `vmmem`, or running Docker containers remained.
 - Current test posture: native Windows/Plex only, Docker/WSL quiet. If crashes continue in this state, Docker/WSL is less likely to be the direct trigger.
+
+## 2026-05-25 Broken-Power-Pin HDD Test
+
+- User identified a hard drive with a broken power pin that had been mounted as `G:`.
+- The crash recorded at previous shutdown `2026-05-25 10:38:06 PM` occurred before this drive was removed.
+- After that crash, user removed the broken-pin drive and replaced it with an older/smaller 8 TB HDD.
+- Current Windows volume map after replacement shows `G:` labeled `Empty`, healthy, about 8 TB.
+- Current Windows volume map no longer shows the prior `H:` / `TV 2` volume.
+- Because the crash happened before removal, the broken-pin drive remains a plausible contributor until the system soaks with it absent.
 
 ## 2026-05-25 WHEA / IOMMU Finding
 
