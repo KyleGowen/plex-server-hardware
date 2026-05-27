@@ -1,0 +1,3 @@
+display_name: Plex Collection Curator
+short_description: Build complete Plex collections, fill missing media, and apply TPDb poster sets.
+default_prompt: Create or update a Plex collection from a researched master list, add missing movies or shows to Radarr or Sonarr, trigger searches for newly added media, and apply matching The Poster Database posters.
