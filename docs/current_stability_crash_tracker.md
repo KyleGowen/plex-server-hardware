@@ -164,6 +164,26 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 - Post-restart validation: localhost ports responded normally again, and qBittorrent `/downloads` still mapped to `I:\`.
 - Treat this as a Docker Desktop Windows port-forward/proxy incident unless repeated evidence points elsewhere.
 
+## 2026-05-26 Arr Config Corruption And Recovery
+
+- User asked to ensure the Arr ecosystem was up and running.
+- Docker showed Sonarr, Radarr, Prowlarr, Bazarr, qBittorrent, Tautulli, Unpackerr, Uptime Kuma, and `torrent-mcp` containers running.
+- Windows did not show `I:\torrentfiles`; `Test-Path I:\torrentfiles` returned false.
+- qBittorrent, Sonarr, Radarr, and Unpackerr all saw `/downloads` as the tiny full Docker fallback filesystem: about `137M`, `100%` used, mounted at `/downloads`.
+- Windows disk inventory showed the currently visible fixed volumes as `C:`, `D:`, `E:`, `F:`, `G:`, `H:`, and `J:`. There was no visible `I:` volume to remount.
+- Sonarr, Radarr, and Prowlarr `config.xml` files were present but filled with NUL bytes, so the apps accepted the files as existing but could not parse them.
+- Tautulli `config.ini` was also corrupted with NUL bytes; restored it from the latest scheduled Tautulli config backup.
+- Repaired Sonarr, Radarr, and Prowlarr with minimal valid `config.xml` files and new local API keys. Corrupted files were preserved with timestamped `.corrupt-*` names.
+- Because the Arr API keys changed, dependent links had to be repaired:
+  - Updated Prowlarr's Sonarr and Radarr application links.
+  - Updated Sonarr and Radarr Prowlarr-backed Torznab indexer API keys.
+  - Updated Bazarr's stored Sonarr/Radarr API keys.
+  - Updated Unpackerr's Sonarr/Radarr URLs and API keys.
+- Initial Unpackerr repair created duplicate TOML keys in a commented example block; corrected the config and restarted Unpackerr.
+- Final validation showed Sonarr, Radarr, and Prowlarr API health checks with zero issues; Bazarr and Tautulli returned HTTP 200; Unpackerr reported one Sonarr server and one Radarr server and a clean idle queue.
+- Important operational lesson: an Arr app can be "Up" in Docker while its config is corrupted or its dependencies have stale API keys. After rebuilding any Arr API key, check Prowlarr app links, Sonarr/Radarr Prowlarr indexers, Bazarr, and Unpackerr.
+- Do not trust downloads or imports yet: the application layer recovered, but `/downloads` remained unsafe because `I:\torrentfiles` was still missing and Docker still showed the tiny full fallback mount.
+
 ---
 
 # Non-Destructive Diagnostic Checklist

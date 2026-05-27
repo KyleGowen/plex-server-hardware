@@ -39,9 +39,10 @@ Unpackerr extracts archived completed downloads so Sonarr and Radarr can import 
 - Treat Arr API keys as secrets.
 - Do not test on critical downloads first; use a small/non-critical archived item if a test is needed.
 - Keep `/downloads` shared with qBittorrent, Sonarr, and Radarr to avoid remote path mapping issues.
+- After Sonarr or Radarr API-key repair, update Unpackerr and confirm logs show one Sonarr server and one Radarr server. A running container is not enough.
+- Keep commented example blocks fully commented; TOML duplicate keys can put Unpackerr into a restart loop.
 
 ## Current Gaps
 
-- Confirm Unpackerr has Sonarr/Radarr integrations configured.
-- Confirm watched folders and extraction destination behavior.
-- Confirm current logs do not show missing Starr app configuration.
+- Confirm watched folders and extraction destination behavior with a small non-critical archived download once `/downloads` is healthy.
+- As of the 2026-05-26 repair, Unpackerr logs showed one configured Sonarr server, one configured Radarr server, and an idle queue with zero failures.

@@ -196,4 +196,6 @@ Important log patterns:
 - If Docker sees `/downloads` as a tiny full filesystem, use `wsl --shutdown`, start Docker Desktop, then bring the compose stack back up.
 - Keep qBittorrent's save path as `/downloads/` and incomplete path as `/downloads/incomplete/`.
 - Sonarr and Radarr should continue using Docker-network host `qbittorrent:8080` and shared `/downloads` paths. No remote path mapping should be needed when the Docker mount is healthy.
+- Arr health and qBittorrent mount health are separate checks. Sonarr, Radarr, Prowlarr, Bazarr, and Unpackerr can all be running while `/downloads` is still the tiny full fallback filesystem.
+- If Sonarr/Radarr/Prowlarr config files are rebuilt and API keys change, update dependent integrations before declaring the stack recovered: Prowlarr app links, Sonarr/Radarr Torznab indexers, Bazarr, and Unpackerr.
 - Treat Web UI credentials, API sessions, tracker URLs, passkeys, and temporary passwords as secrets. Do not copy them into docs, commits, logs intended for git, or GitHub.
