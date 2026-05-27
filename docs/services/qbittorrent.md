@@ -58,9 +58,12 @@ Healthy output should show `/downloads` mounted from `I:\` with multi-terabyte c
 - Treat Web UI credentials, session cookies, tracker URLs, passkeys, hashes, and magnet links as secrets unless the user explicitly asks to inspect one locally.
 - Do not start, stop, remove, delete, move, or recheck torrents until categories, save paths, incomplete paths, and root-folder mappings are confirmed.
 - Do not keep restarting only qBittorrent when `/downloads` is a stale bad mount; restart Docker/WSL per the runbook.
+- Keep `WebUI\Address=0.0.0.0` in qBittorrent's internal config so Docker can forward the Web UI port. The compose stack controls host exposure separately.
+- If Docker shows qBittorrent `Up` but `http://localhost:8080` returns an empty reply, check whether qBittorrent is actually listening inside the container and whether stale `lockfile` / `ipc-socket` files exist in the qBittorrent config directory.
 
 ## Current Gaps
 
 - Confirm Web UI credentials are changed from defaults.
 - Confirm category behavior with one controlled Sonarr/Radarr grab.
 - Add a startup guard if desired so torrents do not resume before `/downloads` is verified.
+- Add or confirm a Windows Firewall rule limiting web UI exposure after `WEBUI_HOST_IP=0.0.0.0`.

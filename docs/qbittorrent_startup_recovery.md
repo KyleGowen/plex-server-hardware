@@ -195,7 +195,10 @@ Important log patterns:
 - A plain `docker restart qbittorrent` is not enough if Docker Desktop already captured a bad bind mount.
 - If Docker sees `/downloads` as a tiny full filesystem, use `wsl --shutdown`, start Docker Desktop, then bring the compose stack back up.
 - Keep qBittorrent's save path as `/downloads/` and incomplete path as `/downloads/incomplete/`.
+- Keep qBittorrent's internal WebUI bind as `WebUI\Address=0.0.0.0` in `C:\media-stack\config\qbittorrent\qBittorrent\qBittorrent.conf`. Docker host port forwarding to `8080` will not work if qBittorrent only listens on `127.0.0.1` inside the container.
+- If qBittorrent starts and exits repeatedly with only `qBittorrent termination initiated` in the log, stop the container and remove stale `lockfile` and `ipc-socket` from `C:\media-stack\config\qbittorrent\qBittorrent`, then start qBittorrent again.
 - Sonarr and Radarr should continue using Docker-network host `qbittorrent:8080` and shared `/downloads` paths. No remote path mapping should be needed when the Docker mount is healthy.
 - Arr health and qBittorrent mount health are separate checks. Sonarr, Radarr, Prowlarr, Bazarr, and Unpackerr can all be running while `/downloads` is still the tiny full fallback filesystem.
 - If Sonarr/Radarr/Prowlarr config files are rebuilt and API keys change, update dependent integrations before declaring the stack recovered: Prowlarr app links, Sonarr/Radarr Torznab indexers, Bazarr, and Unpackerr.
+- The compose environment now uses `WEBUI_HOST_IP=0.0.0.0` to avoid repeated Docker Desktop localhost port-proxy failures after restart. Review Windows Firewall before treating these web UIs as safely local-only.
 - Treat Web UI credentials, API sessions, tracker URLs, passkeys, and temporary passwords as secrets. Do not copy them into docs, commits, logs intended for git, or GitHub.

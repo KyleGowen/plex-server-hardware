@@ -164,6 +164,17 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 - Post-restart validation: localhost ports responded normally again, and qBittorrent `/downloads` still mapped to `I:\`.
 - Treat this as a Docker Desktop Windows port-forward/proxy incident unless repeated evidence points elsewhere.
 
+## 2026-05-27 Docker Web UI Bind Hardening
+
+- After another machine restart, Docker containers were up and `I:\torrentfiles` was present.
+- qBittorrent `/downloads` correctly mapped to `I:\` with about `19T` total and `16T` free, so this was not the tiny/full stale mount failure.
+- Sonarr, Radarr, Prowlarr, Bazarr, qBittorrent, Tautulli, and Uptime Kuma again returned empty replies through Windows `127.0.0.1` published ports until the stack was restarted.
+- Changed `C:\plex-server\.env` from `WEBUI_HOST_IP=127.0.0.1` to `WEBUI_HOST_IP=0.0.0.0`, then recreated the compose stack so Docker would rebuild the port bindings.
+- qBittorrent also required its internal WebUI bind in `C:\media-stack\config\qbittorrent\qBittorrent\qBittorrent.conf` to remain `WebUI\Address=0.0.0.0`; setting it to `127.0.0.1`, blank, or `*` either prevented Docker host forwarding or caused qBittorrent startup churn.
+- Cleared stale qBittorrent `lockfile` and `ipc-socket` while the qBittorrent container was stopped. After that, qBittorrent stayed up and WebUI returned HTTP 200.
+- Final validation: localhost web checks returned Sonarr `302`, Radarr `302`, Prowlarr `302`, Bazarr `200`, qBittorrent `200`, Tautulli `303`, and Uptime Kuma `302`. Sonarr, Radarr, and Prowlarr API health checks returned zero issues after qBittorrent stabilized.
+- Security note: binding the web UIs to `0.0.0.0` may expose them beyond localhost depending on Windows Firewall and Docker Desktop behavior. A firewall block for the web UI ports was attempted but could not be applied from the non-elevated session. Do not expose these ports intentionally without explicit review.
+
 ## 2026-05-26 Arr Config Corruption And Recovery
 
 - User asked to ensure the Arr ecosystem was up and running.
