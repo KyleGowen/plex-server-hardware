@@ -45,6 +45,12 @@ The project now involves:
 - Do not ask for permission before running read-only Sonarr MCP calls through the configured `mcp_arr` server, including `sonarr_get_download_clients`; always allow these checks.
 - Do not ask for permission before running harmless local wait commands such as `Start-Sleep -Seconds 60`.
 
+## Media Internet Search Routing
+
+- For any public internet lookup about movies, films, TV shows, series, seasons, episodes, collections, franchises, release years, cast/crew, chronology, production facts, title identity, or media type, use the `media-internet-search` skill/subagent first.
+- Treat `media-internet-search` as read-only research. It must not mutate Plex, Sonarr, Radarr, qBittorrent, Prowlarr, Bazarr, Jackett, Unpackerr, local files, or service settings.
+- Use its sourced result to resolve ambiguity before calling local Plex/Arr workflows. Only move to `add-media-to-plex` when the user explicitly asks to add, search, download, monitor, or request media.
+
 ## PowerShell Output Handling
 
 - When querying local HTTP APIs or service endpoints from PowerShell, prefer raw JSON responses and explicit parsing over PowerShell-formatted object tables.

@@ -16,6 +16,7 @@ Use this skill to add wanted media to the local Plex ecosystem. Plex itself shou
 - Trigger an Arr search only when the user asks to add/search/download media, which this skill is designed to do.
 - Do not refresh Plex libraries from this skill. Plex refreshes require separate explicit confirmation.
 - If a download client fails, diagnose Radarr/Sonarr health and qBittorrent auth/connectivity before retrying search.
+- If public web research is needed to resolve title identity, year, media type, remake/reboot status, or ambiguity, use `media-internet-search` before adding anything to Radarr or Sonarr.
 
 ## Preferred Workflow
 
@@ -23,6 +24,7 @@ Use this skill to add wanted media to the local Plex ecosystem. Plex itself shou
    - Movie words: movie, film, documentary, TMDB, release year.
    - TV words: show, series, season, episode, TV, Sonarr.
    - If ambiguous, infer from title/year context when obvious; otherwise ask one concise question.
+   - For internet media facts or ambiguous public identity checks, route through `media-internet-search` first.
 2. Resolve the title through the correct Arr lookup endpoint.
    - Prefer exact year matches for movie requests such as "from last year".
    - Skip ambiguous matches instead of adding the wrong remake or unrelated title.

@@ -1,0 +1,3 @@
+display_name: Media Internet Search
+short_description: Research public movie and TV information with sources before any Plex/Arr action.
+default_prompt: Research this movie or TV request on the public internet and return sourced, actionable media facts without mutating Plex, Arr, or qBittorrent.

@@ -11,12 +11,15 @@ Catalog the skills available for this project and what they can do. Use this fil
 | Skill | Location | Mutability | Use when | What it can do |
 |---|---|---|---|---|
 | `arr-current-downloads` | `skills/arr-current-downloads` | Read-only | User asks what is downloading now | Lists active Arr-managed qBittorrent downloads only, filtering to Sonarr/Radarr/Lidarr/Readarr categories and omitting unrelated/manual torrents |
+| `media-internet-search` | `tools/codex-skills/media-internet-search` and installed at `C:\Users\Kyle\.codex\skills\media-internet-search` | Read-only | Any public internet lookup for movie, film, TV, series, episode, franchise, collection, release, cast/crew, chronology, production, title/year, or media identity facts | Researches public media facts with authoritative cross-checking, resolves ambiguity, returns sources, and hands back to the main agent or relevant Plex skill without mutating local services |
 | `overnight-media-audit` | `tools/codex-skills/overnight-media-audit` | Read-only | User asks what downloaded, completed, imported, or got stuck overnight | Reports Sonarr/Radarr imports, qBittorrent completions, stuck queue items, and health blockers for a time window |
 | `add-media-to-plex` | `tools/codex-skills/add-media-to-plex` | Mutates Arr state and can trigger searches | User asks to add/search/download a movie or show for Plex | Uses Radarr for movies and Sonarr for TV, adds monitored media, triggers Arr search, and verifies queue handoff |
 
 ## Project Skill Rules
 
 - Read-only skills must not trigger searches, downloads, imports, refreshes, deletes, moves, torrent actions, or path repairs.
+- `media-internet-search` is mandatory before direct public-web media fact lookups by the main agent or any project skill.
+- Use `media-internet-search` before `add-media-to-plex` when title identity, year, media type, collection membership, chronology, remake/reboot status, or similarly named media could affect the requested action.
 - `add-media-to-plex` can mutate Sonarr/Radarr and trigger searches because that is its purpose.
 - Plex library refreshes are never part of these skills unless the user separately confirms a Plex refresh.
 - All skills must keep API keys, qBittorrent credentials, tracker credentials, passkeys, cookies, tokens, hashes, magnets, and secret URLs out of repo docs and final reports.
