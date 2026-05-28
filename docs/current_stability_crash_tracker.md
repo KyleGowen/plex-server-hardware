@@ -13,10 +13,10 @@ This file is for evidence and non-destructive diagnostics only. Do not claim a r
 | Item | Current state |
 |---|---|
 | Issue | Randomly timed crashing |
-| Status | Improved under soak after removing broken-power-pin HDD; not yet closed |
+| Status | Recurred after initial post-drive-swap soak; unresolved hardware/platform fault |
 | Affected system | Rebuilt MSI PRO Z790-A WiFi II / Intel Core i5-14500 Windows 10 Plex server |
 | Known service state | Plex and Docker media stack can run |
-| Current evidence level | Multiple crash timestamps captured before drive removal; no new crash observed during first overnight soak after broken-pin drive was removed |
+| Current evidence level | Multiple hard resets with `BugcheckCode=0`; repeated fatal WHEA firmware error records; storage currently healthy/mounted |
 
 ---
 
@@ -78,6 +78,10 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 | 2026-05-25 10:07:39 PM | Crash after ME firmware update and controlled restart | Reboot at 10:37:47 PM; `Kernel-Power 41`, `BugcheckCode=0`; new `WHEA-Logger` fatal hardware error at 10:38:06 PM; no minidump or `MEMORY.DMP`; no matching new `HAL` IOMMU Event 15 |
 | 2026-05-25 10:38:06 PM | Crash occurred before the broken-power-pin HDD was removed | Reboot at 11:00:17 PM; `Kernel-Power 41`, `BugcheckCode=0`; new `WHEA-Logger` fatal hardware error at 11:00:34 PM; no minidump or `MEMORY.DMP`; broken-pin drive was replaced only after this crash |
 | 2026-05-26 10:32 AM | Overnight soak after broken-pin drive removal | Windows boot time `2026-05-25 11:00:17 PM`; uptime about 11.5 hours; no later Kernel-Power crash, WHEA, HAL, disk, NTFS, storahci, or bugcheck events found in the since-boot check beyond the previous crash record |
+| 2026-05-26 10:12:09 PM | Unexpected shutdown after initial soak | Event logged at 10:51:09 PM; `EventLog 6008`; include in recurrence pattern |
+| 2026-05-27 11:11:22 AM | Unexpected shutdown | Reboot/log at 11:39:29 AM; `Kernel-Power 41`, `BugcheckCode=0`; fatal `WHEA-Logger 1`; no dump found |
+| 2026-05-27 12:59:42 PM | Unexpected shutdown | Reboot/log at 2:07:57 PM; `Kernel-Power 41`, `BugcheckCode=0`; fatal `WHEA-Logger 1`; no dump found |
+| 2026-05-27 6:48:11 PM | Unexpected shutdown reported by user after recovery | Reboot/log at 10:57:00 PM; `Kernel-Power 41`, `BugcheckCode=0`; fatal `WHEA-Logger 1`; no minidump or `MEMORY.DMP`; WHEA CPER decoded as fatal firmware error record references |
 
 ## 2026-05-25 Admin Hardening / Repair Pass
 
@@ -124,9 +128,10 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 - Current Windows volume map after replacement shows `G:` labeled `Empty`, healthy, about 8 TB.
 - Current Windows volume map no longer shows the prior `H:` / `TV 2` volume.
 - The first overnight soak with the broken-pin drive absent reached about 11.5 hours without another crash.
-- Current diagnosis: the removed broken-pin drive, its power connection, or related SATA/power cabling is now the strongest stability lead. Keep this as a probable cause under observation, not a final root-cause claim, until normal operation remains stable for a longer soak window.
+- The crash recurred after the first successful overnight soak, so the broken-pin drive was not the complete fix.
+- Current diagnosis: the removed broken-pin drive, its power connection, or related SATA/power cabling may have been a contributor, but the recurring fatal WHEA firmware records now point more strongly at a remaining platform-level hardware/firmware/power stability problem.
 - Do not reconnect the broken-pin drive or reuse its power/SATA cabling for normal service until there is an explicit recovery plan.
-- Because `H:` / `TV 2` is absent, do not trust `/tv/tv2` imports; Docker currently shows `/tv/tv2` as a tiny full placeholder filesystem, not the missing TV drive.
+- On 2026-05-27, `H:` / `TV 2` was present again and Docker mapped `/tv/tv2` to `H:\` correctly. Continue verifying this after every crash or storage change.
 
 ## 2026-05-26 Overnight Soak And Upkeep Check
 
@@ -140,6 +145,23 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 - qBittorrent container showed `/downloads` mounted from `I:\`, about `19T` total and `16T` available.
 - Docker localhost checks returned HTTP 200 for Sonarr, Radarr, Prowlarr, Bazarr, qBittorrent, Tautulli, and Uptime Kuma.
 - Sonarr/Bazarr `/tv/tv2` currently maps to a tiny full placeholder filesystem because `H:` is missing. Treat TV 2 paths as unavailable until the storage plan is updated.
+
+## 2026-05-27 Recurrent Crash Diagnosis
+
+- User reported another crash after the initial post-drive-swap soak.
+- Current boot time at check: `2026-05-27 10:56:57 PM`; check time: `2026-05-27 10:59 PM`.
+- Windows recorded unexpected shutdowns on 2026-05-26 and three times on 2026-05-27.
+- The latest previous shutdown time was `2026-05-27 6:48:11 PM`, logged after boot at `2026-05-27 10:57:14 PM`.
+- `Kernel-Power 41` for recent crashes showed `BugcheckCode=0`, `PowerButtonTimestamp=0`, `SleepInProgress=0`, and `ConnectedStandbyInProgress=false`.
+- No `C:\Windows\Minidump` files or `C:\Windows\MEMORY.DMP` were found after the latest crash.
+- Recent `WHEA-Logger` Event 1 records all had a 3552-byte CPER record with three fatal sections of type `81212a96-09ed-4996-9471-8d729c8e69ed`, which is the UEFI CPER `Firmware Error Record Reference` section type.
+- The firmware error reference section reported firmware error record type `2`, defined by UEFI CPER as `SOC Firmware error record Type2`.
+- This is not the earlier Realtek Wi-Fi / HAL IOMMU requester-ID signature. The latest pattern is a fatal firmware/platform hardware error persisted across resets.
+- Current storage check after reboot showed `H:` / TV 2 present again, `G:` Empty present, `I:\torrentfiles` present, qBittorrent `/downloads` correctly mounted from `I:\`, and Sonarr `/tv/tv2` correctly mounted from `H:\`.
+- `Get-PhysicalDisk` showed all detected disks `Healthy` / `OK`.
+- RAM reported two Lexar 16 GB DIMMs in A2/B2 at `4800` configured clock; XMP still does not appear active.
+- Device Manager query found no devices with nonzero `ConfigManagerErrorCode`.
+- Best current diagnosis: not a normal Windows/application/Docker crash and not proven to be a single bad media drive. The evidence points to a remaining platform-level hardware/firmware/power stability fault, with motherboard/CPU/RAM/PSU cabling or power delivery now ahead of Plex/Docker/storage-service explanations.
 
 ## 2026-05-25 WHEA / IOMMU Finding
 
@@ -209,8 +231,9 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 - [x] Capture Windows physical-disk health status for `C:` and all fixed media/data drives.
 - [x] Confirm qBittorrent `/downloads` mount after at least one crash before resuming torrents.
 - [x] Complete first overnight soak after removing the broken-pin HDD.
-- [ ] Continue normal-operation soak with the broken-pin drive absent before closing the crash issue.
-- [ ] Decide how to handle missing `H:` / TV 2 before allowing imports to `/tv/tv2`.
+- [x] Record recurrence after the first overnight soak.
+- [ ] Continue normal-operation soak only after a new hardware isolation change is made.
+- [x] Recheck `H:` / TV 2 after recurrence; present and mapped correctly on 2026-05-27.
 - [ ] Review Docker Desktop/WSL logs only after Windows crash evidence is collected.
 - [ ] Avoid firmware, BIOS, storage-controller, or drive-letter changes until a diagnostic plan calls for them.
 
@@ -227,12 +250,15 @@ These are hypotheses, not conclusions:
 | GPU/display driver | NVIDIA driver was updated; Plex may use GPU transcoding |
 | Power delivery / PSU cabling | PSU is reused; modular cable safety remains important |
 | Thermals/fan control | Reused case and fans; fan map still needs documentation |
-| Removed broken-pin HDD or its cabling | Stability improved immediately after the physically damaged drive was removed; strongest current lead |
-| Storage or Docker/WSL timing | qBittorrent already had a stale mount incident after `I:` was unavailable; `/tv/tv2` is now a missing-drive placeholder |
+| Platform firmware / motherboard / CPU complex | Repeated fatal WHEA CPER firmware error record references, type 2 SOC firmware record, after hard resets |
+| Power delivery / PSU cabling | Hard resets with no bugcheck or dump can occur when power delivery drops or protection trips; PSU is reused |
+| Memory stability | DDR5 is at safe 4800, but RAM/IMC faults can still surface as WHEA/platform resets |
+| Removed broken-pin HDD or its cabling | Stability improved initially after the damaged drive was removed, but crashes recurred, so it was not the complete root cause |
+| Storage or Docker/WSL timing | qBittorrent had a stale mount incident, but latest storage mounts were healthy after reboot; less likely as primary cause of hard resets |
 | Sleep/power states | Random timing may correlate with idle/sleep/wake if enabled |
 
 ---
 
 # Current Rule
 
-The crash pattern is strongly improved after removing the broken-pin HDD, but do not mark the issue solved until the server survives a longer normal-operation soak. Preserve data first, keep the broken-pin drive out of service, avoid `/tv/tv2` writes while `H:` is absent, and continue collecting evidence before making more hardware or service changes.
+The crash pattern recurred after the broken-pin HDD was removed. Preserve data first, keep the broken-pin drive out of service, verify drive mounts after every crash, and treat the current leading problem as platform-level hardware/firmware/power instability until isolation testing proves otherwise.
