@@ -81,6 +81,8 @@ Healthy Docker output should show `/downloads` mounted from `I:\` with multi-ter
 
 On 2026-05-26, `/downloads` was healthy, but `/tv/tv2` showed as a tiny full placeholder filesystem because `H:` was absent. That is unsafe for imports and subtitle writes.
 
+For a step-by-step reconnect diagnosis that checks Windows drive letters, `I:\torrentfiles`, Docker `/downloads`, and Docker `/tv/tv2` before trusting Sonarr/Radarr/qBittorrent, use [drive_reconnect_validation_checklist.md](drive_reconnect_validation_checklist.md).
+
 ---
 
 # Plex Path Rules

@@ -6,6 +6,8 @@ Use this note when qBittorrent starts while the torrent drive is disconnected, l
 
 The goal is to make sure qBittorrent always sees the real Windows torrent drive before torrents are allowed to resume.
 
+For the broader drive-reconnect flow that also checks Windows drive letters and `/tv/tv2`, start with [drive_reconnect_validation_checklist.md](drive_reconnect_validation_checklist.md).
+
 ---
 
 # Current Known-Good Paths

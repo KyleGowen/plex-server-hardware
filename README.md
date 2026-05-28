@@ -35,6 +35,7 @@ Current deployment:
 | [docs/plex_server_hardware_inventory.md](docs/plex_server_hardware_inventory.md) | Current hardware platform, storage inventory, and historical old-platform context. |
 | [docs/plex_server_software_inventory.md](docs/plex_server_software_inventory.md) | Software inventory and ecosystem connection summary. |
 | [docs/plex_storage_migration_rebuild_documentation.md](docs/plex_storage_migration_rebuild_documentation.md) | Completed migration notes and ongoing drive-letter/path safety rules. |
+| [docs/drive_reconnect_validation_checklist.md](docs/drive_reconnect_validation_checklist.md) | Step-by-step drive reconnect validation before trusting Docker media services. |
 | [docs/qbittorrent_startup_recovery.md](docs/qbittorrent_startup_recovery.md) | Detailed qBittorrent stale Docker mount recovery runbook. |
 | [docs/skills_catalog.md](docs/skills_catalog.md) | Catalog of available Codex skills and what each is for. |
 | [docs/plex_server_hardware_troubleshooting_history_log.md](docs/plex_server_hardware_troubleshooting_history_log.md) | Historical diagnostics from the failed ASUS platform. |
