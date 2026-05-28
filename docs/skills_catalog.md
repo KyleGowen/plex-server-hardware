@@ -11,6 +11,7 @@ Catalog the skills available for this project and what they can do. Use this fil
 | Skill | Location | Mutability | Use when | What it can do |
 |---|---|---|---|---|
 | `arr-current-downloads` | `skills/arr-current-downloads` | Read-only | User asks what is downloading now | Lists active Arr-managed qBittorrent downloads only, filtering to Sonarr/Radarr/Lidarr/Readarr categories and omitting unrelated/manual torrents |
+| `plex-stack-health-check` | `skills/plex-stack-health-check` | Read-only | User asks to validate stack health, Docker containers, service ports, config folders, Windows media paths, or the qBittorrent `/downloads` mount | Runs a detailed redacted PowerShell validation report covering `docker ps -a`, expected containers, optional Jackett status, service TCP ports, config folders, Windows paths, and qBittorrent container mount capacity/writability |
 | `media-internet-search` | `tools/codex-skills/media-internet-search` and installed at `C:\Users\Kyle\.codex\skills\media-internet-search` | Read-only | Any public internet lookup for movie, film, TV, series, episode, franchise, collection, release, cast/crew, chronology, production, title/year, or media identity facts | Researches public media facts with authoritative cross-checking, resolves ambiguity, returns sources, and hands back to the main agent or relevant Plex skill without mutating local services |
 | `overnight-media-audit` | `tools/codex-skills/overnight-media-audit` | Read-only | User asks what downloaded, completed, imported, or got stuck overnight | Reports Sonarr/Radarr imports, qBittorrent completions, stuck queue items, and health blockers for a time window |
 | `add-media-to-plex` | `tools/codex-skills/add-media-to-plex` | Mutates Arr state and can trigger searches | User asks to add/search/download a movie or show for Plex | Uses Radarr for movies and Sonarr for TV, adds monitored media, triggers Arr search, and verifies queue handoff |
@@ -55,6 +56,7 @@ Catalog the skills available for this project and what they can do. Use this fil
 | Action | Skill / workflow | Confirmation rule |
 |---|---|---|
 | Report current downloads | `arr-current-downloads` | Read-only; no confirmation needed |
+| Validate local stack health | `plex-stack-health-check` | Read-only; no confirmation needed |
 | Report overnight activity | `overnight-media-audit` | Read-only; no confirmation needed |
 | Add/search/download media | `add-media-to-plex` | User request to add/search/download is enough for Arr mutation; still protect secrets |
 | Refresh Plex library | Plex HTTP API/manual Plex workflow | Requires explicit confirmation because it is a Plex write action |
