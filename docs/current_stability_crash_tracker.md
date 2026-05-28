@@ -82,6 +82,9 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 | 2026-05-27 11:11:22 AM | Unexpected shutdown | Reboot/log at 11:39:29 AM; `Kernel-Power 41`, `BugcheckCode=0`; fatal `WHEA-Logger 1`; no dump found |
 | 2026-05-27 12:59:42 PM | Unexpected shutdown | Reboot/log at 2:07:57 PM; `Kernel-Power 41`, `BugcheckCode=0`; fatal `WHEA-Logger 1`; no dump found |
 | 2026-05-27 6:48:11 PM | Unexpected shutdown reported by user after recovery | Reboot/log at 10:57:00 PM; `Kernel-Power 41`, `BugcheckCode=0`; fatal `WHEA-Logger 1`; no minidump or `MEMORY.DMP`; WHEA CPER decoded as fatal firmware error record references |
+| 2026-05-27 10:57:14 PM | Unexpected shutdown | Reboot/log at 11:34:10 PM; `Kernel-Power 41`, `BugcheckCode=0`; fatal `WHEA-Logger 1`; no dump found |
+| 2026-05-27 11:34:23 PM | Unexpected shutdown reported after overnight recovery | Reboot/log at 2026-05-28 7:03:46 AM; `Kernel-Power 41`, `BugcheckCode=0`; fatal `WHEA-Logger 1`; no minidump or `MEMORY.DMP`; logs persisted under `docs/crash_logs/20260528-070552` |
+| 2026-05-28 10:23:59 AM | Unexpected shutdown after motherboard power-cable inspection | Reboot/log at 11:30:23 AM; `Kernel-Power 41`, `BugcheckCode=0`; no dump found; `I:` / Torrent missing after reboot and Docker `/downloads` became tiny full placeholder; logs persisted under `docs/crash_logs/20260528-113348` |
 
 ## 2026-05-25 Admin Hardening / Repair Pass
 
@@ -163,6 +166,50 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 - Device Manager query found no devices with nonzero `ConfigManagerErrorCode`.
 - Best current diagnosis: not a normal Windows/application/Docker crash and not proven to be a single bad media drive. The evidence points to a remaining platform-level hardware/firmware/power stability fault, with motherboard/CPU/RAM/PSU cabling or power delivery now ahead of Plex/Docker/storage-service explanations.
 
+## 2026-05-28 Crash Evidence Bundle
+
+- User reported another crash overnight.
+- Capture directory: `docs/crash_logs/20260528-070552`.
+- Current boot time at capture: `2026-05-28 7:03:42 AM`.
+- Latest unexpected previous shutdown: `2026-05-27 11:34:23 PM`.
+- Recent unexpected shutdown records also include `2026-05-27 10:57:14 PM`, `2026-05-27 6:48:11 PM`, and `2026-05-27 12:59:42 PM`.
+- Latest `Kernel-Power 41` at `2026-05-28 7:03:46 AM` again showed `BugcheckCode=0`, `PowerButtonTimestamp=0`, `SleepInProgress=0`, and `ConnectedStandbyInProgress=false`.
+- Latest WHEA Event 1 at `2026-05-28 7:04:00 AM` again preserved a 3552-byte CPER record with three fatal `Firmware Error Record Reference` sections.
+- No Windows minidump or `MEMORY.DMP` was present.
+- Post-boot mount checks were healthy: `I:\torrentfiles` true, `H:\TV Shows` true, qBittorrent `/downloads` on `I:\`, and Sonarr `/tv/tv2` on `H:\`.
+- Device Manager nonzero error-code scan was empty.
+- Persisted files include native `System-last18h.evtx`, `Application-last18h.evtx`, PowerShell CLIXML event exports, `crash-summary.json`, `latest-whea.cper`, `latest-whea-decoded.json`, `mount-checks.json`, and `device-manager-errors.json`.
+- Recommended next component to verify: PSU/power delivery path, including the reused Corsair RM750e and every modular PSU/SATA power cable branch feeding the drives.
+
+## 2026-05-28 Motherboard Power Cable Inspection And New Crash
+
+- User reported another crash after inspecting motherboard power cables and provided photos.
+- Capture directory: `docs/crash_logs/20260528-113348`.
+- Current boot time at capture: `2026-05-28 11:30:19 AM`.
+- Latest unexpected previous shutdown: `2026-05-28 10:23:59 AM`.
+- Latest `Kernel-Power 41` at `2026-05-28 11:30:23 AM` again showed `BugcheckCode=0`, `PowerButtonTimestamp=0`, `SleepInProgress=0`, and `ConnectedStandbyInProgress=false`.
+- No Windows minidump or `MEMORY.DMP` was present.
+- No new WHEA Event 1 was present yet for this specific reboot during the initial capture window, though the previous 2026-05-27/2026-05-28 pattern still includes fatal WHEA firmware/platform records.
+- Photo review did not show obvious melting or scorching on the visible 24-pin ATX or 8-pin EPS connectors. The missing/blank position on the 24-pin connector is normal for modern ATX cables.
+- The motherboard has two CPU EPS power sockets. Verify `CPU_PWR1` is fully seated with a correct CPU/EPS 4+4 cable; populate `CPU_PWR2` with a second correct CPU/EPS cable if available for isolation. Do not use a PCIe/VGA 8-pin cable in CPU power.
+- PSU-side photo should be checked for full seating of both motherboard cable plugs and correct use of PSU sockets. Use only Corsair RM750e-compatible cables.
+- Important new storage finding: after this crash, `I:` / Torrent was absent. `Test-Path I:\` and `Test-Path I:\torrentfiles` returned false.
+- Docker started while `I:` was absent and showed qBittorrent `/downloads` as a tiny full `137M` placeholder filesystem.
+- Physical disk inventory after this crash did not show the prior 20 TB Torrent drive serial `ZYE00444`.
+- `H:` / TV 2, `J:` / TV 1, movie drives, OS SSD, and `G:` Empty were present and healthy.
+- Current strongest component-level follow-up: verify the SATA power cable/branch feeding the `I:` Torrent drive. If that branch also touched the old broken-pin drive or carries multiple HDDs, remove it from service and move `I:` to a different confirmed RM750e-compatible SATA power cable before resuming qBittorrent.
+
+## 2026-05-28 Torrent Drive SATA Data Cable Finding
+
+- User found the SATA data cable had come loose from the `I:` / Torrent drive.
+- User reported the cable did not sit firmly on the drive's SATA data connector pins.
+- User reversed the cable, moving the formerly drive-side connector to the PCI SATA expansion card side and the formerly card-side connector to the drive side, hoping the fit is more stable.
+- After this change, Windows detected `I:` / Torrent again with `I:\torrentfiles` present.
+- Physical disk serial `ZYE00444` appeared again and reported `Healthy` / `OK`.
+- Docker then showed qBittorrent `/downloads` correctly mounted from `I:\`, about `19T` total and `15T` available, and Sonarr showed `/downloads`, `/tv/tv1`, and `/tv/tv2` correctly mapped.
+- Treat the loose SATA data cable as a confirmed storage-path fault for the disappearing `I:` drive. It does not yet prove the loose data cable caused the hard-reset crash pattern, but it is now a concrete hardware variable under soak.
+- Recommended next step: replace this SATA data cable with a known-good locking SATA cable if the connector still feels loose, and avoid cable tension at the drive end.
+
 ## 2026-05-25 WHEA / IOMMU Finding
 
 - After BIOS update to `M.A0`, Windows logged `WHEA-Logger` Event ID `1`: `A fatal hardware error has occurred`.
@@ -196,6 +243,28 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 - Cleared stale qBittorrent `lockfile` and `ipc-socket` while the qBittorrent container was stopped. After that, qBittorrent stayed up and WebUI returned HTTP 200.
 - Final validation: localhost web checks returned Sonarr `302`, Radarr `302`, Prowlarr `302`, Bazarr `200`, qBittorrent `200`, Tautulli `303`, and Uptime Kuma `302`. Sonarr, Radarr, and Prowlarr API health checks returned zero issues after qBittorrent stabilized.
 - Security note: binding the web UIs to `0.0.0.0` may expose them beyond localhost depending on Windows Firewall and Docker Desktop behavior. A firewall block for the web UI ports was attempted but could not be applied from the non-elevated session. Do not expose these ports intentionally without explicit review.
+
+## 2026-05-28 Post-Restart Arr Recovery And Startup Helper
+
+- After another computer restart, Plex was running natively on Windows but the Docker Arr ecosystem was not healthy.
+- Docker showed the containers running, and storage was healthy: `I:\torrentfiles` existed and qBittorrent `/downloads` mapped to `I:\` with about `19T` total and `15T` free.
+- Sonarr, Radarr, and Prowlarr returned empty HTTP replies because their `config.xml` files were filled with NUL bytes again.
+- Moved the corrupt Sonarr, Radarr, and Prowlarr configs aside with timestamped `.corrupt-*` names and let the apps regenerate clean configs.
+- Regenerated API keys required repairing dependent integrations:
+  - Prowlarr Sonarr/Radarr application links.
+  - Sonarr/Radarr Prowlarr-backed Torznab indexer API keys.
+  - Bazarr Sonarr/Radarr API keys.
+  - Unpackerr Sonarr/Radarr API keys.
+- Updated `C:\plex-server\tools\restart-media-stack-after-login.ps1` so the scheduled post-login helper now:
+  - waits for Docker after login,
+  - checks `I:\torrentfiles`,
+  - detects invalid or NUL-filled Sonarr/Radarr/Prowlarr configs,
+  - moves corrupt configs aside,
+  - restarts the compose stack with timeouts,
+  - repairs regenerated local API keys across Prowlarr, Sonarr/Radarr indexers, Bazarr, and Unpackerr,
+  - logs final service and qBittorrent mount checks.
+- Verified the scheduled task `Plex Media Stack delayed restart after login` by running it through Task Scheduler. It completed with `LastTaskResult=0`.
+- Final validation after the scheduled task run: Sonarr `200`, Radarr `200`, Prowlarr `200`, Bazarr `200`, qBittorrent `200`, Tautulli `303`, Uptime Kuma `302`; Sonarr/Radarr/Prowlarr API health returned zero issues; qBittorrent `/downloads` remained mounted from `I:\`.
 
 ## 2026-05-26 Arr Config Corruption And Recovery
 
@@ -232,6 +301,8 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 - [x] Confirm qBittorrent `/downloads` mount after at least one crash before resuming torrents.
 - [x] Complete first overnight soak after removing the broken-pin HDD.
 - [x] Record recurrence after the first overnight soak.
+- [x] Persist 2026-05-28 crash logs and WHEA CPER bundle.
+- [x] Persist 2026-05-28 11:33 post-crash logs and record missing `I:` / Torrent drive state.
 - [ ] Continue normal-operation soak only after a new hardware isolation change is made.
 - [x] Recheck `H:` / TV 2 after recurrence; present and mapped correctly on 2026-05-27.
 - [ ] Review Docker Desktop/WSL logs only after Windows crash evidence is collected.

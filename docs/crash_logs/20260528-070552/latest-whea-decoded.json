@@ -1,0 +1,36 @@
+﻿{
+    "time":  "2026-05-28 07:04:00",
+    "recordId":  6687,
+    "byteCount":  3552,
+    "signature":  "CPER",
+    "sectionCount":  3,
+    "sections":  [
+                     {
+                         "index":  0,
+                         "offset":  344,
+                         "length":  2592,
+                         "typeGuid":  "81212a96-09ed-4996-9471-8d729c8e69ed",
+                         "typeName":  "Firmware Error Record Reference",
+                         "severity":  1,
+                         "firmwareRecordType":  1090745093
+                     },
+                     {
+                         "index":  1,
+                         "offset":  2936,
+                         "length":  544,
+                         "typeGuid":  "81212a96-09ed-4996-9471-8d729c8e69ed",
+                         "typeName":  "Firmware Error Record Reference",
+                         "severity":  1,
+                         "firmwareRecordType":  285438209
+                     },
+                     {
+                         "index":  2,
+                         "offset":  3480,
+                         "length":  72,
+                         "typeGuid":  "81212a96-09ed-4996-9471-8d729c8e69ed",
+                         "typeName":  "Firmware Error Record Reference",
+                         "severity":  1,
+                         "firmwareRecordType":  386101505
+                     }
+                 ]
+}

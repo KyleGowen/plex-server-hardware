@@ -1,0 +1,25 @@
+﻿{
+    "iTorrentfiles":  true,
+    "hTvShows":  true,
+    "dockerPs":  [
+                     "bazarr\tUp About a minute",
+                     "radarr\tUp About a minute",
+                     "sonarr\tUp About a minute",
+                     "qbittorrent\tUp About a minute",
+                     "uptime-kuma\tUp About a minute (healthy)",
+                     "unpackerr\tUp About a minute",
+                     "tautulli\tUp About a minute",
+                     "prowlarr\tUp About a minute",
+                     "torrent-mcp\tUp About a minute"
+                 ],
+    "qbitDownloads":  [
+                          "Filesystem      Size  Used Avail Use% Mounted on",
+                          "I:\\              19T  3.3T   15T  19% /downloads"
+                      ],
+    "sonarrMounts":  [
+                         "Filesystem      Size  Used Avail Use% Mounted on",
+                         "J:\\              15T   12T  3.1T  79% /tv/tv1",
+                         "H:\\              19T   10T  8.3T  55% /tv/tv2",
+                         "I:\\              19T  3.3T   15T  19% /downloads"
+                     ]
+}

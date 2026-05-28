@@ -201,4 +201,5 @@ Important log patterns:
 - Arr health and qBittorrent mount health are separate checks. Sonarr, Radarr, Prowlarr, Bazarr, and Unpackerr can all be running while `/downloads` is still the tiny full fallback filesystem.
 - If Sonarr/Radarr/Prowlarr config files are rebuilt and API keys change, update dependent integrations before declaring the stack recovered: Prowlarr app links, Sonarr/Radarr Torznab indexers, Bazarr, and Unpackerr.
 - The compose environment now uses `WEBUI_HOST_IP=0.0.0.0` to avoid repeated Docker Desktop localhost port-proxy failures after restart. Review Windows Firewall before treating these web UIs as safely local-only.
+- `C:\plex-server\tools\restart-media-stack-after-login.ps1` is registered as the `Plex Media Stack delayed restart after login` scheduled task. It waits after login, checks Docker and `I:\torrentfiles`, restarts the compose stack, verifies `/downloads`, and repairs regenerated Arr API-key wiring if Sonarr/Radarr/Prowlarr configs are found corrupt.
 - Treat Web UI credentials, API sessions, tracker URLs, passkeys, and temporary passwords as secrets. Do not copy them into docs, commits, logs intended for git, or GitHub.

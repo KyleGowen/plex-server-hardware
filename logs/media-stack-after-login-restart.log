@@ -1,0 +1,445 @@
+[2026-05-27 23:35:43] Starting delayed media stack restart helper.
+[2026-05-27 23:37:43] Docker is available.
+[2026-05-27 23:37:44] I:\torrentfiles present: True
+[2026-05-28 07:52:27] Starting delayed media stack restart helper.
+[2026-05-28 07:52:44] Starting delayed media stack restart helper.
+[2026-05-28 07:52:46] docker:  Architecture: x86_64
+[2026-05-28 07:52:46] docker:  CPUs: 20
+[2026-05-28 07:52:46] docker:  Total Memory: 15.48GiB
+[2026-05-28 07:52:46] docker:  Name: docker-desktop
+[2026-05-28 07:52:46] docker:  ID: fd062805-4e7a-45ba-a3ee-fcbf5b529241
+[2026-05-28 07:52:46] docker:  Docker Root Dir: /var/lib/docker
+[2026-05-28 07:52:46] docker:  Debug Mode: false
+[2026-05-28 07:52:46] docker:  HTTP Proxy: http.docker.internal:3128
+[2026-05-28 07:52:46] docker:  HTTPS Proxy: http.docker.internal:3128
+[2026-05-28 07:52:46] docker:  No Proxy: hubproxy.docker.internal
+[2026-05-28 07:52:46] docker:  Labels:
+[2026-05-28 07:52:46] docker:   com.docker.desktop.address=npipe://\\.\pipe\docker_cli
+[2026-05-28 07:52:46] docker:  Experimental: false
+[2026-05-28 07:52:46] docker:  Insecure Registries:
+[2026-05-28 07:52:46] docker:   hubproxy.docker.internal:5555
+[2026-05-28 07:52:46] docker:   ::1/128
+[2026-05-28 07:52:46] docker:   127.0.0.0/8
+[2026-05-28 07:52:46] docker:  Live Restore Enabled: false
+[2026-05-28 07:52:46] docker:  Firewall Backend: iptables
+[2026-05-28 07:52:46] docker info exited with code .
+[2026-05-28 07:52:56] docker:  Architecture: x86_64
+[2026-05-28 07:52:56] docker:  CPUs: 20
+[2026-05-28 07:52:56] docker:  Total Memory: 15.48GiB
+[2026-05-28 07:52:56] docker:  Name: docker-desktop
+[2026-05-28 07:52:56] docker:  ID: fd062805-4e7a-45ba-a3ee-fcbf5b529241
+[2026-05-28 07:52:56] docker:  Docker Root Dir: /var/lib/docker
+[2026-05-28 07:52:56] docker:  Debug Mode: false
+[2026-05-28 07:52:56] docker:  HTTP Proxy: http.docker.internal:3128
+[2026-05-28 07:52:56] docker:  HTTPS Proxy: http.docker.internal:3128
+[2026-05-28 07:52:56] docker:  No Proxy: hubproxy.docker.internal
+[2026-05-28 07:52:56] docker:  Labels:
+[2026-05-28 07:52:56] docker:   com.docker.desktop.address=npipe://\\.\pipe\docker_cli
+[2026-05-28 07:52:56] docker:  Experimental: false
+[2026-05-28 07:52:56] docker:  Insecure Registries:
+[2026-05-28 07:52:56] docker:   hubproxy.docker.internal:5555
+[2026-05-28 07:52:56] docker:   ::1/128
+[2026-05-28 07:52:56] docker:   127.0.0.0/8
+[2026-05-28 07:52:56] docker:  Live Restore Enabled: false
+[2026-05-28 07:52:56] docker:  Firewall Backend: iptables
+[2026-05-28 07:52:56] docker info exited with code .
+[2026-05-28 07:53:07] docker:  Architecture: x86_64
+[2026-05-28 07:53:07] docker:  CPUs: 20
+[2026-05-28 07:53:07] docker:  Total Memory: 15.48GiB
+[2026-05-28 07:53:07] docker:  Name: docker-desktop
+[2026-05-28 07:53:07] docker:  ID: fd062805-4e7a-45ba-a3ee-fcbf5b529241
+[2026-05-28 07:53:07] docker:  Docker Root Dir: /var/lib/docker
+[2026-05-28 07:53:07] docker:  Debug Mode: false
+[2026-05-28 07:53:07] docker:  HTTP Proxy: http.docker.internal:3128
+[2026-05-28 07:53:07] docker:  HTTPS Proxy: http.docker.internal:3128
+[2026-05-28 07:53:07] docker:  No Proxy: hubproxy.docker.internal
+[2026-05-28 07:53:07] docker:  Labels:
+[2026-05-28 07:53:07] docker:   com.docker.desktop.address=npipe://\\.\pipe\docker_cli
+[2026-05-28 07:53:07] docker:  Experimental: false
+[2026-05-28 07:53:07] docker:  Insecure Registries:
+[2026-05-28 07:53:07] docker:   hubproxy.docker.internal:5555
+[2026-05-28 07:53:07] docker:   ::1/128
+[2026-05-28 07:53:07] docker:   127.0.0.0/8
+[2026-05-28 07:53:07] docker:  Live Restore Enabled: false
+[2026-05-28 07:53:07] docker:  Firewall Backend: iptables
+[2026-05-28 07:53:07] docker info exited with code .
+[2026-05-28 07:53:17] docker:  Architecture: x86_64
+[2026-05-28 07:53:17] docker:  CPUs: 20
+[2026-05-28 07:53:17] docker:  Total Memory: 15.48GiB
+[2026-05-28 07:53:17] docker:  Name: docker-desktop
+[2026-05-28 07:53:17] docker:  ID: fd062805-4e7a-45ba-a3ee-fcbf5b529241
+[2026-05-28 07:53:17] docker:  Docker Root Dir: /var/lib/docker
+[2026-05-28 07:53:17] docker:  Debug Mode: false
+[2026-05-28 07:53:17] docker:  HTTP Proxy: http.docker.internal:3128
+[2026-05-28 07:53:17] docker:  HTTPS Proxy: http.docker.internal:3128
+[2026-05-28 07:53:17] docker:  No Proxy: hubproxy.docker.internal
+[2026-05-28 07:53:17] docker:  Labels:
+[2026-05-28 07:53:17] docker:   com.docker.desktop.address=npipe://\\.\pipe\docker_cli
+[2026-05-28 07:53:17] docker:  Experimental: false
+[2026-05-28 07:53:17] docker:  Insecure Registries:
+[2026-05-28 07:53:17] docker:   hubproxy.docker.internal:5555
+[2026-05-28 07:53:17] docker:   ::1/128
+[2026-05-28 07:53:17] docker:   127.0.0.0/8
+[2026-05-28 07:53:17] docker:  Live Restore Enabled: false
+[2026-05-28 07:53:17] docker:  Firewall Backend: iptables
+[2026-05-28 07:53:17] docker info exited with code .
+[2026-05-28 07:53:27] docker:  Architecture: x86_64
+[2026-05-28 07:53:27] docker:  CPUs: 20
+[2026-05-28 07:53:27] docker:  Total Memory: 15.48GiB
+[2026-05-28 07:53:27] docker:  Name: docker-desktop
+[2026-05-28 07:53:27] docker:  ID: fd062805-4e7a-45ba-a3ee-fcbf5b529241
+[2026-05-28 07:53:27] docker:  Docker Root Dir: /var/lib/docker
+[2026-05-28 07:53:27] docker:  Debug Mode: false
+[2026-05-28 07:53:27] docker:  HTTP Proxy: http.docker.internal:3128
+[2026-05-28 07:53:27] docker:  HTTPS Proxy: http.docker.internal:3128
+[2026-05-28 07:53:27] docker:  No Proxy: hubproxy.docker.internal
+[2026-05-28 07:53:27] docker:  Labels:
+[2026-05-28 07:53:27] docker:   com.docker.desktop.address=npipe://\\.\pipe\docker_cli
+[2026-05-28 07:53:27] docker:  Experimental: false
+[2026-05-28 07:53:27] docker:  Insecure Registries:
+[2026-05-28 07:53:27] docker:   hubproxy.docker.internal:5555
+[2026-05-28 07:53:27] docker:   ::1/128
+[2026-05-28 07:53:27] docker:   127.0.0.0/8
+[2026-05-28 07:53:27] docker:  Live Restore Enabled: false
+[2026-05-28 07:53:27] docker:  Firewall Backend: iptables
+[2026-05-28 07:53:27] docker info exited with code .
+[2026-05-28 07:53:37] docker:  Architecture: x86_64
+[2026-05-28 07:53:37] docker:  CPUs: 20
+[2026-05-28 07:53:37] docker:  Total Memory: 15.48GiB
+[2026-05-28 07:53:37] docker:  Name: docker-desktop
+[2026-05-28 07:53:37] docker:  ID: fd062805-4e7a-45ba-a3ee-fcbf5b529241
+[2026-05-28 07:53:37] docker:  Docker Root Dir: /var/lib/docker
+[2026-05-28 07:53:37] docker:  Debug Mode: false
+[2026-05-28 07:53:38] docker:  HTTP Proxy: http.docker.internal:3128
+[2026-05-28 07:53:38] docker:  HTTPS Proxy: http.docker.internal:3128
+[2026-05-28 07:53:38] docker:  No Proxy: hubproxy.docker.internal
+[2026-05-28 07:53:38] docker:  Labels:
+[2026-05-28 07:53:38] docker:   com.docker.desktop.address=npipe://\\.\pipe\docker_cli
+[2026-05-28 07:53:38] docker:  Experimental: false
+[2026-05-28 07:53:38] docker:  Insecure Registries:
+[2026-05-28 07:53:38] docker:   hubproxy.docker.internal:5555
+[2026-05-28 07:53:38] docker:   ::1/128
+[2026-05-28 07:53:38] docker:   127.0.0.0/8
+[2026-05-28 07:53:38] docker:  Live Restore Enabled: false
+[2026-05-28 07:53:38] docker:  Firewall Backend: iptables
+[2026-05-28 07:53:38] docker info exited with code .
+[2026-05-28 07:53:48] docker:  Architecture: x86_64
+[2026-05-28 07:53:48] docker:  CPUs: 20
+[2026-05-28 07:53:48] docker:  Total Memory: 15.48GiB
+[2026-05-28 07:53:48] docker:  Name: docker-desktop
+[2026-05-28 07:53:48] docker:  ID: fd062805-4e7a-45ba-a3ee-fcbf5b529241
+[2026-05-28 07:53:48] docker:  Docker Root Dir: /var/lib/docker
+[2026-05-28 07:53:48] docker:  Debug Mode: false
+[2026-05-28 07:53:48] docker:  HTTP Proxy: http.docker.internal:3128
+[2026-05-28 07:53:48] docker:  HTTPS Proxy: http.docker.internal:3128
+[2026-05-28 07:53:48] docker:  No Proxy: hubproxy.docker.internal
+[2026-05-28 07:53:48] docker:  Labels:
+[2026-05-28 07:53:48] docker:   com.docker.desktop.address=npipe://\\.\pipe\docker_cli
+[2026-05-28 07:53:48] docker:  Experimental: false
+[2026-05-28 07:53:48] docker:  Insecure Registries:
+[2026-05-28 07:53:48] docker:   hubproxy.docker.internal:5555
+[2026-05-28 07:53:48] docker:   ::1/128
+[2026-05-28 07:53:48] docker:   127.0.0.0/8
+[2026-05-28 07:53:48] docker:  Live Restore Enabled: false
+[2026-05-28 07:53:48] docker:  Firewall Backend: iptables
+[2026-05-28 07:53:48] docker info exited with code .
+[2026-05-28 07:53:48] Docker did not become available before timeout; leaving stack untouched.
+[2026-05-28 07:54:09] Starting delayed media stack restart helper.
+[2026-05-28 07:54:18] Starting delayed media stack restart helper.
+[2026-05-28 07:54:19] docker: Client:
+[2026-05-28 07:54:19] docker:  Version:    29.4.3
+[2026-05-28 07:54:19] docker:  Context:    desktop-linux
+[2026-05-28 07:54:19] docker:  Debug Mode: false
+[2026-05-28 07:54:19] docker:  Plugins:
+[2026-05-28 07:54:19] docker:   agent: Docker AI Agent Runner (Docker Inc.)
+[2026-05-28 07:54:19] docker:     Version:  v1.57.0
+[2026-05-28 07:54:19] docker:     Path:     C:\Program Files\Docker\cli-plugins\docker-agent.exe
+[2026-05-28 07:54:19] docker:   ai: Docker AI Agent - Ask Gordon (Docker Inc.)
+[2026-05-28 07:54:19] docker:     Version:  v1.20.2
+[2026-05-28 07:54:19] docker:     Path:     C:\Program Files\Docker\cli-plugins\docker-ai.exe
+[2026-05-28 07:54:19] docker:   buildx: Docker Buildx (Docker Inc.)
+[2026-05-28 07:54:19] docker:     Version:  v0.33.0-desktop.1
+[2026-05-28 07:54:19] docker:     Path:     C:\Program Files\Docker\cli-plugins\docker-buildx.exe
+[2026-05-28 07:54:19] docker:   compose: Docker Compose (Docker Inc.)
+[2026-05-28 07:54:19] docker:     Version:  v5.1.4
+[2026-05-28 07:54:19] docker:     Path:     C:\Users\Kyle\.docker\cli-plugins\docker-compose.exe
+[2026-05-28 07:54:19] docker:   debug: Get a shell into any image or container (Docker Inc.)
+[2026-05-28 07:54:19] docker:     Version:  0.0.47
+[2026-05-28 07:54:19] docker:     Path:     C:\Program Files\Docker\cli-plugins\docker-debug.exe
+[2026-05-28 07:54:19] docker:   desktop: Docker Desktop commands (Docker Inc.)
+[2026-05-28 07:54:19] docker:     Version:  v0.3.0
+[2026-05-28 07:54:19] docker:     Path:     C:\Program Files\Docker\cli-plugins\docker-desktop.exe
+[2026-05-28 07:54:19] docker:   dhi: CLI for managing Docker Hardened Images (Docker Inc.)
+[2026-05-28 07:54:19] docker:     Version:  v0.0.3
+[2026-05-28 07:54:19] docker:     Path:     C:\Program Files\Docker\cli-plugins\docker-dhi.exe
+[2026-05-28 07:54:19] docker:   extension: Manages Docker extensions (Docker Inc.)
+[2026-05-28 07:54:19] docker:     Version:  v0.2.31
+[2026-05-28 07:54:19] docker:     Path:     C:\Program Files\Docker\cli-plugins\docker-extension.exe
+[2026-05-28 07:54:19] docker:   init: Creates Docker-related starter files for your project (Docker Inc.)
+[2026-05-28 07:54:19] docker:     Version:  v1.4.0
+[2026-05-28 07:54:19] docker:     Path:     C:\Program Files\Docker\cli-plugins\docker-init.exe
+[2026-05-28 07:54:19] docker:   mcp: Docker MCP Plugin (Docker Inc.)
+[2026-05-28 07:54:19] docker:     Version:  v0.42.1
+[2026-05-28 07:54:19] docker:     Path:     C:\Program Files\Docker\cli-plugins\docker-mcp.exe
+[2026-05-28 07:54:19] docker:   model: Docker Model Runner (Docker Inc.)
+[2026-05-28 07:54:19] docker:     Version:  v1.1.37
+[2026-05-28 07:54:19] docker:     Path:     C:\Program Files\Docker\cli-plugins\docker-model.exe
+[2026-05-28 07:54:19] docker:   offload: Docker Offload (Docker Inc.)
+[2026-05-28 07:54:19] docker:     Version:  v0.5.89
+[2026-05-28 07:54:19] docker:     Path:     C:\Program Files\Docker\cli-plugins\docker-offload.exe
+[2026-05-28 07:54:19] docker:   pass: Docker Pass Secrets Manager Plugin (beta) (Docker Inc.)
+[2026-05-28 07:54:19] docker:     Version:  v0.0.27
+[2026-05-28 07:54:19] docker:     Path:     C:\Program Files\Docker\cli-plugins\docker-pass.exe
+[2026-05-28 07:54:19] docker:   sandbox: Docker Sandbox (Docker Inc.)
+[2026-05-28 07:54:19] docker:     Version:  v0.12.0
+[2026-05-28 07:54:19] docker:     Path:     C:\Program Files\Docker\cli-plugins\docker-sandbox.exe
+[2026-05-28 07:54:19] docker:   sbom: View the packaged-based Software Bill Of Materials (SBOM) for an image (Anchore Inc.)
+[2026-05-28 07:54:19] docker:     Version:  0.6.0
+[2026-05-28 07:54:19] docker:     Path:     C:\Program Files\Docker\cli-plugins\docker-sbom.exe
+[2026-05-28 07:54:19] docker:   scout: Docker Scout (Docker Inc.)
+[2026-05-28 07:54:19] docker:     Version:  v1.21.0
+[2026-05-28 07:54:19] docker:     Path:     C:\Users\Kyle\.docker\cli-plugins\docker-scout.exe
+[2026-05-28 07:54:19] docker: Server:
+[2026-05-28 07:54:19] docker:  Containers: 10
+[2026-05-28 07:54:19] docker:   Running: 9
+[2026-05-28 07:54:19] docker:   Paused: 0
+[2026-05-28 07:54:19] docker:   Stopped: 1
+[2026-05-28 07:54:19] docker:  Images: 10
+[2026-05-28 07:54:19] docker:  Server Version: 29.4.3
+[2026-05-28 07:54:19] docker:  Storage Driver: overlayfs
+[2026-05-28 07:54:19] docker:   driver-type: io.containerd.snapshotter.v1
+[2026-05-28 07:54:19] docker:  Logging Driver: json-file
+[2026-05-28 07:54:19] docker:  Cgroup Driver: cgroupfs
+[2026-05-28 07:54:19] docker:  Cgroup Version: 2
+[2026-05-28 07:54:19] docker:  Plugins:
+[2026-05-28 07:54:19] docker:   Volume: local
+[2026-05-28 07:54:19] docker:   Network: bridge host ipvlan macvlan null overlay
+[2026-05-28 07:54:19] docker:   Log: awslogs fluentd gcplogs gelf journald json-file local splunk syslog
+[2026-05-28 07:54:19] docker:  CDI spec directories:
+[2026-05-28 07:54:19] docker:   /etc/cdi
+[2026-05-28 07:54:19] docker:   /var/run/cdi
+[2026-05-28 07:54:19] docker:  Discovered Devices:
+[2026-05-28 07:54:19] docker:   cdi: docker.com/gpu=webgpu
+[2026-05-28 07:54:19] docker:  Swarm: inactive
+[2026-05-28 07:54:19] docker:  Runtimes: io.containerd.runc.v2 nvidia runc
+[2026-05-28 07:54:19] docker:  Default Runtime: runc
+[2026-05-28 07:54:19] docker:  Init Binary: docker-init
+[2026-05-28 07:54:19] docker:  containerd version: 77c84241c7cbdd9b4eca2591793e3d4f4317c590
+[2026-05-28 07:54:19] docker:  runc version: v1.3.5-0-g488fc13e
+[2026-05-28 07:54:19] docker:  init version: de40ad0
+[2026-05-28 07:54:19] docker:  Security Options:
+[2026-05-28 07:54:19] docker:   seccomp
+[2026-05-28 07:54:19] docker:    Profile: builtin
+[2026-05-28 07:54:19] docker:   cgroupns
+[2026-05-28 07:54:19] docker:  Kernel Version: 6.6.114.1-microsoft-standard-WSL2
+[2026-05-28 07:54:19] docker:  Operating System: Docker Desktop
+[2026-05-28 07:54:19] docker:  OSType: linux
+[2026-05-28 07:54:19] docker:  Architecture: x86_64
+[2026-05-28 07:54:19] docker:  CPUs: 20
+[2026-05-28 07:54:19] docker:  Total Memory: 15.48GiB
+[2026-05-28 07:54:19] docker:  Name: docker-desktop
+[2026-05-28 07:54:19] docker:  ID: fd062805-4e7a-45ba-a3ee-fcbf5b529241
+[2026-05-28 07:54:19] docker:  Docker Root Dir: /var/lib/docker
+[2026-05-28 07:54:19] docker:  Debug Mode: false
+[2026-05-28 07:54:19] docker:  HTTP Proxy: http.docker.internal:3128
+[2026-05-28 07:54:19] docker:  HTTPS Proxy: http.docker.internal:3128
+[2026-05-28 07:54:19] docker:  No Proxy: hubproxy.docker.internal
+[2026-05-28 07:54:19] docker:  Labels:
+[2026-05-28 07:54:19] docker:   com.docker.desktop.address=npipe://\\.\pipe\docker_cli
+[2026-05-28 07:54:19] docker:  Experimental: false
+[2026-05-28 07:54:19] docker:  Insecure Registries:
+[2026-05-28 07:54:19] docker:   hubproxy.docker.internal:5555
+[2026-05-28 07:54:19] docker:   ::1/128
+[2026-05-28 07:54:19] docker:   127.0.0.0/8
+[2026-05-28 07:54:19] docker:  Live Restore Enabled: false
+[2026-05-28 07:54:19] docker:  Firewall Backend: iptables
+[2026-05-28 07:54:19] Docker is available.
+[2026-05-28 07:54:19] docker: Client:
+[2026-05-28 07:54:19] docker:  Version:    29.4.3
+[2026-05-28 07:54:19] docker:  Context:    desktop-linux
+[2026-05-28 07:54:19] docker:  Debug Mode: false
+[2026-05-28 07:54:19] docker:  Plugins:
+[2026-05-28 07:54:19] docker:   agent: Docker AI Agent Runner (Docker Inc.)
+[2026-05-28 07:54:19] docker:     Version:  v1.57.0
+[2026-05-28 07:54:19] docker:     Path:     C:\Program Files\Docker\cli-plugins\docker-agent.exe
+[2026-05-28 07:54:19] docker:   ai: Docker AI Agent - Ask Gordon (Docker Inc.)
+[2026-05-28 07:54:19] docker:     Version:  v1.20.2
+[2026-05-28 07:54:19] docker:     Path:     C:\Program Files\Docker\cli-plugins\docker-ai.exe
+[2026-05-28 07:54:19] docker:   buildx: Docker Buildx (Docker Inc.)
+[2026-05-28 07:54:19] docker:     Version:  v0.33.0-desktop.1
+[2026-05-28 07:54:19] docker:     Path:     C:\Program Files\Docker\cli-plugins\docker-buildx.exe
+[2026-05-28 07:54:19] docker:   compose: Docker Compose (Docker Inc.)
+[2026-05-28 07:54:19] docker:     Version:  v5.1.4
+[2026-05-28 07:54:19] docker:     Path:     C:\Users\Kyle\.docker\cli-plugins\docker-compose.exe
+[2026-05-28 07:54:19] docker:   debug: Get a shell into any image or container (Docker Inc.)
+[2026-05-28 07:54:19] docker:     Version:  0.0.47
+[2026-05-28 07:54:19] docker:     Path:     C:\Program Files\Docker\cli-plugins\docker-debug.exe
+[2026-05-28 07:54:19] docker:   desktop: Docker Desktop commands (Docker Inc.)
+[2026-05-28 07:54:19] docker:     Version:  v0.3.0
+[2026-05-28 07:54:19] docker:     Path:     C:\Program Files\Docker\cli-plugins\docker-desktop.exe
+[2026-05-28 07:54:19] docker:   dhi: CLI for managing Docker Hardened Images (Docker Inc.)
+[2026-05-28 07:54:19] docker:     Version:  v0.0.3
+[2026-05-28 07:54:19] docker:     Path:     C:\Program Files\Docker\cli-plugins\docker-dhi.exe
+[2026-05-28 07:54:19] docker:   extension: Manages Docker extensions (Docker Inc.)
+[2026-05-28 07:54:19] docker:     Version:  v0.2.31
+[2026-05-28 07:54:19] docker:     Path:     C:\Program Files\Docker\cli-plugins\docker-extension.exe
+[2026-05-28 07:54:19] docker:   init: Creates Docker-related starter files for your project (Docker Inc.)
+[2026-05-28 07:54:19] docker:     Version:  v1.4.0
+[2026-05-28 07:54:19] docker:     Path:     C:\Program Files\Docker\cli-plugins\docker-init.exe
+[2026-05-28 07:54:19] docker:   mcp: Docker MCP Plugin (Docker Inc.)
+[2026-05-28 07:54:19] docker:     Version:  v0.42.1
+[2026-05-28 07:54:19] docker:     Path:     C:\Program Files\Docker\cli-plugins\docker-mcp.exe
+[2026-05-28 07:54:19] docker:   model: Docker Model Runner (Docker Inc.)
+[2026-05-28 07:54:19] docker:     Version:  v1.1.37
+[2026-05-28 07:54:19] docker:     Path:     C:\Program Files\Docker\cli-plugins\docker-model.exe
+[2026-05-28 07:54:19] docker:   offload: Docker Offload (Docker Inc.)
+[2026-05-28 07:54:19] docker:     Version:  v0.5.89
+[2026-05-28 07:54:19] docker:     Path:     C:\Program Files\Docker\cli-plugins\docker-offload.exe
+[2026-05-28 07:54:19] docker:   pass: Docker Pass Secrets Manager Plugin (beta) (Docker Inc.)
+[2026-05-28 07:54:19] docker:     Version:  v0.0.27
+[2026-05-28 07:54:19] docker:     Path:     C:\Program Files\Docker\cli-plugins\docker-pass.exe
+[2026-05-28 07:54:19] docker:   sandbox: Docker Sandbox (Docker Inc.)
+[2026-05-28 07:54:19] docker:     Version:  v0.12.0
+[2026-05-28 07:54:19] docker:     Path:     C:\Program Files\Docker\cli-plugins\docker-sandbox.exe
+[2026-05-28 07:54:19] docker:   sbom: View the packaged-based Software Bill Of Materials (SBOM) for an image (Anchore Inc.)
+[2026-05-28 07:54:19] docker:     Version:  0.6.0
+[2026-05-28 07:54:19] docker:     Path:     C:\Program Files\Docker\cli-plugins\docker-sbom.exe
+[2026-05-28 07:54:19] docker:   scout: Docker Scout (Docker Inc.)
+[2026-05-28 07:54:19] docker:     Version:  v1.21.0
+[2026-05-28 07:54:19] docker:     Path:     C:\Users\Kyle\.docker\cli-plugins\docker-scout.exe
+[2026-05-28 07:54:19] docker: Server:
+[2026-05-28 07:54:19] docker:  Containers: 10
+[2026-05-28 07:54:19] docker:   Running: 9
+[2026-05-28 07:54:19] docker:   Paused: 0
+[2026-05-28 07:54:19] docker:   Stopped: 1
+[2026-05-28 07:54:19] docker:  Images: 10
+[2026-05-28 07:54:19] docker:  Server Version: 29.4.3
+[2026-05-28 07:54:19] docker:  Storage Driver: overlayfs
+[2026-05-28 07:54:19] docker:   driver-type: io.containerd.snapshotter.v1
+[2026-05-28 07:54:19] docker:  Logging Driver: json-file
+[2026-05-28 07:54:19] docker:  Cgroup Driver: cgroupfs
+[2026-05-28 07:54:19] docker:  Cgroup Version: 2
+[2026-05-28 07:54:19] docker:  Plugins:
+[2026-05-28 07:54:19] docker:   Volume: local
+[2026-05-28 07:54:19] docker:   Network: bridge host ipvlan macvlan null overlay
+[2026-05-28 07:54:19] docker:   Log: awslogs fluentd gcplogs gelf journald json-file local splunk syslog
+[2026-05-28 07:54:19] docker:  CDI spec directories:
+[2026-05-28 07:54:19] docker:   /etc/cdi
+[2026-05-28 07:54:19] docker:   /var/run/cdi
+[2026-05-28 07:54:19] docker:  Discovered Devices:
+[2026-05-28 07:54:19] docker:   cdi: docker.com/gpu=webgpu
+[2026-05-28 07:54:19] docker:  Swarm: inactive
+[2026-05-28 07:54:19] docker:  Runtimes: io.containerd.runc.v2 nvidia runc
+[2026-05-28 07:54:19] docker:  Default Runtime: runc
+[2026-05-28 07:54:19] docker:  Init Binary: docker-init
+[2026-05-28 07:54:19] docker:  containerd version: 77c84241c7cbdd9b4eca2591793e3d4f4317c590
+[2026-05-28 07:54:19] docker:  runc version: v1.3.5-0-g488fc13e
+[2026-05-28 07:54:19] docker:  init version: de40ad0
+[2026-05-28 07:54:19] docker:  Security Options:
+[2026-05-28 07:54:19] docker:   seccomp
+[2026-05-28 07:54:19] docker:    Profile: builtin
+[2026-05-28 07:54:19] docker:   cgroupns
+[2026-05-28 07:54:19] docker:  Kernel Version: 6.6.114.1-microsoft-standard-WSL2
+[2026-05-28 07:54:19] docker:  Operating System: Docker Desktop
+[2026-05-28 07:54:19] docker:  OSType: linux
+[2026-05-28 07:54:19] docker:  Architecture: x86_64
+[2026-05-28 07:54:19] docker:  CPUs: 20
+[2026-05-28 07:54:19] docker:  Total Memory: 15.48GiB
+[2026-05-28 07:54:19] docker:  Name: docker-desktop
+[2026-05-28 07:54:19] docker:  ID: fd062805-4e7a-45ba-a3ee-fcbf5b529241
+[2026-05-28 07:54:19] docker:  Docker Root Dir: /var/lib/docker
+[2026-05-28 07:54:19] docker:  Debug Mode: false
+[2026-05-28 07:54:19] docker:  HTTP Proxy: http.docker.internal:3128
+[2026-05-28 07:54:19] docker:  HTTPS Proxy: http.docker.internal:3128
+[2026-05-28 07:54:19] docker:  No Proxy: hubproxy.docker.internal
+[2026-05-28 07:54:19] docker:  Labels:
+[2026-05-28 07:54:19] docker:   com.docker.desktop.address=npipe://\\.\pipe\docker_cli
+[2026-05-28 07:54:19] docker:  Experimental: false
+[2026-05-28 07:54:19] docker:  Insecure Registries:
+[2026-05-28 07:54:19] docker:   hubproxy.docker.internal:5555
+[2026-05-28 07:54:19] docker:   ::1/128
+[2026-05-28 07:54:19] docker:   127.0.0.0/8
+[2026-05-28 07:54:19] docker:  Live Restore Enabled: false
+[2026-05-28 07:54:19] docker:  Firewall Backend: iptables
+[2026-05-28 07:54:19] I:\torrentfiles present: True
+[2026-05-28 07:54:23] docker:  Container bazarr Restarting 
+[2026-05-28 07:54:23] docker:  Container radarr Restarting 
+[2026-05-28 07:54:23] docker:  Container sonarr Restarting 
+[2026-05-28 07:54:23] docker:  Container prowlarr Restarting 
+[2026-05-28 07:54:23] docker:  Container tautulli Restarting 
+[2026-05-28 07:54:23] docker:  Container qbittorrent Restarting 
+[2026-05-28 07:54:23] docker:  Container unpackerr Restarting 
+[2026-05-28 07:54:23] docker:  Container uptime-kuma Restarting 
+[2026-05-28 07:54:23] docker:  Container unpackerr Started 
+[2026-05-28 07:54:23] docker:  Container sonarr Started 
+[2026-05-28 07:54:23] docker:  Container qbittorrent Started 
+[2026-05-28 07:54:23] docker:  Container radarr Started 
+[2026-05-28 07:54:23] docker:  Container prowlarr Started 
+[2026-05-28 07:54:23] docker:  Container bazarr Started 
+[2026-05-28 07:54:23] docker:  Container uptime-kuma Started 
+[2026-05-28 07:54:23] docker:  Container tautulli Started 
+[2026-05-28 07:54:23] Ran docker compose restart for media stack.
+[2026-05-28 07:54:53] Sonarr HTTP 200
+[2026-05-28 07:54:53] Radarr HTTP 200
+[2026-05-28 07:54:53] Prowlarr HTTP 200
+[2026-05-28 07:54:53] Bazarr HTTP 200
+[2026-05-28 07:54:53] qBittorrent HTTP 200
+[2026-05-28 07:54:53] Tautulli HTTP 303
+[2026-05-28 07:54:53] qBittorrent /downloads: I:\              19T  3.3T   15T  19% /downloads
+[2026-05-28 07:54:53] Delayed media stack restart helper finished.
+[2026-05-28 07:55:41] Starting delayed media stack restart helper.
+[2026-05-28 07:57:42] Docker is available.
+[2026-05-28 07:57:42] I:\torrentfiles present: True
+[2026-05-28 07:57:46] docker:  Container bazarr Restarting 
+[2026-05-28 07:57:46] docker:  Container prowlarr Restarting 
+[2026-05-28 07:57:46] docker:  Container radarr Restarting 
+[2026-05-28 07:57:46] docker:  Container unpackerr Restarting 
+[2026-05-28 07:57:46] docker:  Container sonarr Restarting 
+[2026-05-28 07:57:46] docker:  Container qbittorrent Restarting 
+[2026-05-28 07:57:46] docker:  Container uptime-kuma Restarting 
+[2026-05-28 07:57:46] docker:  Container tautulli Restarting 
+[2026-05-28 07:57:46] docker:  Container unpackerr Started 
+[2026-05-28 07:57:46] docker:  Container sonarr Started 
+[2026-05-28 07:57:46] docker:  Container tautulli Started 
+[2026-05-28 07:57:46] docker:  Container qbittorrent Started 
+[2026-05-28 07:57:46] docker:  Container prowlarr Started 
+[2026-05-28 07:57:46] docker:  Container bazarr Started 
+[2026-05-28 07:57:46] docker:  Container uptime-kuma Started 
+[2026-05-28 07:57:46] docker:  Container radarr Started 
+[2026-05-28 07:57:46] Ran docker compose restart for media stack.
+[2026-05-28 07:58:16] Sonarr HTTP 200
+[2026-05-28 07:58:16] Radarr HTTP 200
+[2026-05-28 07:58:16] Prowlarr HTTP 200
+[2026-05-28 07:58:16] Bazarr HTTP 200
+[2026-05-28 07:58:16] qBittorrent HTTP 200
+[2026-05-28 07:58:16] Tautulli HTTP 303
+[2026-05-28 07:58:16] qBittorrent /downloads: I:\              19T  3.3T   15T  19% /downloads
+[2026-05-28 07:58:16] Delayed media stack restart helper finished.
+[2026-05-28 11:44:30] Starting delayed media stack restart helper.
+[2026-05-28 11:46:30] Docker is available.
+[2026-05-28 11:46:30] I:\torrentfiles present: True
+[2026-05-28 11:46:33] docker:  Container bazarr Restarting 
+[2026-05-28 11:46:33] docker:  Container tautulli Restarting 
+[2026-05-28 11:46:33] docker:  Container radarr Restarting 
+[2026-05-28 11:46:33] docker:  Container sonarr Restarting 
+[2026-05-28 11:46:33] docker:  Container unpackerr Restarting 
+[2026-05-28 11:46:33] docker:  Container uptime-kuma Restarting 
+[2026-05-28 11:46:33] docker:  Container qbittorrent Restarting 
+[2026-05-28 11:46:33] docker:  Container prowlarr Restarting 
+[2026-05-28 11:46:33] docker:  Container qbittorrent Started 
+[2026-05-28 11:46:33] docker:  Container unpackerr Started 
+[2026-05-28 11:46:33] docker:  Container tautulli Started 
+[2026-05-28 11:46:33] docker:  Container bazarr Started 
+[2026-05-28 11:46:33] docker:  Container sonarr Started 
+[2026-05-28 11:46:33] docker:  Container uptime-kuma Started 
+[2026-05-28 11:46:33] docker:  Container radarr Started 
+[2026-05-28 11:46:33] docker:  Container prowlarr Started 
+[2026-05-28 11:46:33] Ran docker compose restart for media stack.
+[2026-05-28 11:47:04] Sonarr HTTP 200
+[2026-05-28 11:47:04] Radarr HTTP 200
+[2026-05-28 11:47:04] Prowlarr HTTP 200
+[2026-05-28 11:47:04] Bazarr HTTP 200
+[2026-05-28 11:47:04] qBittorrent HTTP 200
+[2026-05-28 11:47:04] Tautulli HTTP 303
+[2026-05-28 11:47:05] qBittorrent /downloads: I:\              19T  3.6T   15T  20% /downloads
+[2026-05-28 11:47:05] Delayed media stack restart helper finished.
