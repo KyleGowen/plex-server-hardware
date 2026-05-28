@@ -443,3 +443,31 @@
 [2026-05-28 11:47:04] Tautulli HTTP 303
 [2026-05-28 11:47:05] qBittorrent /downloads: I:\              19T  3.6T   15T  20% /downloads
 [2026-05-28 11:47:05] Delayed media stack restart helper finished.
+[2026-05-28 12:26:52] Starting delayed media stack restart helper.
+[2026-05-28 12:28:53] Docker is available.
+[2026-05-28 12:28:53] I:\torrentfiles present: True
+[2026-05-28 12:28:58] docker:  Container uptime-kuma Restarting 
+[2026-05-28 12:28:58] docker:  Container radarr Restarting 
+[2026-05-28 12:28:58] docker:  Container tautulli Restarting 
+[2026-05-28 12:28:58] docker:  Container sonarr Restarting 
+[2026-05-28 12:28:58] docker:  Container unpackerr Restarting 
+[2026-05-28 12:28:58] docker:  Container bazarr Restarting 
+[2026-05-28 12:28:58] docker:  Container qbittorrent Restarting 
+[2026-05-28 12:28:58] docker:  Container prowlarr Restarting 
+[2026-05-28 12:28:58] docker:  Container unpackerr Started 
+[2026-05-28 12:28:58] docker:  Container qbittorrent Started 
+[2026-05-28 12:28:58] docker:  Container sonarr Started 
+[2026-05-28 12:28:58] docker:  Container bazarr Started 
+[2026-05-28 12:28:58] docker:  Container uptime-kuma Started 
+[2026-05-28 12:28:58] docker:  Container prowlarr Started 
+[2026-05-28 12:28:58] docker:  Container tautulli Started 
+[2026-05-28 12:28:58] docker:  Container radarr Started 
+[2026-05-28 12:28:58] Ran docker compose restart for media stack.
+[2026-05-28 12:29:28] Sonarr HTTP 200
+[2026-05-28 12:29:28] Radarr HTTP 200
+[2026-05-28 12:29:28] Prowlarr HTTP 200
+[2026-05-28 12:29:28] Bazarr HTTP 200
+[2026-05-28 12:29:28] qBittorrent HTTP 200
+[2026-05-28 12:29:28] Tautulli HTTP 303
+[2026-05-28 12:29:29] qBittorrent /downloads: I:\              19T  3.6T   15T  20% /downloads
+[2026-05-28 12:29:29] Delayed media stack restart helper finished.
