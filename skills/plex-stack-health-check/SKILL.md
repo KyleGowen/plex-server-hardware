@@ -35,7 +35,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File skills\plex-stack-health-che
 
 ## Reporting
 
-Return the script output as the basis of the answer. Keep the validation detailed; it is okay to group similar validations by section.
+Return the script output as the basis of the answer. Keep the validation detailed; it is okay to group similar validations by section. Preserve the per-check `Evidence` blocks because they explain which command output, `.env` values, visible containers, port listeners, drive inventory, or path checks contributed to each result.
 
 Call out especially:
 
@@ -51,4 +51,3 @@ Call out especially:
 The script redacts sensitive-looking names and URL/query values before printing. Do not add raw credentials, API keys, tracker URLs, passkeys, cookies, tokens, hashes, magnets, or passwords to the final report.
 
 If additional manual checks are needed, redact secrets before showing command output.
-

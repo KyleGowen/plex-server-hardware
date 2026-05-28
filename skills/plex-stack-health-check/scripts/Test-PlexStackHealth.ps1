@@ -43,14 +43,28 @@ function Add-Check {
         [string]$Name,
         [ValidateSet("PASS", "WARN", "FAIL", "SKIP", "INFO")]
         [string]$Status,
-        [string]$Detail
+        [string]$Detail,
+        [object[]]$Evidence = @()
     )
+
+    $evidenceLines = New-Object System.Collections.Generic.List[string]
+    foreach ($item in $Evidence) {
+        if ($null -eq $item) { continue }
+        if ($item -is [array]) {
+            foreach ($inner in $item) {
+                if ($null -ne $inner) { $evidenceLines.Add((Redact-Text $inner)) }
+            }
+        } else {
+            $evidenceLines.Add((Redact-Text $item))
+        }
+    }
 
     $script:Results.Add([pscustomobject]@{
         Group = $Group
         Name = $Name
         Status = $Status
         Detail = Redact-Text $Detail
+        Evidence = @($evidenceLines)
     })
 }
 
@@ -71,6 +85,85 @@ function Invoke-Docker {
     param([string[]]$Arguments)
 
     & docker @script:DockerArgs @Arguments
+}
+
+function Format-ContainerRows {
+    param([hashtable]$Containers)
+
+    if ($Containers.Count -eq 0) { return @("docker ps -a returned no parseable containers.") }
+    return @($Containers.Keys | Sort-Object | ForEach-Object {
+        $row = $Containers[$_]
+        "$($row.Names): Image=$($row.Image); Status=$($row.Status); Ports=$($row.Ports)"
+    })
+}
+
+function Get-DriveEvidence {
+    param([string]$Path)
+
+    $evidence = New-Object System.Collections.Generic.List[string]
+    $windowsPath = ConvertTo-WindowsPathText $Path
+    $root = ""
+    try {
+        $root = [System.IO.Path]::GetPathRoot($windowsPath)
+    } catch {}
+
+    $evidence.Add("Configured path: $Path")
+    if ($windowsPath -ne $Path) { $evidence.Add("Windows-normalized path: $windowsPath") }
+    $evidence.Add("Test-Path result: $(Test-Path -LiteralPath $Path)")
+
+    if ($root -match '^([A-Za-z]):\\$') {
+        $driveLetter = $matches[1]
+        $drive = Get-PSDrive -Name $driveLetter -ErrorAction SilentlyContinue
+        if ($drive) {
+            $evidence.Add("Drive $driveLetter`: present; used=$([math]::Round($drive.Used / 1GB, 1))GB; free=$([math]::Round($drive.Free / 1GB, 1))GB")
+        } else {
+            $evidence.Add("Drive $driveLetter`: not visible to PowerShell in this session.")
+        }
+    }
+
+    return @($evidence)
+}
+
+function Get-PortEvidence {
+    param(
+        [string]$HostName,
+        [int]$Port,
+        [string]$EnvName,
+        [string]$EnvValue,
+        [string]$ContainerName,
+        [hashtable]$Containers
+    )
+
+    $evidence = New-Object System.Collections.Generic.List[string]
+    $evidence.Add("Port source: $EnvName=$EnvValue")
+    $evidence.Add("TCP target tested: $HostName`:$Port")
+    if ($Containers.ContainsKey($ContainerName)) {
+        $row = $Containers[$ContainerName]
+        $evidence.Add("Related container: found; Status=$($row.Status); Docker ports=$($row.Ports)")
+    } else {
+        $evidence.Add("Related container: $ContainerName was not found in docker ps -a output.")
+    }
+
+    try {
+        $listeners = @(Get-NetTCPConnection -LocalPort $Port -State Listen -ErrorAction SilentlyContinue)
+        if ($listeners.Count -gt 0) {
+            foreach ($listener in $listeners) {
+                $procName = ""
+                try {
+                    $procName = (Get-Process -Id $listener.OwningProcess -ErrorAction Stop).ProcessName
+                } catch {
+                    $procName = "unknown"
+                }
+                $evidence.Add("Local listener: $($listener.LocalAddress):$($listener.LocalPort); PID=$($listener.OwningProcess); Process=$procName")
+            }
+        } else {
+            $evidence.Add("Local listener scan: no LISTEN socket found on port $Port.")
+        }
+    } catch {
+        $evidence.Add("Local listener scan failed: $($_.Exception.Message)")
+    }
+
+    return @($evidence)
 }
 
 function Read-DotEnv {
@@ -143,17 +236,21 @@ function Get-ContainerMap {
     try {
         $raw = Invoke-Docker @("ps", "-a", "--format", "{{json .}}") 2>&1
         if ($LASTEXITCODE -ne 0) {
-            Add-Check "Docker" "docker ps -a" "FAIL" ($raw -join "`n")
+            Add-Check "Docker" "docker ps -a" "FAIL" "Docker command failed." @("Command: docker $($script:DockerArgs -join ' ') ps -a --format '{{json .}}'", "Output:", ($raw -join "`n"))
             return $containers
         }
-        Add-Check "Docker" "docker ps -a" "PASS" "Docker responded with $(@($raw).Count) container rows."
         foreach ($line in $raw) {
             if (-not $line) { continue }
             $row = $line | ConvertFrom-Json
             $containers[$row.Names] = $row
         }
+        Add-Check "Docker" "docker ps -a" "PASS" "Docker responded with $(@($raw).Count) container rows." @(
+            "Command: docker $($script:DockerArgs -join ' ') ps -a --format '{{json .}}'",
+            "Visible containers:",
+            (Format-ContainerRows $containers)
+        )
     } catch {
-        Add-Check "Docker" "docker ps -a" "FAIL" $_.Exception.Message
+        Add-Check "Docker" "docker ps -a" "FAIL" $_.Exception.Message @("Command attempted: docker $($script:DockerArgs -join ' ') ps -a --format '{{json .}}'")
     }
     return $containers
 }
@@ -168,14 +265,14 @@ function Test-PathDetail {
 
     if (-not $Path) {
         $status = if ($Required) { "FAIL" } else { "SKIP" }
-        Add-Check $Group $Name $status "Path is not configured."
+        Add-Check $Group $Name $status "Path is not configured." @("No configured value was available for this path check.")
         return
     }
 
     $exists = Test-Path -LiteralPath $Path
     if (-not $exists) {
         $status = if ($Required) { "FAIL" } else { "WARN" }
-        Add-Check $Group $Name $status "Missing path: $Path"
+        Add-Check $Group $Name $status "Missing path: $Path" (Get-DriveEvidence $Path)
         return
     }
 
@@ -191,7 +288,7 @@ function Test-PathDetail {
         }
     }
 
-    Add-Check $Group $Name "PASS" "Exists: $($item.FullName).$driveNote"
+    Add-Check $Group $Name "PASS" "Exists: $($item.FullName).$driveNote" (Get-DriveEvidence $Path)
 }
 
 $ProjectRoot = (Resolve-Path -LiteralPath $ProjectRoot).Path
@@ -212,10 +309,19 @@ if ($script:DockerArgs.Count -gt 0) {
     Add-Check "Run context" "Docker CLI config" "INFO" "Using default Docker CLI config; no project .docker-cli folder found."
 }
 
+$driveInventory = @(Get-PSDrive -PSProvider FileSystem | Sort-Object Name | ForEach-Object {
+    "$($_.Name): Root=$($_.Root); Used=$([math]::Round($_.Used / 1GB, 1))GB; Free=$([math]::Round($_.Free / 1GB, 1))GB"
+})
+Add-Check "Run context" "Visible Windows drives" "INFO" "PowerShell currently sees $($driveInventory.Count) filesystem drive(s)." $driveInventory
+
 if (Test-Path -LiteralPath $composePath) {
-    Add-Check "Project files" "Compose file" "PASS" "Found compose file: $composePath"
+    $composeServices = @(Select-String -Path $composePath -Pattern '^\s{2}([a-zA-Z0-9_-]+):\s*$' | ForEach-Object { $_.Matches[0].Groups[1].Value })
+    Add-Check "Project files" "Compose file" "PASS" "Found compose file: $composePath" @(
+        "Compose path: $composePath",
+        "Services declared: $($composeServices -join ', ')"
+    )
 } else {
-    Add-Check "Project files" "Compose file" "FAIL" "Missing compose file: $composePath"
+    Add-Check "Project files" "Compose file" "FAIL" "Missing compose file: $composePath" @("Resolved compose path: $composePath")
 }
 
 $envValues = Read-DotEnv $envPath
@@ -237,9 +343,16 @@ foreach ($requiredName in @(
     "QBITTORRENT_TORRENT_PORT"
 )) {
     if ($envValues.ContainsKey($requiredName) -and $envValues[$requiredName]) {
-        Add-Check "Environment" $requiredName "PASS" ("Configured as " + (Redact-Value $requiredName $envValues[$requiredName]))
+        Add-Check "Environment" $requiredName "PASS" ("Configured as " + (Redact-Value $requiredName $envValues[$requiredName])) @(
+            "Source file: $envPath",
+            "Variable present: true",
+            "Raw value after redaction/normalization for display: $(Redact-Value $requiredName $envValues[$requiredName])"
+        )
     } else {
-        Add-Check "Environment" $requiredName "FAIL" "Required variable is missing or empty."
+        Add-Check "Environment" $requiredName "FAIL" "Required variable is missing or empty." @(
+            "Source file: $envPath",
+            "Variable present: $($envValues.ContainsKey($requiredName))"
+        )
     }
 }
 
@@ -257,22 +370,34 @@ $expectedRunning = @(
 
 foreach ($name in $expectedRunning) {
     if (-not $containerMap.ContainsKey($name)) {
-        Add-Check "Expected containers" $name "FAIL" "Container was not found by docker ps -a."
+        Add-Check "Expected containers" $name "FAIL" "Container was not found by docker ps -a." @(
+            "Expected container name: $name",
+            "Visible container names: $(($containerMap.Keys | Sort-Object) -join ', ')",
+            "Full visible container rows:",
+            (Format-ContainerRows $containerMap)
+        )
         continue
     }
 
     $row = $containerMap[$name]
     $status = [string]$row.Status
     $state = if ($status -match '^(Up)\b') { "PASS" } else { "FAIL" }
-    Add-Check "Expected containers" $name $state "Image=$($row.Image); Status=$status; Ports=$($row.Ports)"
+    Add-Check "Expected containers" $name $state "Image=$($row.Image); Status=$status; Ports=$($row.Ports)" @(
+        "Matched docker ps row: Name=$($row.Names); Image=$($row.Image); Status=$status; Ports=$($row.Ports); ID=$($row.ID)"
+    )
 }
 
 if ($containerMap.ContainsKey("jackett")) {
     $jackett = $containerMap["jackett"]
     $jackettStatus = if ([string]$jackett.Status -match '^Up\b') { "WARN" } else { "INFO" }
-    Add-Check "Optional containers" "jackett" $jackettStatus "Jackett exists with Status=$($jackett.Status). It should only run when the legacy-jackett profile is intentional."
+    Add-Check "Optional containers" "jackett" $jackettStatus "Jackett exists with Status=$($jackett.Status). It should only run when the legacy-jackett profile is intentional." @(
+        "Matched docker ps row: Name=$($jackett.Names); Image=$($jackett.Image); Status=$($jackett.Status); Ports=$($jackett.Ports)"
+    )
 } else {
-    Add-Check "Optional containers" "jackett" "PASS" "Not present/running, consistent with keeping Jackett disabled unless legacy-jackett is intentionally used."
+    Add-Check "Optional containers" "jackett" "PASS" "Not present/running, consistent with keeping Jackett disabled unless legacy-jackett is intentionally used." @(
+        "Visible container names: $(($containerMap.Keys | Sort-Object) -join ', ')",
+        "Compose service has profile legacy-jackett, so absence is expected unless intentionally enabled."
+    )
 }
 
 $hostIp = Get-EnvValue $envValues "WEBUI_HOST_IP" "127.0.0.1"
@@ -294,22 +419,25 @@ foreach ($entry in $servicePorts) {
     $portText = Get-EnvValue $envValues $entry.Env $entry.Default
     $port = 0
     if (-not [int]::TryParse($portText, [ref]$port)) {
-        Add-Check "Service ports" $entry.Name "FAIL" "$($entry.Env) is not a valid integer: $portText"
+        Add-Check "Service ports" $entry.Name "FAIL" "$($entry.Env) is not a valid integer: $portText" @(
+            "Port source: $($entry.Env)=$portText",
+            "Related container: $($entry.Container)"
+        )
         continue
     }
 
     $containerRunning = $containerMap.ContainsKey($entry.Container) -and ([string]$containerMap[$entry.Container].Status -match '^Up\b')
     if (-not $containerRunning -and -not $entry.Required) {
-        Add-Check "Service ports" $entry.Name "SKIP" "Optional container $($entry.Container) is not running; skipped port $testHost`:$port."
+        Add-Check "Service ports" $entry.Name "SKIP" "Optional container $($entry.Container) is not running; skipped port $testHost`:$port." (Get-PortEvidence $testHost $port $entry.Env $portText $entry.Container $containerMap)
         continue
     }
 
     $open = Test-TcpPort $testHost $port
     if ($open) {
-        Add-Check "Service ports" $entry.Name "PASS" "TCP connect succeeded at $testHost`:$port."
+        Add-Check "Service ports" $entry.Name "PASS" "TCP connect succeeded at $testHost`:$port." (Get-PortEvidence $testHost $port $entry.Env $portText $entry.Container $containerMap)
     } else {
         $status = if ($entry.Required) { "FAIL" } else { "WARN" }
-        Add-Check "Service ports" $entry.Name $status "TCP connect failed at $testHost`:$port."
+        Add-Check "Service ports" $entry.Name $status "TCP connect failed at $testHost`:$port." (Get-PortEvidence $testHost $port $entry.Env $portText $entry.Container $containerMap)
     }
 }
 
@@ -338,14 +466,23 @@ foreach ($pathCheck in $windowsPathChecks) {
 $downloadsRoot = Get-EnvValue $envValues "DOWNLOADS_ROOT" ""
 if ($downloadsRoot) {
     if ((Normalize-PathForCompare $downloadsRoot) -eq (Normalize-PathForCompare "I:\torrentfiles")) {
-        Add-Check "Windows paths" "Expected qBittorrent host path" "PASS" "DOWNLOADS_ROOT is $(ConvertTo-WindowsPathText $downloadsRoot)."
+        Add-Check "Windows paths" "Expected qBittorrent host path" "PASS" "DOWNLOADS_ROOT is $(ConvertTo-WindowsPathText $downloadsRoot)." @(
+            "Configured DOWNLOADS_ROOT: $downloadsRoot",
+            "Windows-normalized DOWNLOADS_ROOT: $(ConvertTo-WindowsPathText $downloadsRoot)",
+            "Expected normalized path: I:\torrentfiles"
+        )
     } else {
-        Add-Check "Windows paths" "Expected qBittorrent host path" "WARN" "DOWNLOADS_ROOT is $downloadsRoot; operational notes expect I:\torrentfiles."
+        Add-Check "Windows paths" "Expected qBittorrent host path" "WARN" "DOWNLOADS_ROOT is $downloadsRoot; operational notes expect I:\torrentfiles." @(
+            "Configured DOWNLOADS_ROOT: $downloadsRoot",
+            "Windows-normalized DOWNLOADS_ROOT: $(ConvertTo-WindowsPathText $downloadsRoot)",
+            "Expected normalized path: I:\torrentfiles"
+        )
     }
 }
 
 if ($containerMap.ContainsKey("qbittorrent") -and ([string]$containerMap["qbittorrent"].Status -match '^Up\b')) {
     try {
+        $dfCommand = "docker $($script:DockerArgs -join ' ') exec qbittorrent sh -c `"df -P -B1 /downloads | tail -n 1`""
         $dfRaw = Invoke-Docker @("exec", "qbittorrent", "sh", "-c", "df -P -B1 /downloads | tail -n 1") 2>&1
         if ($LASTEXITCODE -eq 0 -and $dfRaw) {
             $parts = ([string]$dfRaw).Trim() -split '\s+'
@@ -355,43 +492,57 @@ if ($containerMap.ContainsKey("qbittorrent") -and ([string]$containerMap["qbitto
                 $availableBytes = [int64]$parts[3]
                 $capacityNote = "Filesystem=$($parts[0]); Size=$([math]::Round($sizeBytes / 1GB, 1))GB; Used=$([math]::Round($usedBytes / 1GB, 1))GB; Available=$([math]::Round($availableBytes / 1GB, 1))GB; Mount=$($parts[5])"
                 if ($sizeBytes -lt 100GB) {
-                    Add-Check "qBittorrent /downloads mount" "Container df capacity" "FAIL" "$capacityNote. This looks like the tiny/full placeholder filesystem failure mode, not the media drive."
+                    Add-Check "qBittorrent /downloads mount" "Container df capacity" "FAIL" "$capacityNote. This looks like the tiny/full placeholder filesystem failure mode, not the media drive." @(
+                        "Command: $dfCommand",
+                        "Raw df row: $dfRaw",
+                        "Threshold: size must be at least 100GB to look like the expected media-drive mount."
+                    )
                 } else {
-                    Add-Check "qBittorrent /downloads mount" "Container df capacity" "PASS" $capacityNote
+                    Add-Check "qBittorrent /downloads mount" "Container df capacity" "PASS" $capacityNote @(
+                        "Command: $dfCommand",
+                        "Raw df row: $dfRaw",
+                        "Threshold: size must be at least 100GB to look like the expected media-drive mount."
+                    )
                 }
             } else {
-                Add-Check "qBittorrent /downloads mount" "Container df capacity" "WARN" "Unexpected df output: $dfRaw"
+                Add-Check "qBittorrent /downloads mount" "Container df capacity" "WARN" "Unexpected df output: $dfRaw" @("Command: $dfCommand", "Raw df output: $dfRaw")
             }
         } else {
-            Add-Check "qBittorrent /downloads mount" "Container df capacity" "FAIL" ($dfRaw -join "`n")
+            Add-Check "qBittorrent /downloads mount" "Container df capacity" "FAIL" "df command failed or returned no output." @("Command: $dfCommand", "Raw output:", ($dfRaw -join "`n"))
         }
     } catch {
-        Add-Check "qBittorrent /downloads mount" "Container df capacity" "FAIL" $_.Exception.Message
+        Add-Check "qBittorrent /downloads mount" "Container df capacity" "FAIL" $_.Exception.Message @("Command attempted: docker $($script:DockerArgs -join ' ') exec qbittorrent sh -c `"df -P -B1 /downloads | tail -n 1`"")
     }
 
     try {
+        $writableCommand = "docker $($script:DockerArgs -join ' ') exec qbittorrent sh -c `"test -d /downloads && test -w /downloads && echo writable || echo not_writable`""
         $writableRaw = Invoke-Docker @("exec", "qbittorrent", "sh", "-c", "test -d /downloads && test -w /downloads && echo writable || echo not_writable") 2>&1
         if ($LASTEXITCODE -eq 0 -and ([string]$writableRaw).Trim() -eq "writable") {
-            Add-Check "qBittorrent /downloads mount" "Container write permission" "PASS" "/downloads exists and is writable from inside the qBittorrent container."
+            Add-Check "qBittorrent /downloads mount" "Container write permission" "PASS" "/downloads exists and is writable from inside the qBittorrent container." @("Command: $writableCommand", "Raw result: $writableRaw")
         } else {
-            Add-Check "qBittorrent /downloads mount" "Container write permission" "FAIL" "Result: $writableRaw"
+            Add-Check "qBittorrent /downloads mount" "Container write permission" "FAIL" "Result: $writableRaw" @("Command: $writableCommand", "Raw result: $writableRaw")
         }
     } catch {
-        Add-Check "qBittorrent /downloads mount" "Container write permission" "FAIL" $_.Exception.Message
+        Add-Check "qBittorrent /downloads mount" "Container write permission" "FAIL" $_.Exception.Message @("Command attempted: docker $($script:DockerArgs -join ' ') exec qbittorrent sh -c `"test -d /downloads && test -w /downloads && echo writable || echo not_writable`"")
     }
 
     try {
+        $mountCommand = "docker $($script:DockerArgs -join ' ') exec qbittorrent sh -c `"mount | grep ' /downloads ' || true`""
         $mountRaw = Invoke-Docker @("exec", "qbittorrent", "sh", "-c", "mount | grep ' /downloads ' || true") 2>&1
         if ($mountRaw) {
-            Add-Check "qBittorrent /downloads mount" "Mount detail" "INFO" ($mountRaw -join "`n")
+            Add-Check "qBittorrent /downloads mount" "Mount detail" "INFO" ($mountRaw -join "`n") @("Command: $mountCommand", "Raw mount output:", ($mountRaw -join "`n"))
         } else {
-            Add-Check "qBittorrent /downloads mount" "Mount detail" "WARN" "No explicit mount line for /downloads was returned."
+            Add-Check "qBittorrent /downloads mount" "Mount detail" "WARN" "No explicit mount line for /downloads was returned." @("Command: $mountCommand", "Raw mount output was empty.")
         }
     } catch {
-        Add-Check "qBittorrent /downloads mount" "Mount detail" "WARN" $_.Exception.Message
+        Add-Check "qBittorrent /downloads mount" "Mount detail" "WARN" $_.Exception.Message @("Command attempted: docker $($script:DockerArgs -join ' ') exec qbittorrent sh -c `"mount | grep ' /downloads ' || true`"")
     }
 } else {
-    Add-Check "qBittorrent /downloads mount" "Container checks" "SKIP" "qBittorrent container is not running."
+    Add-Check "qBittorrent /downloads mount" "Container checks" "SKIP" "qBittorrent container is not running." @(
+        "qBittorrent present in docker ps -a: $($containerMap.ContainsKey('qbittorrent'))",
+        "Visible container names: $(($containerMap.Keys | Sort-Object) -join ', ')",
+        "Skipped commands: df -P -B1 /downloads; test -d /downloads; mount | grep ' /downloads '"
+    )
 }
 
 $groups = $script:Results | Group-Object Group
@@ -412,5 +563,17 @@ foreach ($group in $groups) {
     Write-Output "## $($group.Name)"
     foreach ($check in $group.Group) {
         Write-Output "- [$($check.Status)] $($check.Name): $($check.Detail)"
+        if ($check.Evidence.Count -gt 0) {
+            Write-Output "  Evidence:"
+            foreach ($evidenceLine in $check.Evidence) {
+                if ($null -eq $evidenceLine -or [string]$evidenceLine -eq "") { continue }
+                $splitLines = ([string]$evidenceLine) -split "`r?`n"
+                foreach ($splitLine in $splitLines) {
+                    if ($splitLine -ne "") {
+                        Write-Output "  - $splitLine"
+                    }
+                }
+            }
+        }
     }
 }
