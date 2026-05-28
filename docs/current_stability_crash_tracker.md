@@ -16,7 +16,7 @@ This file is for evidence and non-destructive diagnostics only. Do not claim a r
 | Status | Recurred after initial post-drive-swap soak; unresolved hardware/platform fault |
 | Affected system | Rebuilt MSI PRO Z790-A WiFi II / Intel Core i5-14500 Windows 10 Plex server |
 | Known service state | Plex and Docker media stack can run |
-| Current evidence level | Multiple hard resets with `BugcheckCode=0`; repeated fatal WHEA firmware error records; storage currently healthy/mounted |
+| Current evidence level | Multiple hard resets with `BugcheckCode=0`; repeated fatal WHEA firmware error records; current soak has only the OS drive connected |
 
 ---
 
@@ -85,6 +85,8 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 | 2026-05-27 10:57:14 PM | Unexpected shutdown | Reboot/log at 11:34:10 PM; `Kernel-Power 41`, `BugcheckCode=0`; fatal `WHEA-Logger 1`; no dump found |
 | 2026-05-27 11:34:23 PM | Unexpected shutdown reported after overnight recovery | Reboot/log at 2026-05-28 7:03:46 AM; `Kernel-Power 41`, `BugcheckCode=0`; fatal `WHEA-Logger 1`; no minidump or `MEMORY.DMP`; logs persisted under `docs/crash_logs/20260528-070552` |
 | 2026-05-28 10:23:59 AM | Unexpected shutdown after motherboard power-cable inspection | Reboot/log at 11:30:23 AM; `Kernel-Power 41`, `BugcheckCode=0`; no dump found; `I:` / Torrent missing after reboot and Docker `/downloads` became tiny full placeholder; logs persisted under `docs/crash_logs/20260528-113348` |
+| 2026-05-28 11:44:14 AM | Unexpected shutdown before major storage/power isolation | Reboot/log at 12:23:31 PM; `Kernel-Power 41`, `BugcheckCode=0`; fatal `WHEA-Logger 1`; no minidump or `MEMORY.DMP`; user then removed PCI SATA expansion from active path and removed legacy Molex-to-SATA power branch; logs persisted under `docs/crash_logs/20260528-123113` |
+| 2026-05-28 12:23:38 PM | Unexpected shutdown before true OS-only soak began | Reboot/log at 12:50:08 PM; `Kernel-Power 41`, `BugcheckCode=0`; fatal `WHEA-Logger 1`; user clarified the OS-only drive configuration began after this recovery; logs persisted under `docs/crash_logs/20260528-125342` |
 
 ## 2026-05-25 Admin Hardening / Repair Pass
 
@@ -210,6 +212,39 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 - Treat the loose SATA data cable as a confirmed storage-path fault for the disappearing `I:` drive. It does not yet prove the loose data cable caused the hard-reset crash pattern, but it is now a concrete hardware variable under soak.
 - Recommended next step: replace this SATA data cable with a known-good locking SATA cable if the connector still feels loose, and avoid cable tension at the drive end.
 
+## 2026-05-28 Major Storage And Power Isolation
+
+- User recovered from another crash, then removed every drive except OS, Torrent, TV 1, and TV 2.
+- Remaining drives are plugged directly into motherboard SATA ports.
+- PCI SATA expansion card was removed from the active storage path.
+- The power cable branch previously used with the broken-pin drive was removed entirely.
+- User noted this branch was a legacy 4-pin peripheral/Molex-style power cable with SATA power adapter(s), used because the PSU did not come with enough native SATA power cables.
+- This adapter branch had powered the broken-pin drive and other drives.
+- Current detected fixed volumes after isolation: `C:`, `H:` TV 2, `I:` Torrent, and `J:` TV 1.
+- Current detected physical disks after isolation: OS SSD `S1DDNWAF903275D`, TV 1 `ZVTBPM4J`, TV 2 `ZYD02EQ2`, and Torrent `ZYE00444`.
+- qBittorrent `/downloads` was correctly mounted from `I:\`, and Sonarr `/tv/tv1`, `/tv/tv2`, and `/downloads` were correctly mapped.
+- Current strongest component-level suspect: the removed legacy 4-pin-to-SATA adapter/power branch, especially because it fed multiple HDDs and was associated with the physically damaged broken-pin drive. Do not reuse it.
+- Next soak posture: only direct motherboard SATA data paths and native RM750e-compatible modular SATA power cables. If more SATA power connectors are needed, obtain compatible Corsair RM750e SATA power cables rather than using 4-pin-to-SATA adapters.
+
+## 2026-05-28 OS-Only SATA Storage Isolation Started
+
+- User initially reported the soak failed again, then clarified that the true OS-only drive state began after this recovery.
+- Exact active soak state as of 2026-05-28: only the OS drive is connected; all media and torrent drives are disconnected.
+- The OS-only soak started on 2026-05-28.
+- User removed all SATA drives/cables and unused power cables except for the OS SSD after the `2026-05-28 12:23:38 PM` unexpected shutdown.
+- Capture directory: `docs/crash_logs/20260528-125342`.
+- Current boot time at capture: `2026-05-28 12:50:06 PM`.
+- Latest unexpected previous shutdown: `2026-05-28 12:23:38 PM`.
+- Latest `Kernel-Power 41` at `2026-05-28 12:50:08 PM` again showed `BugcheckCode=0`, `PowerButtonTimestamp=0`, `SleepInProgress=0`, and `ConnectedStandbyInProgress=false`.
+- Latest WHEA Event 1 at `2026-05-28 12:50:15 PM` again preserved a 3552-byte fatal hardware error record.
+- No Windows minidump or `MEMORY.DMP` was present.
+- Windows detected only `C:` and only physical disk serial `S1DDNWAF903275D` after the user changed to the OS-only isolation state.
+- RAM still reported two Lexar 16 GB DIMMs in A2/B2 at `4800`.
+- GPU still detected as NVIDIA GeForce RTX 3050, status `OK`.
+- This does not yet prove the system crashes with only the OS SSD connected. The current active test is to soak in this OS-only storage state.
+- If the system crashes during this OS-only soak, then the disconnected media drives, PCI SATA expansion card, loose Torrent-drive SATA data cable, and removed Molex-to-SATA adapter branch become much less likely to be the complete root cause.
+- Do not move to RAM isolation until the OS-only storage soak either fails or runs long enough to change the diagnosis.
+
 ## 2026-05-25 WHEA / IOMMU Finding
 
 - After BIOS update to `M.A0`, Windows logged `WHEA-Logger` Event ID `1`: `A fatal hardware error has occurred`.
@@ -303,7 +338,9 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 - [x] Record recurrence after the first overnight soak.
 - [x] Persist 2026-05-28 crash logs and WHEA CPER bundle.
 - [x] Persist 2026-05-28 11:33 post-crash logs and record missing `I:` / Torrent drive state.
-- [ ] Continue normal-operation soak only after a new hardware isolation change is made.
+- [x] Persist 2026-05-28 12:31 post-crash logs and record reduced-drive, direct-motherboard-SATA isolation state.
+- [x] Persist 2026-05-28 12:53 post-crash logs and record the start of OS-only SATA storage isolation.
+- [ ] Continue OS-only storage soak and record whether it fails.
 - [x] Recheck `H:` / TV 2 after recurrence; present and mapped correctly on 2026-05-27.
 - [ ] Review Docker Desktop/WSL logs only after Windows crash evidence is collected.
 - [ ] Avoid firmware, BIOS, storage-controller, or drive-letter changes until a diagnostic plan calls for them.
