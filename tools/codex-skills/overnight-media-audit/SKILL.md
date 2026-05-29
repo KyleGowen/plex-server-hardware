@@ -21,14 +21,16 @@ Default overnight window: from yesterday at 6:00 PM Pacific to now. If the user 
 Run the bundled script from `C:\plex-server`:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File tools\codex-skills\overnight-media-audit\scripts\Get-OvernightMedia.ps1
+powershell -ExecutionPolicy Bypass -File tools\codex-skills\overnight-media-audit\scripts\Get-OvernightMedia.ps1 -NoQueueDetails -JsonCompact
 ```
 
 Optional cutoff:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File tools\codex-skills\overnight-media-audit\scripts\Get-OvernightMedia.ps1 -SinceLocal "2026-05-24 18:00"
+powershell -ExecutionPolicy Bypass -File tools\codex-skills\overnight-media-audit\scripts\Get-OvernightMedia.ps1 -SinceLocal "2026-05-24 18:00" -NoQueueDetails -JsonCompact
 ```
+
+Run without `-NoQueueDetails` only when the user asks about stuck queue items or the compact report shows a health/download-client blocker.
 
 ## Reporting
 
@@ -37,8 +39,8 @@ Keep the final answer short:
 1. State whether anything new downloaded or imported.
 2. List imported media first, then qBit-only completions.
 3. If no new media, say so plainly.
-4. Include current blockers only if present: qBit auth failures, Arr health errors, or queue items stuck as `downloadClientUnavailable`.
-5. If qBit login is unavailable, say qBit-only completion data could not be checked and rely on Sonarr/Radarr history plus health/queue.
+4. Include current blockers only if present: qBit auth failures or Arr health errors. Check queue details only if the compact report suggests a blocker or the user asks.
+5. If qBit, Sonarr, or Radarr is unavailable, say which data could not be checked and do not perform extra debugging unless the user asks.
 
 Do not trigger searches, downloads, imports, refreshes, deletes, moves, or torrent actions. Read-only only.
 

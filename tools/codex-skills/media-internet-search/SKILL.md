@@ -1,11 +1,13 @@
 ---
 name: media-internet-search
-description: Research public movie, film, TV show, series, season, episode, franchise, collection, release, cast/crew, chronology, production, title/year, and media identity facts on the internet before Plex, Sonarr, Radarr, qBittorrent, or collection workflows act on them. Use whenever Codex needs web research for media facts, to resolve ambiguous titles, verify years or media type, build watch/order lists, identify collection membership, or source public entertainment information.
+description: Research public movie, film, TV show, series, season, episode, franchise, collection, release, cast/crew, chronology, production, title/year, and media identity facts on the internet. Use when media facts are ambiguous, current/future, collection-related, chronology-related, remake/reboot-sensitive, or need sourced public verification before Plex/Arr workflows act on them.
 ---
 
 # Media Internet Search
 
 Use this skill for public web research about movies, TV, franchises, collections, and release facts. Keep it read-only and hand results back to the main agent or the relevant Plex stack skill.
+
+Do not use this skill for every exact add request. When the user already gives a clear title, year, and media type, let the Arr lookup helper resolve it first and come here only if the lookup is ambiguous or not confident.
 
 ## Safety
 

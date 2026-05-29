@@ -1,5 +1,15 @@
 # Plex Collection Curator Workflow
 
+## 0. Select The Smallest Mode
+
+- `audit-only`: research and reconcile; no Plex or Arr writes.
+- `collection-only`: create/update collection membership for available Plex items.
+- `fill-missing`: add missing media to Radarr/Sonarr and search after safety checks.
+- `posterize`: apply TPDb posters to an existing or newly updated collection.
+- `complete`: run all phases only when explicitly requested.
+
+Skip phases that are outside the selected mode.
+
 ## 1. Research the Master List
 
 1. Search the internet for the requested collection/franchise/studio/theme.
@@ -49,6 +59,8 @@ If a file/folder exists but Plex lacks metadata:
 
 ## 4. Create or Update Collection
 
+Skip this section in `audit-only` and `fill-missing` modes unless the user also asked to update Plex collection membership.
+
 For a normal manual collection:
 
 1. Find existing collection by title under the relevant section.
@@ -65,6 +77,8 @@ For mixed movie/show collections, maintain separate Plex collections per library
 
 ## 5. Missing Media Adds
 
+Run this section only in `fill-missing` or `complete` mode.
+
 For master-list entries not in Plex and not found on disk:
 
 1. Check Radarr/Sonarr for existing monitored/unmonitored entries before adding.
@@ -76,6 +90,8 @@ For master-list entries not in Plex and not found on disk:
 7. If matching is ambiguous, skip and report rather than adding the wrong item.
 
 ## 6. TPDb Poster Application
+
+Run this section only in `posterize` or `complete` mode.
 
 1. Search TPDb for the collection name and key titles.
 2. Prefer one uploader/set family with collection and item posters.

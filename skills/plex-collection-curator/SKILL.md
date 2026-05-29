@@ -1,20 +1,21 @@
 ---
 name: plex-collection-curator
-description: Build and maintain curated Plex collections for Kyle's media server. Use when the user asks to create, update, fill, posterize, or audit a Plex collection such as a franchise, studio, actor, universe, chronology, or themed set. The workflow researches a current source-backed master list, reconciles movies and TV shows against Plex, creates or updates Plex collections, finds missing library items, adds missing movies to Radarr and starts downloads by default, adds missing series to Sonarr and starts downloads by default, and applies matching The Poster Database posters to the collection and contained media.
+description: Build and maintain curated Plex collections for Kyle's media server. Use when the user asks to audit, create, update, fill, or posterize a Plex collection such as a franchise, studio, actor, universe, chronology, or themed set. Choose the smallest mode implied by the request: audit-only, collection-only, fill-missing, posterize, or complete collection work.
 ---
 
 # Plex Collection Curator
 
 ## Goal
 
-Create complete, polished Plex collections for Kyle's Windows-native Plex server:
+Create or maintain Plex collections for Kyle's Windows-native Plex server while choosing the smallest workflow that satisfies the request.
 
-- Research the requested collection from reliable current sources.
-- Include movies and TV shows when the franchise/universe/studio/theme calls for both.
-- Reconcile the master list against Plex metadata and actual library folders.
-- Create or update Plex collections and assign all matched Plex items.
-- Add missing movies to Radarr and missing series to Sonarr, monitored by default. Start downloads for newly added missing media by default unless the user explicitly asks for add-only behavior.
-- Find a popular, coherent The Poster Database (TPDb) poster set and apply posters to the collection and each item.
+Modes:
+
+- `audit-only`: research and reconcile what exists/missing; no Plex or Arr mutations.
+- `collection-only`: create/update Plex collection membership for already available library items.
+- `fill-missing`: add missing movies/series to Radarr/Sonarr and start searches after download-path checks.
+- `posterize`: find/apply TPDb posters for the collection and matched items.
+- `complete`: research, reconcile, update collection, fill missing media, and posterize. Use only when the user asks for complete collection creation/fill/poster work.
 
 Read `references/workflow.md` when executing this skill.
 
@@ -25,6 +26,7 @@ Read `references/workflow.md` when executing this skill.
 - Prefer read-only Plex checks before write actions.
 - Plex collection creation/update, poster changes, and library scans are allowed when the user has asked for that work. For unrelated refreshes or broad repairs, confirm first.
 - Missing-media fill requests imply starting Radarr `MoviesSearch` and Sonarr `SeriesSearch` after the required download-path safety check, unless the user explicitly asks for add-only behavior.
+- Audit-only and collection-only requests must not add media, trigger searches, or apply posters.
 - When adding to Sonarr, set `monitored: true`, monitor normal seasons, and leave specials/season 0 unmonitored unless requested.
 - When adding to Radarr, set `monitored: true`.
 - Confirm library root folders, drive letters, and path mappings before any path repair or import-path mutation.
@@ -32,7 +34,7 @@ Read `references/workflow.md` when executing this skill.
 
 ## Source Strategy
 
-Use internet research for the master list and TPDb poster selection because both change over time.
+Use internet research for the master list and TPDb poster selection because both change over time. Skip TPDb research unless the selected mode includes `posterize` or `complete`.
 
 For public movie, TV, franchise, collection, release, chronology, title/year, or media identity research, use `media-internet-search` first and carry its sourced findings into this workflow.
 
@@ -43,7 +45,7 @@ Prefer:
 - Wikipedia or TMDb/IMDb only as cross-checks, not as the sole source when better sources exist.
 - TPDb set pages with visible set membership, uploader, and poster counts/likes.
 
-Always summarize which sources were used in the final answer.
+Summarize sources used in the final answer, but keep the list compact.
 
 ## Plex Strategy
 

@@ -1,3 +1,3 @@
 ﻿display_name: Add Media to Plex
-short_description: Add requested movies or shows through Radarr or Sonarr and trigger a qBittorrent search.
-default_prompt: Add the requested movie or show to my Plex ecosystem through Radarr or Sonarr, trigger the media search, and report the queue result.
+short_description: Add exact requested movies or shows through Radarr or Sonarr and trigger a qBittorrent search.
+default_prompt: Add the requested movie or show through the Arr helper when title, year, and type are clear; use media research only for ambiguous matches, then report the queue result.

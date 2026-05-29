@@ -1,7 +1,8 @@
 param(
     [string]$ProjectRoot = "C:\plex-server",
     [string]$ComposeFile = "docker-compose.media.yml",
-    [string]$EnvFile = ".env"
+    [string]$EnvFile = ".env",
+    [switch]$SummaryOnly
 )
 
 $ErrorActionPreference = "Stop"
@@ -556,6 +557,20 @@ Write-Output ""
 Write-Output "## Summary"
 foreach ($count in $counts) {
     Write-Output "- $($count.Name): $($count.Count)"
+}
+
+if ($SummaryOnly) {
+    $notable = @($script:Results | Where-Object { $_.Status -in @("FAIL", "WARN") })
+    Write-Output ""
+    Write-Output "## Notable Checks"
+    if ($notable.Count -eq 0) {
+        Write-Output "- No FAIL or WARN checks."
+    } else {
+        foreach ($check in $notable) {
+            Write-Output "- [$($check.Status)] $($check.Group) / $($check.Name): $($check.Detail)"
+        }
+    }
+    exit 0
 }
 
 foreach ($group in $groups) {

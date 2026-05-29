@@ -1,6 +1,8 @@
 param(
     [string]$ProjectRoot = "C:\plex-server",
-    [string]$SinceLocal
+    [string]$SinceLocal,
+    [switch]$NoQueueDetails,
+    [switch]$JsonCompact
 )
 
 $ErrorActionPreference = "Stop"
@@ -39,39 +41,57 @@ $sinceUtc = $sinceDto.UtcDateTime.ToString("yyyy-MM-ddTHH:mm:ssZ")
 $result = [ordered]@{
     since_local = $sinceDto.ToString("yyyy-MM-dd HH:mm:ss zzz")
     qbit = [ordered]@{ login = "not_checked"; count = 0; items = @() }
-    sonarr = [ordered]@{ history_count = 0; imports = @(); health = @(); queue = @() }
-    radarr = [ordered]@{ history_count = 0; imports = @(); health = @(); queue = @() }
+    sonarr = [ordered]@{ ok = $false; error = $null; history_count = 0; imports = @(); health = @(); queue = @() }
+    radarr = [ordered]@{ ok = $false; error = $null; history_count = 0; imports = @(); health = @(); queue = @() }
 }
 
 $sonarrConfigPath = "C:\media-stack\config\sonarr\config.xml"
 $radarrConfigPath = "C:\media-stack\config\radarr\config.xml"
 
 if (Test-Path $sonarrConfigPath) {
+    try {
     $sonarrConfig = [xml](Get-Content $sonarrConfigPath)
     $sonarrHeaders = @{ "X-Api-Key" = $sonarrConfig.Config.ApiKey }
     $sHistory = Invoke-Arr "http://127.0.0.1:8989/api/v3/history/since?date=$sinceUtc" $sonarrHeaders
+    $result.sonarr.ok = $true
     $result.sonarr.history_count = @($sHistory).Count
     $result.sonarr.imports = @($sHistory | Where-Object { $_.eventType -eq "downloadFolderImported" -or $_.eventType -eq "episodeFileImported" } | Select-Object date,eventType,sourceTitle,@{n="series";e={$_.series.title}},@{n="episode";e={($_.episodes | ForEach-Object { "S{0:00}E{1:00} {2}" -f $_.seasonNumber,$_.episodeNumber,$_.title }) -join "; "}})
     $sHealth = Expand-Items (Invoke-Arr "http://127.0.0.1:8989/api/v3/health" $sonarrHeaders)
     if ($sHealth.Count -gt 0) {
         $result.sonarr.health = @($sHealth | Where-Object { $null -ne $_ } | Select-Object source,type,message)
     }
-    $sQueue = Invoke-Arr "http://127.0.0.1:8989/api/v3/queue?includeUnknownSeriesItems=true&includeSeries=true&includeEpisode=true&page=1&pageSize=50" $sonarrHeaders
-    $result.sonarr.queue = @($sQueue.records | Select-Object title,status,trackedDownloadStatus,trackedDownloadState)
+    if (-not $NoQueueDetails) {
+        $sQueue = Invoke-Arr "http://127.0.0.1:8989/api/v3/queue?includeUnknownSeriesItems=true&includeSeries=true&includeEpisode=true&page=1&pageSize=50" $sonarrHeaders
+        $result.sonarr.queue = @($sQueue.records | Select-Object title,status,trackedDownloadStatus,trackedDownloadState)
+    }
+    } catch {
+        $result.sonarr.error = $_.Exception.Message
+    }
+} else {
+    $result.sonarr.error = "Sonarr config not found."
 }
 
 if (Test-Path $radarrConfigPath) {
+    try {
     $radarrConfig = [xml](Get-Content $radarrConfigPath)
     $radarrHeaders = @{ "X-Api-Key" = $radarrConfig.Config.ApiKey }
     $rHistory = Invoke-Arr "http://127.0.0.1:7878/api/v3/history/since?date=$sinceUtc" $radarrHeaders
+    $result.radarr.ok = $true
     $result.radarr.history_count = @($rHistory).Count
     $result.radarr.imports = @($rHistory | Where-Object { $_.eventType -eq "downloadFolderImported" -or $_.eventType -eq "movieFileImported" } | Select-Object date,eventType,sourceTitle,@{n="movie";e={$_.movie.title}},@{n="year";e={$_.movie.year}})
     $rHealth = Expand-Items (Invoke-Arr "http://127.0.0.1:7878/api/v3/health" $radarrHeaders)
     if ($rHealth.Count -gt 0) {
         $result.radarr.health = @($rHealth | Where-Object { $null -ne $_ } | Select-Object source,type,message)
     }
-    $rQueue = Invoke-Arr "http://127.0.0.1:7878/api/v3/queue?includeUnknownMovieItems=true&includeMovie=true&page=1&pageSize=50" $radarrHeaders
-    $result.radarr.queue = @($rQueue.records | Select-Object title,status,trackedDownloadStatus,trackedDownloadState)
+    if (-not $NoQueueDetails) {
+        $rQueue = Invoke-Arr "http://127.0.0.1:7878/api/v3/queue?includeUnknownMovieItems=true&includeMovie=true&page=1&pageSize=50" $radarrHeaders
+        $result.radarr.queue = @($rQueue.records | Select-Object title,status,trackedDownloadStatus,trackedDownloadState)
+    }
+    } catch {
+        $result.radarr.error = $_.Exception.Message
+    }
+} else {
+    $result.radarr.error = "Radarr config not found."
 }
 
 try {
@@ -104,4 +124,8 @@ try {
     $result.qbit.error = $_.Exception.Message
 }
 
-$result | ConvertTo-Json -Depth 8
+if ($JsonCompact) {
+    $result | ConvertTo-Json -Depth 8 -Compress
+} else {
+    $result | ConvertTo-Json -Depth 8
+}

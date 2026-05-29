@@ -31,7 +31,7 @@ Per-service details live in `docs/services/`. This file is the summary table and
 | Radarr | Movie monitoring, release selection, downloads, imports | Docker | Running via compose | `C:\media-stack\config\radarr` | `http://localhost:7878` | [services/radarr.md](services/radarr.md) |
 | Prowlarr | Indexer management for Sonarr/Radarr | Docker | Running via compose | `C:\media-stack\config\prowlarr` | `http://localhost:9696` | [services/prowlarr.md](services/prowlarr.md) |
 | Bazarr | Subtitle automation for TV and movies | Docker | Running via compose; connected to Sonarr/Radarr | `C:\media-stack\config\bazarr` | `http://localhost:6767` | [services/bazarr.md](services/bazarr.md) |
-| Tautulli | Plex monitoring, stream history, usage analytics | Docker | Running via compose; first-run Plex setup still needs confirmation | `C:\media-stack\config\tautulli` | `http://localhost:8181` | [services/tautulli.md](services/tautulli.md) |
+| Tautulli | Plex monitoring, stream history, usage analytics | Docker | Running via compose; first-run Plex setup notes documented, setup still needs confirmation | `C:\media-stack\config\tautulli` | `http://localhost:8181` | [services/tautulli.md](services/tautulli.md) |
 | Uptime Kuma | Service health monitoring, uptime history, outage/recovery notifications | Docker | Running via compose; monitors created and reporting healthy | `C:\media-stack\config\uptime-kuma` | `http://localhost:3001` | [services/uptime-kuma.md](services/uptime-kuma.md) |
 | qBittorrent | Torrent download client | Docker | Running via compose | `C:\media-stack\config\qbittorrent` | `http://localhost:8080` | [services/qbittorrent.md](services/qbittorrent.md) |
 | Unpackerr | Automated archive extraction | Docker | Running via compose; app integrations need confirmation | `C:\media-stack\config\unpackerr` | No normal Web UI | [services/unpackerr.md](services/unpackerr.md) |
@@ -77,7 +77,7 @@ Per-service details live in `docs/services/`. This file is the summary table and
 | Area | Gap |
 |---|---|
 | Random crashing | Unresolved; track in [current_stability_crash_tracker.md](current_stability_crash_tracker.md) |
-| Tautulli | Confirm/complete Plex first-run setup and one playback history test |
+| Tautulli | Confirm/complete Plex first-run setup using [services/tautulli.md](services/tautulli.md), then run one playback activity/history test |
 | Uptime Kuma | Add notification provider if desired |
 | qBittorrent | Confirm Web UI credentials are not default; add startup mount guard if desired |
 | Sonarr/Radarr | Confirm completed download handling with controlled tests |

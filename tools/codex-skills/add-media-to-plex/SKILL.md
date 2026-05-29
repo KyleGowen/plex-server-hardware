@@ -16,15 +16,16 @@ Use this skill to add wanted media to the local Plex ecosystem. Plex itself shou
 - Trigger an Arr search only when the user asks to add/search/download media, which this skill is designed to do.
 - Do not refresh Plex libraries from this skill. Plex refreshes require separate explicit confirmation.
 - If a download client fails, diagnose Radarr/Sonarr health and qBittorrent auth/connectivity before retrying search.
-- If public web research is needed to resolve title identity, year, media type, remake/reboot status, or ambiguity, use `media-internet-search` before adding anything to Radarr or Sonarr.
+- If title, year, and media type are already clear, try the helper's Arr lookup first. Use `media-internet-search` before adding only when identity is ambiguous, current/future, remake/reboot-sensitive, collection/chronology-related, or the Arr lookup cannot select one confident match.
 
 ## Preferred Workflow
 
 1. Classify the request:
    - Movie words: movie, film, documentary, TMDB, release year.
    - TV words: show, series, season, episode, TV, Sonarr.
-   - If ambiguous, infer from title/year context when obvious; otherwise ask one concise question.
-   - For internet media facts or ambiguous public identity checks, route through `media-internet-search` first.
+   - If title, year, and type are explicit, proceed directly to the helper/Arr lookup.
+   - If ambiguous, infer from title/year context when obvious; otherwise use `media-internet-search` or ask one concise question.
+   - For current/future releases, collections, chronology, remakes/reboots, or ambiguous public identity checks, route through `media-internet-search` first.
 2. Resolve the title through the correct Arr lookup endpoint.
    - Prefer exact year matches for movie requests such as "from last year".
    - Skip ambiguous matches instead of adding the wrong remake or unrelated title.
@@ -44,8 +45,8 @@ Use this skill to add wanted media to the local Plex ecosystem. Plex itself shou
 Prefer the bundled helper for the common case:
 
 ```powershell
-C:\Users\Kyle\.codex\skills\add-media-to-plex\scripts\Add-ArrMedia.ps1 -Type movie -Title "A Minecraft Movie" -Year 2025
-C:\Users\Kyle\.codex\skills\add-media-to-plex\scripts\Add-ArrMedia.ps1 -Type series -Title "Example Show" -Year 2024
+tools\codex-skills\add-media-to-plex\scripts\Add-ArrMedia.ps1 -Type movie -Title "A Minecraft Movie" -Year 2025
+tools\codex-skills\add-media-to-plex\scripts\Add-ArrMedia.ps1 -Type series -Title "Example Show" -Year 2024
 ```
 
 The helper reads API keys from:

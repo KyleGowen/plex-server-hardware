@@ -1,0 +1,3 @@
+display_name: Plex Stack Health Check
+short_description: Run a compact read-only health check for the Plex and Docker Arr stack.
+default_prompt: Check the Plex media stack health with summary output and report only failures, warnings, and essential status.

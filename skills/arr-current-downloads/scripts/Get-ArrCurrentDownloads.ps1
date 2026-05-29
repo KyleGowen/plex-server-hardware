@@ -4,9 +4,34 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-$json = docker exec $ContainerName sh -c "wget -qO- http://127.0.0.1:8080/api/v2/torrents/info"
+try {
+    $json = docker exec $ContainerName sh -c "wget -qO- http://127.0.0.1:8080/api/v2/torrents/info" 2>&1
+} catch {
+    [pscustomobject]@{
+        ok = $false
+        error = "qBittorrent container query failed."
+        detail = $_.Exception.Message
+        downloads = @()
+    } | ConvertTo-Json -Depth 4
+    exit 0
+}
+
+if ($LASTEXITCODE -ne 0) {
+    [pscustomobject]@{
+        ok = $false
+        error = "qBittorrent container query failed."
+        detail = (($json | ForEach-Object { [string]$_ }) -join "`n").Trim()
+        downloads = @()
+    } | ConvertTo-Json -Depth 4
+    exit 0
+}
+
 if ([string]::IsNullOrWhiteSpace($json)) {
-    @() | ConvertTo-Json
+    [pscustomobject]@{
+        ok = $true
+        error = $null
+        downloads = @()
+    } | ConvertTo-Json -Depth 4
     exit 0
 }
 
@@ -62,4 +87,8 @@ $downloads = @(
         Sort-Object arrApp, media
 )
 
-$downloads | ConvertTo-Json -Depth 4
+[pscustomobject]@{
+    ok = $true
+    error = $null
+    downloads = @($downloads)
+} | ConvertTo-Json -Depth 4

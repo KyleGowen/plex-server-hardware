@@ -74,7 +74,7 @@ Detailed hardware and drive inventory lives in [plex_server_hardware_inventory.m
 | Radarr | Docker | Running; movie root folders and qBittorrent client configured |
 | Prowlarr | Docker | Running; active indexer manager for Sonarr/Radarr |
 | Bazarr | Docker | Running; connected to Sonarr/Radarr; one controlled subtitle test still recommended |
-| Tautulli | Docker | Running; first-run Plex setup still needs completion if not already done |
+| Tautulli | Docker | Running; first-run Plex setup and token-handling notes documented in [services/tautulli.md](services/tautulli.md); setup still needs completion/confirmation |
 | qBittorrent | Docker | Running; verify `/downloads` mount after boot/crash before trusting torrents |
 | Unpackerr | Docker | Running; Starr app integrations still need confirmation/configuration |
 | Jackett | Optional Docker profile | Disabled by default; use only for legacy indexer needs |
@@ -113,7 +113,7 @@ Per-service docs live in [services](services).
 
 ## Plex / Media Stack
 
-- [ ] Complete or confirm Tautulli first-run Plex setup.
+- [ ] Complete or confirm Tautulli first-run Plex setup using the checklist in [services/tautulli.md](services/tautulli.md).
 - [ ] Verify one controlled Plex playback appears in Tautulli active streams and history.
 - [ ] Confirm qBittorrent Web UI credentials are not default.
 - [ ] Confirm qBittorrent category behavior with one controlled Sonarr/Radarr grab.

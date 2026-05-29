@@ -1,13 +1,13 @@
 ---
 name: plex-stack-health-check
-description: Run a detailed read-only validation of Kyle's Windows-native Plex plus Docker Arr stack. Use when the user asks to check stack health, validate Docker containers, service ports, config folders, Windows media paths, qBittorrent downloads mount, or wants a redacted operational validation report.
+description: Run a read-only validation of Kyle's Windows-native Plex plus Docker Arr stack. Use when the user asks to check stack health, validate Docker containers, service ports, config folders, Windows media paths, qBittorrent downloads mount, or wants a redacted operational validation report.
 ---
 
 # Plex Stack Health Check
 
 ## Goal
 
-Produce a full, detailed, redacted validation report for the local Plex media server stack.
+Produce a compact redacted validation report for the local Plex media server stack. Use detailed evidence only when the user asks for full details or the summary shows a failure that needs diagnosis.
 
 The check is read-only. It validates:
 
@@ -21,21 +21,21 @@ The check is read-only. It validates:
 
 ## Fast Path
 
-Run from `C:\plex-server`:
+Run summary mode from `C:\plex-server` by default:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File skills\plex-stack-health-check\scripts\Test-PlexStackHealth.ps1 -SummaryOnly
+```
+
+Use the full report only when the user asks for evidence or troubleshooting detail:
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File skills\plex-stack-health-check\scripts\Test-PlexStackHealth.ps1
 ```
 
-Optional explicit paths:
-
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File skills\plex-stack-health-check\scripts\Test-PlexStackHealth.ps1 -ProjectRoot "C:\plex-server" -ComposeFile "docker-compose.media.yml" -EnvFile ".env"
-```
-
 ## Reporting
 
-Return the script output as the basis of the answer. Keep the validation detailed; it is okay to group similar validations by section. Preserve the per-check `Evidence` blocks because they explain which command output, `.env` values, visible containers, port listeners, drive inventory, or path checks contributed to each result.
+Return the script output as the basis of the answer. Keep the normal response brief: summary counts plus any `FAIL` or `WARN` checks. Do not include per-check `Evidence` blocks unless the user asked for a full report or the evidence is necessary for the next decision.
 
 Call out especially:
 
