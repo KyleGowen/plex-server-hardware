@@ -263,6 +263,16 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 - Physical disk inventory showed OS SSD serial `S1DDNWAF903275D` and Torrent drive serial `ZYE00444`, both `Healthy` / `OK`.
 - Current reassembly test posture: soak with only `C:` and `I:` connected. Do not add another drive until this step passes its soak checkpoint.
 
+## 2026-05-28 Reassembly Step 2 - TV Drive Attempt
+
+- User chose to reconnect TV drives for Plex viewing, with qBittorrent and Arr services left off.
+- User reported the TV drives are using the same native power cable as the Torrent drive.
+- Windows check after reboot showed `C:`, `H:` TV 2, and `I:` Torrent present.
+- Physical disk inventory showed OS SSD `S1DDNWAF903275D`, TV 2 `ZYD02EQ2`, and Torrent `ZYE00444`, all `Healthy` / `OK`.
+- `J:` / TV 1 was not visible in the checked Windows volume inventory.
+- Docker check showed only `torrent-mcp` running; the main qBittorrent/Arr stack was not running at that moment.
+- Current test posture: `C:` + `I:` + `H:` with TV 1 absent, no main qBittorrent/Arr stack. If a crash occurs, remove TV drives and return to `C:` + `I:` only.
+
 ## 2026-05-25 WHEA / IOMMU Finding
 
 - After BIOS update to `M.A0`, Windows logged `WHEA-Logger` Event ID `1`: `A fatal hardware error has occurred`.
@@ -339,6 +349,20 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 - Important operational lesson: an Arr app can be "Up" in Docker while its config is corrupted or its dependencies have stale API keys. After rebuilding any Arr API key, check Prowlarr app links, Sonarr/Radarr Prowlarr indexers, Bazarr, and Unpackerr.
 - Do not trust downloads or imports yet: the application layer recovered, but `/downloads` remained unsafe because `I:\torrentfiles` was still missing and Docker still showed the tiny full fallback mount.
 
+## 2026-05-28 Windows Declutter And Power Hardening
+
+- User asked to implement a Windows 10 media-server declutter and efficiency pass.
+- Session was not elevated, so changes were limited to current-user app removals, current-user startup/noise settings, and power-plan settings available without admin rights.
+- Removed current-user consumer AppX packages including Weather, Copilot, Get Help, Tips/Get Started, 3D Viewer, Office Hub, Solitaire, Mixed Reality Portal, OneNote, Outlook for Windows, People, Skype, Wallet, Alarms, Camera, Mail/Calendar, Feedback Hub, Maps, Sound Recorder, Phone Link, Groove/Music, Movies & TV, Dev Home, and removable Xbox packages.
+- `Microsoft.XboxGameCallableUI` and `Microsoft.Windows.PeopleExperienceHost` remain because they are protected Windows system components.
+- Disabled current-user OneDrive and Edge autostart entries. Remaining startup entries are Docker Desktop, Plex Media Server, and Windows Security notification icon.
+- Set the active Balanced power plan for always-on server use: sleep disabled, hibernate timeout disabled, hard-disk timeout disabled, display timeout set to 15 minutes, hybrid sleep disabled, AC wake timers set to important-only, PCIe Link State Power Management disabled, and USB selective suspend disabled.
+- `powercfg /a` confirmed hibernation and Fast Startup are unavailable after the pass.
+- Marked currently present media/download roots as not content-indexed: `H:\TV Shows`, `I:\torrentfiles`, and `J:\TV Shows`. `D:\Movies`, `E:\Movies`, and `F:\Movies` were not visible at the time of this pass, so they were not changed.
+- Set current-user background app suppression and Delivery Optimization download mode preference where writable without elevation.
+- Verified Plex Web returned HTTP 200 at `http://localhost:32400/web`.
+- Docker media compose stack was not running at verification time; it was not started during this cleanup to avoid implicitly resuming qBittorrent/torrent activity. `I:\torrentfiles` existed, but qBittorrent `/downloads` was not checked because the qBittorrent container was stopped.
+
 ---
 
 # Non-Destructive Diagnostic Checklist
@@ -360,7 +384,8 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 - [x] Persist 2026-05-28 12:53 post-crash logs and record the start of OS-only SATA storage isolation.
 - [x] Record 8.5-hour OS-only soak checkpoint with no new crash.
 - [x] Begin reassembly Step 1 with `I:` / Torrent drive on dedicated data and power cables.
-- [ ] Soak `C:` + `I:` before adding another drive.
+- [x] Begin reassembly Step 2 with TV drive attempt; `H:` present, `J:` absent in first check.
+- [ ] Soak current `C:` + `I:` + `H:` state with qBittorrent/Arr off, or remove TV drives if instability returns.
 - [x] Recheck `H:` / TV 2 after recurrence; present and mapped correctly on 2026-05-27.
 - [ ] Review Docker Desktop/WSL logs only after Windows crash evidence is collected.
 - [ ] Avoid firmware, BIOS, storage-controller, or drive-letter changes until a diagnostic plan calls for them.
