@@ -253,6 +253,16 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 - This is a meaningful improvement compared with the dense 2026-05-28 crash cluster, but it is not yet a 24-hour proof.
 - It is reasonable to begin cautious reassembly if every added component is treated as a new test variable with its own soak checkpoint.
 
+## 2026-05-28 Reassembly Step 1 - Torrent Drive
+
+- User connected only the `I:` / Torrent drive in addition to the OS SSD.
+- User used a dedicated SATA data cable and a dedicated native power cable for the Torrent drive.
+- Windows detected `C:` and `I:` only.
+- `I:` was labeled `Torrent`, NTFS, about `18.19 TiB`, with about `14.67 TiB` free.
+- `Test-Path I:\torrentfiles` returned `True`.
+- Physical disk inventory showed OS SSD serial `S1DDNWAF903275D` and Torrent drive serial `ZYE00444`, both `Healthy` / `OK`.
+- Current reassembly test posture: soak with only `C:` and `I:` connected. Do not add another drive until this step passes its soak checkpoint.
+
 ## 2026-05-25 WHEA / IOMMU Finding
 
 - After BIOS update to `M.A0`, Windows logged `WHEA-Logger` Event ID `1`: `A fatal hardware error has occurred`.
@@ -349,7 +359,8 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 - [x] Persist 2026-05-28 12:31 post-crash logs and record reduced-drive, direct-motherboard-SATA isolation state.
 - [x] Persist 2026-05-28 12:53 post-crash logs and record the start of OS-only SATA storage isolation.
 - [x] Record 8.5-hour OS-only soak checkpoint with no new crash.
-- [ ] Reassemble storage one component/cable group at a time with soak checkpoints.
+- [x] Begin reassembly Step 1 with `I:` / Torrent drive on dedicated data and power cables.
+- [ ] Soak `C:` + `I:` before adding another drive.
 - [x] Recheck `H:` / TV 2 after recurrence; present and mapped correctly on 2026-05-27.
 - [ ] Review Docker Desktop/WSL logs only after Windows crash evidence is collected.
 - [ ] Avoid firmware, BIOS, storage-controller, or drive-letter changes until a diagnostic plan calls for them.
