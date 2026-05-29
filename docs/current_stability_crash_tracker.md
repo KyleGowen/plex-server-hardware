@@ -273,6 +273,14 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 - Docker check showed only `torrent-mcp` running; the main qBittorrent/Arr stack was not running at that moment.
 - Current test posture: `C:` + `I:` + `H:` with TV 1 absent, no main qBittorrent/Arr stack. If a crash occurs, remove TV drives and return to `C:` + `I:` only.
 
+## 2026-05-29 Overnight Reassembly Soak Checkpoint
+
+- At `2026-05-29 6:48 AM`, Windows reported boot time `2026-05-28 10:11:51 PM`, about 8.62 hours uptime.
+- Current visible fixed volumes: `C:`, `H:` TV 2, `I:` Torrent, and `J:` TV 1.
+- Current physical disks: OS SSD `S1DDNWAF903275D`, TV 1 `ZVTBPM4J`, TV 2 `ZYD02EQ2`, and Torrent `ZYE00444`; all reported `Healthy` / `OK`.
+- No new `Kernel-Power 41`, `EventLog 6008`, or WHEA Event 1 crash records appeared after the current boot. The only matching events in the 18-hour window were from the previous 2026-05-28 crash.
+- This is a meaningful overnight checkpoint for the `C:` + `H:` + `I:` + `J:` reassembly state, with media automation still intended to remain quiet unless explicitly restarted.
+
 ## 2026-05-25 WHEA / IOMMU Finding
 
 - After BIOS update to `M.A0`, Windows logged `WHEA-Logger` Event ID `1`: `A fatal hardware error has occurred`.
@@ -385,7 +393,8 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 - [x] Record 8.5-hour OS-only soak checkpoint with no new crash.
 - [x] Begin reassembly Step 1 with `I:` / Torrent drive on dedicated data and power cables.
 - [x] Begin reassembly Step 2 with TV drive attempt; `H:` present, `J:` absent in first check.
-- [ ] Soak current `C:` + `I:` + `H:` state with qBittorrent/Arr off, or remove TV drives if instability returns.
+- [x] Record overnight checkpoint for `C:` + `H:` + `I:` + `J:` state, about 8.6 hours uptime, no new crash records.
+- [ ] Continue cautious reassembly one component/cable group at a time.
 - [x] Recheck `H:` / TV 2 after recurrence; present and mapped correctly on 2026-05-27.
 - [ ] Review Docker Desktop/WSL logs only after Windows crash evidence is collected.
 - [ ] Avoid firmware, BIOS, storage-controller, or drive-letter changes until a diagnostic plan calls for them.

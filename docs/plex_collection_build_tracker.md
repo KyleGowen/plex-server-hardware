@@ -1,6 +1,6 @@
 # Plex Collection Build Tracker
 
-Last updated: 2026-05-28 10:35 PT
+Last updated: 2026-05-29
 
 Overall status: Complete; pending imports noted for Mallrats and Aquaman and the Lost Kingdom.
 
@@ -168,3 +168,22 @@ Status: Complete
 - Poster set/source: TPDb Walt Disney Animation Studios collection poster by DarkMatte, https://theposterdb.com/set/314337
 - Radarr/Sonarr actions: None
 - Verification notes: Collection children verified through Plex API. Collection poster override verified in Plex DB. Item poster overrides were intentionally left unchanged because this broad collection spans WDAS, Pixar, Disney live action, Disney Channel, and shorts; no single coherent all-item poster family was applied.
+
+## 13. TV Collection Batch
+
+Status: Complete
+
+- Scope: Plex TV Shows section only; Adventure Time was intentionally skipped at user request.
+- Plex collection rating keys:
+  - BBC / Attenborough Nature: 22577, 11 shows
+  - Teenage Mutant Ninja Turtles: 22578, 3 shows
+  - DC Animated / Batman TV: 22579, 11 shows
+  - Star Trek TV: 22580, 8 shows
+- Missing items: See `docs/tv_collection_recommendations_audit.md` for known gaps and scope notes.
+- Poster set/source:
+  - BBC / Attenborough Nature: TPDb Planet Collection by tiederian applied to collection plus 10 matching shows.
+  - Teenage Mutant Ninja Turtles: TPDb Teenage Mutant Ninja Turtles Collection by Aloha_Alona applied to collection plus 2 matching shows.
+  - DC Animated / Batman TV: TPDb DC Animated Universe Collection by MiniZaki applied to collection plus 8 matching shows.
+  - Star Trek TV: TPDb Star Trek family by mjmattu applied to collection plus 4 matching shows.
+- Radarr/Sonarr actions: None.
+- Verification notes: Collection children verified through Plex API. Poster overrides verified in Plex DB for 4 collections and 24 matching shows. No Plex library refreshes, drive-letter changes, path repairs, download-client actions, Sonarr/Radarr actions, or downloads were performed.
