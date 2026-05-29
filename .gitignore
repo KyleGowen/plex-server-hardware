@@ -3,6 +3,7 @@
 .docker-cli/
 .DS_Store
 docs/.DS_Store
+docs/crash_logs/thermal/
 tools/ME_16.1.40.2765.zip
 tools/ME_16.1.40.2765/
 tools/ME-FW-update-SOP-E.zip

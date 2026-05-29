@@ -281,6 +281,50 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 - No new `Kernel-Power 41`, `EventLog 6008`, or WHEA Event 1 crash records appeared after the current boot. The only matching events in the 18-hour window were from the previous 2026-05-28 crash.
 - This is a meaningful overnight checkpoint for the `C:` + `H:` + `I:` + `J:` reassembly state, with media automation still intended to remain quiet unless explicitly restarted.
 
+## 2026-05-29 Controlled Docker Software Test - qBittorrent And Sonarr
+
+- User requested a software-layer test by starting qBittorrent and Sonarr only.
+- Precheck: `I:\torrentfiles` returned `True`.
+- Precheck: Windows visible fixed volumes were `C:`, `H:` TV 2, `I:` Torrent, and `J:` TV 1.
+- Started only `qbittorrent` and `sonarr` with `docker compose -f C:\plex-server\docker-compose.media.yml up -d qbittorrent sonarr`.
+- Post-start qBittorrent `/downloads` mapped correctly to `I:\`, about `19T` total and `15T` available.
+- Post-start Sonarr mounts mapped correctly: `/downloads` to `I:\`, `/tv/tv1` to `J:\`, and `/tv/tv2` to `H:\`.
+- Local HTTP checks returned `200` for qBittorrent on port `8080` and Sonarr on port `8989`.
+- Current software test posture: `C:` + `H:` + `I:` + `J:` drives connected, qBittorrent and Sonarr running, other Arr/media containers still intentionally stopped unless separately started.
+
+## 2026-05-29 Stable-State Diagnostic Sweep
+
+- At `2026-05-29 9:53 AM`, Windows reported boot time `2026-05-28 10:11:51 PM`, about 11.7 hours uptime.
+- No new `Kernel-Power 41`, `EventLog 6008`, or WHEA Event 1 crash records appeared after the current boot; matching records in the 24-hour window were from prior 2026-05-28 crashes.
+- Current fixed volumes: `C:`, `H:` TV 2, `I:` Torrent, and `J:` TV 1; all reported `Healthy` / `OK`.
+- Current physical disks: OS SSD `S1DDNWAF903275D`, TV 1 `ZVTBPM4J`, TV 2 `ZYD02EQ2`, and Torrent `ZYE00444`; all reported `Healthy` / `OK`.
+- Device Manager nonzero error-code scan returned no devices.
+- Docker containers running: qBittorrent, Sonarr, and `torrent-mcp`.
+- Docker mounts were healthy: qBittorrent `/downloads` on `I:\`; Sonarr `/downloads` on `I:\`, `/tv/tv1` on `J:\`, and `/tv/tv2` on `H:\`.
+- New caution signal: System log had two `disk` Event ID 153 retry warnings for `Disk 1`, which maps to `J:` / TV 1, serial `ZVTBPM4J`.
+- No matching new crash followed those disk retries during the checked window, but treat `J:` / TV 1's data/power path as a watch item during the next soak.
+- Attempted online `chkdsk /scan` for `J:`, `I:`, and `H:`, but the current shell was not elevated and Windows returned access denied. No repair action was attempted.
+
+## 2026-05-29 Crash After qBittorrent And Sonarr Test
+
+- User reported another crash shortly after qBittorrent and Sonarr were started, after roughly 12 hours of apparent stability in the same drive-connected state.
+- Capture directory: `docs/crash_logs/20260529-101903-qbit-sonarr`.
+- Current boot time after recovery: `2026-05-29 10:19:03 AM`.
+- Windows recorded previous unexpected shutdown at `2026-05-29 10:07:35 AM`.
+- Latest `Kernel-Power 41` at `2026-05-29 10:19:06 AM` again showed `BugcheckCode=0`, `PowerButtonTimestamp=0`, `SleepInProgress=0`, and `ConnectedStandbyInProgress=false`.
+- Latest `WHEA-Logger` Event 1 at `2026-05-29 10:19:14 AM` again preserved a 3552-byte CPER record with three fatal Firmware Error Record Reference sections.
+- No minidump or `MEMORY.DMP` was found.
+- Current fixed volumes after reboot: `C:`, `H:` TV 2, `I:` Torrent, and `J:` TV 1; all reported `Healthy` / `OK`.
+- Current physical disks after reboot: OS SSD `S1DDNWAF903275D`, TV 1 `ZVTBPM4J`, TV 2 `ZYD02EQ2`, and Torrent `ZYE00444`; all reported `Healthy` / `OK`.
+- qBittorrent log showed normal startup at about `09:27:39`, restored torrents from the configured `I:\torrentfiles` mount, and recorded at least one completed torrent before the crash. There was no clean qBittorrent shutdown before the crash.
+- Sonarr log showed startup at about `09:27:42`, successful qBittorrent authentication, and a broad TV library scan across `/tv/tv1` and `/tv/tv2`; the broad scan appears to have completed around `09:34:43`.
+- Later Sonarr activity was mostly RSS/indexer polling. The `prowlarr:9696` DNS errors are expected in this test because Prowlarr was intentionally not running.
+- Windows did not log a pre-crash `disk`, `storahci`, or `NTFS` warning in the checked `09:20-10:07` window.
+- Docker Desktop logs did not show an application panic or mount failure before the crash; they showed normal API polling and qBittorrent-related network forwarding activity.
+- Interpretation: this does not prove the qBittorrent `I:\` mount is logically bad. The stronger current read is that qBittorrent plus Sonarr created storage, network, Docker/WSL, and SATA power activity that reproduced the existing hardware/platform crash.
+- Because the TV drives were reported to be sharing the same power cable as the Torrent drive, treat the shared SATA power branch feeding `I:`, `H:`, and/or `J:` as the next component/path to verify.
+- Keep qBittorrent and Sonarr stopped for now. Next isolation should avoid starting qBittorrent and Sonarr together; test one variable at a time only after the current hardware/power path is reviewed.
+
 ## 2026-05-25 WHEA / IOMMU Finding
 
 - After BIOS update to `M.A0`, Windows logged `WHEA-Logger` Event ID `1`: `A fatal hardware error has occurred`.
@@ -382,6 +426,10 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 - [x] Record BIOS version.
 - [x] Record memory profile/XMP state.
 - [ ] Confirm CPU and GPU temperatures at idle and during a controlled Plex playback/transcode.
+- [x] Install LibreHardwareMonitor thermal logger and reserve `C:\plex-server\docs\crash_logs\thermal` as the project sensor-log root for crash diagnosis.
+- [x] Add Core Temp CPU-temperature capture and AIDA64 export parser to the project thermal logger.
+- [x] Confirm AIDA64 exports motherboard/MOS/PCH temperatures, CPU fan RPM, chassis fan RPMs, and major voltage rails into the project thermal logs.
+- [x] Add smartctl drive-temperature capture so duplicate-model HDDs are logged by serial number.
 - [x] Capture Windows physical-disk health status for `C:` and all fixed media/data drives.
 - [x] Confirm qBittorrent `/downloads` mount after at least one crash before resuming torrents.
 - [x] Complete first overnight soak after removing the broken-pin HDD.
@@ -394,9 +442,14 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 - [x] Begin reassembly Step 1 with `I:` / Torrent drive on dedicated data and power cables.
 - [x] Begin reassembly Step 2 with TV drive attempt; `H:` present, `J:` absent in first check.
 - [x] Record overnight checkpoint for `C:` + `H:` + `I:` + `J:` state, about 8.6 hours uptime, no new crash records.
-- [ ] Continue cautious reassembly one component/cable group at a time.
+- [x] Start controlled software test with qBittorrent and Sonarr only; mounts verified healthy.
+- [x] Run stable-state diagnostic sweep with qBittorrent and Sonarr running; no new crash records, mounts healthy.
+- [x] Persist 2026-05-29 qBittorrent/Sonarr recurrence bundle.
+- [ ] Watch `J:` / TV 1 for repeated disk Event 153 retries.
+- [x] qBittorrent/Sonarr soak failed with a hard reset; do not start additional media containers yet.
+- [ ] Verify the shared SATA power branch currently feeding Torrent/TV drives before repeating the qBittorrent/Sonarr test.
 - [x] Recheck `H:` / TV 2 after recurrence; present and mapped correctly on 2026-05-27.
-- [ ] Review Docker Desktop/WSL logs only after Windows crash evidence is collected.
+- [x] Review Docker Desktop/WSL logs only after Windows crash evidence is collected.
 - [ ] Avoid firmware, BIOS, storage-controller, or drive-letter changes until a diagnostic plan calls for them.
 
 ---

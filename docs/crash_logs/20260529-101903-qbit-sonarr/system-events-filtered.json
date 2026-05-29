@@ -1,0 +1,478 @@
+﻿[
+    {
+        "Time":  "2026-05-29 08:42:00",
+        "ProviderName":  "Service Control Manager",
+        "Id":  7040,
+        "LevelDisplayName":  "Information",
+        "Message":  "The start type of the Background Intelligent Transfer Service service was changed from demand start to auto start."
+    },
+    {
+        "Time":  "2026-05-29 08:46:05",
+        "ProviderName":  "Service Control Manager",
+        "Id":  7040,
+        "LevelDisplayName":  "Information",
+        "Message":  "The start type of the Background Intelligent Transfer Service service was changed from auto start to demand start."
+    },
+    {
+        "Time":  "2026-05-29 08:58:30",
+        "ProviderName":  "Service Control Manager",
+        "Id":  7040,
+        "LevelDisplayName":  "Information",
+        "Message":  "The start type of the Background Intelligent Transfer Service service was changed from demand start to auto start."
+    },
+    {
+        "Time":  "2026-05-29 09:00:28",
+        "ProviderName":  "Service Control Manager",
+        "Id":  7040,
+        "LevelDisplayName":  "Information",
+        "Message":  "The start type of the Touch Keyboard and Handwriting Panel Service service was changed from demand start to auto start."
+    },
+    {
+        "Time":  "2026-05-29 09:02:35",
+        "ProviderName":  "Service Control Manager",
+        "Id":  7040,
+        "LevelDisplayName":  "Information",
+        "Message":  "The start type of the Background Intelligent Transfer Service service was changed from auto start to demand start."
+    },
+    {
+        "Time":  "2026-05-29 09:25:31",
+        "ProviderName":  "Service Control Manager",
+        "Id":  7040,
+        "LevelDisplayName":  "Information",
+        "Message":  "The start type of the Background Intelligent Transfer Service service was changed from demand start to auto start."
+    },
+    {
+        "Time":  "2026-05-29 09:25:32",
+        "ProviderName":  "Service Control Manager",
+        "Id":  7040,
+        "LevelDisplayName":  "Information",
+        "Message":  "The start type of the Touch Keyboard and Handwriting Panel Service service was changed from auto start to demand start."
+    },
+    {
+        "Time":  "2026-05-29 09:26:20",
+        "ProviderName":  "Service Control Manager",
+        "Id":  7040,
+        "LevelDisplayName":  "Information",
+        "Message":  "The start type of the Touch Keyboard and Handwriting Panel Service service was changed from demand start to auto start."
+    },
+    {
+        "Time":  "2026-05-29 09:29:35",
+        "ProviderName":  "Service Control Manager",
+        "Id":  7040,
+        "LevelDisplayName":  "Information",
+        "Message":  "The start type of the Background Intelligent Transfer Service service was changed from auto start to demand start."
+    },
+    {
+        "Time":  "2026-05-29 09:42:01",
+        "ProviderName":  "Service Control Manager",
+        "Id":  7040,
+        "LevelDisplayName":  "Information",
+        "Message":  "The start type of the Background Intelligent Transfer Service service was changed from demand start to auto start."
+    },
+    {
+        "Time":  "2026-05-29 09:46:06",
+        "ProviderName":  "Service Control Manager",
+        "Id":  7040,
+        "LevelDisplayName":  "Information",
+        "Message":  "The start type of the Background Intelligent Transfer Service service was changed from auto start to demand start."
+    },
+    {
+        "Time":  "2026-05-29 09:46:16",
+        "ProviderName":  "Service Control Manager",
+        "Id":  7040,
+        "LevelDisplayName":  "Information",
+        "Message":  "The start type of the Touch Keyboard and Handwriting Panel Service service was changed from auto start to demand start."
+    },
+    {
+        "Time":  "2026-05-29 09:52:31",
+        "ProviderName":  "Service Control Manager",
+        "Id":  7040,
+        "LevelDisplayName":  "Information",
+        "Message":  "The start type of the Touch Keyboard and Handwriting Panel Service service was changed from demand start to auto start."
+    },
+    {
+        "Time":  "2026-05-29 09:58:32",
+        "ProviderName":  "Service Control Manager",
+        "Id":  7040,
+        "LevelDisplayName":  "Information",
+        "Message":  "The start type of the Background Intelligent Transfer Service service was changed from demand start to auto start."
+    },
+    {
+        "Time":  "2026-05-29 10:02:36",
+        "ProviderName":  "Service Control Manager",
+        "Id":  7040,
+        "LevelDisplayName":  "Information",
+        "Message":  "The start type of the Background Intelligent Transfer Service service was changed from auto start to demand start."
+    },
+    {
+        "Time":  "2026-05-29 10:19:03",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-Hypervisor",
+        "Id":  156,
+        "LevelDisplayName":  "Information",
+        "Message":  "Hypervisor configured mitigations for CVE-2018-3646 for virtual machines.  Processor not affected: true Processor family not affected: false Processor supports cache flush: true HyperThreading enabled: true Parent hypervisor applies mitigations: false Mitigations disabled by bcdedit: false Mitigations enabled: true Cache flush needed: false "
+    },
+    {
+        "Time":  "2026-05-29 10:19:03",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-Hypervisor",
+        "Id":  165,
+        "LevelDisplayName":  "Information",
+        "Message":  "Hypervisor configured mitigations for CVE-2019-11091, CVE-2018-12126, CVE-2018-12127, CVE-2018-12130 for virtual machines.  Processor not affected: true Processor family not affected: false Processor supports microarchitectural buffer flush: true Buffer flush needed: true "
+    },
+    {
+        "Time":  "2026-05-29 10:19:03",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-Hypervisor",
+        "Id":  129,
+        "LevelDisplayName":  "Information",
+        "Message":  "Hypervisor initialized I/O remapping.  Hardware present: true Hardware enabled: true Policy: 0x0 Enabled features: 0x43 Internal information: 0x0 Problems: 0x0 Additional information: 0x0"
+    },
+    {
+        "Time":  "2026-05-29 10:19:03",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-Hypervisor",
+        "Id":  1,
+        "LevelDisplayName":  "Information",
+        "Message":  "Hypervisor successfully started."
+    },
+    {
+        "Time":  "2026-05-29 10:19:03",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-Hypervisor",
+        "Id":  2,
+        "LevelDisplayName":  "Information",
+        "Message":  "Hypervisor scheduler type is 0x4."
+    },
+    {
+        "Time":  "2026-05-29 10:19:06",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  233,
+        "LevelDisplayName":  "Information",
+        "Message":  "The operation \u0027Create\u0027 succeeded on nic 70EF9138-E4C2-4300-85E2-2ED2B85A46B6 (Friendly Name: WSL)."
+    },
+    {
+        "Time":  "2026-05-29 10:19:06",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  264,
+        "LevelDisplayName":  "Information",
+        "Message":  "Port 5FDD0C4D-723E-4751-81CA-F00632E9B6D8 (Friendly Name: Container NIC 565eb3f1) successfully created on switch 578CE906-08C6-4361-B3D9-1D61C1F0348D (Friendly Name: WSL)."
+    },
+    {
+        "Time":  "2026-05-29 10:19:06",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  9,
+        "LevelDisplayName":  "Information",
+        "Message":  "Switch 578CE906-08C6-4361-B3D9-1D61C1F0348D (Friendly Name: WSL) successfully initialized."
+    },
+    {
+        "Time":  "2026-05-29 10:19:06",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  7,
+        "LevelDisplayName":  "Information",
+        "Message":  "Miniport NIC 70EF9138-E4C2-4300-85E2-2ED2B85A46B6 (Friendly Name: WSL) successfully initialized."
+    },
+    {
+        "Time":  "2026-05-29 10:19:06",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  5,
+        "LevelDisplayName":  "Information",
+        "Message":  "Miniport NIC 70EF9138-E4C2-4300-85E2-2ED2B85A46B6 (Friendly Name: WSL) successfully enabled"
+    },
+    {
+        "Time":  "2026-05-29 10:19:06",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  232,
+        "LevelDisplayName":  "Information",
+        "Message":  "NIC 70EF9138-E4C2-4300-85E2-2ED2B85A46B6 (Friendly Name: WSL) successfully connected to port 5FDD0C4D-723E-4751-81CA-F00632E9B6D8 (Friendly Name: Container NIC 565eb3f1) on switch 578CE906-08C6-4361-B3D9-1D61C1F0348D(Friendly Name: WSL)."
+    },
+    {
+        "Time":  "2026-05-29 10:19:06",
+        "ProviderName":  "Microsoft-Windows-Kernel-Power",
+        "Id":  172,
+        "LevelDisplayName":  "Information",
+        "Message":  "Connectivity state in standby: Disconnected, Reason: NIC compliance"
+    },
+    {
+        "Time":  "2026-05-29 10:19:06",
+        "ProviderName":  "Microsoft-Windows-Kernel-Power",
+        "Id":  41,
+        "LevelDisplayName":  "Critical",
+        "Message":  "The system has rebooted without cleanly shutting down first. This error could be caused if the system stopped responding, crashed, or lost power unexpectedly."
+    },
+    {
+        "Time":  "2026-05-29 10:19:06",
+        "ProviderName":  "Microsoft-Windows-Ntfs",
+        "Id":  98,
+        "LevelDisplayName":  "Information",
+        "Message":  "Volume C: (\\Device\\HarddiskVolume6) is healthy.  No action is needed."
+    },
+    {
+        "Time":  "2026-05-29 10:19:06",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  232,
+        "LevelDisplayName":  "Information",
+        "Message":  "NIC 578CE906-08C6-4361-B3D9-1D61C1F0348D (Friendly Name: WSL) successfully connected to port 578CE906-08C6-4361-B3D9-1D61C1F0348D (Friendly Name: WSL) on switch 578CE906-08C6-4361-B3D9-1D61C1F0348D(Friendly Name: WSL)."
+    },
+    {
+        "Time":  "2026-05-29 10:19:06",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  233,
+        "LevelDisplayName":  "Information",
+        "Message":  "The operation \u0027Create\u0027 succeeded on nic 578CE906-08C6-4361-B3D9-1D61C1F0348D (Friendly Name: WSL)."
+    },
+    {
+        "Time":  "2026-05-29 10:19:06",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  277,
+        "LevelDisplayName":  "Information",
+        "Message":  "vmswitch.sys build 19041.amd64.vb_release_svc_prod1, debug false, official true, 1 1"
+    },
+    {
+        "Time":  "2026-05-29 10:19:07",
+        "ProviderName":  "Microsoft-Windows-Ntfs",
+        "Id":  98,
+        "LevelDisplayName":  "Information",
+        "Message":  "Volume H: (\\Device\\HarddiskVolume2) is healthy.  No action is needed."
+    },
+    {
+        "Time":  "2026-05-29 10:19:07",
+        "ProviderName":  "e2fexpress",
+        "Id":  27,
+        "LevelDisplayName":  "Warning",
+        "Message":  "Intel(R) Ethernet Controller I226-V #2  Network link is disconnected. "
+    },
+    {
+        "Time":  "2026-05-29 10:19:09",
+        "ProviderName":  "Microsoft-Windows-Ntfs",
+        "Id":  98,
+        "LevelDisplayName":  "Information",
+        "Message":  "Volume J: (\\Device\\HarddiskVolume4) is healthy.  No action is needed."
+    },
+    {
+        "Time":  "2026-05-29 10:19:10",
+        "ProviderName":  "Microsoft-Windows-Ntfs",
+        "Id":  98,
+        "LevelDisplayName":  "Information",
+        "Message":  "Volume I: (\\Device\\HarddiskVolume8) is healthy.  No action is needed."
+    },
+    {
+        "Time":  "2026-05-29 10:19:10",
+        "ProviderName":  "e2fexpress",
+        "Id":  32,
+        "LevelDisplayName":  "Information",
+        "Message":  "Intel(R) Ethernet Controller I226-V #2  Network link has been established at 1Gbps full duplex. "
+    },
+    {
+        "Time":  "2026-05-29 10:19:13",
+        "ProviderName":  "EventLog",
+        "Id":  6013,
+        "LevelDisplayName":  "Information",
+        "Message":  "The system uptime is 9 seconds."
+    },
+    {
+        "Time":  "2026-05-29 10:19:13",
+        "ProviderName":  "EventLog",
+        "Id":  6005,
+        "LevelDisplayName":  "Information",
+        "Message":  "The Event log service was started."
+    },
+    {
+        "Time":  "2026-05-29 10:19:13",
+        "ProviderName":  "EventLog",
+        "Id":  6009,
+        "LevelDisplayName":  "Information",
+        "Message":  "Microsoft (R) Windows (R) 10.00. 19045  Multiprocessor Free."
+    },
+    {
+        "Time":  "2026-05-29 10:19:13",
+        "ProviderName":  "EventLog",
+        "Id":  6008,
+        "LevelDisplayName":  "Error",
+        "Message":  "The previous system shutdown at 10:07:35 AM on ‎5/‎29/‎2026 was unexpected."
+    },
+    {
+        "Time":  "2026-05-29 10:19:13",
+        "ProviderName":  "Service Control Manager",
+        "Id":  7040,
+        "LevelDisplayName":  "Information",
+        "Message":  "The start type of the TabletInputService service was changed from auto start to demand start."
+    },
+    {
+        "Time":  "2026-05-29 10:19:13",
+        "ProviderName":  "Service Control Manager",
+        "Id":  7023,
+        "LevelDisplayName":  "Error",
+        "Message":  "The cplspcon service terminated with the following error:  Unspecified error"
+    },
+    {
+        "Time":  "2026-05-29 10:19:14",
+        "ProviderName":  "Service Control Manager",
+        "Id":  7009,
+        "LevelDisplayName":  "Error",
+        "Message":  "A timeout was reached (45000 milliseconds) while waiting for the Intel(R) Platform License Manager Service service to connect."
+    },
+    {
+        "Time":  "2026-05-29 10:19:14",
+        "ProviderName":  "Microsoft-Windows-WHEA-Logger",
+        "Id":  1,
+        "LevelDisplayName":  "Error",
+        "Message":  "A fatal hardware error has occurred. A record describing the condition is contained in the data section of this event."
+    },
+    {
+        "Time":  "2026-05-29 10:19:15",
+        "ProviderName":  "Service Control Manager",
+        "Id":  7026,
+        "LevelDisplayName":  "Information",
+        "Message":  "The following boot-start or system-start driver(s) did not load:  dam"
+    },
+    {
+        "Time":  "2026-05-29 10:19:20",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  62,
+        "LevelDisplayName":  "Information",
+        "Message":  "Switch 578CE906-08C6-4361-B3D9-1D61C1F0348D (Friendly Name: WSL) successfully deleted."
+    },
+    {
+        "Time":  "2026-05-29 10:19:20",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  233,
+        "LevelDisplayName":  "Information",
+        "Message":  "The operation \u0027Delete\u0027 succeeded on nic 70EF9138-E4C2-4300-85E2-2ED2B85A46B6 (Friendly Name: WSL)."
+    },
+    {
+        "Time":  "2026-05-29 10:19:20",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  233,
+        "LevelDisplayName":  "Information",
+        "Message":  "The operation \u0027Delete\u0027 succeeded on nic 578CE906-08C6-4361-B3D9-1D61C1F0348D (Friendly Name: WSL)."
+    },
+    {
+        "Time":  "2026-05-29 10:19:20",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  234,
+        "LevelDisplayName":  "Information",
+        "Message":  "NIC 578CE906-08C6-4361-B3D9-1D61C1F0348D successfully disconnected from port 578CE906-08C6-4361-B3D9-1D61C1F0348D."
+    },
+    {
+        "Time":  "2026-05-29 10:19:20",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  234,
+        "LevelDisplayName":  "Information",
+        "Message":  "NIC 70EF9138-E4C2-4300-85E2-2ED2B85A46B6 successfully disconnected from port 5FDD0C4D-723E-4751-81CA-F00632E9B6D8."
+    },
+    {
+        "Time":  "2026-05-29 10:21:17",
+        "ProviderName":  "Microsoft-Windows-DistributedCOM",
+        "Id":  10016,
+        "LevelDisplayName":  "Warning",
+        "Message":  "The application-specific permission settings do not grant Local Launch permission for the COM Server application with CLSID  Windows.SecurityCenter.WscDataProtection  and APPID  Unavailable  to the user NT AUTHORITY\\SYSTEM SID (S-1-5-18) from address LocalHost (Using LRPC) running in the application container Unavailable SID (Unavailable). This security permission can be modified using the Component Services administrative tool."
+    },
+    {
+        "Time":  "2026-05-29 10:24:06",
+        "ProviderName":  "Service Control Manager",
+        "Id":  7040,
+        "LevelDisplayName":  "Information",
+        "Message":  "The start type of the Touch Keyboard and Handwriting Panel Service service was changed from demand start to auto start."
+    },
+    {
+        "Time":  "2026-05-29 10:24:14",
+        "ProviderName":  "Microsoft-Windows-TPM-WMI",
+        "Id":  1801,
+        "LevelDisplayName":  "Error",
+        "Message":  "Secure Boot CA/keys need to be updated. This device signature information is included here. DeviceAttributes: BaseBoardManufacturer:Micro-Star International Co., Ltd.;FirmwareManufacturer:American Megatrends International, LLC.;FirmwareVersion:M.A0;OEMModelBaseBoard:PRO Z790-A WIFI II (MS-7E07);OEMManufacturerName:Micro-Star International Co., Ltd.;OSArchitecture:amd64; BucketId: 5e81966300a41f5729b08fc9c19161ac7bba1e13e0ecdad03062a12075ab5e2f BucketConfidenceLevel:  UpdateType: 0 HResult: The operation completed successfully."
+    },
+    {
+        "Time":  "2026-05-29 10:24:18",
+        "ProviderName":  "Service Control Manager",
+        "Id":  7045,
+        "LevelDisplayName":  "Information",
+        "Message":  "A service was installed in the system.  Service Name:  NTIOLib_CC_COMM Service File Name:  C:\\Program Files (x86)\\MSI\\MSI Center\\Lib\\SYS\\NTIOLib_X64.sys Service Type:  kernel mode driver Service Start Type:  demand start Service Account:  "
+    },
+    {
+        "Time":  "2026-05-29 10:24:31",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  264,
+        "LevelDisplayName":  "Information",
+        "Message":  "Port 87519BF4-7A8D-42D8-B32E-38380418DC0E (Friendly Name: 990DB507-FE66-4824-AF37-F3DAB117133A) successfully created on switch 11ABD581-4A93-4D7A-8999-1E015EDAF38B (Friendly Name: WSL)."
+    },
+    {
+        "Time":  "2026-05-29 10:24:31",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  232,
+        "LevelDisplayName":  "Information",
+        "Message":  "NIC 4661DE7E-ADCE-45A3-8731-F80EBD21FCF3 (Friendly Name: WSL) successfully connected to port F320E1A5-6328-4111-B3BE-0DB28A65BEA2 (Friendly Name: Container NIC b5778b00) on switch 11ABD581-4A93-4D7A-8999-1E015EDAF38B(Friendly Name: WSL)."
+    },
+    {
+        "Time":  "2026-05-29 10:24:31",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  233,
+        "LevelDisplayName":  "Information",
+        "Message":  "The operation \u0027Create\u0027 succeeded on nic 805A62BD-1DCF-4701-86A5-D91F5CCEEA90--990DB507-FE66-4824-AF37-F3DAB117133A (Friendly Name: )."
+    },
+    {
+        "Time":  "2026-05-29 10:24:31",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  102,
+        "LevelDisplayName":  "Information",
+        "Message":  "Networking driver in Virtual Machine is loaded and the protocol version is negotiated to the most recent version (Virtual machine ID 805A62BD-1DCF-4701-86A5-D91F5CCEEA90)."
+    },
+    {
+        "Time":  "2026-05-29 10:24:31",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  232,
+        "LevelDisplayName":  "Information",
+        "Message":  "NIC 805A62BD-1DCF-4701-86A5-D91F5CCEEA90--990DB507-FE66-4824-AF37-F3DAB117133A (Friendly Name: ) successfully connected to port 87519BF4-7A8D-42D8-B32E-38380418DC0E (Friendly Name: 990DB507-FE66-4824-AF37-F3DAB117133A) on switch 11ABD581-4A93-4D7A-8999-1E015EDAF38B(Friendly Name: WSL)."
+    },
+    {
+        "Time":  "2026-05-29 10:24:31",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  7,
+        "LevelDisplayName":  "Information",
+        "Message":  "Miniport NIC 4661DE7E-ADCE-45A3-8731-F80EBD21FCF3 (Friendly Name: WSL) successfully initialized."
+    },
+    {
+        "Time":  "2026-05-29 10:24:31",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  232,
+        "LevelDisplayName":  "Information",
+        "Message":  "NIC 11ABD581-4A93-4D7A-8999-1E015EDAF38B (Friendly Name: WSL) successfully connected to port 11ABD581-4A93-4D7A-8999-1E015EDAF38B (Friendly Name: WSL) on switch 11ABD581-4A93-4D7A-8999-1E015EDAF38B(Friendly Name: WSL)."
+    },
+    {
+        "Time":  "2026-05-29 10:24:31",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  233,
+        "LevelDisplayName":  "Information",
+        "Message":  "The operation \u0027Create\u0027 succeeded on nic 11ABD581-4A93-4D7A-8999-1E015EDAF38B (Friendly Name: WSL)."
+    },
+    {
+        "Time":  "2026-05-29 10:24:31",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  9,
+        "LevelDisplayName":  "Information",
+        "Message":  "Switch 11ABD581-4A93-4D7A-8999-1E015EDAF38B (Friendly Name: WSL) successfully initialized."
+    },
+    {
+        "Time":  "2026-05-29 10:24:31",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  233,
+        "LevelDisplayName":  "Information",
+        "Message":  "The operation \u0027Create\u0027 succeeded on nic 4661DE7E-ADCE-45A3-8731-F80EBD21FCF3 (Friendly Name: WSL)."
+    },
+    {
+        "Time":  "2026-05-29 10:24:31",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  264,
+        "LevelDisplayName":  "Information",
+        "Message":  "Port F320E1A5-6328-4111-B3BE-0DB28A65BEA2 (Friendly Name: Container NIC b5778b00) successfully created on switch 11ABD581-4A93-4D7A-8999-1E015EDAF38B (Friendly Name: WSL)."
+    },
+    {
+        "Time":  "2026-05-29 10:24:34",
+        "ProviderName":  "Service Control Manager",
+        "Id":  7040,
+        "LevelDisplayName":  "Information",
+        "Message":  "The start type of the Background Intelligent Transfer Service service was changed from demand start to auto start."
+    },
+    {
+        "Time":  "2026-05-29 10:28:39",
+        "ProviderName":  "Service Control Manager",
+        "Id":  7040,
+        "LevelDisplayName":  "Information",
+        "Message":  "The start type of the Background Intelligent Transfer Service service was changed from auto start to demand start."
+    }
+]

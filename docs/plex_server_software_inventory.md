@@ -65,6 +65,10 @@ Per-service details live in `docs/services/`. This file is the summary table and
 | MSI drivers | Board chipset, LAN, Wi-Fi, Bluetooth, audio | See driver install status doc |
 | NVIDIA driver | RTX 3050 display and hardware transcoding support | NVIDIA Studio Driver `596.36` installed in snapshot |
 | Intel Driver & Support Assistant | Intel driver detection/update helper | Installed; avoid firmware/BIOS changes unless explicitly planned |
+| LibreHardwareMonitor | Hardware sensor source for thermal crash logging | Installed via winget package `LibreHardwareMonitor.LibreHardwareMonitor` version `0.9.6`; project logger writes searchable CSV/JSONL under `C:\plex-server\docs\crash_logs\thermal`; see [thermal_monitoring.md](thermal_monitoring.md) |
+| Core Temp | Intel CPU core temperature source for thermal crash logging | Installed via winget package `ALCPU.CoreTemp` version `1.20.1`; project logger reads Core Temp shared memory to capture CPU core/package thermal data; see [thermal_monitoring.md](thermal_monitoring.md) |
+| AIDA64 Extreme MSI Edition | Motherboard, voltage, and fan sensor source for thermal crash logging | Installed at `C:\Program Files\FinalWire\AIDA64 Extreme`; AIDA64 External Applications export is enabled and confirmed visible to the project logger; see [thermal_monitoring.md](thermal_monitoring.md) |
+| smartmontools / smartctl | Serial-specific SMART drive temperature source | Installed via winget package `smartmontools.smartmontools` version `7.5`; project logger records drive temperatures as `Smartctl` rows labeled by model and serial; see [thermal_monitoring.md](thermal_monitoring.md) |
 | 7-Zip | Archive inspection/extraction | Installed |
 | Notepad++ | Text/config/log editor | Installed |
 | Google Chrome | Browser for local web UIs | Installed |

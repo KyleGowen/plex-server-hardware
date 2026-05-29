@@ -1,0 +1,168 @@
+﻿{
+    "capturedAt":  "2026-05-29 10:34:29",
+    "lastBoot":  "2026-05-29 10:19:03",
+    "previousUnexpectedShutdown":  "2026-05-29 10:07:35",
+    "kernelPower":  {
+                        "time":  "2026-05-29 10:19:06",
+                        "recordId":  7834,
+                        "bugcheckCode":  "0",
+                        "sleepInProgress":  "0",
+                        "powerButtonTimestamp":  "0",
+                        "connectedStandbyInProgress":  "false"
+                    },
+    "whea":  {
+                 "time":  "2026-05-29 10:19:14",
+                 "recordId":  7892,
+                 "byteCount":  3552,
+                 "signature":  "CPER",
+                 "sectionCount":  3,
+                 "sections":  [
+                                  {
+                                      "index":  0,
+                                      "offset":  344,
+                                      "length":  2592,
+                                      "typeGuid":  "81212a96-09ed-4996-9471-8d729c8e69ed",
+                                      "typeName":  "Firmware Error Record Reference",
+                                      "severity":  1
+                                  },
+                                  {
+                                      "index":  1,
+                                      "offset":  2936,
+                                      "length":  544,
+                                      "typeGuid":  "81212a96-09ed-4996-9471-8d729c8e69ed",
+                                      "typeName":  "Firmware Error Record Reference",
+                                      "severity":  1
+                                  },
+                                  {
+                                      "index":  2,
+                                      "offset":  3480,
+                                      "length":  72,
+                                      "typeGuid":  "81212a96-09ed-4996-9471-8d729c8e69ed",
+                                      "typeName":  "Firmware Error Record Reference",
+                                      "severity":  1
+                                  }
+                              ]
+             },
+    "volumes":  [
+                    {
+                        "DriveLetter":  "C",
+                        "FileSystemLabel":  "",
+                        "FileSystemType":  "NTFS",
+                        "HealthStatus":  "Healthy",
+                        "OperationalStatus":  "OK",
+                        "SizeTiB":  0.23,
+                        "FreeTiB":  0.15
+                    },
+                    {
+                        "DriveLetter":  "H",
+                        "FileSystemLabel":  "TV 2",
+                        "FileSystemType":  "NTFS",
+                        "HealthStatus":  "Healthy",
+                        "OperationalStatus":  "OK",
+                        "SizeTiB":  18.19,
+                        "FreeTiB":  8.24
+                    },
+                    {
+                        "DriveLetter":  "I",
+                        "FileSystemLabel":  "Torrent",
+                        "FileSystemType":  "NTFS",
+                        "HealthStatus":  "Healthy",
+                        "OperationalStatus":  "OK",
+                        "SizeTiB":  18.19,
+                        "FreeTiB":  14.67
+                    },
+                    {
+                        "DriveLetter":  "J",
+                        "FileSystemLabel":  "TV 1",
+                        "FileSystemType":  "NTFS",
+                        "HealthStatus":  "Healthy",
+                        "OperationalStatus":  "OK",
+                        "SizeTiB":  14.55,
+                        "FreeTiB":  3.08
+                    }
+                ],
+    "driveMap":  [
+                     {
+                         "Index":  2,
+                         "Model":  "Samsung SSD 840 EVO 250GB",
+                         "Serial":  "S1DDNWAF903275D",
+                         "SizeTiB":  0.23,
+                         "Drive":  "C:",
+                         "Volume":  "",
+                         "Status":  "OK"
+                     },
+                     {
+                         "Index":  0,
+                         "Model":  "ST20000NM000H-3KV103",
+                         "Serial":  "ZYD02EQ2",
+                         "SizeTiB":  18.19,
+                         "Drive":  "H:",
+                         "Volume":  "TV 2",
+                         "Status":  "OK"
+                     },
+                     {
+                         "Index":  1,
+                         "Model":  "ST16000NE000-3UN101",
+                         "Serial":  "ZVTBPM4J",
+                         "SizeTiB":  14.55,
+                         "Drive":  "J:",
+                         "Volume":  "TV 1",
+                         "Status":  "OK"
+                     },
+                     {
+                         "Index":  3,
+                         "Model":  "ST20000NM000H-3KV103",
+                         "Serial":  "ZYE00444",
+                         "SizeTiB":  18.19,
+                         "Drive":  "I:",
+                         "Volume":  "Torrent",
+                         "Status":  "OK"
+                     }
+                 ],
+    "containers":  {
+                       "Name":  [
+                                    "qbittorrent",
+                                    "sonarr"
+                                ],
+                       "Status":  [
+                                      "exited",
+                                      "exited"
+                                  ],
+                       "ExitCode":  [
+                                        137,
+                                        137
+                                    ],
+                       "OOMKilled":  [
+                                         false,
+                                         false
+                                     ],
+                       "StartedAt":  [
+                                         "2026-05-29T17:24:36.3937423Z",
+                                         "2026-05-29T17:24:36.398341Z"
+                                     ],
+                       "FinishedAt":  [
+                                          "2026-05-29T17:26:23.646022063Z",
+                                          "2026-05-29T17:26:25.148381036Z"
+                                      ],
+                       "RestartPolicy":  [
+                                             "unless-stopped",
+                                             "unless-stopped"
+                                         ],
+                       "Mounts":  [
+                                      "C:/media-stack/config/qbittorrent -\u003e /config",
+                                      "I:/torrentfiles -\u003e /downloads",
+                                      "C:/media-stack/config/sonarr -\u003e /config",
+                                      "I:/torrentfiles -\u003e /downloads",
+                                      "J:/ -\u003e /tv/tv1",
+                                      "H:/ -\u003e /tv/tv2"
+                                  ]
+                   },
+    "serviceSummary":  {
+                           "qBittorrent":  "Started 09:27:39, restored 39 torrents from configured I:\\torrentfiles bind, at least one completed torrent before crash, no clean pre-crash termination, post-crash auto-start then clean stop at 10:26.",
+                           "Sonarr":  "Started 09:27:42, authenticated to qBittorrent, broad TV scan across /tv/tv1 and /tv/tv2 finished around 09:34:43, later RSS checks failed only because Prowlarr was intentionally stopped.",
+                           "WindowsStorage":  "No pre-crash disk/storahci/NTFS warning found in checked 09:20-10:07 window.",
+                           "DockerDesktop":  "No Docker panic or mount failure found before crash; logs showed normal API polling and active qBittorrent network forwarding."
+                       },
+    "minidumpFound":  false,
+    "memoryDmpFound":  false
+}

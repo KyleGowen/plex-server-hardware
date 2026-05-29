@@ -15,6 +15,7 @@ Current shape:
 For deeper context, read only the directly relevant file:
 
 - Stability and crash notes: `docs/current_stability_crash_tracker.md`
+- Thermal monitoring and crash sensor logs: `docs/thermal_monitoring.md`
 - Service details: `docs/services/*.md`
 - Skills and workflows: `docs/skills_catalog.md`
 - Storage recovery: `docs/qbittorrent_startup_recovery.md`

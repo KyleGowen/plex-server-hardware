@@ -1,0 +1,37 @@
+﻿[
+    {
+        "Time":  "2026-05-29 09:25:41",
+        "ProviderName":  "chromoting",
+        "Id":  3,
+        "LevelDisplayName":  "Error",
+        "Message":  "Access denied for client: kylegowen@gmail.com/chromoting_ftl_d05be43e-a4e6-42c6-b9f0-5ca3576c835d."
+    },
+    {
+        "Time":  "2026-05-29 09:46:23",
+        "ProviderName":  "chromoting",
+        "Id":  3,
+        "LevelDisplayName":  "Error",
+        "Message":  "Access denied for client: kylegowen@gmail.com/chromoting_ftl_24e56ec2-54ad-402b-a295-e21d56f4a8c3."
+    },
+    {
+        "Time":  "2026-05-29 10:19:15",
+        "ProviderName":  "Microsoft-Windows-WMI",
+        "Id":  63,
+        "LevelDisplayName":  "Warning",
+        "Message":  "A provider, IntelMEProv, has been registered in the Windows Management Instrumentation namespace root\\Intel_ME to use the LocalSystem account. This account is privileged and the provider may cause a security violation if it does not correctly impersonate user requests."
+    },
+    {
+        "Time":  "2026-05-29 10:19:15",
+        "ProviderName":  "Microsoft-Windows-WMI",
+        "Id":  63,
+        "LevelDisplayName":  "Warning",
+        "Message":  "A provider, IntelMEProv, has been registered in the Windows Management Instrumentation namespace root\\Intel_ME to use the LocalSystem account. This account is privileged and the provider may cause a security violation if it does not correctly impersonate user requests."
+    },
+    {
+        "Time":  "2026-05-29 10:19:15",
+        "ProviderName":  "Microsoft-Windows-WMI",
+        "Id":  63,
+        "LevelDisplayName":  "Warning",
+        "Message":  "A provider, IntelMEProv, has been registered in the Windows Management Instrumentation namespace root\\Intel_ME to use the LocalSystem account. This account is privileged and the provider may cause a security violation if it does not correctly impersonate user requests."
+    }
+]
