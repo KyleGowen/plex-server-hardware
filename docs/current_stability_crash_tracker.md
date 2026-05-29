@@ -245,6 +245,14 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 - If the system crashes during this OS-only soak, then the disconnected media drives, PCI SATA expansion card, loose Torrent-drive SATA data cable, and removed Molex-to-SATA adapter branch become much less likely to be the complete root cause.
 - Do not move to RAM isolation until the OS-only storage soak either fails or runs long enough to change the diagnosis.
 
+## 2026-05-28 OS-Only Soak Checkpoint
+
+- At `2026-05-28 9:22 PM`, Windows reported boot time `2026-05-28 12:50:06 PM`, about 8.54 hours uptime.
+- Windows still detected only `C:` and physical disk serial `S1DDNWAF903275D`.
+- No new `Kernel-Power 41` / `EventLog 6008` crash entries appeared after the OS-only test began.
+- This is a meaningful improvement compared with the dense 2026-05-28 crash cluster, but it is not yet a 24-hour proof.
+- It is reasonable to begin cautious reassembly if every added component is treated as a new test variable with its own soak checkpoint.
+
 ## 2026-05-25 WHEA / IOMMU Finding
 
 - After BIOS update to `M.A0`, Windows logged `WHEA-Logger` Event ID `1`: `A fatal hardware error has occurred`.
@@ -340,7 +348,8 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 - [x] Persist 2026-05-28 11:33 post-crash logs and record missing `I:` / Torrent drive state.
 - [x] Persist 2026-05-28 12:31 post-crash logs and record reduced-drive, direct-motherboard-SATA isolation state.
 - [x] Persist 2026-05-28 12:53 post-crash logs and record the start of OS-only SATA storage isolation.
-- [ ] Continue OS-only storage soak and record whether it fails.
+- [x] Record 8.5-hour OS-only soak checkpoint with no new crash.
+- [ ] Reassemble storage one component/cable group at a time with soak checkpoints.
 - [x] Recheck `H:` / TV 2 after recurrence; present and mapped correctly on 2026-05-27.
 - [ ] Review Docker Desktop/WSL logs only after Windows crash evidence is collected.
 - [ ] Avoid firmware, BIOS, storage-controller, or drive-letter changes until a diagnostic plan calls for them.
