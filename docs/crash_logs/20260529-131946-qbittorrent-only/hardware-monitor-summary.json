@@ -1,0 +1,149 @@
+﻿{
+    "CrashWindowLog":  {
+                           "JsonPath":  "C:\\plex-server\\docs\\crash_logs\\thermal\\libre-sensors-20260529-131142-a2fbc5c5.jsonl",
+                           "JsonLength":  424519,
+                           "JsonNonNullBytes":  3,
+                           "CsvPath":  "C:\\plex-server\\docs\\crash_logs\\thermal\\libre-sensors-20260529-131142-a2fbc5c5.csv",
+                           "CsvLength":  243441,
+                           "CsvNonNullBytes":  77,
+                           "Interpretation":  "Logger initialized at 13:11:42 but hard reset occurred before any complete sensor JSON row was flushed; CSV contains only header/BOM plus NUL padding."
+                       },
+    "PostRebootSensorLog":  {
+                                "Path":  "C:\\plex-server\\docs\\crash_logs\\thermal\\libre-sensors-20260529-132213-25171ada.jsonl",
+                                "Rows":  91206,
+                                "FirstTimestamp":  "2026-05-29T13:22:13.7691567-07:00",
+                                "LastTimestamp":  "2026-05-29T13:37:10.3797045-07:00",
+                                "MaxTemperaturesC":  [
+                                                         {
+                                                             "timestamp":  "2026-05-29T13:33:41.5993441-07:00",
+                                                             "hardware_type":  "GpuNvidia",
+                                                             "hardware_name":  "NVIDIA GeForce RTX 3050",
+                                                             "sensor_name":  "GPU Hot Spot",
+                                                             "value":  70.062,
+                                                             "unit":  "C"
+                                                         },
+                                                         {
+                                                             "timestamp":  "2026-05-29T13:33:36.5635307-07:00",
+                                                             "hardware_type":  "AIDA64",
+                                                             "hardware_name":  "AIDA64 Registry Export",
+                                                             "sensor_name":  "GPU Hotspot [TGPU1HOT]",
+                                                             "value":  70,
+                                                             "unit":  "C"
+                                                         },
+                                                         {
+                                                             "timestamp":  "2026-05-29T13:33:39.1839650-07:00",
+                                                             "hardware_type":  "AIDA64",
+                                                             "hardware_name":  "AIDA64 Registry Export",
+                                                             "sensor_name":  "GPU Hotspot [TGPU1HOT]",
+                                                             "value":  70,
+                                                             "unit":  "C"
+                                                         },
+                                                         {
+                                                             "timestamp":  "2026-05-29T13:33:26.7853246-07:00",
+                                                             "hardware_type":  "AIDA64",
+                                                             "hardware_name":  "AIDA64 Registry Export",
+                                                             "sensor_name":  "GPU Hotspot [TGPU1HOT]",
+                                                             "value":  70,
+                                                             "unit":  "C"
+                                                         },
+                                                         {
+                                                             "timestamp":  "2026-05-29T13:33:56.5182656-07:00",
+                                                             "hardware_type":  "AIDA64",
+                                                             "hardware_name":  "AIDA64 Registry Export",
+                                                             "sensor_name":  "GPU Hotspot [TGPU1HOT]",
+                                                             "value":  70,
+                                                             "unit":  "C"
+                                                         },
+                                                         {
+                                                             "timestamp":  "2026-05-29T13:33:31.6816956-07:00",
+                                                             "hardware_type":  "AIDA64",
+                                                             "hardware_name":  "AIDA64 Registry Export",
+                                                             "sensor_name":  "GPU Hotspot [TGPU1HOT]",
+                                                             "value":  70,
+                                                             "unit":  "C"
+                                                         },
+                                                         {
+                                                             "timestamp":  "2026-05-29T13:33:59.0200520-07:00",
+                                                             "hardware_type":  "AIDA64",
+                                                             "hardware_name":  "AIDA64 Registry Export",
+                                                             "sensor_name":  "GPU Hotspot [TGPU1HOT]",
+                                                             "value":  70,
+                                                             "unit":  "C"
+                                                         },
+                                                         {
+                                                             "timestamp":  "2026-05-29T13:33:29.2006771-07:00",
+                                                             "hardware_type":  "AIDA64",
+                                                             "hardware_name":  "AIDA64 Registry Export",
+                                                             "sensor_name":  "GPU Hotspot [TGPU1HOT]",
+                                                             "value":  70,
+                                                             "unit":  "C"
+                                                         },
+                                                         {
+                                                             "timestamp":  "2026-05-29T13:33:51.3186007-07:00",
+                                                             "hardware_type":  "AIDA64",
+                                                             "hardware_name":  "AIDA64 Registry Export",
+                                                             "sensor_name":  "GPU Hotspot [TGPU1HOT]",
+                                                             "value":  70,
+                                                             "unit":  "C"
+                                                         },
+                                                         {
+                                                             "timestamp":  "2026-05-29T13:33:48.9184229-07:00",
+                                                             "hardware_type":  "AIDA64",
+                                                             "hardware_name":  "AIDA64 Registry Export",
+                                                             "sensor_name":  "GPU Hotspot [TGPU1HOT]",
+                                                             "value":  70,
+                                                             "unit":  "C"
+                                                         }
+                                                     ],
+                                "Rails":  [
+                                              {
+                                                  "Sensor":  "+12 V [VP12V]",
+                                                  "Min":  12.096,
+                                                  "Max":  12.168,
+                                                  "Avg":  12.135,
+                                                  "Samples":  194
+                                              },
+                                              {
+                                                  "Sensor":  "+3.3 V [V33V]",
+                                                  "Min":  3.312,
+                                                  "Max":  3.324,
+                                                  "Avg":  3.318,
+                                                  "Samples":  194
+                                              },
+                                              {
+                                                  "Sensor":  "GPU PCIe [VGPU1PCIE]",
+                                                  "Min":  12.108,
+                                                  "Max":  12.16,
+                                                  "Avg":  12.132,
+                                                  "Samples":  194
+                                              }
+                                          ]
+                            },
+    "HardwareMonitorProcesses":  [
+                                     {
+                                         "ProcessName":  "aida64",
+                                         "Id":  10364,
+                                         "StartTime":  "\/Date(1780086549859)\/"
+                                     },
+                                     {
+                                         "ProcessName":  "Core Temp",
+                                         "Id":  6952,
+                                         "StartTime":  "\/Date(1780086099331)\/"
+                                     }
+                                 ],
+    "HardwareMonitorTasks":  [
+                                 {
+                                     "TaskName":  "Plex Thermal AIDA64 Sensor Source",
+                                     "State":  3
+                                 },
+                                 {
+                                     "TaskName":  "Plex Thermal Core Temp Source",
+                                     "State":  4
+                                 },
+                                 {
+                                     "TaskName":  "Plex Thermal Sensor Logger",
+                                     "State":  4
+                                 }
+                             ],
+    "Aida64ExportVisible":  true
+}

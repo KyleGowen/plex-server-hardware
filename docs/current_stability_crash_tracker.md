@@ -325,6 +325,43 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 - Because the TV drives were reported to be sharing the same power cable as the Torrent drive, treat the shared SATA power branch feeding `I:`, `H:`, and/or `J:` as the next component/path to verify.
 - Keep qBittorrent and Sonarr stopped for now. Next isolation should avoid starting qBittorrent and Sonarr together; test one variable at a time only after the current hardware/power path is reviewed.
 
+## 2026-05-29 qBittorrent-Only Recurrence
+
+- User recovered from another crash and reported it happened right after starting qBittorrent alone.
+- Capture directory: `docs/crash_logs/20260529-131946-qbittorrent-only`.
+- Current boot time after recovery: `2026-05-29 1:19:46 PM`.
+- Windows recorded previous unexpected shutdown at `2026-05-29 1:11:14 PM`.
+- Latest `Kernel-Power 41` again showed a hard reset pattern rather than a normal application failure.
+- Latest `WHEA-Logger` Event 1 at `2026-05-29 1:19:56 PM` preserved another 3552-byte `CPER` record with three fatal Firmware Error Record Reference sections.
+- No minidump or `MEMORY.DMP` was found.
+- qBittorrent container state after recovery was `Exited (137)` and `OOMKilled=false`.
+- qBittorrent was mounted from `C:\media-stack\config\qbittorrent` to `/config` and from `I:\torrentfiles` to `/downloads`.
+- qBittorrent relevant config still points downloads and incomplete downloads at `/downloads`, with TCP/UDP peer port `6881` and WebUI port `8080`.
+- qBittorrent session storage contained 39 torrent/session records in `BT_backup`; this means startup is immediate restore plus peer/network/disk activity, not an idle service start.
+- Windows still saw `C:`, `H:`, `I:`, and `J:` after reboot, and `I:\torrentfiles` returned `True`.
+- No checked pre-crash `disk`, `storahci`, or `NTFS` warning was found; storage visibility after reboot does not rule out a transient power/data-path fault during qBittorrent load.
+- Hardware monitor note: the crash-window logger initialized at `1:11:42 PM`, but the hard reset occurred before any complete JSON sensor row flushed. The file contains only BOM/header data plus NUL padding.
+- Post-reboot hardware monitoring was healthy: AIDA64 export was visible, Core Temp was running, sensor rows were captured, maximum observed post-reboot GPU hotspot was about `70 C`, CPU package/cores peaked about `68 C`, `+12 V` and `+3.3 V` readings were visible, and no thermal emergency was evident.
+- Interpretation: qBittorrent is now a confirmed trigger, but the root cause still looks below qBittorrent: platform/power/storage-path instability under qBittorrent's combined Docker bind mount, `I:` drive I/O, and peer/network activity.
+- Current top isolation target: put `I:` / Torrent on its own known-good native Corsair RM750e SATA power cable and a known-good locking SATA data cable, ideally on a different motherboard SATA port, before another qBittorrent load test.
+- If practical, repeat the next qBittorrent test with only `C:` and `I:` connected so `H:` / TV 2 and `J:` / TV 1 are not sharing the power/load path.
+- Do not use the old Molex-to-SATA adapter branch or any non-RM750e modular PSU cable.
+- Keep qBittorrent stopped until the next deliberate isolation test.
+
+## 2026-05-29 Clean C + I Isolation State
+
+- User returned with only the OS SSD and Torrent drive connected.
+- User reported `C:` and `I:` are each on dedicated SATA data cables and dedicated SATA power cables.
+- Check time: `2026-05-29 2:06 PM`.
+- Current boot time: `2026-05-29 1:43:43 PM`.
+- Windows visible fixed volumes: `C:` and `I:` only.
+- `I:` is labeled `Torrent`, NTFS, about `18.19 TiB`, with about `14.67 TiB` free.
+- `Test-Path I:\torrentfiles` returned `True`.
+- Physical disks visible: OS SSD `S1DDNWAF903275D` and Torrent drive `ZYE00444` only; both reported `OK`.
+- qBittorrent remained stopped: `Exited (137)` from the prior crash/recovery.
+- This is the cleanest current test posture for isolating whether qBittorrent load can crash the machine when the TV drives and shared drive-power branch are removed from the equation.
+- Next deliberate test, when accepted: start qBittorrent only, leave Sonarr and other Arr containers stopped, and watch for immediate crash. Passing this test would shift suspicion back toward the removed TV-drive/shared-power path; failing it would point at the `I:` Torrent drive path, Docker/WSL/NIC path, or platform stability under qBittorrent load.
+
 ## 2026-05-25 WHEA / IOMMU Finding
 
 - After BIOS update to `M.A0`, Windows logged `WHEA-Logger` Event ID `1`: `A fatal hardware error has occurred`.
@@ -445,9 +482,14 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 - [x] Start controlled software test with qBittorrent and Sonarr only; mounts verified healthy.
 - [x] Run stable-state diagnostic sweep with qBittorrent and Sonarr running; no new crash records, mounts healthy.
 - [x] Persist 2026-05-29 qBittorrent/Sonarr recurrence bundle.
+- [x] Persist 2026-05-29 qBittorrent-only recurrence bundle, including hardware-monitor summary.
 - [ ] Watch `J:` / TV 1 for repeated disk Event 153 retries.
 - [x] qBittorrent/Sonarr soak failed with a hard reset; do not start additional media containers yet.
+- [x] Confirm Sonarr is not required for the latest reproduction; qBittorrent alone triggered the crash.
 - [ ] Verify the shared SATA power branch currently feeding Torrent/TV drives before repeating the qBittorrent/Sonarr test.
+- [x] Isolate `I:` / Torrent onto its own dedicated SATA power cable and dedicated SATA data cable before another qBittorrent load test.
+- [x] Reduce storage to clean `C:` + `I:` only state for next qBittorrent-only isolation test.
+- [ ] Run qBittorrent-only test in clean `C:` + `I:` state, with Sonarr and other Arr containers stopped.
 - [x] Recheck `H:` / TV 2 after recurrence; present and mapped correctly on 2026-05-27.
 - [x] Review Docker Desktop/WSL logs only after Windows crash evidence is collected.
 - [ ] Avoid firmware, BIOS, storage-controller, or drive-letter changes until a diagnostic plan calls for them.
@@ -467,6 +509,8 @@ These are hypotheses, not conclusions:
 | Thermals/fan control | Reused case and fans; fan map still needs documentation |
 | Platform firmware / motherboard / CPU complex | Repeated fatal WHEA CPER firmware error record references, type 2 SOC firmware record, after hard resets |
 | Power delivery / PSU cabling | Hard resets with no bugcheck or dump can occur when power delivery drops or protection trips; PSU is reused |
+| Torrent drive power/data path under qBittorrent load | qBittorrent alone now reproduces the hard reset while mounted to `I:\torrentfiles`; no normal application crash or Windows storage warning was captured |
+| Docker/WSL network-forwarding path under qBittorrent peer load | qBittorrent startup exposes peer ports and immediately resumes peer/network activity, so NIC/WSL/Hyper-V remains a secondary trigger path to separate after hardware power/data isolation |
 | Memory stability | DDR5 is at safe 4800, but RAM/IMC faults can still surface as WHEA/platform resets |
 | Removed broken-pin HDD or its cabling | Stability improved initially after the damaged drive was removed, but crashes recurred, so it was not the complete root cause |
 | Storage or Docker/WSL timing | qBittorrent had a stale mount incident, but latest storage mounts were healthy after reboot; less likely as primary cause of hard resets |

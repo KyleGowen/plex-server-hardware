@@ -1,0 +1,72 @@
+﻿{
+    "LogicalDisks":  [
+                         {
+                             "DeviceID":  "C:",
+                             "VolumeName":  "",
+                             "FileSystem":  "NTFS",
+                             "SizeTiB":  0.23,
+                             "FreeTiB":  0.15
+                         },
+                         {
+                             "DeviceID":  "H:",
+                             "VolumeName":  "TV 2",
+                             "FileSystem":  "NTFS",
+                             "SizeTiB":  18.19,
+                             "FreeTiB":  8.24
+                         },
+                         {
+                             "DeviceID":  "I:",
+                             "VolumeName":  "Torrent",
+                             "FileSystem":  "NTFS",
+                             "SizeTiB":  18.19,
+                             "FreeTiB":  14.67
+                         },
+                         {
+                             "DeviceID":  "J:",
+                             "VolumeName":  "TV 1",
+                             "FileSystem":  "NTFS",
+                             "SizeTiB":  14.55,
+                             "FreeTiB":  3.08
+                         }
+                     ],
+    "DiskDrives":  [
+                       {
+                           "Index":  2,
+                           "Model":  "Samsung SSD 840 EVO 250GB",
+                           "SerialNumber":  "S1DDNWAF903275D",
+                           "Size":  250056737280,
+                           "Status":  "OK",
+                           "InterfaceType":  "IDE"
+                       },
+                       {
+                           "Index":  0,
+                           "Model":  "ST20000NM000H-3KV103",
+                           "SerialNumber":  "            ZYD02EQ2",
+                           "Size":  20000582622720,
+                           "Status":  "OK",
+                           "InterfaceType":  "IDE"
+                       },
+                       {
+                           "Index":  1,
+                           "Model":  "ST16000NE000-3UN101",
+                           "SerialNumber":  "            ZVTBPM4J",
+                           "Size":  16000900392960,
+                           "Status":  "OK",
+                           "InterfaceType":  "IDE"
+                       },
+                       {
+                           "Index":  3,
+                           "Model":  "ST20000NM000H-3KV103",
+                           "SerialNumber":  "            ZYE00444",
+                           "Size":  20000582622720,
+                           "Status":  "OK",
+                           "InterfaceType":  "IDE"
+                       }
+                   ],
+    "RootChecks":  {
+                       "I:\\torrentfiles":  true,
+                       "H:\\":  true,
+                       "J:\\":  true,
+                       "C:\\media-stack\\config\\qbittorrent":  true
+                   }
+}

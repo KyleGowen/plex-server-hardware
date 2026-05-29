@@ -1,0 +1,43 @@
+﻿{
+    "EventTime":  "\/Date(1780085996712)\/",
+    "RecordBytes":  3552,
+    "Signature":  "CPER",
+    "Revision":  528,
+    "SectionCount":  3,
+    "ErrorSeverity":  1,
+    "Sections":  [
+                     {
+                         "Index":  0,
+                         "SectionOffset":  344,
+                         "SectionLength":  2592,
+                         "Revision":  768,
+                         "ValidationBits":  0,
+                         "Flags":  0,
+                         "SectionTypeGuid":  "81212a96-09ed-4996-9471-8d729c8e69ed",
+                         "FruIdGuid":  "00000000-0000-0000-0000-000000000000",
+                         "Severity":  1
+                     },
+                     {
+                         "Index":  1,
+                         "SectionOffset":  2936,
+                         "SectionLength":  544,
+                         "Revision":  768,
+                         "ValidationBits":  0,
+                         "Flags":  0,
+                         "SectionTypeGuid":  "81212a96-09ed-4996-9471-8d729c8e69ed",
+                         "FruIdGuid":  "00000000-0000-0000-0000-000000000000",
+                         "Severity":  1
+                     },
+                     {
+                         "Index":  2,
+                         "SectionOffset":  3480,
+                         "SectionLength":  72,
+                         "Revision":  768,
+                         "ValidationBits":  0,
+                         "Flags":  0,
+                         "SectionTypeGuid":  "81212a96-09ed-4996-9471-8d729c8e69ed",
+                         "FruIdGuid":  "00000000-0000-0000-0000-000000000000",
+                         "Severity":  1
+                     }
+                 ]
+}

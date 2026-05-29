@@ -1,0 +1,96 @@
+﻿{
+    "CapturedAt":  "\/Date(1780087032246)\/",
+    "LastBoot":  "\/Date(1780085986500)\/",
+    "DockerContainers":  [
+                             "qbittorrent|Exited (137) 13 minutes ago|lscr.io/linuxserver/qbittorrent:latest",
+                             "sonarr|Exited (137) 3 hours ago|lscr.io/linuxserver/sonarr:latest",
+                             "silly_austin|Exited (255) 16 hours ago|louislam/uptime-kuma:1",
+                             "torrent-mcp|Up 15 minutes|torrent-mcp-local:latest"
+                         ],
+    "QbittorrentState":  {
+                             "Status":  "exited",
+                             "ExitCode":  137,
+                             "OOMKilled":  false,
+                             "StartedAt":  "2026-05-29T20:22:03.3449162Z",
+                             "FinishedAt":  "2026-05-29T20:23:52.675641085Z"
+                         },
+    "QbittorrentMounts":  [
+                              {
+                                  "Type":  "bind",
+                                  "Source":  "C:/media-stack/config/qbittorrent",
+                                  "Destination":  "/config",
+                                  "Mode":  "rw",
+                                  "RW":  true
+                              },
+                              {
+                                  "Type":  "bind",
+                                  "Source":  "I:/torrentfiles",
+                                  "Destination":  "/downloads",
+                                  "Mode":  "rw",
+                                  "RW":  true
+                              }
+                          ],
+    "QbittorrentPorts":  {
+                             "6881/tcp":  [
+                                              {
+                                                  "HostIp":  "",
+                                                  "HostPort":  "6881"
+                                              }
+                                          ],
+                             "6881/udp":  [
+                                              {
+                                                  "HostIp":  "",
+                                                  "HostPort":  "6881"
+                                              }
+                                          ],
+                             "8080/tcp":  [
+                                              {
+                                                  "HostIp":  "0.0.0.0",
+                                                  "HostPort":  "8080"
+                                              }
+                                          ]
+                         },
+    "QbittorrentConfigRelevantRedacted":  {
+                                              "WebUI\\Address":  "0.0.0.0",
+                                              "Session\\SSL\\Port":  "[REDACTED]",
+                                              "Session\\Port":  "[REDACTED]",
+                                              "Session\\DefaultSavePath":  "[REDACTED]",
+                                              "WebUI\\Port":  "8080",
+                                              "WebUI\\ServerDomains":  "*",
+                                              "WebUI\\LocalHostAuth":  "false",
+                                              "Session\\TempPath":  "[REDACTED]",
+                                              "Downloads\\SavePath":  "/downloads/",
+                                              "Downloads\\TempPath":  "/downloads/incomplete/",
+                                              "Connection\\PortRangeMin":  "6881",
+                                              "WebUI\\Username":  "[REDACTED]",
+                                              "Connection\\UPnP":  "false",
+                                              "WebUI\\Password_PBKDF2":  "[REDACTED]",
+                                              "PortForwardingEnabled":  "false"
+                                          },
+    "BTBackupCounts":  [
+                           {
+                               "Extension":  ".fastresume",
+                               "Count":  39,
+                               "TotalMiB":  0.366
+                           },
+                           {
+                               "Extension":  ".torrent",
+                               "Count":  39,
+                               "TotalMiB":  5.531
+                           },
+                           {
+                               "Extension":  ".CPRwXx",
+                               "Count":  1,
+                               "TotalMiB":  0
+                           },
+                           {
+                               "Extension":  "",
+                               "Count":  1,
+                               "TotalMiB":  0.001
+                           }
+                       ],
+    "QbittorrentDockerLogRedactedHighlights":  [
+                                                   "WebUI will be started shortly after internal preparations. Please wait...",
+                                                   "WebUI will be started shortly after internal preparations. Please wait..."
+                                               ]
+}

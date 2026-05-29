@@ -1,0 +1,35 @@
+﻿{
+    "CapturedAt":  "\/Date(1780087032246)\/",
+    "CrashLabel":  "qBittorrent-only recurrence after user started qBittorrent",
+    "LastBoot":  "\/Date(1780085986500)\/",
+    "UnexpectedShutdownEvent":  {
+                                    "TimeCreated":  "\/Date(1780085995857)\/",
+                                    "ProviderName":  "EventLog",
+                                    "Id":  6008,
+                                    "LevelDisplayName":  "Error",
+                                    "Message":  "The previous system shutdown at 1:11:14 PM on ‎5/‎29/‎2026 was unexpected."
+                                },
+    "KernelPowerEvent":  {
+                             "TimeCreated":  "\/Date(1780085988818)\/",
+                             "ProviderName":  "Microsoft-Windows-Kernel-Power",
+                             "Id":  41,
+                             "LevelDisplayName":  "Critical",
+                             "Message":  "The system has rebooted without cleanly shutting down first. This error could be caused if the system stopped responding, crashed, or lost power unexpectedly."
+                         },
+    "WHEAEvent":  {
+                      "TimeCreated":  "\/Date(1780085996712)\/",
+                      "Id":  1,
+                      "ProviderName":  "Microsoft-Windows-WHEA-Logger",
+                      "Message":  "A fatal hardware error has occurred. A record describing the condition is contained in the data section of this event."
+                  },
+    "MinidumpFound":  false,
+    "MemoryDumpFound":  false,
+    "KeyFindings":  [
+                        "qBittorrent start and unexpected shutdown line up at roughly 2026-05-29 13:11 local time.",
+                        "Windows again recorded Kernel-Power 41 with BugcheckCode 0 and a fatal WHEA hardware error after reboot, matching the previous platform-reset pattern.",
+                        "qBittorrent container was bind-mounted to C:/media-stack/config/qbittorrent and I:/torrentfiles, exposing 6881 TCP/UDP and 8080 TCP.",
+                        "qBittorrent restores 39 torrent/session files at startup, so startup is immediate disk plus peer/network activity, not idle.",
+                        "No checked pre-crash disk/storahci/NTFS warning was found; storage volumes were visible after reboot.",
+                        "Crash-window thermal log initialized but captured no completed samples before the reset; post-reboot sensors show normal temperatures and visible +12 V/+3.3 V readings."
+                    ]
+}
