@@ -1,0 +1,85 @@
+﻿{
+    "CapturedAt":  "2026-05-29T16:09:49.2811247-07:00",
+    "ActivePhysicalNic":  [
+                              {
+                                  "Name":  "Ethernet 2",
+                                  "InterfaceDescription":  "Intel(R) Ethernet Controller I226-V #2",
+                                  "Status":  "Up",
+                                  "LinkSpeed":  "1 Gbps",
+                                  "DriverInformation":  "Driver Date 2024-02-15 Version 1.1.4.43 NDIS 6.84"
+                              }
+                          ],
+    "VirtualNetworkAdapters":  [
+                                   {
+                                       "Name":  "vEthernet (WSL)",
+                                       "InterfaceDescription":  "Hyper-V Virtual Ethernet Adapter",
+                                       "Status":  "Up",
+                                       "LinkSpeed":  "10 Gbps",
+                                       "DriverInformation":  "Driver Date 2006-06-21 Version 10.0.19041.1"
+                                   }
+                               ],
+    "NetworkPnpDevices":  [
+                              {
+                                  "Status":  "OK",
+                                  "FriendlyName":  "Hyper-V Virtual Switch Extension Adapter",
+                                  "InstanceId":  "ROOT\\VMS_VSMP\\0000"
+                              },
+                              {
+                                  "Status":  "Unknown",
+                                  "FriendlyName":  "Bluetooth Device (Personal Area Network)",
+                                  "InstanceId":  "BTH\\MS_BTHPAN\\6\u0026CE2F8ED\u00260\u00262"
+                              },
+                              {
+                                  "Status":  "OK",
+                                  "FriendlyName":  "Intel(R) Ethernet Controller I226-V #2",
+                                  "InstanceId":  "PCI\\VEN_8086\u0026DEV_125C\u0026SUBSYS_7E071462\u0026REV_04\\345A60FFFFFD414C00"
+                              },
+                              {
+                                  "Status":  "Unknown",
+                                  "FriendlyName":  "Microsoft Wi-Fi Direct Virtual Adapter #3",
+                                  "InstanceId":  "{5D624F94-8850-40C3-A3FA-A4FD2080BAF3}\\VWIFIMP_WFD\\5\u00262B07470C\u00260\u002613"
+                              },
+                              {
+                                  "Status":  "Unknown",
+                                  "FriendlyName":  "Microsoft Wi-Fi Direct Virtual Adapter #4",
+                                  "InstanceId":  "{5D624F94-8850-40C3-A3FA-A4FD2080BAF3}\\VWIFIMP_WFD\\5\u00262B07470C\u00260\u002614"
+                              },
+                              {
+                                  "Status":  "Unknown",
+                                  "FriendlyName":  "Realtek 8852CE WiFi 6E PCI-E NIC #2",
+                                  "InstanceId":  "PCI\\VEN_10EC\u0026DEV_C852\u0026SUBSYS_56001A3B\u0026REV_01\\00E04CFFFEC8520100"
+                              },
+                              {
+                                  "Status":  "OK",
+                                  "FriendlyName":  "Hyper-V Virtual Ethernet Adapter",
+                                  "InstanceId":  "ROOT\\VMS_MP\\0000"
+                              },
+                              {
+                                  "Status":  "Unknown",
+                                  "FriendlyName":  "Intel(R) Ethernet Controller I226-V",
+                                  "InstanceId":  "PCI\\VEN_8086\u0026DEV_125C\u0026SUBSYS_7E071462\u0026REV_04\\4\u00261642314C\u00260\u002600E3"
+                              },
+                              {
+                                  "Status":  "Unknown",
+                                  "FriendlyName":  "Realtek 8852CE WiFi 6E PCI-E NIC",
+                                  "InstanceId":  "PCI\\VEN_10EC\u0026DEV_C852\u0026SUBSYS_56001A3B\u0026REV_01\\4\u00262BB179BF\u00260\u002600E2"
+                              },
+                              {
+                                  "Status":  "Unknown",
+                                  "FriendlyName":  "Microsoft Wi-Fi Direct Virtual Adapter",
+                                  "InstanceId":  "{5D624F94-8850-40C3-A3FA-A4FD2080BAF3}\\VWIFIMP_WFD\\5\u002638EF8596\u00260\u002611"
+                              },
+                              {
+                                  "Status":  "Unknown",
+                                  "FriendlyName":  "Microsoft Wi-Fi Direct Virtual Adapter #2",
+                                  "InstanceId":  "{5D624F94-8850-40C3-A3FA-A4FD2080BAF3}\\VWIFIMP_WFD\\5\u002638EF8596\u00260\u002612"
+                              }
+                          ],
+    "DockerDesktop":  {
+                          "ClientVersion":  "29.4.3",
+                          "ServerVersion":  "29.4.3",
+                          "Platform":  "Docker Desktop 4.74.0 (227015)",
+                          "KernelVersion":  "6.6.114.1-microsoft-standard-WSL2"
+                      },
+    "Note":  "Active wired path is Intel I226-V #2 through Hyper-V/WSL virtual networking for Docker Desktop."
+}

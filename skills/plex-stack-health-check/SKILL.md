@@ -1,6 +1,6 @@
 ---
 name: plex-stack-health-check
-description: Run a read-only validation of Kyle's Windows-native Plex plus Docker Arr stack. Use when the user asks to check stack health, validate Docker containers, service ports, config folders, Windows media paths, qBittorrent downloads mount, or wants a redacted operational validation report.
+description: Run a read-only validation of Kyle's Windows-native Plex and qBittorrent plus Docker Arr stack. Use when the user asks to check stack health, validate Docker containers, service ports, config folders, Windows media paths, native qBittorrent paths, or wants a redacted operational validation report.
 ---
 
 # Plex Stack Health Check
@@ -17,7 +17,8 @@ The check is read-only. It validates:
 - Service TCP ports.
 - Config folders under the configured media stack config root.
 - Windows media/download paths from `.env`.
-- qBittorrent `/downloads` capacity and write visibility inside the container.
+- Native qBittorrent reachability and `I:\torrentfiles` path visibility.
+- `/downloads` visibility from Sonarr/Radarr/Unpackerr containers.
 
 ## Fast Path
 
@@ -43,8 +44,8 @@ Call out especially:
 - Closed required service ports.
 - Missing config folders.
 - Missing Windows media/download paths.
-- Any mismatch from the expected `I:\torrentfiles` qBittorrent host path.
-- Any `/downloads` filesystem under 100 GB inside qBittorrent, because that likely indicates the tiny placeholder mount failure mode.
+- Any mismatch from the expected `I:\torrentfiles` qBittorrent Windows path.
+- Any `/downloads` filesystem under 100 GB inside Sonarr/Radarr/Unpackerr, because that likely indicates the tiny placeholder mount failure mode.
 
 ## Secret Handling
 

@@ -14,6 +14,7 @@ Plex is the native Windows media server. It owns the media libraries, metadata, 
 | Local Web UI | `http://localhost:32400/web` |
 | Update service | `PlexUpdateService` observed running |
 | Library sections | TV Shows section `1`; Movies section `2` |
+| TV library folders | `J:\TV Shows`, `H:\TV Shows`, `G:\TV Shows` |
 
 ## Reads From
 

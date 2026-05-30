@@ -8,7 +8,8 @@ Current shape:
 
 - Windows 10 OS SSD and existing media HDDs are preserved.
 - Plex Media Server runs native on Windows.
-- Sonarr, Radarr, Prowlarr, Bazarr, Tautulli, qBittorrent, and Unpackerr run in Docker.
+- qBittorrent and Plex Media Server run native on Windows.
+- Sonarr, Radarr, Prowlarr, Bazarr, Tautulli, Uptime Kuma, and Unpackerr run in Docker.
 - Jackett stays disabled unless the optional `legacy-jackett` profile is intentionally needed.
 - The broken-power-pin HDD removal is the current probable stability lead, but do not call the crash issue fully solved until longer normal-operation soak data supports it.
 
@@ -18,7 +19,7 @@ For deeper context, read only the directly relevant file:
 - Thermal monitoring and crash sensor logs: `docs/thermal_monitoring.md`
 - Service details: `docs/services/*.md`
 - Skills and workflows: `docs/skills_catalog.md`
-- Storage recovery: `docs/qbittorrent_startup_recovery.md`
+- qBittorrent native service details: `docs/services/qbittorrent.md`
 - Hardware inventory: `docs/plex_server_hardware_inventory.md`
 
 ## Critical Safety Rules
@@ -27,8 +28,8 @@ For deeper context, read only the directly relevant file:
 - Do not assume a drive is disposable.
 - Do not randomly reorder SATA drives or casually change drive letters.
 - Confirm drive letters and root folders before repairing Plex, Sonarr, Radarr, Bazarr, Tautulli, qBittorrent, Jackett, or Unpackerr paths.
-- Before trusting downloads after boot, crash, Docker restart, WSL restart, or storage work, confirm both `I:\torrentfiles` on Windows and `/downloads` inside qBittorrent.
-- If `/downloads` inside qBittorrent appears as a tiny/full filesystem, restart Docker/WSL using the documented recovery flow instead of repeatedly restarting qBittorrent.
+- Before trusting downloads after boot, crash, Docker restart, WSL restart, or storage work, confirm `I:\torrentfiles` on Windows, native qBittorrent's save paths, and `/downloads` inside Sonarr/Radarr/Unpackerr.
+- qBittorrent is no longer a Docker service. Do not use `docker exec qbittorrent`, `qbittorrent:8080`, or qBittorrent container mount checks for current operations.
 - The former `H:` / TV 2 volume is absent as of 2026-05-26. Do not allow Sonarr/Bazarr imports or subtitle writes to `/tv/tv2` while that root is missing.
 - Use only Corsair RM750e-compatible modular PSU cables.
 - Favor step-by-step checklists over broad advice.
@@ -81,8 +82,8 @@ Still require explicit user confirmation for destructive storage actions, Plex l
 - For series, monitor normal seasons by default and leave specials/season 0 unmonitored unless requested.
 - When adding a movie to Radarr, set `Monitored: true` unless the user explicitly asks otherwise.
 - Do not trigger automatic Arr searches/downloads unless the user explicitly asks for search/download/add-acquire behavior or the invoked skill specifically authorizes it.
-- Sonarr's qBittorrent client should use Docker host `qbittorrent:8080`, category `tv-sonarr`, and shared `/downloads` paths.
-- Radarr's qBittorrent client should use Docker host `qbittorrent:8080`, category `radarr`, and shared `/downloads` paths.
+- Sonarr's qBittorrent client should use `host.docker.internal:8080`, category `tv-sonarr`, and a remote path mapping from `I:\torrentfiles\` to `/downloads/`.
+- Radarr's qBittorrent client should use `host.docker.internal:8080`, category `radarr`, and a remote path mapping from `I:\torrentfiles\` to `/downloads/`.
 
 ## Plex Rules
 

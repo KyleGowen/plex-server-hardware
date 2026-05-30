@@ -26,8 +26,8 @@ Uptime Kuma is bound to localhost through `WEBUI_HOST_IP=127.0.0.1`, so the Web 
 | Source | Purpose |
 |---|---|
 | HTTP/TCP endpoints | Checks whether monitored services respond |
-| Docker network DNS | Reaches Docker services by container name, such as `sonarr`, `radarr`, and `qbittorrent` |
-| `host.docker.internal` | Reaches native Windows Plex from inside Docker |
+| Docker network DNS | Reaches Docker services by container name, such as `sonarr` and `radarr` |
+| `host.docker.internal` | Reaches native Windows Plex and native Windows qBittorrent from inside Docker |
 | Uptime Kuma database | Stores monitor configuration, status history, users, sessions, and notification settings |
 
 ## Writes To / Sends To
@@ -59,7 +59,7 @@ These monitors were created after first-run admin setup:
 | Prowlarr | HTTP(s) | `http://prowlarr:9696` | HTTP 200 |
 | Bazarr | HTTP(s) | `http://bazarr:6767` | HTTP 200 |
 | Tautulli | HTTP(s) | `http://tautulli:8181` | HTTP 200 or redirect |
-| qBittorrent Web UI | HTTP(s) | `http://qbittorrent:8080` | HTTP 200 |
+| qBittorrent Web UI | HTTP(s) | `http://host.docker.internal:8080` | HTTP 200 |
 | Uptime Kuma | HTTP(s) | `http://127.0.0.1:3001` | HTTP 200 |
 
 Unpackerr is not included as an HTTP monitor because this deployment does not expose a normal Web UI for it. Monitor Unpackerr through `docker compose ps`, logs, or a future Docker-container monitor only if Docker socket access is intentionally added and accepted.
@@ -83,7 +83,7 @@ Verified on 2026-05-25:
 | Docker DNS to Prowlarr | Pass: `http://prowlarr:9696` returned HTTP 200 |
 | Docker DNS to Bazarr | Pass: `http://bazarr:6767` returned HTTP 200 |
 | Docker DNS to Tautulli | Pass: `http://tautulli:8181` returned HTTP 303 |
-| Docker DNS to qBittorrent | Pass: `http://qbittorrent:8080` returned HTTP 200 |
+| Docker-to-native qBittorrent | Pass: use `http://host.docker.internal:8080` from inside Docker |
 | Docker-to-native Plex | Pass: `http://host.docker.internal:32400/identity` returned HTTP 200 |
 
 Verified after monitor creation on 2026-05-25:
@@ -102,7 +102,7 @@ Verified after monitor creation on 2026-05-25:
 ## Operational Rules
 
 - Use Uptime Kuma for visibility and alerting, not as proof that the random crashing issue is solved.
-- Treat outages after reboot, crash, Docker restart, WSL restart, or storage work as prompts to verify both `I:\torrentfiles` on Windows and `/downloads` inside qBittorrent before trusting media automation.
+- Treat outages after reboot, crash, Docker restart, WSL restart, or storage work as prompts to verify `I:\torrentfiles` on Windows, native qBittorrent at `127.0.0.1:8080`, and `/downloads` inside Sonarr/Radarr/Unpackerr before trusting media automation.
 - Keep the Web UI on localhost unless remote access is deliberately designed and secured.
 - Prefer notification-only behavior first. Do not add automatic restart/remediation hooks until the crash pattern is better understood.
 - Keep monitor names plain and service-specific so status history is easy to compare with crash tracker notes.

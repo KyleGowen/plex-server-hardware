@@ -16,7 +16,8 @@ Use this as the stable hardware and drive inventory. Current crash work lives in
 | Operating system | Windows 10 Home build 19045 |
 | Plex deployment | Native Windows installation |
 | Containerization | Docker Desktop media stack |
-| Active Docker services | Sonarr, Radarr, Prowlarr, Bazarr, Tautulli, qBittorrent, Unpackerr |
+| Active Docker services | Sonarr, Radarr, Prowlarr, Bazarr, Tautulli, Uptime Kuma, Unpackerr |
+| Native download client | qBittorrent |
 | Optional Docker service | Jackett through the `legacy-jackett` profile |
 | Storage architecture | SATA drives with separate Windows drive letters |
 | RAID / pooling | None known |
@@ -106,6 +107,16 @@ Current physical disks detected on 2026-05-26:
 
 The former `H:` / `TV 2` volume is absent in the 2026-05-26 snapshot. Do not repair paths, start imports, or write to `/tv/tv2` until the missing TV 2 drive and intended replacement plan are confirmed.
 
+## Current TV Volume Snapshot From 2026-05-30
+
+Captured after adding `G:` as the third TV hard drive.
+
+| Drive Letter | Volume Label | File System | Windows Size | Free | Health / Operational Status | Current role / notes |
+|---|---|---|---:|---:|---|---|
+| G: | TV 3 | NTFS | 18.19 TiB | 18.19 TiB | Healthy / OK | Third TV media drive; root folder `G:\TV Shows` |
+| H: | TV 2 | NTFS | 18.19 TiB | 7.65 TiB | Healthy / OK | Second TV media drive; root folder `H:\TV Shows` |
+| J: | TV 1 | NTFS | 14.55 TiB | 3.08 TiB | Healthy / OK | First TV media drive; root folder `J:\TV Shows` |
+
 ## On-Hand / Not Installed Drives
 
 | Prior Drive Letter | Volume Label | Model | Serial | Nominal Capacity | Status | Notes |
@@ -120,13 +131,13 @@ The former `H:` / `TV 2` volume is absent in the 2026-05-26 snapshot. Do not rep
 
 ## Drive Letter Preservation Notes
 
-- Current detected media/data drive letters are `D:`, `E:`, `F:`, `G:`, `I:`, and `J:`. The former `H:` / `TV 2` drive is not currently present.
+- Current detected media/data drive letters are `D:`, `E:`, `F:`, `G:`, `H:`, `I:`, and `J:` as of the 2026-05-30 TV volume snapshot.
 - `I:` is the torrent/download drive and should contain `I:\torrentfiles`.
 - The Docker stack maps `I:\torrentfiles` to `/downloads`.
-- Do not trust qBittorrent after boot, crash, drive reconnect, or Docker restart until both Windows and Docker confirm the torrent path.
-- The old `G:` volume label was `Broken Power Pin`; that physically damaged drive has been removed from service. Current `G:` is an 8 TB replacement labeled `Empty`.
+- Do not trust qBittorrent after boot, crash, drive reconnect, or Docker restart until Windows confirms `I:\torrentfiles` and the relevant Docker containers confirm `/downloads`.
+- The old `G:` volume label was `Broken Power Pin`; that physically damaged drive has been removed from service. Current `G:` is labeled `TV 3` and is used as the third TV media drive.
 - Keep the removed broken-pin drive and its associated cabling out of normal service unless there is an explicit recovery plan.
-- Do not trust Sonarr/Bazarr `/tv/tv2` paths while `H:` is absent; Docker currently shows that mount as a tiny full placeholder filesystem.
+- Sonarr/Bazarr TV roots are `/tv/tv1` from `J:\`, `/tv/tv2` from `H:\`, and `/tv/tv3` from `G:\`; verify those drive letters after boot, crash, Docker restart, WSL restart, or storage work before trusting imports or subtitle writes.
 - `E:` and `I:` were nearly full in the 2026-05-23 inventory, but the 2026-05-26 snapshot shows both with much more free space. Recheck live free space before imports, downloads, or library moves.
 
 ---
@@ -158,7 +169,7 @@ The current system uses:
 
 - Windows 10.
 - Native Plex installation.
-- Docker containers for Sonarr, Radarr, Prowlarr, Bazarr, Tautulli, qBittorrent, and Unpackerr.
+- Docker containers for Sonarr, Radarr, Prowlarr, Bazarr, Tautulli, Uptime Kuma, and Unpackerr; qBittorrent runs natively on Windows.
 - Jackett only as an optional legacy profile.
 - Independent SATA drives with Windows drive letters.
 - No known RAID, ZFS, Unraid, or storage pool.

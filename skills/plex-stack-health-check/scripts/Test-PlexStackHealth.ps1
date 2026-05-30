@@ -334,6 +334,7 @@ foreach ($requiredName in @(
     "MOVIES_3_ROOT",
     "TV_1_ROOT",
     "TV_2_ROOT",
+    "TV_3_ROOT",
     "SONARR_PORT",
     "RADARR_PORT",
     "PROWLARR_PORT",
@@ -365,7 +366,6 @@ $expectedRunning = @(
     "bazarr",
     "tautulli",
     "uptime-kuma",
-    "qbittorrent",
     "unpackerr"
 )
 
@@ -411,8 +411,8 @@ $servicePorts = @(
     @{ Name = "Bazarr Web UI"; Env = "BAZARR_PORT"; Default = "6767"; Container = "bazarr"; Required = $true },
     @{ Name = "Tautulli Web UI"; Env = "TAUTULLI_PORT"; Default = "8181"; Container = "tautulli"; Required = $true },
     @{ Name = "Uptime Kuma Web UI"; Env = "UPTIME_KUMA_PORT"; Default = "3001"; Container = "uptime-kuma"; Required = $true },
-    @{ Name = "qBittorrent Web UI"; Env = "QBITTORRENT_WEBUI_PORT"; Default = "8080"; Container = "qbittorrent"; Required = $true },
-    @{ Name = "qBittorrent torrent TCP"; Env = "QBITTORRENT_TORRENT_PORT"; Default = "6881"; Container = "qbittorrent"; Required = $true },
+    @{ Name = "qBittorrent Web UI"; Env = "QBITTORRENT_WEBUI_PORT"; Default = "8080"; Container = "native-qbittorrent"; Required = $true },
+    @{ Name = "qBittorrent torrent TCP"; Env = "QBITTORRENT_TORRENT_PORT"; Default = "6881"; Container = "native-qbittorrent"; Required = $true },
     @{ Name = "Jackett Web UI"; Env = "JACKETT_PORT"; Default = "9117"; Container = "jackett"; Required = $false }
 )
 
@@ -444,10 +444,11 @@ foreach ($entry in $servicePorts) {
 
 $configRoot = Get-EnvValue $envValues "MEDIA_STACK_CONFIG" "C:\media-stack\config"
 Test-PathDetail "Config folders" "Config root" $configRoot $true
-foreach ($service in @("sonarr", "radarr", "prowlarr", "bazarr", "tautulli", "uptime-kuma", "qbittorrent", "unpackerr")) {
+foreach ($service in @("sonarr", "radarr", "prowlarr", "bazarr", "tautulli", "uptime-kuma", "unpackerr")) {
     Test-PathDetail "Config folders" "$service config" (Join-Path $configRoot $service) $true
 }
 Test-PathDetail "Config folders" "jackett config (optional)" (Join-Path $configRoot "jackett") $false
+Test-PathDetail "Config folders" "native qBittorrent config" (Join-Path $env:APPDATA "qBittorrent") $true
 
 $windowsPathChecks = @(
     @{ Name = "Downloads root"; Env = "DOWNLOADS_ROOT"; Required = $true },
@@ -456,7 +457,7 @@ $windowsPathChecks = @(
     @{ Name = "Movies root 3"; Env = "MOVIES_3_ROOT"; Required = $true },
     @{ Name = "TV root 1"; Env = "TV_1_ROOT"; Required = $true },
     @{ Name = "TV root 2"; Env = "TV_2_ROOT"; Required = $true },
-    @{ Name = "Spare media root"; Env = "SPARE_MEDIA_ROOT"; Required = $false }
+    @{ Name = "TV root 3"; Env = "TV_3_ROOT"; Required = $true }
 )
 
 foreach ($pathCheck in $windowsPathChecks) {
@@ -481,10 +482,11 @@ if ($downloadsRoot) {
     }
 }
 
-if ($containerMap.ContainsKey("qbittorrent") -and ([string]$containerMap["qbittorrent"].Status -match '^Up\b')) {
+foreach ($downloadContainer in @("sonarr", "radarr", "unpackerr")) {
+if ($containerMap.ContainsKey($downloadContainer) -and ([string]$containerMap[$downloadContainer].Status -match '^Up\b')) {
     try {
-        $dfCommand = "docker $($script:DockerArgs -join ' ') exec qbittorrent sh -c `"df -P -B1 /downloads | tail -n 1`""
-        $dfRaw = Invoke-Docker @("exec", "qbittorrent", "sh", "-c", "df -P -B1 /downloads | tail -n 1") 2>&1
+        $dfCommand = "docker $($script:DockerArgs -join ' ') exec $downloadContainer sh -c `"df -P -B1 /downloads | tail -n 1`""
+        $dfRaw = Invoke-Docker @("exec", $downloadContainer, "sh", "-c", "df -P -B1 /downloads | tail -n 1") 2>&1
         if ($LASTEXITCODE -eq 0 -and $dfRaw) {
             $parts = ([string]$dfRaw).Trim() -split '\s+'
             if ($parts.Count -ge 6) {
@@ -493,57 +495,100 @@ if ($containerMap.ContainsKey("qbittorrent") -and ([string]$containerMap["qbitto
                 $availableBytes = [int64]$parts[3]
                 $capacityNote = "Filesystem=$($parts[0]); Size=$([math]::Round($sizeBytes / 1GB, 1))GB; Used=$([math]::Round($usedBytes / 1GB, 1))GB; Available=$([math]::Round($availableBytes / 1GB, 1))GB; Mount=$($parts[5])"
                 if ($sizeBytes -lt 100GB) {
-                    Add-Check "qBittorrent /downloads mount" "Container df capacity" "FAIL" "$capacityNote. This looks like the tiny/full placeholder filesystem failure mode, not the media drive." @(
+                    Add-Check "Container /downloads mount" "$downloadContainer df capacity" "FAIL" "$capacityNote. This looks like the tiny/full placeholder filesystem failure mode, not the media drive." @(
                         "Command: $dfCommand",
                         "Raw df row: $dfRaw",
                         "Threshold: size must be at least 100GB to look like the expected media-drive mount."
                     )
                 } else {
-                    Add-Check "qBittorrent /downloads mount" "Container df capacity" "PASS" $capacityNote @(
+                    Add-Check "Container /downloads mount" "$downloadContainer df capacity" "PASS" $capacityNote @(
                         "Command: $dfCommand",
                         "Raw df row: $dfRaw",
                         "Threshold: size must be at least 100GB to look like the expected media-drive mount."
                     )
                 }
             } else {
-                Add-Check "qBittorrent /downloads mount" "Container df capacity" "WARN" "Unexpected df output: $dfRaw" @("Command: $dfCommand", "Raw df output: $dfRaw")
+                Add-Check "Container /downloads mount" "$downloadContainer df capacity" "WARN" "Unexpected df output: $dfRaw" @("Command: $dfCommand", "Raw df output: $dfRaw")
             }
         } else {
-            Add-Check "qBittorrent /downloads mount" "Container df capacity" "FAIL" "df command failed or returned no output." @("Command: $dfCommand", "Raw output:", ($dfRaw -join "`n"))
+            Add-Check "Container /downloads mount" "$downloadContainer df capacity" "FAIL" "df command failed or returned no output." @("Command: $dfCommand", "Raw output:", ($dfRaw -join "`n"))
         }
     } catch {
-        Add-Check "qBittorrent /downloads mount" "Container df capacity" "FAIL" $_.Exception.Message @("Command attempted: docker $($script:DockerArgs -join ' ') exec qbittorrent sh -c `"df -P -B1 /downloads | tail -n 1`"")
+        Add-Check "Container /downloads mount" "$downloadContainer df capacity" "FAIL" $_.Exception.Message @("Command attempted: docker $($script:DockerArgs -join ' ') exec $downloadContainer sh -c `"df -P -B1 /downloads | tail -n 1`"")
     }
 
     try {
-        $writableCommand = "docker $($script:DockerArgs -join ' ') exec qbittorrent sh -c `"test -d /downloads && test -w /downloads && echo writable || echo not_writable`""
-        $writableRaw = Invoke-Docker @("exec", "qbittorrent", "sh", "-c", "test -d /downloads && test -w /downloads && echo writable || echo not_writable") 2>&1
+        $writableCommand = "docker $($script:DockerArgs -join ' ') exec $downloadContainer sh -c `"test -d /downloads && test -w /downloads && echo writable || echo not_writable`""
+        $writableRaw = Invoke-Docker @("exec", $downloadContainer, "sh", "-c", "test -d /downloads && test -w /downloads && echo writable || echo not_writable") 2>&1
         if ($LASTEXITCODE -eq 0 -and ([string]$writableRaw).Trim() -eq "writable") {
-            Add-Check "qBittorrent /downloads mount" "Container write permission" "PASS" "/downloads exists and is writable from inside the qBittorrent container." @("Command: $writableCommand", "Raw result: $writableRaw")
+            Add-Check "Container /downloads mount" "$downloadContainer write permission" "PASS" "/downloads exists and is writable from inside $downloadContainer." @("Command: $writableCommand", "Raw result: $writableRaw")
         } else {
-            Add-Check "qBittorrent /downloads mount" "Container write permission" "FAIL" "Result: $writableRaw" @("Command: $writableCommand", "Raw result: $writableRaw")
+            Add-Check "Container /downloads mount" "$downloadContainer write permission" "FAIL" "Result: $writableRaw" @("Command: $writableCommand", "Raw result: $writableRaw")
         }
     } catch {
-        Add-Check "qBittorrent /downloads mount" "Container write permission" "FAIL" $_.Exception.Message @("Command attempted: docker $($script:DockerArgs -join ' ') exec qbittorrent sh -c `"test -d /downloads && test -w /downloads && echo writable || echo not_writable`"")
-    }
-
-    try {
-        $mountCommand = "docker $($script:DockerArgs -join ' ') exec qbittorrent sh -c `"mount | grep ' /downloads ' || true`""
-        $mountRaw = Invoke-Docker @("exec", "qbittorrent", "sh", "-c", "mount | grep ' /downloads ' || true") 2>&1
-        if ($mountRaw) {
-            Add-Check "qBittorrent /downloads mount" "Mount detail" "INFO" ($mountRaw -join "`n") @("Command: $mountCommand", "Raw mount output:", ($mountRaw -join "`n"))
-        } else {
-            Add-Check "qBittorrent /downloads mount" "Mount detail" "WARN" "No explicit mount line for /downloads was returned." @("Command: $mountCommand", "Raw mount output was empty.")
-        }
-    } catch {
-        Add-Check "qBittorrent /downloads mount" "Mount detail" "WARN" $_.Exception.Message @("Command attempted: docker $($script:DockerArgs -join ' ') exec qbittorrent sh -c `"mount | grep ' /downloads ' || true`"")
+        Add-Check "Container /downloads mount" "$downloadContainer write permission" "FAIL" $_.Exception.Message @("Command attempted: docker $($script:DockerArgs -join ' ') exec $downloadContainer sh -c `"test -d /downloads && test -w /downloads && echo writable || echo not_writable`"")
     }
 } else {
-    Add-Check "qBittorrent /downloads mount" "Container checks" "SKIP" "qBittorrent container is not running." @(
-        "qBittorrent present in docker ps -a: $($containerMap.ContainsKey('qbittorrent'))",
+    Add-Check "Container /downloads mount" "$downloadContainer checks" "SKIP" "$downloadContainer container is not running." @(
+        "$downloadContainer present in docker ps -a: $($containerMap.ContainsKey($downloadContainer))",
         "Visible container names: $(($containerMap.Keys | Sort-Object) -join ', ')",
-        "Skipped commands: df -P -B1 /downloads; test -d /downloads; mount | grep ' /downloads '"
+        "Skipped commands: df -P -B1 /downloads; test -d /downloads"
     )
+}
+}
+
+$tvMountChecks = @(
+    @{ Container = "sonarr"; Mount = "/tv/tv1"; Name = "TV root 1" },
+    @{ Container = "sonarr"; Mount = "/tv/tv2"; Name = "TV root 2" },
+    @{ Container = "sonarr"; Mount = "/tv/tv3"; Name = "TV root 3" },
+    @{ Container = "bazarr"; Mount = "/tv/tv1"; Name = "TV root 1" },
+    @{ Container = "bazarr"; Mount = "/tv/tv2"; Name = "TV root 2" },
+    @{ Container = "bazarr"; Mount = "/tv/tv3"; Name = "TV root 3" }
+)
+
+foreach ($mountCheck in $tvMountChecks) {
+    $container = $mountCheck.Container
+    $mount = $mountCheck.Mount
+    $checkName = "$container $($mountCheck.Name) $mount"
+    if ($containerMap.ContainsKey($container) -and ([string]$containerMap[$container].Status -match '^Up\b')) {
+        try {
+            $dfCommand = "docker $($script:DockerArgs -join ' ') exec $container sh -c `"df -P -B1 $mount | tail -n 1`""
+            $dfRaw = Invoke-Docker @("exec", $container, "sh", "-c", "df -P -B1 $mount | tail -n 1") 2>&1
+            if ($LASTEXITCODE -eq 0 -and $dfRaw) {
+                $parts = ([string]$dfRaw).Trim() -split '\s+'
+                if ($parts.Count -ge 6) {
+                    $sizeBytes = [int64]$parts[1]
+                    $availableBytes = [int64]$parts[3]
+                    $capacityNote = "Filesystem=$($parts[0]); Size=$([math]::Round($sizeBytes / 1GB, 1))GB; Available=$([math]::Round($availableBytes / 1GB, 1))GB; Mount=$($parts[5])"
+                    if ($sizeBytes -lt 100GB) {
+                        Add-Check "Container TV mounts" $checkName "FAIL" "$capacityNote. This looks like a tiny placeholder filesystem, not a TV media drive." @(
+                            "Command: $dfCommand",
+                            "Raw df row: $dfRaw",
+                            "Threshold: size must be at least 100GB to look like the expected TV media-drive mount."
+                        )
+                    } else {
+                        Add-Check "Container TV mounts" $checkName "PASS" $capacityNote @(
+                            "Command: $dfCommand",
+                            "Raw df row: $dfRaw",
+                            "Threshold: size must be at least 100GB to look like the expected TV media-drive mount."
+                        )
+                    }
+                } else {
+                    Add-Check "Container TV mounts" $checkName "WARN" "Unexpected df output: $dfRaw" @("Command: $dfCommand", "Raw df output: $dfRaw")
+                }
+            } else {
+                Add-Check "Container TV mounts" $checkName "FAIL" "df command failed or returned no output." @("Command: $dfCommand", "Raw output:", ($dfRaw -join "`n"))
+            }
+        } catch {
+            Add-Check "Container TV mounts" $checkName "FAIL" $_.Exception.Message @("Command attempted: docker $($script:DockerArgs -join ' ') exec $container sh -c `"df -P -B1 $mount | tail -n 1`"")
+        }
+    } else {
+        Add-Check "Container TV mounts" $checkName "SKIP" "$container container is not running." @(
+            "$container present in docker ps -a: $($containerMap.ContainsKey($container))",
+            "Visible container names: $(($containerMap.Keys | Sort-Object) -join ', ')",
+            "Skipped command: df -P -B1 $mount"
+        )
+    }
 }
 
 $groups = $script:Results | Group-Object Group

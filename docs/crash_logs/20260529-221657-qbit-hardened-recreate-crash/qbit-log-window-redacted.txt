@@ -1,0 +1,128 @@
+﻿C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log:1: (N) 2026-05-29T22:20:34 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log:2: (N) 2026-05-29T22:20:34 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log:3: (N) 2026-05-29T22:20:34 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log:4: (N) 2026-05-29T22:20:34 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log:5: (N) 2026-05-29T22:20:34 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log:6: (N) 2026-05-29T22:20:34 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log:7: (N) 2026-05-29T22:20:34 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log:8: (N) 2026-05-29T22:20:34 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log:9: (N) 2026-05-29T22:20:34 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log:10: (N) 2026-05-29T22:20:34 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log:11: (N) 2026-05-29T22:20:34 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log:12: (N) 2026-05-29T22:20:34 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log:13: (N) 2026-05-29T22:20:34 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log:14: (N) 2026-05-29T22:20:34 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log:15: (N) 2026-05-29T22:20:34 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log:16: (I) 2026-05-29T22:20:34 - IP geolocation database loaded. Type: DBIP-Country-Lite. Build time: Thu Apr 30 18:53:09 2026.
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log:17: (N) 2026-05-29T22:20:34 - Using built-in WebUI.
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log:18: (W) 2026-05-29T22:20:34 - Couldn't load WebUI translation for selected locale (C).
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log:19: (N) 2026-05-29T22:20:34 - WebUI: Now listening on IP: <ip>, port: 8080
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log:20: (I) 2026-05-29T22:20:34 - Detected external IP. IP: "<ip>"
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log:21: (N) 2026-05-29T22:20:48 - qBittorrent termination initiated
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log:22: (N) 2026-05-29T22:20:48 - Saving resume data completed.
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log:23: (N) 2026-05-29T22:20:49 - BitTorrent session successfully finished.
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log:24: (N) 2026-05-29T22:20:49 - qBittorrent is now ready to exit
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:508: (N) 2026-05-29T17:31:16 - qBittorrent termination initiated
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:509: (N) 2026-05-29T17:31:16 - Saving resume data completed.
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:510: (N) 2026-05-29T17:31:16 - BitTorrent session successfully finished.
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:511: (N) 2026-05-29T17:31:16 - qBittorrent is now ready to exit
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:512: (N) 2026-05-29T17:31:18 - qBittorrent v5.2.0 started. Process ID: 153
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:513: (N) 2026-05-29T17:31:18 - Using config directory: /config/qBittorrent
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:514: (N) 2026-05-29T17:31:18 - Trying to listen on the following list of IP addresses: "<ip>:6881,[::]:6881"
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:515: (I) 2026-05-29T17:31:18 - Peer ID: "-qB5200-"
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:516: (I) 2026-05-29T17:31:18 - HTTP User-Agent: "qBittorrent/5.2.0"
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:517: (I) 2026-05-29T17:31:18 - Distributed Hash Table (DHT) support: OFF
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:518: (I) 2026-05-29T17:31:18 - Local Peer Discovery support: OFF
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:519: (I) 2026-05-29T17:31:18 - Peer Exchange (PeX) support: OFF
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:520: (I) 2026-05-29T17:31:18 - Anonymous mode: OFF
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:521: (I) 2026-05-29T17:31:18 - Encryption support: ON
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:522: (I) 2026-05-29T17:31:18 - Successfully listening on IP. IP: "<ip>". Port: "TCP/6881"
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:523: (I) 2026-05-29T17:31:18 - Successfully listening on IP. IP: "<ip>". Port: "UDP/6881"
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:524: (I) 2026-05-29T17:31:18 - Successfully listening on IP. IP: "<ip>". Port: "TCP/6881"
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:525: (I) 2026-05-29T17:31:18 - Successfully listening on IP. IP: "<ip>". Port: "UDP/6881"
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:526: (I) 2026-05-29T17:31:18 - Successfully listening on IP. IP: "::1". Port: "TCP/6881"
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:527: (I) 2026-05-29T17:31:18 - Successfully listening on IP. IP: "::1". Port: "UDP/6881"
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:528: (N) 2026-05-29T17:31:18 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:529: (N) 2026-05-29T17:31:18 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:530: (N) 2026-05-29T17:31:18 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:531: (N) 2026-05-29T17:31:18 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:532: (N) 2026-05-29T17:31:18 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:533: (N) 2026-05-29T17:31:18 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:534: (N) 2026-05-29T17:31:18 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:535: (N) 2026-05-29T17:31:18 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:536: (N) 2026-05-29T17:31:18 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:537: (N) 2026-05-29T17:31:18 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:538: (N) 2026-05-29T17:31:18 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:539: (N) 2026-05-29T17:31:18 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:540: (N) 2026-05-29T17:31:18 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:541: (N) 2026-05-29T17:31:18 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:542: (N) 2026-05-29T17:31:18 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:543: (N) 2026-05-29T17:31:18 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:544: (N) 2026-05-29T17:31:18 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:545: (N) 2026-05-29T17:31:18 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:546: (N) 2026-05-29T17:31:18 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:547: (N) 2026-05-29T17:31:18 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:548: (N) 2026-05-29T17:31:18 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:549: (N) 2026-05-29T17:31:18 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:550: (N) 2026-05-29T17:31:18 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:551: (N) 2026-05-29T17:31:18 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:552: (N) 2026-05-29T17:31:18 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:553: (N) 2026-05-29T17:31:18 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:554: (N) 2026-05-29T17:31:18 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:555: (N) 2026-05-29T17:31:18 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:556: (N) 2026-05-29T17:31:18 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:557: (N) 2026-05-29T17:31:18 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:558: (N) 2026-05-29T17:31:18 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:559: (N) 2026-05-29T17:31:18 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:560: (N) 2026-05-29T17:31:18 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:561: (N) 2026-05-29T17:31:18 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:562: (N) 2026-05-29T17:31:18 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:563: (N) 2026-05-29T17:31:18 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:564: (N) 2026-05-29T17:31:18 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:565: (N) 2026-05-29T17:31:18 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:566: (N) 2026-05-29T17:31:18 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:567: (I) 2026-05-29T17:31:18 - IP geolocation database loaded. Type: DBIP-Country-Lite. Build time: Thu Apr 30 18:53:09 2026.
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:568: (N) 2026-05-29T17:31:18 - Using built-in WebUI.
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:569: (W) 2026-05-29T17:31:18 - Couldn't load WebUI translation for selected locale (C).
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:570: (N) 2026-05-29T17:31:18 - WebUI: Now listening on IP: <ip>, port: 8080
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:571: (I) 2026-05-29T17:31:20 - Detected external IP. IP: "<ip>"
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:572: (N) 2026-05-29T22:20:33 - qBittorrent v5.2.0 started. Process ID: 152
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:573: (N) 2026-05-29T22:20:33 - Using config directory: /config/qBittorrent
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:574: (N) 2026-05-29T22:20:33 - Trying to listen on the following list of IP addresses: "<ip>:6881,[::]:6881"
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:575: (I) 2026-05-29T22:20:33 - Peer ID: "-qB5200-"
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:576: (I) 2026-05-29T22:20:33 - HTTP User-Agent: "qBittorrent/5.2.0"
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:577: (I) 2026-05-29T22:20:33 - Distributed Hash Table (DHT) support: OFF
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:578: (I) 2026-05-29T22:20:33 - Local Peer Discovery support: OFF
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:579: (I) 2026-05-29T22:20:33 - Peer Exchange (PeX) support: OFF
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:580: (I) 2026-05-29T22:20:33 - Anonymous mode: OFF
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:581: (I) 2026-05-29T22:20:33 - Encryption support: ON
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:582: (I) 2026-05-29T22:20:33 - Successfully listening on IP. IP: "<ip>". Port: "TCP/6881"
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:583: (I) 2026-05-29T22:20:33 - Successfully listening on IP. IP: "<ip>". Port: "UDP/6881"
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:584: (I) 2026-05-29T22:20:33 - Successfully listening on IP. IP: "<ip>". Port: "TCP/6881"
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:585: (I) 2026-05-29T22:20:33 - Successfully listening on IP. IP: "<ip>". Port: "UDP/6881"
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:586: (I) 2026-05-29T22:20:33 - Successfully listening on IP. IP: "::1". Port: "TCP/6881"
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:587: (I) 2026-05-29T22:20:33 - Successfully listening on IP. IP: "::1". Port: "UDP/6881"
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:588: (N) 2026-05-29T22:20:33 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:589: (N) 2026-05-29T22:20:33 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:590: (N) 2026-05-29T22:20:33 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:591: (N) 2026-05-29T22:20:33 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:592: (N) 2026-05-29T22:20:33 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:593: (N) 2026-05-29T22:20:33 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:594: (N) 2026-05-29T22:20:33 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:595: (N) 2026-05-29T22:20:33 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:596: (N) 2026-05-29T22:20:33 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:597: (N) 2026-05-29T22:20:33 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:598: (N) 2026-05-29T22:20:33 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:599: (N) 2026-05-29T22:20:34 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:600: (N) 2026-05-29T22:20:34 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:601: (N) 2026-05-29T22:20:34 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:602: (N) 2026-05-29T22:20:34 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:603: (N) 2026-05-29T22:20:34 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:604: (N) 2026-05-29T22:20:34 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:605: (N) 2026-05-29T22:20:34 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:606: (N) 2026-05-29T22:20:34 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:607: (N) 2026-05-29T22:20:34 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:608: (N) 2026-05-29T22:20:34 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:609: (N) 2026-05-29T22:20:34 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:610: (N) 2026-05-29T22:20:34 - Restored torrent. Torrent: <redacted>
+C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log.bak9:611: (N) 2026-05-29T22:20:34 - Restored torrent. Torrent: <redacted>

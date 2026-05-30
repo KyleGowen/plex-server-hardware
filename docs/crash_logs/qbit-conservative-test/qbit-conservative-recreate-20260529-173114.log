@@ -1,0 +1,18 @@
+﻿RecreateRequestedAt=2026-05-29T17:31:14.0905909-07:00
+Reason=Apply staged qBittorrent Docker hardening after one-hour conservative soak pass
+Before:
+qbittorrent|Up About an hour|lscr.io/linuxserver/qbittorrent:5.2.0-libtorrentv1
+sonarr|Exited (137) 7 hours ago|lscr.io/linuxserver/sonarr:latest
+qbittorrent|CPUPerc=64.63%|MemUsage=547.5MiB / 4GiB|NetIO=147GB / 7.25GB|BlockIO=32.2MB / 545kB|PIDs=28
+Command=docker compose up -d --force-recreate qbittorrent
+After:
+qbittorrent|Up Less than a second|lscr.io/linuxserver/qbittorrent:5.2.0-libtorrentv1
+sonarr|Exited (137) 7 hours ago|lscr.io/linuxserver/sonarr:latest
+
+FiveMinuteCheckAt=2026-05-29T17:37:22.6578059-07:00
+qbittorrent|Up 6 minutes|lscr.io/linuxserver/qbittorrent:5.2.0-libtorrentv1
+qbittorrent|CPUPerc=77.12%|MemUsage=540.4MiB / 4GiB|NetIO=20.8GB / 791MB|BlockIO=0B / 545kB|PIDs=29
+Filesystem      Size  Used Avail Use% Mounted on
+I:\              19T  3.6T   15T  20% /downloads
+2048
+WindowsEventsAfterRecreate=None found for crash/storage/WHEA filter as of five-minute check

@@ -1,0 +1,8 @@
+﻿{
+    "CapturedAt":  "2026-05-30T08:02:29.4857906-07:00",
+    "CrashTimeLocal":  "2026-05-30T00:40:08-07:00",
+    "DirectCrashWindowSensorCoverage":  false,
+    "Reason":  "The logger active after the prior recovery stopped writing around 2026-05-29T22:20:10-07:00; the next thermal logger started after recovery around 2026-05-30T08:00:38-07:00. No sensor rows cover the 22:34-00:40 qBittorrent overnight crash window.",
+    "PreCrashLoggerLastWrite":  "2026-05-29T22:20:10.9984140-07:00",
+    "PostRecoveryLoggerLastWrite":  "2026-05-30T08:02:29.3411108-07:00"
+}

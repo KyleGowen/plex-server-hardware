@@ -1,0 +1,63 @@
+﻿{
+    "CapturedAt":  "2026-05-29T22:22:51.3506821-07:00",
+    "Container":  "qbittorrent",
+    "Image":  "lscr.io/linuxserver/qbittorrent:5.2.0-libtorrentv1",
+    "State":  {
+                  "Status":  "exited",
+                  "Running":  false,
+                  "ExitCode":  0,
+                  "OOMKilled":  false,
+                  "StartedAtUtc":  "2026-05-30T05:20:31.8292915Z",
+                  "FinishedAtUtc":  "2026-05-30T05:20:52.647047225Z"
+              },
+    "RestartPolicy":  "unless-stopped",
+    "Limits":  {
+                   "MemoryGiB":  4,
+                   "NanoCpus":  2000000000,
+                   "CpuEquivalent":  2,
+                   "PidsLimit":  256,
+                   "Ulimits":  [
+                                   {
+                                       "Name":  "nofile",
+                                       "Hard":  4096,
+                                       "Soft":  2048
+                                   }
+                               ],
+                   "LogDriver":  "json-file",
+                   "LogConfig":  {
+                                     "max-file":  "3",
+                                     "max-size":  "10m"
+                                 },
+                   "StopTimeoutSeconds":  120
+               },
+    "Ports":  {
+                  "6881/tcp":  [
+                                   {
+                                       "HostIp":  "",
+                                       "HostPort":  "6881"
+                                   }
+                               ],
+                  "8080/tcp":  [
+                                   {
+                                       "HostIp":  "0.0.0.0",
+                                       "HostPort":  "8080"
+                                   }
+                               ]
+              },
+    "Mounts":  [
+                   {
+                       "Source":  "C:/media-stack/config/qbittorrent",
+                       "Destination":  "/config",
+                       "Type":  "bind"
+                   },
+                   {
+                       "Source":  "I:/torrentfiles",
+                       "Destination":  "/downloads",
+                       "Type":  "bind"
+                   }
+               ],
+    "RecreateRequestedLocal":  "2026-05-29T17:31:14-07:00",
+    "FiveMinuteCheckLocal":  "2026-05-29T17:37:22-07:00",
+    "CrashRecordedLocal":  "2026-05-29T17:43:35-07:00",
+    "RedactionNote":  "No torrent names, hashes, tracker URLs, peer IPs, cookies, or API keys are stored in this summary."
+}

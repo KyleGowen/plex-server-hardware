@@ -2,7 +2,7 @@
 
 ## Summary
 
-Build a Windows-native, single-user “Agent of Korlash” that manages native Plex plus Docker-hosted Sonarr, Radarr, qBittorrent, Jackett, Unpackerr, Windows services, network diagnostics, and this rebuild repo through controlled APIs, Docker/Compose inspection, and PowerShell tools.
+Build a Windows-native, single-user “Agent of Korlash” that manages native Plex, native qBittorrent, Docker-hosted Sonarr, Radarr, Jackett, Unpackerr, Windows services, network diagnostics, and this rebuild repo through controlled APIs, Docker/Compose inspection, and PowerShell tools.
 
 Recommended architecture:
 
@@ -25,7 +25,7 @@ ChatGPT Pro and Cursor Pro are useful for planning, review, coding, and manual t
 | Web UI | Local single-user chat dashboard | One point of contact from desktop or phone |
 | Private access | Tailscale | Phone access without exposing ports publicly |
 | Automation host | Windows Task Scheduler + Windows services | Health checks, scheduled reports, background jobs |
-| Docker host | Docker Desktop / Compose | Runs Sonarr, Radarr, qBittorrent, Jackett, and Unpackerr |
+| Docker host | Docker Desktop / Compose | Runs Sonarr, Radarr, Jackett, and Unpackerr |
 | Tool layer | Local API adapters, Docker/Compose commands, and PowerShell scripts | Safe control over Plex stack, containers, and Windows |
 | Repo context | Local clone of `KyleGowen/plex-server-hardware` | Rules, inventory, drive maps, troubleshooting history |
 | Logs | Append-only local audit logs | Track every request, tool call, approval, and config change |
@@ -493,7 +493,8 @@ Evolve toward:
 ## Assumptions and Defaults
 
 - The server remains Windows 10 native.
-- Docker is the chosen runtime for Sonarr, Radarr, qBittorrent, Jackett, and Unpackerr.
+- Docker is the chosen runtime for Sonarr, Radarr, Jackett, and Unpackerr.
+- qBittorrent is the chosen downloader and runs natively on Windows.
 - Plex remains a native Windows install.
 - Until a good Plex MCP server is available and explicitly approved, the agent uses the Plex HTTP API directly rather than a Plex MCP server.
 - qBittorrent remains the downloader.

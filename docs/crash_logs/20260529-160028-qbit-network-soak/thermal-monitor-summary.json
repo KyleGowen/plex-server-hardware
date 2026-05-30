@@ -1,0 +1,25 @@
+﻿{
+    "CapturedAt":  "2026-05-29T16:07:24.0272292-07:00",
+    "CrashTimeLocal":  "2026-05-29T15:28:50-07:00",
+    "DirectCrashWindowSensorCoverage":  false,
+    "Reason":  "The pre-crash thermal logger file stopped updating at 2026-05-29T14:10:30-07:00 and the next logger started after reboot at 2026-05-29T16:01:40-07:00, leaving no sensor rows during the 15:22-15:28 qBittorrent networked crash window.",
+    "PreCrashLogger":  {
+                           "StartedAt":  "2026-05-29T13:44:25.4779289-07:00",
+                           "LastWriteTime":  "2026-05-29T14:10:30.0526895-07:00",
+                           "CsvBytes":  20571367,
+                           "DrivesMapped":  {
+                                                "/ssd/0":  "Samsung SSD 840 EVO 250GB [S1DDNWAF903275D]",
+                                                "/hdd/1":  "ST20000NM000H-3KV103 [ZYE00444]"
+                                            }
+                       },
+    "PostRebootLogger":  {
+                             "StartedAt":  "2026-05-29T16:01:40.4036908-07:00",
+                             "LastWriteTime":  "2026-05-29T16:07:21.6286154-07:00",
+                             "CsvBytes":  4445794,
+                             "DrivesMapped":  {
+                                                  "/ssd/0":  "Samsung SSD 840 EVO 250GB [S1DDNWAF903275D]",
+                                                  "/hdd/1":  "ST20000NM000H-3KV103 [ZYE00444]"
+                                              }
+                         },
+    "Conclusion":  "No direct evidence that this latest crash was overheating. Also no direct pre-crash thermal sample exists for this event, so temperature cannot be ruled in or out from hardware-monitor logs alone."
+}

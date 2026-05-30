@@ -1,0 +1,16 @@
+﻿[
+    {
+        "TimeGenerated":  "\/Date(1780125753281)\/",
+        "SourceName":  "Microsoft-Windows-WindowsUpdateClient",
+        "EventIdentifier":  19,
+        "ProductName":  "Security Intelligence Update for Microsoft Defender Antivirus - KB2267602 (Version 1.451.177.0) - Current Channel (Broad)",
+        "Message":  "Installation Successful: Windows successfully installed the following update: Security Intelligence Update for Microsoft Defender Antivirus - KB2267602 (Version 1.451.177.0) - Current Channel (Broad)"
+    },
+    {
+        "TimeGenerated":  "\/Date(1780153181263)\/",
+        "SourceName":  "EventLog",
+        "EventIdentifier":  6008,
+        "ProductName":  "Windows",
+        "Message":  "The previous system shutdown at 12:40:08 AM on ‎5/‎30/‎2026 was unexpected."
+    }
+]

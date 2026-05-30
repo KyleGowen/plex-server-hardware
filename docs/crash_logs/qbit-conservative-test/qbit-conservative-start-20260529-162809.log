@@ -1,0 +1,15 @@
+﻿StartRequestedAt=2026-05-29T16:28:09.5373236-07:00
+Action=docker compose up -d qbittorrent
+Before:
+qbittorrent|Created|lscr.io/linuxserver/qbittorrent:5.2.0-libtorrentv1
+sonarr|Exited (137) 6 hours ago|lscr.io/linuxserver/sonarr:latest
+After:
+qbittorrent|Up Less than a second|lscr.io/linuxserver/qbittorrent:5.2.0-libtorrentv1
+sonarr|Exited (137) 6 hours ago|lscr.io/linuxserver/sonarr:latest
+
+SevenMinuteCheckAt=2026-05-29T16:35:28.8633258-07:00
+qbittorrent|Up 7 minutes|lscr.io/linuxserver/qbittorrent:5.2.0-libtorrentv1
+qbittorrent|CPUPerc=25.26%|MemUsage=546.9MiB / 4GiB|NetIO=15.8GB / 786MB|BlockIO=32.2MB / 545kB|PIDs=26
+Filesystem      Size  Used Avail Use% Mounted on
+I:\              19T  3.6T   15T  20% /downloads
+WindowsEventsAfterStart=None found for crash/storage/WHEA filter as of seven-minute check

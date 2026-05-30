@@ -256,10 +256,14 @@ foreach ($check in $checks) {
 }
 
 try {
-    $downloads = docker exec qbittorrent sh -c "df -h /downloads | tail -1"
-    Write-Log "qBittorrent /downloads: $downloads"
+    $downloads = docker exec sonarr sh -c "df -h /downloads | tail -1"
+    Write-Log "Sonarr /downloads: $downloads"
+    $downloads = docker exec radarr sh -c "df -h /downloads | tail -1"
+    Write-Log "Radarr /downloads: $downloads"
+    $downloads = docker exec unpackerr sh -c "df -h /downloads | tail -1"
+    Write-Log "Unpackerr /downloads: $downloads"
 } catch {
-    Write-Log "qBittorrent /downloads check failed: $($_.Exception.Message)"
+    Write-Log "Container /downloads check failed: $($_.Exception.Message)"
 }
 
 Write-Log 'Delayed media stack restart helper finished.'

@@ -1,0 +1,17 @@
+﻿RestartRequestedAt=2026-05-29T15:22:57.2360291-07:00
+Action=docker restart qbittorrent
+
+Before:
+qbittorrent|Up About an hour|lscr.io/linuxserver/qbittorrent:latest
+sonarr|Exited (137) 5 hours ago|lscr.io/linuxserver/sonarr:latest
+silly_austin|Exited (255) 18 hours ago|louislam/uptime-kuma:1
+torrent-mcp|Up 2 hours|torrent-mcp-local:latest
+RestartStart=2026-05-29T15:22:57.3088832-07:00
+RestartEnd=2026-05-29T15:22:59.0516860-07:00
+Result:
+qbittorrent
+After:
+qbittorrent|Up Less than a second|lscr.io/linuxserver/qbittorrent:latest
+sonarr|Exited (137) 5 hours ago|lscr.io/linuxserver/sonarr:latest
+silly_austin|Exited (255) 18 hours ago|louislam/uptime-kuma:1
+torrent-mcp|Up 2 hours|torrent-mcp-local:latest

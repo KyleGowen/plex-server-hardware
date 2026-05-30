@@ -1,0 +1,55 @@
+﻿{
+    "CapturedAt":  "2026-05-30T08:02:29.2801772-07:00",
+    "Container":  "qbittorrent",
+    "Image":  "lscr.io/linuxserver/qbittorrent:5.2.0-libtorrentv1",
+    "State":  {
+                  "Status":  "exited",
+                  "Running":  false,
+                  "ExitCode":  137,
+                  "OOMKilled":  false,
+                  "StartedAtUtc":  "2026-05-30T15:00:27.362533Z",
+                  "FinishedAtUtc":  "2026-05-30T15:00:43.3731655Z"
+              },
+    "RestartPolicy":  "unless-stopped",
+    "Limits":  {
+                   "MemoryGiB":  4,
+                   "NanoCpus":  0,
+                   "PidsLimit":  null,
+                   "Ulimits":  null,
+                   "LogDriver":  "json-file",
+                   "LogConfig":  {
+
+                                 },
+                   "StopTimeoutSeconds":  1
+               },
+    "Ports":  {
+                  "6881/tcp":  [
+                                   {
+                                       "HostIp":  "",
+                                       "HostPort":  "6881"
+                                   }
+                               ],
+                  "8080/tcp":  [
+                                   {
+                                       "HostIp":  "0.0.0.0",
+                                       "HostPort":  "8080"
+                                   }
+                               ]
+              },
+    "Mounts":  [
+                   {
+                       "Source":  "I:/torrentfiles",
+                       "Destination":  "/downloads",
+                       "Type":  "bind"
+                   },
+                   {
+                       "Source":  "C:/media-stack/config/qbittorrent",
+                       "Destination":  "/config",
+                       "Type":  "bind"
+                   }
+               ],
+    "QbitStartLocal":  "2026-05-29T22:34:40-07:00",
+    "FiveMinuteCheckLocal":  "2026-05-29T22:40:48-07:00",
+    "CrashRecordedLocal":  "2026-05-30T00:40:08-07:00",
+    "RedactionNote":  "No torrent names, hashes, tracker URLs, peer IPs, cookies, or API keys are stored in this summary."
+}

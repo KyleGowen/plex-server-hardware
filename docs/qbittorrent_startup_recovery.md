@@ -1,12 +1,12 @@
-# qBittorrent Startup And Recovery Notes
+# qBittorrent Startup And Path Validation
 
 ## Purpose
 
-Use this note when qBittorrent starts while the torrent drive is disconnected, late-mounted, or mounted incorrectly through Docker Desktop.
+Use this note when validating native Windows qBittorrent after boot, crash recovery, drive reconnects, Docker restarts, WSL restarts, or storage work.
 
-The goal is to make sure qBittorrent always sees the real Windows torrent drive before torrents are allowed to resume.
+qBittorrent now runs natively on Windows. It is not a Docker Compose service.
 
-For the broader drive-reconnect flow that also checks Windows drive letters and `/tv/tv2`, start with [drive_reconnect_validation_checklist.md](drive_reconnect_validation_checklist.md).
+For the broader drive-reconnect flow that also checks Windows drive letters and Docker media mounts, start with [drive_reconnect_validation_checklist.md](drive_reconnect_validation_checklist.md).
 
 ---
 
@@ -15,52 +15,19 @@ For the broader drive-reconnect flow that also checks Windows drive letters and 
 | Item | Value |
 |---|---|
 | Windows torrent root | `I:\torrentfiles` |
-| qBittorrent container path | `/downloads` |
-| Incomplete path | `/downloads/incomplete` |
-| qBittorrent config path | `C:\media-stack\config\qbittorrent` |
-| Compose file | `C:\plex-server\docker-compose.media.yml` |
+| Native incomplete path | `I:\torrentfiles\incomplete` |
+| Native qBittorrent config | `%APPDATA%\qBittorrent\qBittorrent.ini` |
+| Tracked conservative config | `C:\plex-server\config\qbittorrent\native-conservative\qBittorrent.ini` |
+| Apply script | `C:\plex-server\tools\apply-native-qbit-conservative-config.ps1` |
 | Web UI | `http://localhost:8080` |
-| Torrent port | `6881/tcp` and `6881/udp` |
-
-Expected Docker view from inside the qBittorrent container:
-
-```powershell
-docker exec qbittorrent sh -c "df -h /downloads /downloads/incomplete"
-```
-
-Healthy output should show `I:\` with the real multi-terabyte capacity and free space. On 2026-05-25, the healthy view was approximately `19T` size, `2.7T` used, and `16T` available.
-
----
-
-# 2026-05-25 Failure Mode
-
-qBittorrent was started while `I:\torrentfiles` was not connected or not visible to Docker Desktop.
-
-Symptoms:
-
-- qBittorrent Web UI showed all torrents as errored.
-- Torrent states included `error` and `missingFiles`.
-- qBittorrent logs showed write failures such as `No space left on device`.
-- Windows reported `I:\` had plenty of free space.
-- Inside the container, Docker reported `/downloads` as a tiny full filesystem:
-
-```text
-Filesystem      Size  Used Avail Use% Mounted on
-/dev/sde        137M  126M     0 100% /downloads
-```
-
-Root cause:
-
-- Docker Desktop had a stale or incorrect bind mount for `I:\torrentfiles`.
-- Restarting only the qBittorrent container did not repair the bind mount.
-- Recreating only the qBittorrent container also did not repair the bind mount.
-- Restarting the Docker/WSL backend was required so Docker could remount the now-connected `I:` drive.
+| Torrent port | `6881/tcp` |
+| Sonarr/Radarr Docker path | `/downloads`, mapped from `I:\torrentfiles` |
 
 ---
 
 # Safe Startup Checklist
 
-Run this before trusting qBittorrent after boot, drive reconnection, Docker restart, or hardware/storage work.
+Run this before trusting downloads after boot, crash recovery, drive reconnects, Docker restarts, WSL restarts, or storage work.
 
 - [ ] Confirm Windows sees the torrent root:
 
@@ -69,38 +36,38 @@ Test-Path I:\torrentfiles
 Get-PSDrive I
 ```
 
-- [ ] Confirm Docker is reachable:
+- [ ] Confirm the native incomplete folder exists:
 
 ```powershell
-docker info --format "{{.ServerVersion}}"
+Test-Path I:\torrentfiles\incomplete
 ```
 
-- [ ] Confirm qBittorrent is running:
+- [ ] Confirm native qBittorrent responds:
 
 ```powershell
-docker ps --filter name=qbittorrent --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
+Invoke-WebRequest http://127.0.0.1:8080 -UseBasicParsing
 ```
 
-- [ ] Confirm qBittorrent sees the real torrent drive, not a tiny full mount:
+- [ ] Confirm the native qBittorrent save paths before trusting torrents:
 
 ```powershell
-docker exec qbittorrent sh -c "df -h /downloads /downloads/incomplete"
+Get-Content $env:APPDATA\qBittorrent\qBittorrent.ini |
+  Select-String 'DefaultSavePath|TempPath|SavePath'
 ```
 
-- [ ] Confirm `/downloads` maps to `I:\` and has multi-terabyte capacity/free space.
-- [ ] Confirm `/downloads/incomplete` exists:
+- [ ] Confirm Docker-hosted import/extraction services see the real download root:
 
 ```powershell
-docker exec qbittorrent sh -c "test -d /downloads/incomplete && ls -ld /downloads /downloads/incomplete"
+docker exec sonarr sh -c "df -h /downloads"
+docker exec radarr sh -c "df -h /downloads"
+docker exec unpackerr sh -c "df -h /downloads"
 ```
 
-- [ ] Only after the mount looks correct, inspect or start/recheck torrents.
+Healthy Docker output should show `/downloads` mapped from `I:\` with multi-terabyte capacity. If it shows a tiny/full filesystem, fix Docker/WSL bind mounts before trusting Sonarr/Radarr imports or Unpackerr extraction.
 
 ---
 
 # Recovery Procedure
-
-Use this when qBittorrent shows torrent errors after the torrent drive was missing or late-mounted.
 
 ## 1. Confirm The Host Drive
 
@@ -109,99 +76,62 @@ Test-Path I:\torrentfiles
 Get-PSDrive I
 ```
 
-Do not proceed if `I:\torrentfiles` is missing. Restore the drive letter first.
+Do not proceed if `I:\torrentfiles` is missing. Restore the drive letter or drive visibility first.
 
-## 2. Check Docker's View
+## 2. Confirm Native qBittorrent
 
 ```powershell
-docker exec qbittorrent sh -c "df -h /downloads /downloads/incomplete"
+Invoke-WebRequest http://127.0.0.1:8080 -UseBasicParsing
 ```
 
-If `/downloads` shows a tiny filesystem such as `137M` at `100%`, the Docker bind mount is stale. Do not keep restarting qBittorrent; restart Docker/WSL.
+If the Web UI is not reachable, check whether `qbittorrent.exe` is running and start the native app from:
 
-## 3. Restart Docker/WSL Backend
+```powershell
+C:\Program Files\qBittorrent\qbittorrent.exe
+```
+
+## 3. Confirm Arr/Unpackerr Container Paths
+
+```powershell
+docker exec sonarr sh -c "df -h /downloads"
+docker exec radarr sh -c "df -h /downloads"
+docker exec unpackerr sh -c "df -h /downloads"
+```
+
+If `/downloads` is wrong in these containers, restart Docker/WSL and recheck before trusting imports or extraction:
 
 ```powershell
 wsl --shutdown
 Start-Process -FilePath "C:\Program Files\Docker\Docker\Docker Desktop.exe" -WindowStyle Hidden
-```
-
-Wait for Docker:
-
-```powershell
 docker info --format "{{.ServerVersion}}"
-```
-
-Bring the media stack back up:
-
-```powershell
 docker compose -f C:\plex-server\docker-compose.media.yml up -d
 ```
 
-## 4. Verify The Correct Mount
+## 4. Repair Torrent States Only After Paths Are Correct
+
+After `I:\torrentfiles` and the relevant `/downloads` mounts are correct, use qBittorrent's Web UI or API to recheck/start torrents if needed.
+
+API example from the Windows host:
 
 ```powershell
-docker exec qbittorrent sh -c "df -h /downloads /downloads/incomplete"
+$base = 'http://127.0.0.1:8080/api/v2/torrents'
+Invoke-WebRequest "$base/recheck" -Method Post -Body @{ hashes = 'all' } -UseBasicParsing
+Invoke-WebRequest "$base/start" -Method Post -Body @{ hashes = 'all' } -UseBasicParsing
 ```
 
-Expected: `/downloads` reports `I:\` with the real multi-terabyte capacity.
-
-## 5. Repair Torrent States
-
-After the mount is correct, use qBittorrent's API or Web UI to recheck and start torrents.
-
-API example from inside the container, assuming local Web UI API access is available:
+Poll states:
 
 ```powershell
-docker exec qbittorrent python3 -c "import urllib.parse,urllib.request; base='http://127.0.0.1:8080/api/v2/torrents'; data=urllib.parse.urlencode({'hashes':'all'}).encode(); [print(ep, urllib.request.urlopen(urllib.request.Request(base+'/'+ep,data=data,method='POST'),timeout=20).status) for ep in ['recheck','start']]"
+Invoke-RestMethod http://127.0.0.1:8080/api/v2/torrents/info |
+  Group-Object state |
+  Select-Object Name, Count
 ```
-
-Then poll states:
-
-```powershell
-docker exec qbittorrent python3 -c "import json,urllib.request; data=json.load(urllib.request.urlopen('http://127.0.0.1:8080/api/v2/torrents/info',timeout=10)); summary={}; [summary.__setitem__(t['state'], summary.get(t['state'],0)+1) for t in data]; print(summary)"
-```
-
-Healthy recovery states include:
-
-- `checkingDL`: qBittorrent is verifying files after the bad mount.
-- `downloading`: torrent is actively downloading.
-- `stalledDL`: torrent is waiting for peers but is no longer in a filesystem error state.
-- `stalledUP` or `uploading`: torrent is complete/seeding.
-
-Bad states that require more investigation:
-
-- `error`
-- `missingFiles`
-
-## 6. Watch Logs For Real Blockers
-
-```powershell
-docker exec qbittorrent sh -c "tail -80 /config/qBittorrent/logs/qbittorrent.log"
-```
-
-Important log patterns:
-
-| Log text | Meaning | Action |
-|---|---|---|
-| `No space left on device` while Windows has free space | Docker sees the wrong `/downloads` mount | Restart Docker/WSL backend and verify `df -h /downloads` |
-| `fast resume rejected` / `mismatching file size` | qBittorrent must recheck after stale mount or partial files | Recheck torrents after mount is correct |
-| `missingFiles` | qBittorrent cannot find expected files | Verify save path and recheck; inspect whether files were imported/moved |
 
 ---
 
-# Startup Hardening Notes
+# Operational Rules
 
-- qBittorrent should not be trusted just because the container is `Up`.
-- Always verify Docker's view of `/downloads` after a boot or drive reconnect.
-- A plain `docker restart qbittorrent` is not enough if Docker Desktop already captured a bad bind mount.
-- If Docker sees `/downloads` as a tiny full filesystem, use `wsl --shutdown`, start Docker Desktop, then bring the compose stack back up.
-- Keep qBittorrent's save path as `/downloads/` and incomplete path as `/downloads/incomplete/`.
-- Keep qBittorrent's internal WebUI bind as `WebUI\Address=0.0.0.0` in `C:\media-stack\config\qbittorrent\qBittorrent\qBittorrent.conf`. Docker host port forwarding to `8080` will not work if qBittorrent only listens on `127.0.0.1` inside the container.
-- If qBittorrent starts and exits repeatedly with only `qBittorrent termination initiated` in the log, stop the container and remove stale `lockfile` and `ipc-socket` from `C:\media-stack\config\qbittorrent\qBittorrent`, then start qBittorrent again.
-- Sonarr and Radarr should continue using Docker-network host `qbittorrent:8080` and shared `/downloads` paths. No remote path mapping should be needed when the Docker mount is healthy.
-- Arr health and qBittorrent mount health are separate checks. Sonarr, Radarr, Prowlarr, Bazarr, and Unpackerr can all be running while `/downloads` is still the tiny full fallback filesystem.
-- If Sonarr/Radarr/Prowlarr config files are rebuilt and API keys change, update dependent integrations before declaring the stack recovered: Prowlarr app links, Sonarr/Radarr Torznab indexers, Bazarr, and Unpackerr.
-- The compose environment now uses `WEBUI_HOST_IP=0.0.0.0` to avoid repeated Docker Desktop localhost port-proxy failures after restart. Review Windows Firewall before treating these web UIs as safely local-only.
-- `C:\plex-server\tools\restart-media-stack-after-login.ps1` is registered as the `Plex Media Stack delayed restart after login` scheduled task. It waits after login, checks Docker and `I:\torrentfiles`, restarts the compose stack, verifies `/downloads`, and repairs regenerated Arr API-key wiring if Sonarr/Radarr/Prowlarr configs are found corrupt.
-- Treat Web UI credentials, API sessions, tracker URLs, passkeys, and temporary passwords as secrets. Do not copy them into docs, commits, logs intended for git, or GitHub.
+- qBittorrent is native Windows; do not add it back to Docker Compose unless the deployment model is explicitly changed.
+- Sonarr and Radarr should use `host.docker.internal:8080` with remote path mapping `I:\torrentfiles\` to `/downloads/`.
+- Do not start, stop, remove, delete, move, or recheck torrents until categories, save paths, incomplete paths, and root-folder mappings are confirmed.
+- Treat Web UI credentials, API sessions, tracker URLs, passkeys, and temporary passwords as secrets.

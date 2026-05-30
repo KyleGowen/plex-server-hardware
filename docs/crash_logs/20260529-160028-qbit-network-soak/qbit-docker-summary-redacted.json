@@ -1,0 +1,34 @@
+﻿{
+    "CapturedAt":  "2026-05-29T16:07:24.0018605-07:00",
+    "Container":  "qbittorrent",
+    "Image":  "lscr.io/linuxserver/qbittorrent:latest",
+    "RestartPolicy":  "unless-stopped",
+    "StateAfterRecoveryAndManualStop":  {
+                                            "Status":  "exited",
+                                            "Running":  false,
+                                            "ExitCode":  137,
+                                            "OOMKilled":  false,
+                                            "StartedAtUtc":  "2026-05-29T23:01:28.240495Z",
+                                            "FinishedAtUtc":  "2026-05-29T23:01:53.521612741Z"
+                                        },
+    "Mounts":  [
+                   {
+                       "Source":  "C:/media-stack/config/qbittorrent",
+                       "Destination":  "/config",
+                       "Type":  "bind"
+                   },
+                   {
+                       "Source":  "I:/torrentfiles",
+                       "Destination":  "/downloads",
+                       "Type":  "bind"
+                   }
+               ],
+    "NetworkRestartTest":  {
+                               "RestartRequestedLocal":  "2026-05-29T15:22:57.2360291-07:00",
+                               "RestartCompletedLocal":  "2026-05-29T15:22:59.0516860-07:00",
+                               "OneMinuteCheck":  "qbittorrent up; sonarr stopped; /downloads mapped to I: with about 19T total and 15T available",
+                               "FiveMinuteCheck":  "qbittorrent up 5 minutes; sonarr stopped; /downloads still mapped to I:",
+                               "CrashRecordedLocal":  "2026-05-29T15:28:50-07:00"
+                           },
+    "RedactionNote":  "No torrent names, hashes, tracker URLs, peer IPs, cookies, or API keys are stored in this summary."
+}

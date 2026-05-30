@@ -362,6 +362,414 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 - This is the cleanest current test posture for isolating whether qBittorrent load can crash the machine when the TV drives and shared drive-power branch are removed from the equation.
 - Next deliberate test, when accepted: start qBittorrent only, leave Sonarr and other Arr containers stopped, and watch for immediate crash. Passing this test would shift suspicion back toward the removed TV-drive/shared-power path; failing it would point at the `I:` Torrent drive path, Docker/WSL/NIC path, or platform stability under qBittorrent load.
 
+## 2026-05-29 qBittorrent Offline Start Passed
+
+- User approved a delayed qBittorrent start so the network could be disconnected before qBittorrent launched.
+- Timer armed at `2026-05-29 2:13:26 PM`; planned qBittorrent start at `2026-05-29 2:15:26 PM`.
+- Timer log: `docs/crash_logs/qbit-offline-timer/qbit-delayed-start-20260529-141326.log`.
+- User returned after about one hour and reported there was no crash.
+- Verification at `2026-05-29 3:20 PM`: Windows boot time was still `2026-05-29 1:43:43 PM`.
+- `qbittorrent` was `Up About an hour`; Sonarr remained stopped.
+- Windows visible fixed volumes remained `C:` and `I:` only.
+- `I:\torrentfiles` returned `True`.
+- Inside the qBittorrent container, `/downloads` mounted correctly to `I:\`, about `19T` total, `15T` available, and `20%` used.
+- No new `Kernel-Power 41`, `EventLog 6008`, WHEA, disk, storahci, or NTFS warning was found in the checked window after the timer was armed.
+- Interpretation: qBittorrent container start, qBittorrent session restore, Docker bind mount, and basic `I:` disk path are not sufficient by themselves to reproduce the crash in this clean `C:` + `I:` state. The next suspect is live qBittorrent network/peer traffic through Docker Desktop, WSL/Hyper-V networking, the motherboard NIC, or the LAN/internet path.
+- Keep this as a major split result. The next test should reconnect network with qBittorrent already running and keep Sonarr/Arr stopped, then watch for crash timing.
+
+## 2026-05-29 qBittorrent Network Restart Test
+
+- User requested a qBittorrent container restart to test the network-traffic theory.
+- Restart command issued at `2026-05-29 3:22:57 PM`.
+- Timer/restart log: `docs/crash_logs/qbit-network-restart-test/qbit-network-restart-20260529-152257.log`.
+- Restart completed at `2026-05-29 3:22:59 PM`; `qbittorrent` returned `Up Less than a second`.
+- First-minute check: qBittorrent was `Up About a minute`; Sonarr remained stopped; `/downloads` still mounted to `I:\`, about `19T` total and `15T` available.
+- Five-minute check: qBittorrent was `Up 5 minutes`; Sonarr remained stopped; `/downloads` still mounted to `I:\`.
+- No matching new `Kernel-Power 41`, `EventLog 6008`, WHEA, disk, storahci, or NTFS events were found in the checked window after restart.
+- Interpretation: qBittorrent restart with network available did not cause an immediate crash in the clean `C:` + `I:` state. This weakens the theory that mere container network initialization is sufficient. Continue watching sustained peer traffic before calling the network path safe.
+
+## 2026-05-29 qBittorrent Networked Soak Crash
+
+- User recovered from another crash and manually stopped the qBittorrent container in Docker.
+- Bundle: `docs/crash_logs/20260529-160028-qbit-network-soak/`.
+- qBittorrent network restart test had been issued at `2026-05-29 3:22:57 PM`.
+- qBittorrent survived the first-minute and five-minute checks with Sonarr stopped and `/downloads` still mapped to `I:\torrentfiles`.
+- Windows later recorded the previous shutdown at `2026-05-29 3:28:50 PM` as unexpected.
+- Reliability Monitor exposed the same EventLog `6008` unexpected-shutdown record and no more specific application-fault cause.
+- Windows booted again at `2026-05-29 4:00:28 PM`.
+- Latest post-recovery evidence again showed `Kernel-Power 41` plus `WHEA-Logger` Event 1, with a 3552-byte CPER record containing three fatal Firmware Error Record Reference sections.
+- No minidump or `C:\Windows\MEMORY.DMP` was found.
+- No checked `disk`, `storahci`, or `NTFS` warning was found in the filtered crash/recovery window.
+- Current visible fixed volumes after recovery remained `C:` and `I:` only.
+- `I:\torrentfiles` returned `True`.
+- qBittorrent was `Exited (137)` after the user stopped it; `OOMKilled=false`.
+- qBittorrent mount configuration remained `I:\torrentfiles` to `/downloads`.
+- Sonarr remained stopped from the prior test path; this recurrence does not require Sonarr.
+- TV drives were disconnected, the PCI SATA card was removed, and the old broken-pin-drive power branch was absent for this reproduction.
+- Hardware-monitor note: no direct sensor rows cover the actual `3:22 PM` to `3:28 PM` qBittorrent networked crash window. The pre-crash logger stopped writing around `2:10 PM`, and the next logger started after reboot around `4:01 PM`.
+- Interpretation: this is the clearest split so far. qBittorrent offline/startup/mount behavior passed in the clean `C:` + `I:` state, but sustained networked qBittorrent activity crashed the machine. This points away from TV drives, shared TV/Torrent drive power, Sonarr, and basic qBittorrent startup as primary causes for this reproduction.
+- Current leading suspect path: qBittorrent peer/network load through Docker Desktop, WSL/Hyper-V networking, motherboard Ethernet/NIC driver, or platform firmware/power response to that network/interrupt workload.
+- Active wired adapter at capture time: `Intel(R) Ethernet Controller I226-V #2`, `1 Gbps`, driver date `2024-02-15`, version `1.1.4.43`.
+- Docker path at capture time: Docker Desktop `4.74.0`, engine `29.4.3`, WSL2 kernel `6.6.114.1-microsoft-standard-WSL2`.
+- Storage/power is not fully cleared, but it is now lower than the qBittorrent live network path for this exact reproduction.
+- Keep qBittorrent stopped until the next deliberate isolation test.
+- Next recommended test should avoid full normal torrent traffic. Prefer either a controlled non-torrent network load test, or a constrained qBittorrent test with torrents paused/listening disabled/connection limits lowered after explicit approval.
+
+## 2026-05-29 qBittorrent Config And Research Notes
+
+- Current qBittorrent image: `lscr.io/linuxserver/qbittorrent:latest`, locally resolved to LinuxServer build `5.2.0_v2.0.12-ls458`, created `2026-05-17`.
+- LinuxServer documents `latest` as stable qBittorrent releases using libtorrent v2, and separately offers a `libtorrentv1` stable tag.
+- Current compose shape:
+  - default Docker bridge network `plex-media-stack_default`;
+  - `/config` bound to `C:\media-stack\config\qbittorrent`;
+  - `/downloads` bound to `I:\torrentfiles`;
+  - WebUI TCP `8080` bound to `0.0.0.0`;
+  - peer TCP `6881` and UDP `6881` published to all host interfaces;
+  - restart policy `unless-stopped`;
+  - no explicit CPU, memory, connection, or process limits.
+- Current qBittorrent config is sparse. It sets save and incomplete paths under `/downloads`, disables UPnP/NAT-PMP, and binds WebUI to `0.0.0.0`, but does not explicitly cap global connections, connections per torrent, upload slots, active torrents, DHT, PeX, LSD, uTP, disk cache, async I/O threads, or OS-cache behavior.
+- qBittorrent logs show each start enables DHT, Local Peer Discovery, PeX, encryption, TCP listening, and uTP/UDP listening on `6881`.
+- qBittorrent restored 39 torrents from `BT_backup` at startup; the active session is not an empty client.
+- qBittorrent 5.2.0 release notes include performance changes around resume-load behavior and raised connection max limits. That does not prove a bug here, but it makes the `latest` tag less ideal while debugging a hard crash.
+- Public reports exist for qBittorrent-in-Docker memory growth or host lockups, especially around qBittorrent/libtorrent version lines and large torrent sets. Those reports usually produce application/container memory failure, not WHEA hard resets, so they are supporting context rather than a direct match.
+- Docker Desktop documentation says Windows container networking goes through `com.docker.backend.exe`; outbound traffic from containers is seen by host firewalls/security tooling as that backend process, and published ports are forwarded into the Linux VM.
+- Active wired adapter settings at capture time:
+  - `Intel(R) Ethernet Controller I226-V #2`;
+  - driver date `2024-02-15`, version `1.1.4.43`;
+  - Energy Efficient Ethernet already `Off`;
+  - Interrupt Moderation `Enabled`;
+  - IPv4/IPv6 TCP checksum offload enabled;
+  - IPv4/IPv6 UDP checksum offload enabled;
+  - Large Send Offload v2 enabled for IPv4 and IPv6;
+  - Selective Suspend enabled.
+- Intel community troubleshooting for I226-V connection issues includes checking Energy Efficient Ethernet and checksum offload behavior. This does not prove the NIC is bad, but it aligns with a safe software-side isolation pass.
+- Software-first test order, before another full normal qBittorrent run:
+  1. Create a backup copy of the current qBittorrent config and `BT_backup`.
+  2. Pin qBittorrent away from floating `latest`, preferably to LinuxServer `5.2.0-libtorrentv1` for the first isolation pass.
+  3. Add explicit qBittorrent limits before start: low global/per-torrent connections, low upload slots, low active torrents, no DHT, no PeX, no Local Peer Discovery, and consider disabling uTP/UDP by not publishing peer UDP for the test.
+  4. Add a Docker memory limit so qBittorrent can fail inside the container instead of pressuring the whole host if a memory/cache path is involved.
+  5. If the constrained/libtorrentv1 test passes, re-enable features one at a time: TCP peer port, then UDP/uTP, then DHT, then PeX/LSD, then higher connection limits.
+  6. If it still crashes under constrained/libtorrentv1 settings, test the Windows NIC driver path next by disabling offloads/selective suspend/interrupt moderation or using a different network adapter.
+
+## 2026-05-29 qBittorrent Conservative Profile Applied
+
+- User approved applying the conservative qBittorrent software-isolation profile.
+- qBittorrent was stopped before changes.
+- Backup created outside the repo at `C:\media-stack\backups\qbittorrent-pre-conservative-20260529-162450`.
+- Backup includes:
+  - `qBittorrent.conf`;
+  - `qBittorrent-data.conf`;
+  - `BT_backup` with 80 files.
+- `docker-compose.media.yml` changed qBittorrent from `lscr.io/linuxserver/qbittorrent:latest` to `lscr.io/linuxserver/qbittorrent:5.2.0-libtorrentv1`.
+- Rendered qBittorrent image after pull/create: LinuxServer build `5.2.0_v1.2.20-ls117`, created `2026-05-17`.
+- qBittorrent compose now publishes:
+  - WebUI TCP `8080`;
+  - peer TCP `6881`;
+  - no peer UDP `6881` publication for the first isolation pass.
+- qBittorrent compose now includes `mem_limit: 4g`.
+- qBittorrent config now explicitly sets:
+  - `Session\BTProtocol=TCP`;
+  - `Session\DHTEnabled=false`;
+  - `Session\LSDEnabled=false`;
+  - `Session\PeXEnabled=false`;
+  - `Session\MaxConnections=50`;
+  - `Session\MaxConnectionsPerTorrent=10`;
+  - `Session\MaxUploads=20`;
+  - `Session\MaxUploadsPerTorrent=4`;
+  - `Session\MaxActiveDownloads=1`;
+  - `Session\MaxActiveUploads=1`;
+  - `Session\MaxActiveTorrents=2`;
+  - `Session\QueueingSystemEnabled=true`.
+- The qBittorrent container was recreated but left in `Created` state, not started.
+- Post-change storage check still showed only `C:` and `I:` fixed volumes, and `I:\torrentfiles` returned `True`.
+- Next test, when explicitly started: run qBittorrent alone in this conservative profile, leave Sonarr/Arr stopped, and treat any crash as evidence against the qBittorrent/libtorrent-v2/unbounded-UDP theory and back toward Docker Desktop/WSL, NIC driver, platform firmware, or remaining hardware sensitivity.
+
+## 2026-05-29 qBittorrent Conservative Profile Start
+
+- User approved starting qBittorrent in the conservative profile.
+- Start log: `docs/crash_logs/qbit-conservative-test/qbit-conservative-start-20260529-162809.log`.
+- qBittorrent start command issued at `2026-05-29 4:28:09 PM`.
+- qBittorrent started as `lscr.io/linuxserver/qbittorrent:5.2.0-libtorrentv1`.
+- Sonarr remained stopped.
+- qBittorrent log confirmed:
+  - DHT support `OFF`;
+  - Local Peer Discovery support `OFF`;
+  - PeX support `OFF`;
+  - TCP peer listener on `6881`.
+- Docker compose is not publishing peer UDP `6881` for this test.
+- qBittorrent still opened an internal UDP listener, but that UDP path is not published through Docker Desktop to the host.
+- `/downloads` inside qBittorrent mapped correctly to `I:\`, about `19T` total, `15T` available, `20%` used.
+- One-minute check: qBittorrent was up, memory about `548 MiB / 4 GiB`, Sonarr stopped, no new crash/storage/WHEA records found in the checked System log window.
+- Three-minute check: qBittorrent was up, memory about `546 MiB / 4 GiB`, Sonarr stopped, no new crash/storage/WHEA records found.
+- Seven-minute check: qBittorrent was up, memory about `547 MiB / 4 GiB`, `/downloads` still mapped to `I:\`, and no new crash/storage/WHEA records found.
+- This passed the previous qBittorrent-networked failure window; the prior clean `C:` + `I:` networked qBittorrent test crashed about six minutes after restart.
+- Interpretation so far: the conservative qBittorrent profile is materially different from the failing profile and has survived the first crash-prone interval. Do not declare solved yet; continue soaking before re-enabling Sonarr, UDP/uTP, DHT, PeX, LSD, higher limits, or TV drives.
+
+## 2026-05-29 qBittorrent Container Hardening Staged
+
+- User asked to stage additional Docker container hardening without restarting the running qBittorrent soak.
+- `docker-compose.media.yml` now includes these qBittorrent settings for the next recreate:
+  - `cpus: "2.0"`;
+  - `pids_limit: 256`;
+  - `ulimits.nofile.soft: 2048`;
+  - `ulimits.nofile.hard: 4096`;
+  - JSON-file log rotation with `max-size: "10m"` and `max-file: "3"`;
+  - `stop_grace_period: 2m`.
+- Compose rendering was validated successfully.
+- The running qBittorrent container was not recreated or restarted.
+- Verification showed the running container is still up on the conservative profile, but the newly staged CPU/PID/ulimit/logging/stop-grace settings are not active yet.
+- These staged settings should take effect only after the next deliberate qBittorrent recreate/restart.
+
+## 2026-05-29 qBittorrent Hardening Recreate
+
+- User reported the conservative qBittorrent soak had reached about one hour and asked to restart qBittorrent.
+- Because the staged Docker limits require container recreation, qBittorrent was recreated with `docker compose -f C:\plex-server\docker-compose.media.yml up -d --force-recreate qbittorrent`.
+- Recreate log: `docs/crash_logs/qbit-conservative-test/qbit-conservative-recreate-20260529-173114.log`.
+- Pre-recreate status at `2026-05-29 5:30 PM`:
+  - qBittorrent had been up about one hour;
+  - memory about `547 MiB / 4 GiB`;
+  - network I/O about `146 GB / 7.21 GB`;
+  - `/downloads` mapped to `I:\`;
+  - no new crash/storage/WHEA records were found in the checked System log window since conservative start.
+- Recreate requested at `2026-05-29 5:31:14 PM`.
+- Post-recreate live container limits verified:
+  - image `lscr.io/linuxserver/qbittorrent:5.2.0-libtorrentv1`;
+  - memory cap `4 GiB`;
+  - CPU quota `2.0`;
+  - `pids_limit: 256`;
+  - `nofile` soft `2048`, hard `4096`;
+  - JSON-file logging with `max-size=10m`, `max-file=3`;
+  - stop timeout `120` seconds;
+  - published ports remain TCP `8080` and TCP `6881` only.
+- `/downloads` after recreate still mapped correctly to `I:\`, about `19T` total, `15T` available.
+- Five-minute post-recreate check passed:
+  - qBittorrent up about five to six minutes;
+  - memory about `540 MiB / 4 GiB`;
+  - `ulimit -n` inside the container returned `2048`;
+  - no new crash/storage/WHEA records were found in the checked System log window.
+- Interpretation: conservative qBittorrent profile passed a one-hour soak, then also survived the first post-recreate failure window with the Docker hardening active. Continue this exact state before adding Sonarr/Arr or re-enabling UDP/DHT/PeX/LSD.
+
+## 2026-05-29 qBittorrent Hardened Recreate Crash
+
+- User reported the machine crashed after the last qBittorrent container hardening settings were applied.
+- Bundle: `docs/crash_logs/20260529-221657-qbit-hardened-recreate-crash/`.
+- Windows recorded the previous shutdown at `2026-05-29 5:43:35 PM` as unexpected.
+- Windows booted after recovery at `2026-05-29 10:16:57 PM`.
+- Post-recovery System log again showed `Kernel-Power 41` and `WHEA-Logger` Event 1 with a 3552-byte CPER payload and three Firmware Error Record Reference sections.
+- Reliability Monitor only exposed the same EventLog `6008` unexpected-shutdown record.
+- No minidump or `C:\Windows\MEMORY.DMP` was found.
+- No checked `disk`, `storahci`, or `NTFS` warning was found in the filtered crash/recovery window.
+- Post-recovery visible fixed volumes were still `C:` and `I:` only.
+- `I:\torrentfiles` returned `True`.
+- qBittorrent was not running when checked after recovery: `Exited (0)`, `OOMKilled=false`.
+- qBittorrent image and active hardened config at recovery:
+  - `lscr.io/linuxserver/qbittorrent:5.2.0-libtorrentv1`;
+  - memory cap `4 GiB`;
+  - CPU quota `2.0`;
+  - `pids_limit: 256`;
+  - `nofile` soft `2048`, hard `4096`;
+  - JSON-file log rotation;
+  - stop timeout `120` seconds;
+  - published peer port TCP `6881` only;
+  - UDP peer port not published through Docker.
+- qBittorrent log around the pre-crash recreate confirmed:
+  - DHT support `OFF`;
+  - Local Peer Discovery support `OFF`;
+  - PeX support `OFF`;
+  - qBittorrent restored its torrent session at `2026-05-29 5:31:18 PM`;
+  - there was no clean qBittorrent shutdown before Windows recorded the unexpected shutdown at `5:43:35 PM`.
+- Thermal monitor note: no direct sensor rows cover the `5:31 PM` to `5:43 PM` hardened qBittorrent crash window. The prior logger stopped writing around `4:49 PM`, and the next logger started after recovery around `10:19 PM`.
+- Interpretation: the Docker hardening settings did not solve the root issue. The conservative qBittorrent profile survived about one hour before recreate, then the machine crashed about twelve minutes after qBittorrent was recreated and restarted with Docker hardening active.
+- Current strongest read: qBittorrent restart/session restore plus live peer networking can still trigger the same low-level platform failure even with libtorrent v1, DHT/PeX/LSD disabled, Docker memory/CPU/PID/file limits, and UDP not published through Docker.
+- This shifts suspicion further away from qBittorrent configuration alone and toward Docker Desktop/WSL networking, the Intel I226-V driver/offload/interrupt path, or motherboard/CPU/firmware sensitivity under qBittorrent traffic.
+- Keep qBittorrent stopped. Do not add Sonarr/Arr, TV drives, or relaxed torrent settings until the next isolation target is chosen.
+- Next recommended isolation target: remove the onboard Intel I226-V path from the test, preferably with a USB Ethernet adapter or a Wi-Fi-only test, then run the same conservative qBittorrent profile. If that is not possible, the next software-only option is disabling Intel NIC offloads/selective suspend/interrupt moderation before another qBittorrent run.
+
+## 2026-05-29 qBittorrent Hardening Reverted To Prior Conservative Profile
+
+- User correctly pointed out that the prior conservative profile was safer than the later hardened-container recreate: it had survived about one hour, while the container-hardening recreate crashed about twelve minutes after restart.
+- Reverted only the extra Docker hardening layer from `docker-compose.media.yml`:
+  - removed `cpus: "2.0"`;
+  - removed `pids_limit: 256`;
+  - removed `ulimits.nofile`;
+  - removed JSON-file logging rotation override;
+  - removed `stop_grace_period: 2m`.
+- Kept the prior conservative qBittorrent profile:
+  - image remains `lscr.io/linuxserver/qbittorrent:5.2.0-libtorrentv1`;
+  - peer UDP publish remains commented out;
+  - `mem_limit: 4g` remains;
+  - qBittorrent app settings remain DHT/PeX/LSD off, TCP protocol, low connection/active limits.
+- qBittorrent remained stopped during this revert; it was not recreated or started.
+- Compose rendering was validated after the revert.
+- Current interpretation: do not treat the extra Docker hardening as beneficial. It is now considered a failed branch and should stay removed unless a later test specifically calls for one setting at a time.
+
+## 2026-05-29 qBittorrent Reverted Conservative Restart
+
+- User asked Codex to start qBittorrent after reverting the extra Docker hardening layer.
+- Start log: `docs/crash_logs/qbit-conservative-test/qbit-reverted-conservative-start-20260529-223440.log`.
+- qBittorrent start command issued at `2026-05-29 10:34:40 PM`.
+- Docker recreated qBittorrent because the compose definition changed back from the hardened variant to the prior conservative profile.
+- Live qBittorrent container after start:
+  - image `lscr.io/linuxserver/qbittorrent:5.2.0-libtorrentv1`;
+  - memory cap `4 GiB`;
+  - no CPU quota;
+  - no PID cap;
+  - no `nofile` cap;
+  - published ports remain TCP `8080` and TCP `6881` only;
+  - UDP peer port remains unpublished through Docker.
+- qBittorrent app log confirmed DHT `OFF`, Local Peer Discovery `OFF`, and PeX `OFF`.
+- `/downloads` inside qBittorrent mapped correctly to `I:\`, about `19T` total, `15T` available.
+- One-minute check: qBittorrent was up, Sonarr stopped, memory about `548 MiB / 4 GiB`, no new crash/storage/WHEA records found in the checked System log window.
+- Five-minute check: qBittorrent was up, Sonarr stopped, memory about `547 MiB / 4 GiB`, `/downloads` still mapped to `I:\`, and no new crash/storage/WHEA records found.
+- Continue observing this reverted conservative profile before changing another variable.
+
+## 2026-05-30 qBittorrent Reverted Conservative Overnight Crash
+
+- User reported there was another overnight crash.
+- Bundle: `docs/crash_logs/20260530-075935-qbit-reverted-conservative-overnight-crash/`.
+- qBittorrent had been started in the reverted conservative profile at `2026-05-29 10:34:40 PM`.
+- Five-minute check at `2026-05-29 10:40:48 PM` had passed.
+- Windows recorded the previous shutdown at `2026-05-30 12:40:08 AM` as unexpected.
+- Windows booted after recovery at `2026-05-30 7:59:35 AM`.
+- Post-recovery System log again showed `Kernel-Power 41` and `WHEA-Logger` Event 1.
+- Latest WHEA payload was again 3552 bytes and decoded to a CPER record with three Firmware Error Record Reference sections.
+- Reliability Monitor showed the same EventLog `6008` unexpected-shutdown record. It also recorded a successful Microsoft Defender security intelligence update at `2026-05-30 12:22:33 AM`, but there is no evidence that update explains the hard reset.
+- No minidump or `C:\Windows\MEMORY.DMP` was found.
+- No checked `disk`, `storahci`, or `NTFS` warning was found in the filtered crash/recovery window.
+- Post-recovery visible fixed volumes were still `C:` and `I:` only.
+- `I:\torrentfiles` returned `True`.
+- qBittorrent was not running when checked after recovery: `Exited (137)`, `OOMKilled=false`.
+- qBittorrent had auto-started briefly after reboot at about `2026-05-30 8:00:27 AM` and exited by `8:00:43 AM`.
+- qBittorrent profile at time of test:
+  - image `lscr.io/linuxserver/qbittorrent:5.2.0-libtorrentv1`;
+  - `mem_limit: 4g`;
+  - no extra CPU/PID/ulimit/logging hardening;
+  - peer UDP publish disabled in Docker;
+  - DHT off;
+  - PeX off;
+  - Local Peer Discovery off;
+  - low connection and active torrent limits.
+- Thermal monitor note: no direct sensor rows cover the overnight crash window. The previous logger stopped writing around `2026-05-29 10:20 PM`, and the next logger started after recovery around `2026-05-30 8:00 AM`.
+- Interpretation: the reverted conservative profile is not safe either, but it delayed the crash substantially compared with the earlier immediate networked runs and the hardened recreate branch. qBittorrent live networking remains the reliable trigger family.
+- Current strongest read: this is beyond qBittorrent application tuning. The next meaningful split is whether the same conservative qBittorrent workload crashes when the onboard Intel I226-V path is removed from the equation, or when Docker/WSL is removed by testing native Windows qBittorrent.
+- Keep qBittorrent stopped. Do not start Sonarr/Arr or reconnect additional variables until the next isolation test is chosen.
+
+## 2026-05-30 Native Windows qBittorrent Staging
+
+- User approved preparing native Windows qBittorrent to remove Docker Desktop and WSL2 from the qBittorrent crash path.
+- Docker qBittorrent was left stopped and its Docker restart policy was changed to `no`.
+- Official qBittorrent Windows installer downloaded:
+  - file: `C:\plex-server\tools\downloads\qbittorrent_5.2.1_x64_setup.exe`;
+  - version: `5.2.1`;
+  - SHA256: `02A177C43C08DF4DB30A8F1C2E3D71D51590403EB6BA8B8B2B7D9CF00E68E18C`.
+- Native qBittorrent installed at `C:\Program Files\qBittorrent\qbittorrent.exe`.
+- Conservative native qBittorrent config is now tracked in the repo at `config/qbittorrent/native-conservative/qBittorrent.ini`.
+- The tracked config intentionally omits `WebUI\Password_PBKDF2`; local runtime application preserves the existing password hash outside git.
+- Apply script added: `tools/apply-native-qbit-conservative-config.ps1`.
+- Runtime native qBittorrent config path: `%APPDATA%\qBittorrent\qBittorrent.ini`.
+- Native qBittorrent runtime config applied with:
+  - save path `I:\torrentfiles`;
+  - incomplete path `I:\torrentfiles\incomplete`;
+  - DHT off;
+  - PeX off;
+  - Local Peer Discovery off;
+  - TCP protocol;
+  - global connections `50`;
+  - per-torrent connections `10`;
+  - active downloads/uploads `1`;
+  - active torrents `2`;
+  - WebUI enabled on port `8080`.
+- Native qBittorrent was started for readiness validation.
+- Validation:
+  - native process running from `C:\Program Files\qBittorrent\qbittorrent.exe`;
+  - WebUI returned HTTP `200` at `http://127.0.0.1:8080`;
+  - native log confirmed qBittorrent `5.2.1`, DHT `OFF`, Local Peer Discovery `OFF`, and PeX `OFF`;
+  - `I:\torrentfiles` and `I:\torrentfiles\incomplete` both exist.
+- Next stress-test step: before starting Sonarr, update Sonarr's qBittorrent download client to use native qBittorrent at `host.docker.internal:8080` and add remote path mapping from `I:\torrentfiles` to `/downloads`.
+
+## 2026-05-30 Native qBittorrent Controlled Download Smoke Test
+
+- User approved a native qBittorrent download verification test before reconnecting more TV/Sonarr variables.
+- Test used a small public/legal torrent and saved it to `I:\torrentfiles\native-test`.
+- Native qBittorrent accepted the torrent through the Web API, downloaded about `123 MiB`, completed successfully, and wrote the payload under `I:\torrentfiles`.
+- During the checked test window, Windows System log showed no new `WHEA-Logger`, `Kernel-Power`, disk, storage-controller, NIC, or TCP/IP errors.
+- The test torrent was removed from qBittorrent with downloaded files deleted. The temporary `I:\torrentfiles\native-test` folder was removed afterward.
+- qBittorrent remained running empty after the test.
+- Interpretation: native Windows qBittorrent can perform a real download to `I:` with the conservative settings and without an immediate crash in this short smoke test. This is not equivalent to the prior long Docker qBittorrent soak failures; it mainly verifies native client install, WebUI/API, network reachability, and the `I:` write path.
+- Next meaningful split remains a longer native qBittorrent soak or reconnecting TV/Sonarr variables with Sonarr pointed at native qBittorrent via `host.docker.internal:8080`.
+
+## 2026-05-30 Native qBittorrent Repeat Download Left In Place
+
+- User requested rerunning the native qBittorrent download test and leaving the torrent in place.
+- Pre-check:
+  - `I:\torrentfiles` existed;
+  - `I:\torrentfiles\incomplete` existed;
+  - native qBittorrent was already running;
+  - qBittorrent's torrent list was empty;
+  - no relevant recent System errors were found before start.
+- Test used the same small public/legal torrent and saved it to `I:\torrentfiles\native-test`.
+- Native qBittorrent accepted the torrent through the Web API, downloaded about `123 MiB`, completed successfully, and left the torrent in qBittorrent.
+- Post-test qBittorrent state:
+  - torrent name `Sintel`;
+  - state `stalledUP`;
+  - progress `100%`;
+  - remaining `0 MiB`;
+  - save path `I:\torrentfiles\native-test`;
+  - connection count `10`.
+- During the checked test window, Windows System log showed no new `WHEA-Logger`, `Kernel-Power`, disk, storage-controller, NIC, or TCP/IP errors.
+- Interpretation: this repeats the native qBittorrent functional pass and now leaves a completed public torrent in place for continued native-client observation. It still remains a short test, not an overnight soak.
+
+## 2026-05-30 TV Drives Reconnected With Native qBittorrent And Docker Sonarr
+
+- User powered down, reconnected the TV drives, and requested starting native qBittorrent plus Docker Sonarr while removing qBittorrent from the Docker path.
+- Windows fixed-volume check after reconnect:
+  - `C:` OS SSD present;
+  - `H:` volume `TV 2`, about `18.19 TiB`;
+  - `I:` volume `Torrent`, about `18.19 TiB`;
+  - `J:` volume `TV 1`, about `14.55 TiB`.
+- `docker-compose.media.yml` no longer declares a `qbittorrent` service, so normal compose starts cannot launch qBittorrent in Docker.
+- Docker compose rendering now lists Sonarr, Radarr, Prowlarr, Bazarr, Tautulli, Uptime Kuma, and Unpackerr, but not qBittorrent.
+- Any old Docker `qbittorrent` container is historical only and is not part of the current deployment.
+- Native qBittorrent was started from `C:\Program Files\qBittorrent\qbittorrent.exe` and returned HTTP `200` on `127.0.0.1:8080`.
+- Sonarr was started with `docker compose -f C:\plex-server\docker-compose.media.yml up -d sonarr`.
+- Sonarr returned HTTP `200` on `127.0.0.1:8989`.
+- Sonarr container mount check:
+  - `/downloads` maps to `I:\`;
+  - `/tv/tv1` maps to `J:\`;
+  - `/tv/tv2` maps to `H:\`.
+- Sonarr download client was updated from old Docker hostname `qbittorrent:8080` to native qBittorrent at `host.docker.internal:8080`.
+- Sonarr remote path mapping was added for host `host.docker.internal`: remote `I:\torrentfiles\` to local `/downloads/`.
+- Sonarr's download-client test passed against native qBittorrent.
+- Post-start qBittorrent state still showed the completed public test torrent left in place under `I:\torrentfiles\native-test`.
+- During the checked post-start window, there were no new `WHEA-Logger`, crash, disk, storage-controller, NIC error, or TCP/IP error records. There were pre-existing/recent non-fatal entries for TPM Secure Boot CA/keys, Intel Platform License Manager service timeout, and an Intel I226-V link reconnect around boot/network recovery.
+- Interpretation: the requested TV-drive plus Docker Sonarr test posture is now active with qBittorrent native on Windows and absent from compose. This isolates Sonarr's Docker workload and TV-drive scanning from qBittorrent itself.
+
+## 2026-05-30 Full Ecosystem Start With Native qBittorrent
+
+- User reconnected every drive and requested starting the whole media ecosystem with native qBittorrent outside Docker.
+- Windows fixed-volume check showed all configured roots present:
+  - `D:` Movies 1;
+  - `E:` Movies 3;
+  - `F:` Movies 2;
+  - `G:` Spare media root, volume label `Broken Power Pin`;
+  - `H:` TV 2;
+  - `I:` Torrent;
+  - `J:` TV 1.
+- `G:` being present with the `Broken Power Pin` label is a red-risk variable for stability interpretation because that drive/cabling was an earlier suspect. Keep it explicitly noted if the machine crashes during this full-drive test.
+- Native qBittorrent was started and returned HTTP `200` on `127.0.0.1:8080`.
+- Docker compose was started without a qBittorrent service. Running stack: Sonarr, Radarr, Prowlarr, Bazarr, Tautulli, Uptime Kuma, and Unpackerr.
+- Container mount checks:
+  - Sonarr `/downloads` to `I:\`, `/tv/tv1` to `J:\`, `/tv/tv2` to `H:\`;
+  - Radarr `/downloads` to `I:\`, `/movies/movies1` to `D:\`, `/movies/movies2` to `F:\`, `/movies/movies3` to `E:\`;
+  - Unpackerr `/downloads` to `I:\`.
+- Sonarr and Radarr are both configured to use native qBittorrent at `host.docker.internal:8080` with remote path mapping `I:\torrentfiles\` to `/downloads/`.
+- Sonarr and Radarr download-client tests both passed against native qBittorrent.
+- API health checks reported zero issues for Sonarr, Radarr, and Prowlarr.
+- Prowlarr had two configured indexers, both enabled.
+- Sonarr and Radarr queues both reported zero items.
+- Native qBittorrent had 14 completed torrents loaded under the conservative settings: DHT off, PeX off, LSD off, max global connections `50`, max per-torrent connections `10`.
+- Full stack health report saved at `docs/health_reports/20260530-full-ecosystem-native-qbit.md`.
+
 ## 2026-05-25 WHEA / IOMMU Finding
 
 - After BIOS update to `M.A0`, Windows logged `WHEA-Logger` Event ID `1`: `A fatal hardware error has occurred`.
@@ -489,7 +897,23 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 - [ ] Verify the shared SATA power branch currently feeding Torrent/TV drives before repeating the qBittorrent/Sonarr test.
 - [x] Isolate `I:` / Torrent onto its own dedicated SATA power cable and dedicated SATA data cable before another qBittorrent load test.
 - [x] Reduce storage to clean `C:` + `I:` only state for next qBittorrent-only isolation test.
-- [ ] Run qBittorrent-only test in clean `C:` + `I:` state, with Sonarr and other Arr containers stopped.
+- [x] Run qBittorrent-only offline start test in clean `C:` + `I:` state, with Sonarr and other Arr containers stopped.
+- [x] Restart qBittorrent with network available in clean `C:` + `I:` state; no immediate crash in first five minutes.
+- [x] Continue qBittorrent-only networked soak in clean `C:` + `I:` state; failed with unexpected shutdown at `2026-05-29 3:28:50 PM`.
+- [ ] Isolate qBittorrent peer/network path before reconnecting TV drives or starting Sonarr/Arr.
+- [x] Apply conservative qBittorrent profile: libtorrent v1 image, TCP-only first pass, DHT/PeX/LSD disabled, low connection/active limits, Docker memory cap.
+- [x] Start qBittorrent-only soak using the conservative profile, with Sonarr and Arr stopped; passed first seven minutes.
+- [x] Stage qBittorrent Docker hardening settings in compose without restarting the running soak.
+- [x] Continue conservative qBittorrent-only soak for at least one hour before changing another variable.
+- [x] Recreate qBittorrent to activate staged Docker hardening after the one-hour conservative soak.
+- [x] Continue qBittorrent-only soak with active Docker hardening before adding Sonarr/Arr or relaxing qBittorrent limits; failed with unexpected shutdown at `2026-05-29 5:43:35 PM`.
+- [x] Revert extra Docker hardening layer back to the prior one-hour-passing conservative qBittorrent profile without starting qBittorrent.
+- [x] Start qBittorrent in the reverted conservative profile and pass first five-minute check.
+- [x] Keep qBittorrent on the reverted conservative profile; failed overnight with unexpected shutdown at `2026-05-30 12:40:08 AM`.
+- [ ] Keep qBittorrent stopped until the next isolation test.
+- [x] Install and configure native Windows qBittorrent with tracked conservative config to remove Docker/WSL from the qBittorrent path.
+- [x] Configure Sonarr and Radarr to use native qBittorrent via `host.docker.internal:8080` with remote path mappings before the full ecosystem stress test.
+- [ ] Test conservative qBittorrent profile through a non-Intel-I226-V network path, preferably USB Ethernet or Wi-Fi-only.
 - [x] Recheck `H:` / TV 2 after recurrence; present and mapped correctly on 2026-05-27.
 - [x] Review Docker Desktop/WSL logs only after Windows crash evidence is collected.
 - [ ] Avoid firmware, BIOS, storage-controller, or drive-letter changes until a diagnostic plan calls for them.
@@ -510,7 +934,7 @@ These are hypotheses, not conclusions:
 | Platform firmware / motherboard / CPU complex | Repeated fatal WHEA CPER firmware error record references, type 2 SOC firmware record, after hard resets |
 | Power delivery / PSU cabling | Hard resets with no bugcheck or dump can occur when power delivery drops or protection trips; PSU is reused |
 | Torrent drive power/data path under qBittorrent load | qBittorrent alone now reproduces the hard reset while mounted to `I:\torrentfiles`; no normal application crash or Windows storage warning was captured |
-| Docker/WSL network-forwarding path under qBittorrent peer load | qBittorrent startup exposes peer ports and immediately resumes peer/network activity, so NIC/WSL/Hyper-V remains a secondary trigger path to separate after hardware power/data isolation |
+| Docker/WSL network-forwarding path under qBittorrent peer load | qBittorrent offline/startup passed in the clean `C:` + `I:` state, but networked qBittorrent soak crashed in under ten minutes, making this a current leading path |
 | Memory stability | DDR5 is at safe 4800, but RAM/IMC faults can still surface as WHEA/platform resets |
 | Removed broken-pin HDD or its cabling | Stability improved initially after the damaged drive was removed, but crashes recurred, so it was not the complete root cause |
 | Storage or Docker/WSL timing | qBittorrent had a stale mount incident, but latest storage mounts were healthy after reboot; less likely as primary cause of hard resets |
@@ -520,4 +944,4 @@ These are hypotheses, not conclusions:
 
 # Current Rule
 
-The crash pattern recurred after the broken-pin HDD was removed. Preserve data first, keep the broken-pin drive out of service, verify drive mounts after every crash, and treat the current leading problem as platform-level hardware/firmware/power instability until isolation testing proves otherwise.
+The crash pattern recurred after the broken-pin HDD was removed. Preserve data first, keep the broken-pin drive out of service, verify drive mounts after every crash, and treat the current leading problem as platform-level hardware/firmware/power instability triggered most reliably by qBittorrent live peer/network activity until isolation testing proves otherwise.

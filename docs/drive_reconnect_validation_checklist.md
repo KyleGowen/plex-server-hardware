@@ -4,9 +4,9 @@
 
 Use this checklist after reconnecting drives, changing SATA power/data cables, booting after storage work, recovering from a crash, restarting Docker Desktop, or running `wsl --shutdown`.
 
-The goal is to identify which layer is failing before trusting Sonarr, Radarr, qBittorrent, Bazarr, or Unpackerr.
+The goal is to identify which layer is failing before trusting Sonarr, Radarr, native qBittorrent, Bazarr, or Unpackerr.
 
-Do not resume torrents, trigger searches, allow imports, or write subtitles until the Windows drive letters and Docker mounts both pass.
+Do not resume torrents, trigger searches, allow imports, or write subtitles until Windows drive letters, native qBittorrent paths, and the relevant Docker mounts pass.
 
 ---
 
@@ -15,17 +15,19 @@ Do not resume torrents, trigger searches, allow imports, or write subtitles unti
 | Layer | Expected path | Used by |
 |---|---|---|
 | Windows torrent root | `I:\torrentfiles` | qBittorrent download storage |
-| Docker download mount | `/downloads` | qBittorrent, Sonarr, Radarr, Unpackerr |
+| Docker download mount | `/downloads` | Sonarr, Radarr, Unpackerr |
 | Windows TV 1 root | `J:\TV Shows` | Sonarr, Bazarr, Plex |
 | Docker TV 1 mount | `/tv/tv1` | Sonarr, Bazarr |
 | Windows TV 2 root | `H:\TV Shows` | Sonarr, Bazarr, Plex |
 | Docker TV 2 mount | `/tv/tv2` | Sonarr, Bazarr |
+| Windows TV 3 root | `G:\TV Shows` | Sonarr, Bazarr, Plex |
+| Docker TV 3 mount | `/tv/tv3` | Sonarr, Bazarr |
 
 Known bad Docker symptom:
 
 | Bad mount | What it means |
 |---|---|
-| `/downloads` or `/tv/tv2` shows a tiny filesystem such as `137M`, often `100%` used | Docker captured a placeholder/fallback mount instead of the real Windows drive |
+| `/downloads`, `/tv/tv2`, or `/tv/tv3` shows a tiny filesystem such as `137M`, often `100%` used | Docker captured a placeholder/fallback mount instead of the real Windows drive |
 
 ---
 
@@ -44,6 +46,7 @@ Get-CimInstance Win32_LogicalDisk -Filter "DriveType=3" |
 Checklist:
 
 - [ ] `I:` is present and is the intended torrent/download drive.
+- [ ] `G:` is present if TV 3 is expected to be online.
 - [ ] `H:` is present if TV 2 is expected to be online.
 - [ ] `J:` is present and is the intended TV 1 drive.
 - [ ] Movie drives have the expected letters before trusting Radarr imports.
@@ -54,6 +57,7 @@ If this fails:
 | Finding | Likely failing layer | Next action |
 |---|---|---|
 | `I:` is missing | Hardware, cabling, power, BIOS, or Windows disk detection | Do not trust qBittorrent; inspect the torrent drive connection and Windows Disk Management |
+| `G:` is missing | Hardware, cabling, power, BIOS, or Windows disk detection | Do not trust `/tv/tv3`; block Sonarr/Bazarr writes under TV 3 |
 | `H:` is missing | Hardware, cabling, power, BIOS, or Windows disk detection | Do not trust `/tv/tv2`; block Sonarr/Bazarr writes under TV 2 |
 | A media drive appears under the wrong letter | Windows volume assignment | Stop and confirm the intended drive letter before repairing app paths |
 
@@ -80,7 +84,7 @@ If this fails:
 
 ---
 
-## 3. Confirm Docker Is Seeing The Real Download Drive
+## 3. Confirm Native qBittorrent And Docker See The Real Download Drive
 
 Make sure the stack is up enough to inspect mounts:
 
@@ -88,13 +92,14 @@ Make sure the stack is up enough to inspect mounts:
 docker compose -f C:\plex-server\docker-compose.media.yml ps
 ```
 
-Check the shared download mount from qBittorrent:
+Check native qBittorrent:
 
 ```powershell
-docker exec qbittorrent sh -c "df -h /downloads /downloads/incomplete; test -d /downloads/incomplete && ls -ld /downloads /downloads/incomplete"
+Invoke-WebRequest http://127.0.0.1:8080 -UseBasicParsing
+Test-Path I:\torrentfiles\incomplete
 ```
 
-Optional cross-check from the other containers that depend on `/downloads`:
+Check the containers that depend on `/downloads`:
 
 ```powershell
 docker exec sonarr sh -c "df -h /downloads"
@@ -106,15 +111,15 @@ Checklist:
 
 - [ ] `/downloads` reports `I:\` or the real torrent drive mount.
 - [ ] `/downloads` has multi-terabyte size/free space, not a tiny placeholder.
-- [ ] `/downloads/incomplete` exists.
-- [ ] Sonarr, Radarr, qBittorrent, and Unpackerr agree on the same healthy `/downloads` mount.
+- [ ] `I:\torrentfiles\incomplete` exists.
+- [ ] Sonarr, Radarr, and Unpackerr agree on the same healthy `/downloads` mount.
 
 If this fails:
 
 | Finding | Likely failing layer | Next action |
 |---|---|---|
 | Windows sees `I:\torrentfiles`, but Docker shows `/downloads` as tiny/full | Docker Desktop or WSL bind mount is stale | Use `wsl --shutdown`, restart Docker Desktop, then bring the compose stack back up |
-| qBittorrent is `Up`, but `/downloads` is tiny/full | Docker mount, not qBittorrent itself | Do not keep restarting only qBittorrent |
+| Native qBittorrent is reachable, but `/downloads` is tiny/full in containers | Docker mount for Arr/Unpackerr, not qBittorrent itself | Restart Docker/WSL and recheck Sonarr/Radarr/Unpackerr |
 | Sonarr/Radarr can open but `/downloads` is wrong | Shared Docker mount | Do not trust queues, imports, or download-client health yet |
 
 Recovery command sequence for a stale Docker mount:
@@ -124,35 +129,46 @@ wsl --shutdown
 Start-Process -FilePath "C:\Program Files\Docker\Docker\Docker Desktop.exe" -WindowStyle Hidden
 docker info --format "{{.ServerVersion}}"
 docker compose -f C:\plex-server\docker-compose.media.yml up -d
-docker exec qbittorrent sh -c "df -h /downloads /downloads/incomplete"
+docker exec sonarr sh -c "df -h /downloads"
+docker exec radarr sh -c "df -h /downloads"
+docker exec unpackerr sh -c "df -h /downloads"
 ```
 
 ---
 
-## 4. Confirm `/tv/tv2` Is Not A Tiny Placeholder
+## 4. Confirm TV Mounts Are Not Tiny Placeholders
 
-Only run TV 2 checks if `H:` / TV 2 is expected to be connected.
+Only run TV 2 and TV 3 checks if those drives are expected to be connected.
 
 ```powershell
+Test-Path "G:\TV Shows"
 Test-Path "H:\TV Shows"
-docker exec sonarr sh -c "df -h /tv/tv1 /tv/tv2 /downloads"
-docker exec bazarr sh -c "df -h /tv/tv1 /tv/tv2"
+Test-Path "J:\TV Shows"
+docker exec sonarr sh -c "df -h /tv/tv1 /tv/tv2 /tv/tv3 /downloads"
+docker exec bazarr sh -c "df -h /tv/tv1 /tv/tv2 /tv/tv3"
 ```
 
 Checklist:
 
+- [ ] `Test-Path "G:\TV Shows"` returns `True` if TV 3 is expected online.
 - [ ] `Test-Path "H:\TV Shows"` returns `True`.
+- [ ] `Test-Path "J:\TV Shows"` returns `True`.
 - [ ] Sonarr shows `/tv/tv2` mounted from `H:\` with multi-terabyte capacity.
+- [ ] Sonarr shows `/tv/tv3` mounted from `G:\` with multi-terabyte capacity.
 - [ ] Bazarr shows `/tv/tv2` mounted from `H:\` with multi-terabyte capacity.
+- [ ] Bazarr shows `/tv/tv3` mounted from `G:\` with multi-terabyte capacity.
 - [ ] `/tv/tv2` is not a tiny full placeholder filesystem.
+- [ ] `/tv/tv3` is not a tiny full placeholder filesystem.
 
 If this fails:
 
 | Finding | Likely failing layer | Next action |
 |---|---|---|
+| `G:\TV Shows` is missing | Hardware/Windows drive detection or drive-letter assignment | Do not import, move, rename, or subtitle-write under `/tv/tv3` |
 | `H:\TV Shows` is missing | Hardware/Windows drive detection or drive-letter assignment | Do not import, move, rename, or subtitle-write under `/tv/tv2` |
 | Windows sees `H:\TV Shows`, but Docker shows `/tv/tv2` as tiny/full | Docker Desktop or WSL bind mount is stale | Restart Docker/WSL and recheck before trusting Sonarr/Bazarr |
-| `/tv/tv1` is healthy but `/tv/tv2` is tiny/full | TV 2-specific host path or mount problem | Treat TV 1 and TV 2 separately; do not assume all TV paths are safe |
+| Windows sees `G:\TV Shows`, but Docker shows `/tv/tv3` as tiny/full | Docker Desktop or WSL bind mount is stale | Restart Docker/WSL and recheck before trusting Sonarr/Bazarr |
+| One TV mount is healthy but another is tiny/full | Drive-specific host path or mount problem | Treat TV roots separately; do not assume all TV paths are safe |
 
 ---
 
@@ -193,6 +209,8 @@ Stop diagnosis and fix the lower layer first if any of these are true:
 
 - [ ] `I:\torrentfiles` is missing.
 - [ ] `/downloads` is tiny, full, or not mounted from `I:\`.
+- [ ] `G:\TV Shows` is expected but missing.
+- [ ] `/tv/tv3` is tiny, full, or not mounted from `G:\`.
 - [ ] `H:\TV Shows` is expected but missing.
 - [ ] `/tv/tv2` is tiny, full, or not mounted from `H:\`.
 - [ ] Any media drive appears under an unexpected drive letter.

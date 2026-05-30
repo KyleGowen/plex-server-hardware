@@ -1,6 +1,6 @@
 # Plex Collection Build Tracker
 
-Last updated: 2026-05-29
+Last updated: 2026-05-30
 
 Overall status: Complete; pending imports noted for Mallrats and Aquaman and the Lost Kingdom.
 
@@ -187,3 +187,42 @@ Status: Complete
   - Star Trek TV: TPDb Star Trek family by mjmattu applied to collection plus 4 matching shows.
 - Radarr/Sonarr actions: None.
 - Verification notes: Collection children verified through Plex API. Poster overrides verified in Plex DB for 4 collections and 24 matching shows. No Plex library refreshes, drive-letter changes, path repairs, download-client actions, Sonarr/Radarr actions, or downloads were performed.
+
+## 14. Additional TV Collections
+
+Status: Complete; no posters applied
+
+- Scope: Plex TV Shows section only.
+- Plex collection rating keys:
+  - Marvel TV: 22778, 18 shows
+  - One Chicago: 22779, 3 shows
+- Missing items:
+  - Marvel TV: None for the broad local Marvel TV scope from `docs/tv_collection_recommendations_audit.md`.
+  - One Chicago: None for the local core trio scope; `Chicago Justice` remains an optional broader-franchise gap.
+- Poster set/source: None applied.
+- Radarr/Sonarr actions: None.
+- Verification notes: Collection children verified through Plex API. No Plex library refreshes, drive-letter changes, path repairs, download-client actions, Sonarr/Radarr actions, or downloads were performed.
+
+## 15. Transformers Collection
+
+Status: Complete
+
+- Scope: Plex Movies section only; broad local Transformers film scope, including the 1986 animated movie, the Michael Bay-directed live-action run, and later non-Bay theatrical entries present in Plex.
+- Plex collection rating key: 22892
+- Item count: 9 movies
+- Missing items: None for the local broad film scope.
+- Poster set/source: TPDb Transformers Collection by AMC, https://theposterdb.com/set/108971, applied to the collection plus 8 matching movies; Transformers One used the matching rebelworks TPDb poster, https://theposterdb.com/poster/531576.
+- Radarr/Sonarr actions: None.
+- Verification notes: Collection children verified through Plex API. Poster overrides verified in Plex DB for the collection plus all 9 movies. No Plex library refreshes, drive-letter changes, path repairs, download-client actions, Sonarr/Radarr actions, or downloads were performed.
+
+## 16. Ghostbusters Collection
+
+Status: Complete; missing local entries noted
+
+- Scope: Plex Movies section only; theatrical Ghostbusters film scope.
+- Plex collection rating key: 22893
+- Item count: 3 current Plex movies
+- Missing items: Ghostbusters (1984) and Ghostbusters (2016) were not present in Plex at collection time.
+- Poster set/source: TPDb Ghostbusters Collection by Jezzfreeman, https://theposterdb.com/set/261112, applied to the collection plus all 3 matching local movies.
+- Radarr/Sonarr actions: None.
+- Verification notes: Collection children verified through Plex API. Poster overrides verified in Plex DB for the collection plus all 3 movies. No Plex library refreshes, drive-letter changes, path repairs, download-client actions, Sonarr/Radarr actions, or downloads were performed.

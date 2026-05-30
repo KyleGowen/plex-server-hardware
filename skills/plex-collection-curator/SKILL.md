@@ -1,6 +1,6 @@
 ---
 name: plex-collection-curator
-description: Build and maintain curated Plex collections for Kyle's media server. Use when the user asks to audit, create, update, fill, or posterize a Plex collection such as a franchise, studio, actor, universe, chronology, or themed set. Choose the smallest mode implied by the request: audit-only, collection-only, fill-missing, posterize, or complete collection work.
+description: Build and maintain curated Plex collections for Kyle's media server. Use when the user asks to audit, create, update, fill, or posterize a Plex collection such as a franchise, studio, actor, universe, chronology, or themed set. Choose the smallest mode implied by the request: audit-only, collection-only-with-posters, fill-missing, posterize, or complete collection work.
 ---
 
 # Plex Collection Curator
@@ -12,7 +12,7 @@ Create or maintain Plex collections for Kyle's Windows-native Plex server while 
 Modes:
 
 - `audit-only`: research and reconcile what exists/missing; no Plex or Arr mutations.
-- `collection-only`: create/update Plex collection membership for already available library items.
+- `collection-only-with-posters`: create/update Plex collection membership for already available library items, then find and apply a matching ThePosterDB poster set to the collection cover and matched media items.
 - `fill-missing`: add missing movies/series to Radarr/Sonarr and start searches after download-path checks.
 - `posterize`: find/apply TPDb posters for the collection and matched items.
 - `complete`: research, reconcile, update collection, fill missing media, and posterize. Use only when the user asks for complete collection creation/fill/poster work.
@@ -26,15 +26,17 @@ Read `references/workflow.md` when executing this skill.
 - Prefer read-only Plex checks before write actions.
 - Plex collection creation/update, poster changes, and library scans are allowed when the user has asked for that work. For unrelated refreshes or broad repairs, confirm first.
 - Missing-media fill requests imply starting Radarr `MoviesSearch` and Sonarr `SeriesSearch` after the required download-path safety check, unless the user explicitly asks for add-only behavior.
-- Audit-only and collection-only requests must not add media, trigger searches, or apply posters.
+- Audit-only requests must not add media, trigger searches, or apply posters.
+- Collection creation/update requests include TPDb poster work by default: source posters from ThePosterDB, prefer one coherent set/uploader, apply the collection poster plus matching item posters, and verify the applied posters.
+- Collection creation/update requests must not add media or trigger searches unless the user explicitly asks to fill missing media.
 - When adding to Sonarr, set `monitored: true`, monitor normal seasons, and leave specials/season 0 unmonitored unless requested.
 - When adding to Radarr, set `monitored: true`.
 - Confirm library root folders, drive letters, and path mappings before any path repair or import-path mutation.
-- If qBittorrent/download state matters, verify `I:\torrentfiles` and `/downloads` before trusting downloads.
+- If qBittorrent/download state matters, verify native `I:\torrentfiles` and `/downloads` in Sonarr/Radarr before trusting downloads.
 
 ## Source Strategy
 
-Use internet research for the master list and TPDb poster selection because both change over time. Skip TPDb research unless the selected mode includes `posterize` or `complete`.
+Use internet research for the master list and ThePosterDB poster selection because both change over time. Skip ThePosterDB research only for `audit-only` or `fill-missing` work that does not also update/create a collection.
 
 For public movie, TV, franchise, collection, release, chronology, title/year, or media identity research, use `media-internet-search` first and carry its sourced findings into this workflow.
 
@@ -43,7 +45,7 @@ Prefer:
 - Official franchise/studio pages.
 - Wikis or databases dedicated to the franchise, such as Xenopedia for Alien/Predator.
 - Wikipedia or TMDb/IMDb only as cross-checks, not as the sole source when better sources exist.
-- TPDb set pages with visible set membership, uploader, and poster counts/likes.
+- ThePosterDB/TPDb set pages with visible set membership, uploader, and poster counts/likes.
 
 Summarize sources used in the final answer, but keep the list compact.
 

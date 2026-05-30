@@ -97,17 +97,10 @@ if (Test-Path $radarrConfigPath) {
 try {
     $session = New-Object Microsoft.PowerShell.Commands.WebRequestSession
     $qbitPassword = $null
-    $logPath = "C:\media-stack\config\qbittorrent\qBittorrent\logs\qbittorrent.log"
+    $logPath = Join-Path $env:LOCALAPPDATA "qBittorrent\logs\qbittorrent.log"
     if (Test-Path $logPath) {
         $pwLine = Get-Content $logPath -Tail 250 | Select-String "temporary password is provided for this session:" | Select-Object -Last 1
         if ($pwLine) { $qbitPassword = ($pwLine.Line -replace ".*session:\s*", "").Trim() }
-    }
-    if (-not $qbitPassword) {
-        try {
-            $dockerLogs = docker --config "$ProjectRoot\.docker-cli" logs --tail 400 qbittorrent 2>&1
-            $pwLine = $dockerLogs | Select-String "temporary password is provided for this session:" | Select-Object -Last 1
-            if ($pwLine) { $qbitPassword = ($pwLine.Line -replace ".*session:\s*", "").Trim() }
-        } catch {}
     }
     if ($qbitPassword) {
         Invoke-WebRequest -Uri "http://127.0.0.1:8080/api/v2/auth/login" -Method Post -Body @{ username = "admin"; password = $qbitPassword } -WebSession $session -UseBasicParsing -TimeoutSec 20 | Out-Null

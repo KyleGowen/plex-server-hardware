@@ -1,0 +1,40 @@
+﻿{
+    "LogicalDisks":  [
+                         {
+                             "DeviceID":  "C:",
+                             "VolumeName":  "",
+                             "FileSystem":  "NTFS",
+                             "SizeTiB":  0.23,
+                             "FreeTiB":  0.15
+                         },
+                         {
+                             "DeviceID":  "I:",
+                             "VolumeName":  "Torrent",
+                             "FileSystem":  "NTFS",
+                             "SizeTiB":  18.19,
+                             "FreeTiB":  14.67
+                         }
+                     ],
+    "DiskDrives":  [
+                       {
+                           "Index":  0,
+                           "Model":  "Samsung SSD 840 EVO 250GB",
+                           "SerialNumber":  "S1DDNWAF903275D",
+                           "Size":  250056737280,
+                           "Status":  "OK",
+                           "InterfaceType":  "IDE"
+                       },
+                       {
+                           "Index":  1,
+                           "Model":  "ST20000NM000H-3KV103",
+                           "SerialNumber":  "            ZYE00444",
+                           "Size":  20000582622720,
+                           "Status":  "OK",
+                           "InterfaceType":  "IDE"
+                       }
+                   ],
+    "RootChecks":  {
+                       "I:\\torrentfiles":  true,
+                       "C:\\media-stack\\config\\qbittorrent":  true
+                   }
+}

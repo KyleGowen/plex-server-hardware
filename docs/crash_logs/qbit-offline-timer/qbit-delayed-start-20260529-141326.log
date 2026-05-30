@@ -1,0 +1,5 @@
+﻿ArmedAt=2026-05-29T14:13:26.0788634-07:00
+PlannedStartAt=2026-05-29T14:15:26.0788634-07:00
+Action=docker start qbittorrent
+
+qbittorrent

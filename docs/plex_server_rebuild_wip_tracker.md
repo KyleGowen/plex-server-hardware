@@ -16,11 +16,12 @@ The original hardware rebuild is no longer the active phase. The server has been
 | Current top priority | Continue stability soak after broken-pin HDD removal |
 | Operating system | Windows 10 Home build 19045, native install |
 | Plex deployment | Native Windows install |
-| Docker media stack | Running Sonarr, Radarr, Prowlarr, Bazarr, Tautulli, qBittorrent, and Unpackerr |
+| Docker media stack | Running Sonarr, Radarr, Prowlarr, Bazarr, Tautulli, Uptime Kuma, and Unpackerr |
+| qBittorrent deployment | Native Windows install |
 | Optional legacy service | Jackett available through the `legacy-jackett` compose profile, not active by default |
 | Storage architecture | Windows-native drive letters mounted into containers |
 | Torrent root | `I:\torrentfiles` mounted as `/downloads` |
-| qBittorrent mount status | Last verified healthy: Docker saw `/downloads` as `I:\` with multi-terabyte capacity |
+| qBittorrent path status | Native qBittorrent uses `I:\torrentfiles`; Arr/Unpackerr containers map that root as `/downloads` |
 | Current documentation priority | Keep current service docs and crash tracker up to date |
 
 ---
@@ -75,7 +76,7 @@ Detailed hardware and drive inventory lives in [plex_server_hardware_inventory.m
 | Prowlarr | Docker | Running; active indexer manager for Sonarr/Radarr |
 | Bazarr | Docker | Running; connected to Sonarr/Radarr; one controlled subtitle test still recommended |
 | Tautulli | Docker | Running; first-run Plex setup and token-handling notes documented in [services/tautulli.md](services/tautulli.md); setup still needs completion/confirmation |
-| qBittorrent | Docker | Running; verify `/downloads` mount after boot/crash before trusting torrents |
+| qBittorrent | Native Windows | Running outside Docker; verify `I:\torrentfiles` before trusting torrents |
 | Unpackerr | Docker | Running; Starr app integrations still need confirmation/configuration |
 | Jackett | Optional Docker profile | Disabled by default; use only for legacy indexer needs |
 
@@ -102,10 +103,10 @@ Per-service docs live in [services](services).
 
 - [x] Confirm current fixed SATA drive inventory from Windows.
 - [x] Confirm qBittorrent download root is `I:\torrentfiles`.
-- [x] Confirm qBittorrent `/downloads` is mounted from `I:\` after the drive swap.
-- [x] Document qBittorrent stale Docker bind-mount recovery.
+- [x] Confirm qBittorrent download root is native `I:\torrentfiles`.
+- [x] Document historical qBittorrent stale Docker bind-mount recovery.
 - [ ] Do not allow Sonarr/Bazarr writes to `/tv/tv2` while `H:` is absent.
-- [ ] Add or run a qBittorrent startup guard that verifies `/downloads` reports the real `I:\` drive before torrents resume.
+- [ ] Add or run a qBittorrent startup guard that verifies `I:\torrentfiles` before torrents resume.
 - [ ] Document physical bay-to-drive mapping.
 - [ ] Document SATA port map.
 - [ ] Document PSU cable map.

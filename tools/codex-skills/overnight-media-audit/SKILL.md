@@ -1,6 +1,6 @@
 ---
 name: overnight-media-audit
-description: Check what new media downloaded, completed, imported, or got stuck overnight in Kyle's Plex Docker Arr stack. Use when the user asks variants of "what new media downloaded overnight?", "what landed last night?", "anything new in Sonarr/Radarr/qBittorrent?", or wants a concise overnight media-download report for C:\plex-server.
+description: Check what new media downloaded, completed, imported, or got stuck overnight in Kyle's Plex Arr stack with native Windows qBittorrent. Use when the user asks variants of "what new media downloaded overnight?", "what landed last night?", "anything new in Sonarr/Radarr/qBittorrent?", or wants a concise overnight media-download report for C:\plex-server.
 ---
 
 # Overnight Media Audit

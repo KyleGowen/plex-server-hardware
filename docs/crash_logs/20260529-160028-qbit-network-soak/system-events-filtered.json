@@ -1,0 +1,527 @@
+﻿[
+    {
+        "TimeCreated":  "\/Date(1780095697520)\/",
+        "ProviderName":  "Service Control Manager",
+        "Id":  7045,
+        "LevelDisplayName":  "Information",
+        "Message":  "A service was installed in the system. Service Name: FinalWire AIDA64 Kernel Driver Service File Name: C:\\Program Files\\FinalWire\\AIDA64 Extreme\\kerneld-x64.sys Service Type: kernel mode driver Service Start Type: demand start Service Account:"
+    },
+    {
+        "TimeCreated":  "\/Date(1780095682775)\/",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  102,
+        "LevelDisplayName":  "Information",
+        "Message":  "Networking driver in Virtual Machine is loaded and the protocol version is negotiated to the most recent version (Virtual machine ID E4A33BC1-4766-44DA-B843-5C3FADC3076A)."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095682773)\/",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  232,
+        "LevelDisplayName":  "Information",
+        "Message":  "NIC E4A33BC1-4766-44DA-B843-5C3FADC3076A--243065DA-BA30-4C62-B541-15C634CA3591 (Friendly Name: ) successfully connected to port 6AD30FF2-8FD4-46C7-A91C-14E8E16049BB (Friendly Name: 243065DA-BA30-4C62-B541-15C634CA3591) on switch 608C67D4-AFF3-47D5-948B-72ED865021DA(Friendly Name: WSL)."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095682770)\/",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  233,
+        "LevelDisplayName":  "Information",
+        "Message":  "The operation \u0027Create\u0027 succeeded on nic E4A33BC1-4766-44DA-B843-5C3FADC3076A--243065DA-BA30-4C62-B541-15C634CA3591 (Friendly Name: )."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095682760)\/",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  264,
+        "LevelDisplayName":  "Information",
+        "Message":  "Port 6AD30FF2-8FD4-46C7-A91C-14E8E16049BB (Friendly Name: 243065DA-BA30-4C62-B541-15C634CA3591) successfully created on switch 608C67D4-AFF3-47D5-948B-72ED865021DA (Friendly Name: WSL)."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095682738)\/",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  232,
+        "LevelDisplayName":  "Information",
+        "Message":  "NIC F4EF5C13-0FA8-4BCF-B386-8643110A58CF (Friendly Name: WSL) successfully connected to port 3DC11926-F490-4E5C-8A43-3EE3613C50A8 (Friendly Name: Container NIC 5b287b7a) on switch 608C67D4-AFF3-47D5-948B-72ED865021DA(Friendly Name: WSL)."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095682720)\/",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  7,
+        "LevelDisplayName":  "Information",
+        "Message":  "Miniport NIC F4EF5C13-0FA8-4BCF-B386-8643110A58CF (Friendly Name: WSL) successfully initialized."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095682720)\/",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  233,
+        "LevelDisplayName":  "Information",
+        "Message":  "The operation \u0027Create\u0027 succeeded on nic F4EF5C13-0FA8-4BCF-B386-8643110A58CF (Friendly Name: WSL)."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095682634)\/",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  264,
+        "LevelDisplayName":  "Information",
+        "Message":  "Port 3DC11926-F490-4E5C-8A43-3EE3613C50A8 (Friendly Name: Container NIC 5b287b7a) successfully created on switch 608C67D4-AFF3-47D5-948B-72ED865021DA (Friendly Name: WSL)."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095682585)\/",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  9,
+        "LevelDisplayName":  "Information",
+        "Message":  "Switch 608C67D4-AFF3-47D5-948B-72ED865021DA (Friendly Name: WSL) successfully initialized."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095682585)\/",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  232,
+        "LevelDisplayName":  "Information",
+        "Message":  "NIC 608C67D4-AFF3-47D5-948B-72ED865021DA (Friendly Name: WSL) successfully connected to port 608C67D4-AFF3-47D5-948B-72ED865021DA (Friendly Name: WSL) on switch 608C67D4-AFF3-47D5-948B-72ED865021DA(Friendly Name: WSL)."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095682585)\/",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  233,
+        "LevelDisplayName":  "Information",
+        "Message":  "The operation \u0027Create\u0027 succeeded on nic 608C67D4-AFF3-47D5-948B-72ED865021DA (Friendly Name: WSL)."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095681672)\/",
+        "ProviderName":  "Service Control Manager",
+        "Id":  7040,
+        "LevelDisplayName":  "Information",
+        "Message":  "The start type of the Background Intelligent Transfer Service service was changed from demand start to auto start."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095671470)\/",
+        "ProviderName":  "Service Control Manager",
+        "Id":  7045,
+        "LevelDisplayName":  "Information",
+        "Message":  "A service was installed in the system. Service Name: NTIOLib_CC_COMM Service File Name: C:\\Program Files (x86)\\MSI\\MSI Center\\Lib\\SYS\\NTIOLib_X64.sys Service Type: kernel mode driver Service Start Type: demand start Service Account:"
+    },
+    {
+        "TimeCreated":  "\/Date(1780095665613)\/",
+        "ProviderName":  "Service Control Manager",
+        "Id":  7045,
+        "LevelDisplayName":  "Information",
+        "Message":  "A service was installed in the system. Service Name: ALSysIO Service File Name: C:\\Users\\Kyle\\AppData\\Local\\Temp\\\\ALSysIO64.sys Service Type: kernel mode driver Service Start Type: demand start Service Account:"
+    },
+    {
+        "TimeCreated":  "\/Date(1780095653485)\/",
+        "ProviderName":  "Service Control Manager",
+        "Id":  7040,
+        "LevelDisplayName":  "Information",
+        "Message":  "The start type of the Touch Keyboard and Handwriting Panel Service service was changed from demand start to auto start."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095641452)\/",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  233,
+        "LevelDisplayName":  "Information",
+        "Message":  "The operation \u0027Delete\u0027 succeeded on nic 95B14105-94A0-469D-B8E0-03CC3E06A5C5 (Friendly Name: WSL)."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095641362)\/",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  62,
+        "LevelDisplayName":  "Information",
+        "Message":  "Switch 7017EF4B-4828-4B15-A884-2581426A7D09 (Friendly Name: WSL) successfully deleted."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095641361)\/",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  233,
+        "LevelDisplayName":  "Information",
+        "Message":  "The operation \u0027Delete\u0027 succeeded on nic 7017EF4B-4828-4B15-A884-2581426A7D09 (Friendly Name: WSL)."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095641360)\/",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  234,
+        "LevelDisplayName":  "Information",
+        "Message":  "NIC 95B14105-94A0-469D-B8E0-03CC3E06A5C5 successfully disconnected from port EFBA7105-E9FB-4696-B907-34B8C538232F."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095641359)\/",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  234,
+        "LevelDisplayName":  "Information",
+        "Message":  "NIC 7017EF4B-4828-4B15-A884-2581426A7D09 successfully disconnected from port 7017EF4B-4828-4B15-A884-2581426A7D09."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095637036)\/",
+        "ProviderName":  "Service Control Manager",
+        "Id":  7026,
+        "LevelDisplayName":  "Information",
+        "Message":  "The following boot-start or system-start driver(s) did not load: dam"
+    },
+    {
+        "TimeCreated":  "\/Date(1780095635211)\/",
+        "ProviderName":  "Microsoft-Windows-WHEA-Logger",
+        "Id":  1,
+        "LevelDisplayName":  "Error",
+        "Message":  "A fatal hardware error has occurred. A record describing the condition is contained in the data section of this event."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095635208)\/",
+        "ProviderName":  "Service Control Manager",
+        "Id":  7009,
+        "LevelDisplayName":  "Error",
+        "Message":  "A timeout was reached (45000 milliseconds) while waiting for the Intel(R) Platform License Manager Service service to connect."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095634817)\/",
+        "ProviderName":  "Service Control Manager",
+        "Id":  7040,
+        "LevelDisplayName":  "Information",
+        "Message":  "The start type of the TabletInputService service was changed from auto start to demand start."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095634553)\/",
+        "ProviderName":  "Microsoft-Windows-FilterManager",
+        "Id":  1,
+        "LevelDisplayName":  "Information",
+        "Message":  "File System Filter \u0027CldFlt\u0027 (Version 10.0, ‎2032‎-‎05‎-‎25T01:06:53.000000000Z) unloaded successfully."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095634521)\/",
+        "ProviderName":  "Service Control Manager",
+        "Id":  7023,
+        "LevelDisplayName":  "Error",
+        "Message":  "The cplspcon service terminated with the following error: Unspecified error"
+    },
+    {
+        "TimeCreated":  "\/Date(1780095633636)\/",
+        "ProviderName":  "Microsoft-Windows-IsolatedUserMode",
+        "Id":  1,
+        "LevelDisplayName":  "Information",
+        "Message":  "Secure Trustlet \\??\\C:\\WINDOWS\\system32\\lsaiso.exe Id 1 and Pid 852 started with status STATUS_SUCCESS."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095632060)\/",
+        "ProviderName":  "Microsoft-Windows-Ntfs",
+        "Id":  98,
+        "LevelDisplayName":  "Information",
+        "Message":  "Volume I: (\\Device\\HarddiskVolume4) is healthy. No action is needed."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095631099)\/",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  7,
+        "LevelDisplayName":  "Information",
+        "Message":  "Miniport NIC 95B14105-94A0-469D-B8E0-03CC3E06A5C5 (Friendly Name: WSL) successfully initialized."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095631097)\/",
+        "ProviderName":  "Microsoft-Windows-Kernel-Processor-Power",
+        "Id":  55,
+        "LevelDisplayName":  "Information",
+        "Message":  "Processor 19 in group 0 exposes the following power management capabilities: Idle state type: ACPI Idle (C) States (2 state(s)) Performance state type: ACPI Collaborative Processor Performance Control Nominal Frequency (MHz): 2600 Maximum performance percentage: 194 Minimum performance percentage: 68 Minimum throttle percentage: 5"
+    },
+    {
+        "TimeCreated":  "\/Date(1780095631088)\/",
+        "ProviderName":  "Microsoft-Windows-Kernel-Processor-Power",
+        "Id":  55,
+        "LevelDisplayName":  "Information",
+        "Message":  "Processor 18 in group 0 exposes the following power management capabilities: Idle state type: ACPI Idle (C) States (2 state(s)) Performance state type: ACPI Collaborative Processor Performance Control Nominal Frequency (MHz): 2611 Maximum performance percentage: 194 Minimum performance percentage: 68 Minimum throttle percentage: 5"
+    },
+    {
+        "TimeCreated":  "\/Date(1780095631087)\/",
+        "ProviderName":  "Microsoft-Windows-Kernel-Processor-Power",
+        "Id":  55,
+        "LevelDisplayName":  "Information",
+        "Message":  "Processor 17 in group 0 exposes the following power management capabilities: Idle state type: ACPI Idle (C) States (2 state(s)) Performance state type: ACPI Collaborative Processor Performance Control Nominal Frequency (MHz): 2611 Maximum performance percentage: 194 Minimum performance percentage: 68 Minimum throttle percentage: 5"
+    },
+    {
+        "TimeCreated":  "\/Date(1780095631081)\/",
+        "ProviderName":  "Microsoft-Windows-Kernel-Processor-Power",
+        "Id":  55,
+        "LevelDisplayName":  "Information",
+        "Message":  "Processor 16 in group 0 exposes the following power management capabilities: Idle state type: ACPI Idle (C) States (2 state(s)) Performance state type: ACPI Collaborative Processor Performance Control Nominal Frequency (MHz): 2611 Maximum performance percentage: 194 Minimum performance percentage: 68 Minimum throttle percentage: 5"
+    },
+    {
+        "TimeCreated":  "\/Date(1780095631075)\/",
+        "ProviderName":  "Microsoft-Windows-Kernel-Processor-Power",
+        "Id":  55,
+        "LevelDisplayName":  "Information",
+        "Message":  "Processor 15 in group 0 exposes the following power management capabilities: Idle state type: ACPI Idle (C) States (2 state(s)) Performance state type: ACPI Collaborative Processor Performance Control Nominal Frequency (MHz): 2600 Maximum performance percentage: 194 Minimum performance percentage: 68 Minimum throttle percentage: 5"
+    },
+    {
+        "TimeCreated":  "\/Date(1780095631067)\/",
+        "ProviderName":  "Microsoft-Windows-Kernel-Processor-Power",
+        "Id":  55,
+        "LevelDisplayName":  "Information",
+        "Message":  "Processor 14 in group 0 exposes the following power management capabilities: Idle state type: ACPI Idle (C) States (2 state(s)) Performance state type: ACPI Collaborative Processor Performance Control Nominal Frequency (MHz): 2611 Maximum performance percentage: 194 Minimum performance percentage: 68 Minimum throttle percentage: 5"
+    },
+    {
+        "TimeCreated":  "\/Date(1780095631060)\/",
+        "ProviderName":  "Microsoft-Windows-Kernel-Processor-Power",
+        "Id":  55,
+        "LevelDisplayName":  "Information",
+        "Message":  "Processor 13 in group 0 exposes the following power management capabilities: Idle state type: ACPI Idle (C) States (2 state(s)) Performance state type: ACPI Collaborative Processor Performance Control Nominal Frequency (MHz): 2611 Maximum performance percentage: 194 Minimum performance percentage: 68 Minimum throttle percentage: 5"
+    },
+    {
+        "TimeCreated":  "\/Date(1780095631054)\/",
+        "ProviderName":  "Microsoft-Windows-Kernel-Processor-Power",
+        "Id":  55,
+        "LevelDisplayName":  "Information",
+        "Message":  "Processor 12 in group 0 exposes the following power management capabilities: Idle state type: ACPI Idle (C) States (2 state(s)) Performance state type: ACPI Collaborative Processor Performance Control Nominal Frequency (MHz): 2611 Maximum performance percentage: 194 Minimum performance percentage: 73 Minimum throttle percentage: 5"
+    },
+    {
+        "TimeCreated":  "\/Date(1780095631049)\/",
+        "ProviderName":  "Microsoft-Windows-Kernel-Processor-Power",
+        "Id":  55,
+        "LevelDisplayName":  "Information",
+        "Message":  "Processor 11 in group 0 exposes the following power management capabilities: Idle state type: ACPI Idle (C) States (2 state(s)) Performance state type: ACPI Collaborative Processor Performance Control Nominal Frequency (MHz): 2600 Maximum performance percentage: 193 Minimum performance percentage: 51 Minimum throttle percentage: 3"
+    },
+    {
+        "TimeCreated":  "\/Date(1780095631048)\/",
+        "ProviderName":  "Microsoft-Windows-Kernel-Processor-Power",
+        "Id":  55,
+        "LevelDisplayName":  "Information",
+        "Message":  "Processor 10 in group 0 exposes the following power management capabilities: Idle state type: ACPI Idle (C) States (2 state(s)) Performance state type: ACPI Collaborative Processor Performance Control Nominal Frequency (MHz): 2611 Maximum performance percentage: 193 Minimum performance percentage: 54 Minimum throttle percentage: 3"
+    },
+    {
+        "TimeCreated":  "\/Date(1780095631046)\/",
+        "ProviderName":  "Microsoft-Windows-Kernel-Processor-Power",
+        "Id":  55,
+        "LevelDisplayName":  "Information",
+        "Message":  "Processor 9 in group 0 exposes the following power management capabilities: Idle state type: ACPI Idle (C) States (2 state(s)) Performance state type: ACPI Collaborative Processor Performance Control Nominal Frequency (MHz): 2600 Maximum performance percentage: 193 Minimum performance percentage: 51 Minimum throttle percentage: 3"
+    },
+    {
+        "TimeCreated":  "\/Date(1780095631044)\/",
+        "ProviderName":  "Microsoft-Windows-Kernel-Processor-Power",
+        "Id":  55,
+        "LevelDisplayName":  "Information",
+        "Message":  "Processor 8 in group 0 exposes the following power management capabilities: Idle state type: ACPI Idle (C) States (2 state(s)) Performance state type: ACPI Collaborative Processor Performance Control Nominal Frequency (MHz): 2611 Maximum performance percentage: 193 Minimum performance percentage: 54 Minimum throttle percentage: 3"
+    },
+    {
+        "TimeCreated":  "\/Date(1780095631043)\/",
+        "ProviderName":  "Microsoft-Windows-Kernel-Processor-Power",
+        "Id":  55,
+        "LevelDisplayName":  "Information",
+        "Message":  "Processor 7 in group 0 exposes the following power management capabilities: Idle state type: ACPI Idle (C) States (2 state(s)) Performance state type: ACPI Collaborative Processor Performance Control Nominal Frequency (MHz): 2600 Maximum performance percentage: 193 Minimum performance percentage: 54 Minimum throttle percentage: 3"
+    },
+    {
+        "TimeCreated":  "\/Date(1780095631041)\/",
+        "ProviderName":  "Microsoft-Windows-Kernel-Processor-Power",
+        "Id":  55,
+        "LevelDisplayName":  "Information",
+        "Message":  "Processor 6 in group 0 exposes the following power management capabilities: Idle state type: ACPI Idle (C) States (2 state(s)) Performance state type: ACPI Collaborative Processor Performance Control Nominal Frequency (MHz): 2611 Maximum performance percentage: 193 Minimum performance percentage: 51 Minimum throttle percentage: 3"
+    },
+    {
+        "TimeCreated":  "\/Date(1780095631039)\/",
+        "ProviderName":  "Microsoft-Windows-Kernel-Processor-Power",
+        "Id":  55,
+        "LevelDisplayName":  "Information",
+        "Message":  "Processor 5 in group 0 exposes the following power management capabilities: Idle state type: ACPI Idle (C) States (2 state(s)) Performance state type: ACPI Collaborative Processor Performance Control Nominal Frequency (MHz): 2600 Maximum performance percentage: 193 Minimum performance percentage: 54 Minimum throttle percentage: 3"
+    },
+    {
+        "TimeCreated":  "\/Date(1780095631038)\/",
+        "ProviderName":  "Microsoft-Windows-Kernel-Processor-Power",
+        "Id":  55,
+        "LevelDisplayName":  "Information",
+        "Message":  "Processor 4 in group 0 exposes the following power management capabilities: Idle state type: ACPI Idle (C) States (2 state(s)) Performance state type: ACPI Collaborative Processor Performance Control Nominal Frequency (MHz): 2611 Maximum performance percentage: 193 Minimum performance percentage: 54 Minimum throttle percentage: 3"
+    },
+    {
+        "TimeCreated":  "\/Date(1780095631036)\/",
+        "ProviderName":  "Microsoft-Windows-Kernel-Processor-Power",
+        "Id":  55,
+        "LevelDisplayName":  "Information",
+        "Message":  "Processor 3 in group 0 exposes the following power management capabilities: Idle state type: ACPI Idle (C) States (2 state(s)) Performance state type: ACPI Collaborative Processor Performance Control Nominal Frequency (MHz): 2600 Maximum performance percentage: 193 Minimum performance percentage: 54 Minimum throttle percentage: 3"
+    },
+    {
+        "TimeCreated":  "\/Date(1780095631034)\/",
+        "ProviderName":  "Microsoft-Windows-Kernel-Processor-Power",
+        "Id":  55,
+        "LevelDisplayName":  "Information",
+        "Message":  "Processor 2 in group 0 exposes the following power management capabilities: Idle state type: ACPI Idle (C) States (2 state(s)) Performance state type: ACPI Collaborative Processor Performance Control Nominal Frequency (MHz): 2611 Maximum performance percentage: 193 Minimum performance percentage: 54 Minimum throttle percentage: 3"
+    },
+    {
+        "TimeCreated":  "\/Date(1780095631033)\/",
+        "ProviderName":  "Microsoft-Windows-Kernel-Processor-Power",
+        "Id":  55,
+        "LevelDisplayName":  "Information",
+        "Message":  "Processor 1 in group 0 exposes the following power management capabilities: Idle state type: ACPI Idle (C) States (2 state(s)) Performance state type: ACPI Collaborative Processor Performance Control Nominal Frequency (MHz): 2600 Maximum performance percentage: 193 Minimum performance percentage: 54 Minimum throttle percentage: 3"
+    },
+    {
+        "TimeCreated":  "\/Date(1780095631003)\/",
+        "ProviderName":  "Microsoft-Windows-Kernel-Processor-Power",
+        "Id":  55,
+        "LevelDisplayName":  "Information",
+        "Message":  "Processor 0 in group 0 exposes the following power management capabilities: Idle state type: ACPI Idle (C) States (2 state(s)) Performance state type: ACPI Collaborative Processor Performance Control Nominal Frequency (MHz): 2611 Maximum performance percentage: 193 Minimum performance percentage: 33 Minimum throttle percentage: 3"
+    },
+    {
+        "TimeCreated":  "\/Date(1780095630526)\/",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  5,
+        "LevelDisplayName":  "Information",
+        "Message":  "Miniport NIC 95B14105-94A0-469D-B8E0-03CC3E06A5C5 (Friendly Name: WSL) successfully enabled"
+    },
+    {
+        "TimeCreated":  "\/Date(1780095630526)\/",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  232,
+        "LevelDisplayName":  "Information",
+        "Message":  "NIC 95B14105-94A0-469D-B8E0-03CC3E06A5C5 (Friendly Name: WSL) successfully connected to port EFBA7105-E9FB-4696-B907-34B8C538232F (Friendly Name: Container NIC 70375b67) on switch 7017EF4B-4828-4B15-A884-2581426A7D09(Friendly Name: WSL)."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095630526)\/",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  233,
+        "LevelDisplayName":  "Information",
+        "Message":  "The operation \u0027Create\u0027 succeeded on nic 95B14105-94A0-469D-B8E0-03CC3E06A5C5 (Friendly Name: WSL)."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095630526)\/",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  264,
+        "LevelDisplayName":  "Information",
+        "Message":  "Port EFBA7105-E9FB-4696-B907-34B8C538232F (Friendly Name: Container NIC 70375b67) successfully created on switch 7017EF4B-4828-4B15-A884-2581426A7D09 (Friendly Name: WSL)."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095630526)\/",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  9,
+        "LevelDisplayName":  "Information",
+        "Message":  "Switch 7017EF4B-4828-4B15-A884-2581426A7D09 (Friendly Name: WSL) successfully initialized."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095630526)\/",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  232,
+        "LevelDisplayName":  "Information",
+        "Message":  "NIC 7017EF4B-4828-4B15-A884-2581426A7D09 (Friendly Name: WSL) successfully connected to port 7017EF4B-4828-4B15-A884-2581426A7D09 (Friendly Name: WSL) on switch 7017EF4B-4828-4B15-A884-2581426A7D09(Friendly Name: WSL)."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095630526)\/",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  233,
+        "LevelDisplayName":  "Information",
+        "Message":  "The operation \u0027Create\u0027 succeeded on nic 7017EF4B-4828-4B15-A884-2581426A7D09 (Friendly Name: WSL)."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095630526)\/",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-VmSwitch",
+        "Id":  277,
+        "LevelDisplayName":  "Information",
+        "Message":  "vmswitch.sys build 19041.amd64.vb_release_svc_prod1, debug false, official true, 1 1"
+    },
+    {
+        "TimeCreated":  "\/Date(1780095630512)\/",
+        "ProviderName":  "Microsoft-Windows-Kernel-Power",
+        "Id":  172,
+        "LevelDisplayName":  "Information",
+        "Message":  "Connectivity state in standby: Disconnected, Reason: NIC compliance"
+    },
+    {
+        "TimeCreated":  "\/Date(1780095630512)\/",
+        "ProviderName":  "Microsoft-Windows-Kernel-Power",
+        "Id":  41,
+        "LevelDisplayName":  "Critical",
+        "Message":  "The system has rebooted without cleanly shutting down first. This error could be caused if the system stopped responding, crashed, or lost power unexpectedly."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095630455)\/",
+        "ProviderName":  "VfpExt",
+        "Id":  7036,
+        "LevelDisplayName":  "Information",
+        "Message":  "The service entered the Driver load complete state."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095630455)\/",
+        "ProviderName":  "VfpExt",
+        "Id":  7036,
+        "LevelDisplayName":  "Information",
+        "Message":  "The service entered the Driver load start state."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095630314)\/",
+        "ProviderName":  "Microsoft-Windows-Ntfs",
+        "Id":  98,
+        "LevelDisplayName":  "Information",
+        "Message":  "Volume C: (\\Device\\HarddiskVolume2) is healthy. No action is needed."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095634536)\/",
+        "ProviderName":  "EventLog",
+        "Id":  6013,
+        "LevelDisplayName":  "Information",
+        "Message":  "The system uptime is 6 seconds."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095634536)\/",
+        "ProviderName":  "EventLog",
+        "Id":  6005,
+        "LevelDisplayName":  "Information",
+        "Message":  "The Event log service was started."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095634536)\/",
+        "ProviderName":  "EventLog",
+        "Id":  6009,
+        "LevelDisplayName":  "Information",
+        "Message":  "Microsoft (R) Windows (R) 10.00. 19045 Multiprocessor Free."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095634536)\/",
+        "ProviderName":  "EventLog",
+        "Id":  6008,
+        "LevelDisplayName":  "Error",
+        "Message":  "The previous system shutdown at 3:28:50 PM on ‎5/‎29/‎2026 was unexpected."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095628906)\/",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-Hypervisor",
+        "Id":  165,
+        "LevelDisplayName":  "Information",
+        "Message":  "Hypervisor configured mitigations for CVE-2019-11091, CVE-2018-12126, CVE-2018-12127, CVE-2018-12130 for virtual machines. Processor not affected: true Processor family not affected: false Processor supports microarchitectural buffer flush: true Buffer flush needed: true"
+    },
+    {
+        "TimeCreated":  "\/Date(1780095628906)\/",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-Hypervisor",
+        "Id":  156,
+        "LevelDisplayName":  "Information",
+        "Message":  "Hypervisor configured mitigations for CVE-2018-3646 for virtual machines. Processor not affected: true Processor family not affected: false Processor supports cache flush: true HyperThreading enabled: true Parent hypervisor applies mitigations: false Mitigations disabled by bcdedit: false Mitigations enabled: true Cache flush needed: false"
+    },
+    {
+        "TimeCreated":  "\/Date(1780095628906)\/",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-Hypervisor",
+        "Id":  129,
+        "LevelDisplayName":  "Information",
+        "Message":  "Hypervisor initialized I/O remapping. Hardware present: true Hardware enabled: true Policy: 0x0 Enabled features: 0x43 Internal information: 0x0 Problems: 0x0 Additional information: 0x0"
+    },
+    {
+        "TimeCreated":  "\/Date(1780095628906)\/",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-Hypervisor",
+        "Id":  2,
+        "LevelDisplayName":  "Information",
+        "Message":  "Hypervisor scheduler type is 0x4."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095628906)\/",
+        "ProviderName":  "Microsoft-Windows-Hyper-V-Hypervisor",
+        "Id":  1,
+        "LevelDisplayName":  "Information",
+        "Message":  "Hypervisor successfully started."
+    },
+    {
+        "TimeCreated":  "\/Date(1780095628900)\/",
+        "ProviderName":  "Microsoft-Windows-Kernel-Boot",
+        "Id":  153,
+        "LevelDisplayName":  "Information",
+        "Message":  "Virtualization-based security (policies: VBS Enabled,VSM Required,Boot Chain Signer Soft Enforced) is enabled due to HyperV."
+    },
+    {
+        "TimeCreated":  "\/Date(1780093248873)\/",
+        "ProviderName":  "Service Control Manager",
+        "Id":  7040,
+        "LevelDisplayName":  "Information",
+        "Message":  "The start type of the Background Intelligent Transfer Service service was changed from auto start to demand start."
+    },
+    {
+        "TimeCreated":  "\/Date(1780093213851)\/",
+        "ProviderName":  "Service Control Manager",
+        "Id":  7040,
+        "LevelDisplayName":  "Information",
+        "Message":  "The start type of the Touch Keyboard and Handwriting Panel Service service was changed from demand start to auto start."
+    }
+]

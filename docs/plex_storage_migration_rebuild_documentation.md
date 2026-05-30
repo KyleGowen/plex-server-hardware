@@ -17,9 +17,10 @@ The storage migration/rebuild phase is complete enough for Windows, Plex, and th
 | Media/data drives | 6 detected media/data HDD volumes plus the OS SSD after the 2026-05-25 drive swap |
 | Drive organization | Separate Windows drive letters |
 | RAID / pooling | None known |
-| Docker stack | Sonarr, Radarr, Prowlarr, Bazarr, Tautulli, qBittorrent, Unpackerr |
+| Docker stack | Sonarr, Radarr, Prowlarr, Bazarr, Tautulli, Uptime Kuma, Unpackerr |
+| Native download client | qBittorrent |
 | Optional legacy service | Jackett profile |
-| Download root | `I:\torrentfiles` on Windows, `/downloads` in containers |
+| Download root | `I:\torrentfiles` on Windows, `/downloads` in Arr/Unpackerr containers |
 
 The canonical drive table is maintained in [plex_server_hardware_inventory.md](plex_server_hardware_inventory.md).
 
@@ -57,7 +58,7 @@ The Docker stack uses stable container paths mapped from Windows drive letters.
 
 | Host path | Container path | Used by |
 |---|---|---|
-| `I:\torrentfiles` | `/downloads` | qBittorrent, Sonarr, Radarr, Unpackerr |
+| `I:\torrentfiles` | `/downloads` | Sonarr, Radarr, Unpackerr |
 | `J:\TV Shows` | `/tv/tv1/TV Shows` | Sonarr |
 | `H:\TV Shows` | `/tv/tv2/TV Shows` | Sonarr; currently unavailable because `H:` is absent |
 | `J:\` | `/tv/tv1` | Bazarr |
@@ -74,10 +75,13 @@ Before normal operation after boot, crash, drive reconnect, Docker restart, or W
 
 ```powershell
 Test-Path I:\torrentfiles
-docker exec qbittorrent sh -c "df -h /downloads"
+Invoke-WebRequest http://127.0.0.1:8080 -UseBasicParsing
+docker exec sonarr sh -c "df -h /downloads"
+docker exec radarr sh -c "df -h /downloads"
+docker exec unpackerr sh -c "df -h /downloads"
 ```
 
-Healthy Docker output should show `/downloads` mounted from `I:\` with multi-terabyte capacity. If Docker shows a tiny full filesystem, follow [qbittorrent_startup_recovery.md](qbittorrent_startup_recovery.md).
+Healthy Docker output should show `/downloads` mounted from `I:\` with multi-terabyte capacity. If Docker shows a tiny full filesystem, restart Docker/WSL before trusting Arr imports or Unpackerr extraction.
 
 On 2026-05-26, `/downloads` was healthy, but `/tv/tv2` showed as a tiny full placeholder filesystem because `H:` was absent. That is unsafe for imports and subtitle writes.
 
@@ -107,13 +111,13 @@ Confirmed current architecture:
 | Item | Value |
 |---|---|
 | Host download root | `I:\torrentfiles` |
-| Shared container download root | `/downloads` |
-| qBittorrent default save path | `/downloads/` |
-| qBittorrent incomplete path | `/downloads/incomplete/` |
-| Sonarr download client | `qbittorrent:8080`, category `tv-sonarr` |
-| Radarr download client | `qbittorrent:8080`, category `radarr` |
+| Shared container download root | `/downloads` for Sonarr/Radarr/Unpackerr |
+| qBittorrent default save path | `I:\torrentfiles\` |
+| qBittorrent incomplete path | `I:\torrentfiles\incomplete\` |
+| Sonarr download client | `host.docker.internal:8080`, category `tv-sonarr`, remote path `I:\torrentfiles\` -> `/downloads/` |
+| Radarr download client | `host.docker.internal:8080`, category `radarr`, remote path `I:\torrentfiles\` -> `/downloads/` |
 
-Radarr, Sonarr, qBittorrent, and Unpackerr all mount the same host download root as `/downloads`, so remote path mapping should not be required when the Docker mount is healthy.
+Native qBittorrent writes directly to `I:\torrentfiles`. Radarr, Sonarr, and Unpackerr mount the same host download root as `/downloads`, so Sonarr/Radarr need remote path mappings from qBittorrent's Windows path to their container path.
 
 Do not resume all torrents or trigger broad automatic searches until category behavior and completed import handling are confirmed with controlled tests.
 
@@ -162,5 +166,5 @@ The critical ongoing rules are:
 
 1. Preserve existing media drives.
 2. Confirm drive letters before repairing paths.
-3. Confirm Docker sees the real `I:\torrentfiles` mount before trusting qBittorrent.
+3. Confirm native qBittorrent sees `I:\torrentfiles`, and Docker services see `/downloads`, before trusting downloads/imports.
 4. Keep Plex native Windows paths and Docker container paths distinct.

@@ -1,0 +1,37 @@
+﻿{
+    "CapturedAt":  "2026-05-29T16:07:23.6952607-07:00",
+    "CrashWindowLocal":  {
+                             "QbitNetworkRestartRequested":  "2026-05-29T15:22:57.2360291-07:00",
+                             "QbitRestartEnd":  "2026-05-29T15:22:59.0516860-07:00",
+                             "UnexpectedShutdownRecordedFor":  "2026-05-29T15:28:50-07:00",
+                             "RebootTime":  "2026-05-29T16:00:28.5000000-07:00"
+                         },
+    "WindowsCrashEvidence":  {
+                                 "EventLog6008":  {
+                                                      "TimeCreated":  "2026-05-29T16:00:34.5366358-07:00",
+                                                      "Message":  "The previous system shutdown at 3:28:50 PM on ‎5/‎29/‎2026 was unexpected."
+                                                  },
+                                 "KernelPower41":  {
+                                                       "TimeCreated":  "2026-05-29T16:00:30.5122909-07:00",
+                                                       "Message":  "The system has rebooted without cleanly shutting down first. This error could be caused if the system stopped responding, crashed, or lost power unexpectedly."
+                                                   },
+                                 "WHEAEvent1":  {
+                                                    "TimeCreated":  "2026-05-29T16:00:35.2119035-07:00",
+                                                    "Message":  "A fatal hardware error has occurred. A record describing the condition is contained in the data section of this event.",
+                                                    "RecordBytes":  3552
+                                                },
+                                 "MinidumpsFound":  0,
+                                 "MemoryDumpFound":  false
+                             },
+    "IsolationState":  {
+                           "ConnectedFixedVolumes":  [
+                                                         "C:",
+                                                         "I:"
+                                                     ],
+                           "TorrentRootPresent":  true,
+                           "SonarrState":  "stopped before qBittorrent networked test and remained stopped",
+                           "TVDrivesConnected":  false,
+                           "PciSataExpansionConnected":  false
+                       },
+    "Interpretation":  "qBittorrent offline/startup/mount path passed, but sustained qBittorrent with live network/peer traffic crashed in the clean C+I state. This points above TV-drive/shared-power variables and toward qBittorrent peer network path, Docker Desktop/WSL/Hyper-V networking, motherboard NIC/driver, or platform firmware/power response under that load."
+}

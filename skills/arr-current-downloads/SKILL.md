@@ -1,6 +1,6 @@
 ---
 name: arr-current-downloads
-description: Report media currently downloading in Kyle's Plex Docker Arr stack. Use when the user asks what media is currently downloading, what is downloading now, current downloads, active downloads, or similar status checks. Only list downloads managed by the Arr media ecosystem such as Sonarr, Radarr, Lidarr, or Readarr; exclude unrelated qBittorrent items, uncategorized torrents, manual tracker downloads, and anything outside those media libraries.
+description: Report media currently downloading in Kyle's Plex Arr stack with native Windows qBittorrent. Use when the user asks what media is currently downloading, what is downloading now, current downloads, active downloads, or similar status checks. Only list downloads managed by the Arr media ecosystem such as Sonarr, Radarr, Lidarr, or Readarr; exclude unrelated qBittorrent items, uncategorized torrents, manual tracker downloads, and anything outside those media libraries.
 ---
 
 # Arr Current Downloads
@@ -35,11 +35,10 @@ Do not list:
 ## Workflow
 
 1. Run the bundled helper script first. It is the cheapest deterministic path and already filters to Arr-managed active downloads.
-2. If the helper fails, use the local qBittorrent Web API read-only.
-   - Host-side API requests may be forbidden. In that case query from inside the `qbittorrent` container:
+2. If the helper fails, use the native local qBittorrent Web API read-only:
 
 ```powershell
-docker exec qbittorrent sh -c "wget -qO- http://127.0.0.1:8080/api/v2/torrents/info"
+Invoke-RestMethod http://127.0.0.1:8080/api/v2/torrents/info
 ```
 
 3. Only after qBittorrent data is unclear, use read-only MCP tools to cross-check:
@@ -59,7 +58,7 @@ docker exec qbittorrent sh -c "wget -qO- http://127.0.0.1:8080/api/v2/torrents/i
 
 ## Helper Script
 
-Use `scripts/Get-ArrCurrentDownloads.ps1` by default. It queries qBittorrent from inside the container, filters to active Arr-managed downloads, and emits safe JSON with `ok`, `error`, and `downloads` fields. It does not include tracker URLs, hashes, magnets, or secrets.
+Use `scripts/Get-ArrCurrentDownloads.ps1` by default. It queries native qBittorrent through `127.0.0.1:8080`, filters to active Arr-managed downloads, and emits safe JSON with `ok`, `error`, and `downloads` fields. It does not include tracker URLs, hashes, magnets, or secrets.
 
 Example:
 

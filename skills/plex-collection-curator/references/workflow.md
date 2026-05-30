@@ -3,12 +3,12 @@
 ## 0. Select The Smallest Mode
 
 - `audit-only`: research and reconcile; no Plex or Arr writes.
-- `collection-only`: create/update collection membership for available Plex items.
+- `collection-only-with-posters`: create/update collection membership for available Plex items, then apply a matching ThePosterDB poster set to the collection cover and matched media items.
 - `fill-missing`: add missing media to Radarr/Sonarr and search after safety checks.
 - `posterize`: apply TPDb posters to an existing or newly updated collection.
 - `complete`: run all phases only when explicitly requested.
 
-Skip phases that are outside the selected mode.
+For create/update collection requests, run both collection membership and TPDb poster application. Skip phases that are outside the selected mode.
 
 ## 1. Research the Master List
 
@@ -45,7 +45,7 @@ WHERE mi.library_section_id IN (...)
 When the user believes missing items exist, inspect library roots:
 
 - Movie roots currently known from prior work: `D:\Movies`, `F:\Movies`
-- TV roots currently known from prior work: `H:\TV Shows`, `J:\TV Shows`
+- TV roots currently known from prior work: `G:\TV Shows`, `H:\TV Shows`, `J:\TV Shows`
 
 Use root discovery from Plex, not hard-coded assumptions, before acting.
 
@@ -85,21 +85,21 @@ For master-list entries not in Plex and not found on disk:
 2. Add missing movies to Radarr as monitored.
 3. Add missing shows to Sonarr as monitored.
 4. For Sonarr, monitor normal seasons and leave specials unmonitored unless requested.
-5. Verify `I:\torrentfiles` exists and qBittorrent `/downloads` maps to the real `I:\` multi-terabyte filesystem before triggering downloads.
+5. Verify `I:\torrentfiles` exists for native qBittorrent and Sonarr/Radarr `/downloads` map to the real `I:\` multi-terabyte filesystem before triggering downloads.
 6. For newly added Radarr movies, trigger `MoviesSearch` for the new movie ids. For newly added Sonarr series, trigger `SeriesSearch` for each new series id. This is the default for missing-media fill work unless the user explicitly asks to add only.
 7. If matching is ambiguous, skip and report rather than adding the wrong item.
 
 ## 6. TPDb Poster Application
 
-Run this section only in `posterize` or `complete` mode.
+Run this section for `collection-only-with-posters`, `posterize`, or `complete` mode.
 
-1. Search TPDb for the collection name and key titles.
+1. Search ThePosterDB/TPDb for the collection name and key titles.
 2. Prefer one uploader/set family with collection and item posters.
 3. Extract JPEG URLs from TPDb HTML. The useful image URLs usually look like:
 
 `https://images.theposterdb.com/prod/public/images/posters/optimized/...jpg`
 
-4. Map poster titles to Plex rating keys.
+4. Map poster titles to Plex rating keys, including the Plex collection rating key for the collection cover.
 5. Apply:
 
 `POST /library/metadata/{ratingKey}/posters?url={encodedPosterUrl}`

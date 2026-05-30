@@ -1,0 +1,16 @@
+﻿StartRequestedAt=2026-05-29T22:34:40.5072263-07:00
+Reason=Start qBittorrent after reverting extra Docker hardening back to prior conservative profile
+Before:
+qbittorrent|Exited (0) 13 minutes ago|lscr.io/linuxserver/qbittorrent:5.2.0-libtorrentv1
+sonarr|Exited (137) 12 hours ago|lscr.io/linuxserver/sonarr:latest
+Command=docker compose up -d qbittorrent
+After:
+qbittorrent|Up Less than a second|lscr.io/linuxserver/qbittorrent:5.2.0-libtorrentv1
+sonarr|Exited (137) 12 hours ago|lscr.io/linuxserver/sonarr:latest
+
+FiveMinuteCheckAt=2026-05-29T22:40:48.3994967-07:00
+qbittorrent|Up 6 minutes|lscr.io/linuxserver/qbittorrent:5.2.0-libtorrentv1
+qbittorrent|CPUPerc=67.07%|MemUsage=547.1MiB / 4GiB|NetIO=22.6GB / 869MB|BlockIO=31.9MB / 545kB|PIDs=29
+Filesystem      Size  Used Avail Use% Mounted on
+I:\              19T  3.6T   15T  20% /downloads
+WindowsEventsAfterStart=None found for crash/storage/WHEA filter as of five-minute check

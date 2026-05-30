@@ -1,0 +1,23 @@
+﻿[
+    {
+        "TimeCreated":  "\/Date(1780153183588)\/",
+        "ProviderName":  "Microsoft-Windows-WMI",
+        "Id":  63,
+        "LevelDisplayName":  "Warning",
+        "Message":  "A provider, IntelMEProv, has been registered in the Windows Management Instrumentation namespace root\\Intel_ME to use the LocalSystem account. This account is privileged and the provider may cause a security violation if it does not correctly impersonate user requests."
+    },
+    {
+        "TimeCreated":  "\/Date(1780153183586)\/",
+        "ProviderName":  "Microsoft-Windows-WMI",
+        "Id":  63,
+        "LevelDisplayName":  "Warning",
+        "Message":  "A provider, IntelMEProv, has been registered in the Windows Management Instrumentation namespace root\\Intel_ME to use the LocalSystem account. This account is privileged and the provider may cause a security violation if it does not correctly impersonate user requests."
+    },
+    {
+        "TimeCreated":  "\/Date(1780153183584)\/",
+        "ProviderName":  "Microsoft-Windows-WMI",
+        "Id":  63,
+        "LevelDisplayName":  "Warning",
+        "Message":  "A provider, IntelMEProv, has been registered in the Windows Management Instrumentation namespace root\\Intel_ME to use the LocalSystem account. This account is privileged and the provider may cause a security violation if it does not correctly impersonate user requests."
+    }
+]
