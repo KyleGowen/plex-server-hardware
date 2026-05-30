@@ -1,13 +1,13 @@
 ---
 name: plex-collection-curator
-description: Build and maintain curated Plex collections for Kyle's media server. Use when the user asks to audit, create, update, fill, or posterize a Plex collection such as a franchise, studio, actor, universe, chronology, or themed set. Choose the smallest mode implied by the request: audit-only, collection-only-with-posters, fill-missing, posterize, or complete collection work.
+description: Build and maintain curated Plex collections for Kyle's media server. Use when the user asks to audit, create, update, fill, or posterize a Plex collection such as a franchise, studio, actor, universe, chronology, or themed set. Default to complete collection work unless the user explicitly asks for audit-only, collection-only, fill-only, or poster-only work.
 ---
 
 # Plex Collection Curator
 
 ## Goal
 
-Create or maintain Plex collections for Kyle's Windows-native Plex server while choosing the smallest workflow that satisfies the request.
+Create or maintain Plex collections for Kyle's Windows-native Plex server. Default to the complete workflow for normal collection requests so missing items are added/searched and existing items are collected/posterized. Use smaller workflows only when the user explicitly limits the request.
 
 Modes:
 
@@ -15,7 +15,7 @@ Modes:
 - `collection-only-with-posters`: create/update Plex collection membership for already available library items, then find and apply a matching ThePosterDB poster set to the collection cover and matched media items.
 - `fill-missing`: add missing movies/series to Radarr/Sonarr and start searches after download-path checks.
 - `posterize`: find/apply TPDb posters for the collection and matched items.
-- `complete`: research, reconcile, update collection, fill missing media, and posterize. Use only when the user asks for complete collection creation/fill/poster work.
+- `complete`: research, reconcile, update collection, fill missing media, and posterize. This is the default for collection creation/update requests unless the user explicitly narrows the mode.
 
 Read `references/workflow.md` when executing this skill.
 
@@ -28,7 +28,7 @@ Read `references/workflow.md` when executing this skill.
 - Missing-media fill requests imply starting Radarr `MoviesSearch` and Sonarr `SeriesSearch` after the required download-path safety check, unless the user explicitly asks for add-only behavior.
 - Audit-only requests must not add media, trigger searches, or apply posters.
 - Collection creation/update requests include TPDb poster work by default: source posters from ThePosterDB, prefer one coherent set/uploader, apply the collection poster plus matching item posters, and verify the applied posters.
-- Collection creation/update requests must not add media or trigger searches unless the user explicitly asks to fill missing media.
+- Collection creation/update requests default to `complete`, so missing media adds and searches are allowed after the required safety checks unless the user explicitly asks for audit-only, collection-only, add-only, or poster-only work.
 - When adding to Sonarr, set `monitored: true`, monitor normal seasons, and leave specials/season 0 unmonitored unless requested.
 - When adding to Radarr, set `monitored: true`.
 - Confirm library root folders, drive letters, and path mappings before any path repair or import-path mutation.

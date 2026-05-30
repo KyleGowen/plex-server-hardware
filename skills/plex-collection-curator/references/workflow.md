@@ -1,14 +1,14 @@
 # Plex Collection Curator Workflow
 
-## 0. Select The Smallest Mode
+## 0. Select Mode
 
 - `audit-only`: research and reconcile; no Plex or Arr writes.
 - `collection-only-with-posters`: create/update collection membership for available Plex items, then apply a matching ThePosterDB poster set to the collection cover and matched media items.
 - `fill-missing`: add missing media to Radarr/Sonarr and search after safety checks.
 - `posterize`: apply TPDb posters to an existing or newly updated collection.
-- `complete`: run all phases only when explicitly requested.
+- `complete`: run all phases. This is the default for normal collection creation/update requests.
 
-For create/update collection requests, run both collection membership and TPDb poster application. Skip phases that are outside the selected mode.
+For create/update collection requests, run complete unless the user explicitly asks for a narrower mode such as audit-only, collection-only, fill-only, add-only, or posterize. Skip phases that are outside the selected mode.
 
 ## 1. Research the Master List
 
