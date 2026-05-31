@@ -2,7 +2,8 @@ param(
     [string]$ProjectRoot = "C:\plex-server",
     [string]$ComposeFile = "docker-compose.media.yml",
     [string]$EnvFile = ".env",
-    [switch]$SummaryOnly
+    [switch]$SummaryOnly,
+    [switch]$JsonSummary
 )
 
 $ErrorActionPreference = "Stop"
@@ -593,6 +594,24 @@ foreach ($mountCheck in $tvMountChecks) {
 
 $groups = $script:Results | Group-Object Group
 $counts = $script:Results | Group-Object Status | Sort-Object Name
+
+if ($JsonSummary) {
+    [pscustomobject]@{
+        ok = -not [bool]@($script:Results | Where-Object { $_.Status -eq "FAIL" })
+        generated = (Get-Date -Format "yyyy-MM-dd HH:mm:ss zzz")
+        projectRoot = $ProjectRoot
+        counts = [ordered]@{}
+        notable = @($script:Results |
+            Where-Object { $_.Status -in @("FAIL", "WARN") } |
+            Select-Object Status, Group, Name, Detail)
+    } | ForEach-Object {
+        foreach ($count in $counts) {
+            $_.counts[$count.Name] = $count.Count
+        }
+        $_
+    } | ConvertTo-Json -Depth 5 -Compress
+    exit 0
+}
 
 Write-Output "# Plex Stack Health Check"
 Write-Output ""

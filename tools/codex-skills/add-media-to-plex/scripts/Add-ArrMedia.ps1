@@ -10,7 +10,11 @@
 
     [string]$QualityProfileName,
 
-    [switch]$NoSearch
+    [switch]$NoSearch,
+
+    [switch]$Compact,
+
+    [int]$QueuePageSize = 50
 )
 
 $ErrorActionPreference = 'Stop'
@@ -144,9 +148,9 @@ if ($Type -eq 'movie') {
         $command = Invoke-ArrPost -BaseUrl $base -Headers $headers -Path '/command' -Body @{ name = 'MoviesSearch'; movieIds = @([int]$media.id) }
         Start-Sleep -Seconds 10
     }
-    $queue = Invoke-ArrGet -BaseUrl $base -Headers $headers -Path '/queue?page=1&pageSize=200'
+    $queue = Invoke-ArrGet -BaseUrl $base -Headers $headers -Path "/queue?page=1&pageSize=$QueuePageSize"
     $records = @(Expand-FlatArray $queue.records | Where-Object { $_.movieId -eq $media.id -or $_.title -like "*$($media.title)*" })
-    [pscustomobject]@{
+    $result = [ordered]@{
         service = 'radarr'
         action = $action
         title = $media.title
@@ -156,8 +160,11 @@ if ($Type -eq 'movie') {
         hasFile = $media.hasFile
         commandId = if ($command) { $command.id } else { $null }
         queueMatches = $records.Count
-        queue = @($records | Select-Object title,status,trackedDownloadStatus,trackedDownloadState,downloadClient,protocol,@{n='quality';e={$_.quality.quality.name}},@{n='progressPct';e={if($_.size -and $null -ne $_.sizeleft){[math]::Round((1-($_.sizeleft/$_.size))*100,2)}else{$null}}})
-    } | ConvertTo-Json -Depth 8
+    }
+    if (-not $Compact) {
+        $result.queue = @($records | Select-Object title,status,trackedDownloadStatus,trackedDownloadState,downloadClient,protocol,@{n='quality';e={$_.quality.quality.name}},@{n='progressPct';e={if($_.size -and $null -ne $_.sizeleft){[math]::Round((1-($_.sizeleft/$_.size))*100,2)}else{$null}}})
+    }
+    [pscustomobject]$result | ConvertTo-Json -Depth 8
 }
 else {
     $base = 'http://127.0.0.1:8989/api/v3'
@@ -196,9 +203,9 @@ else {
         $command = Invoke-ArrPost -BaseUrl $base -Headers $headers -Path '/command' -Body @{ name = 'SeriesSearch'; seriesId = [int]$media.id }
         Start-Sleep -Seconds 10
     }
-    $queue = Invoke-ArrGet -BaseUrl $base -Headers $headers -Path '/queue?page=1&pageSize=200'
+    $queue = Invoke-ArrGet -BaseUrl $base -Headers $headers -Path "/queue?page=1&pageSize=$QueuePageSize"
     $records = @(Expand-FlatArray $queue.records | Where-Object { $_.seriesId -eq $media.id -or $_.title -like "*$($media.title)*" })
-    [pscustomobject]@{
+    $result = [ordered]@{
         service = 'sonarr'
         action = $action
         title = $media.title
@@ -207,6 +214,9 @@ else {
         monitored = $media.monitored
         commandId = if ($command) { $command.id } else { $null }
         queueMatches = $records.Count
-        queue = @($records | Select-Object title,status,trackedDownloadStatus,trackedDownloadState,downloadClient,protocol,@{n='quality';e={$_.quality.quality.name}},@{n='progressPct';e={if($_.size -and $null -ne $_.sizeleft){[math]::Round((1-($_.sizeleft/$_.size))*100,2)}else{$null}}})
-    } | ConvertTo-Json -Depth 8
+    }
+    if (-not $Compact) {
+        $result.queue = @($records | Select-Object title,status,trackedDownloadStatus,trackedDownloadState,downloadClient,protocol,@{n='quality';e={$_.quality.quality.name}},@{n='progressPct';e={if($_.size -and $null -ne $_.sizeleft){[math]::Round((1-($_.sizeleft/$_.size))*100,2)}else{$null}}})
+    }
+    [pscustomobject]$result | ConvertTo-Json -Depth 8
 }

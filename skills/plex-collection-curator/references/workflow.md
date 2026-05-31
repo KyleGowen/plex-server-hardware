@@ -3,16 +3,16 @@
 ## 0. Select Mode
 
 - `audit-only`: research and reconcile; no Plex or Arr writes.
-- `collection-only-with-posters`: create/update collection membership for available Plex items, then apply a matching ThePosterDB poster set to the collection cover and matched media items.
+- `collection-only`: create/update collection membership for available Plex items only.
 - `fill-missing`: add missing media to Radarr/Sonarr and search after safety checks.
 - `posterize`: apply TPDb posters to an existing or newly updated collection.
-- `complete`: run all phases. This is the default for normal collection creation/update requests.
+- `complete`: run all phases. Use only when the user explicitly requests end-to-end collection, fill, and poster work.
 
-For create/update collection requests, run complete unless the user explicitly asks for a narrower mode such as audit-only, collection-only, fill-only, add-only, or posterize. Skip phases that are outside the selected mode.
+Choose the smallest mode implied by the user's wording. Prefer the short selected mode file under `references/modes/`; use this full workflow only for complete mode or when the short mode file lacks necessary detail. Skip phases that are outside the selected mode.
 
 ## 1. Research the Master List
 
-1. Search the internet for the requested collection/franchise/studio/theme.
+1. Search the internet for the requested collection/franchise/studio/theme only when local data is not enough to identify the requested collection.
 2. Build a table with:
    - canonical title
    - year
@@ -91,7 +91,7 @@ For master-list entries not in Plex and not found on disk:
 
 ## 6. TPDb Poster Application
 
-Run this section for `collection-only-with-posters`, `posterize`, or `complete` mode.
+Run this section only for `posterize` or `complete` mode.
 
 1. Search ThePosterDB/TPDb for the collection name and key titles.
 2. Prefer one uploader/set family with collection and item posters.

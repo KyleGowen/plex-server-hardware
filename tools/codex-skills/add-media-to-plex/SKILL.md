@@ -17,6 +17,7 @@ Use this skill to add wanted media to the local Plex ecosystem. Plex itself shou
 - Do not refresh Plex libraries from this skill. Plex refreshes require separate explicit confirmation.
 - If a download client fails, diagnose Radarr/Sonarr health and qBittorrent auth/connectivity before retrying search.
 - If title, year, and media type are already clear, try the helper's Arr lookup first. Use `media-internet-search` before adding only when identity is ambiguous, current/future, remake/reboot-sensitive, collection/chronology-related, or the Arr lookup cannot select one confident match.
+- Use compact helper output by default. Request full queue rows only when troubleshooting a failed or unclear handoff.
 
 ## Preferred Workflow
 
@@ -49,11 +50,17 @@ tools\codex-skills\add-media-to-plex\scripts\Add-ArrMedia.ps1 -Type movie -Title
 tools\codex-skills\add-media-to-plex\scripts\Add-ArrMedia.ps1 -Type series -Title "Example Show" -Year 2024
 ```
 
+For the lean default path, add `-Compact`:
+
+```powershell
+tools\codex-skills\add-media-to-plex\scripts\Add-ArrMedia.ps1 -Type movie -Title "A Minecraft Movie" -Year 2025 -Compact
+```
+
 The helper reads API keys from:
 
 - `C:\media-stack\config\radarr\config.xml`
 - `C:\media-stack\config\sonarr\config.xml`
 
-It returns JSON with the selected match, add/update status, search command status, and queue matches. It does not print API keys or qBittorrent credentials.
+It returns JSON with the selected match, add/update status, search command status, and queue matches. With `-Compact`, it omits queue row details. It does not print API keys or qBittorrent credentials.
 
 If the helper fails because the Arr API schema differs, use the same workflow manually with raw JSON responses and explicit parsing. Avoid PowerShell formatted tables for health, queue, or status decisions.

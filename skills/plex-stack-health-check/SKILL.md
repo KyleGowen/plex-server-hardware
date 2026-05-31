@@ -28,6 +28,12 @@ Run summary mode from `C:\plex-server` by default:
 powershell -NoProfile -ExecutionPolicy Bypass -File skills\plex-stack-health-check\scripts\Test-PlexStackHealth.ps1 -SummaryOnly
 ```
 
+For the leanest agent parsing path, use JSON summary mode:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File skills\plex-stack-health-check\scripts\Test-PlexStackHealth.ps1 -JsonSummary
+```
+
 Use the full report only when the user asks for evidence or troubleshooting detail:
 
 ```powershell
@@ -36,7 +42,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File skills\plex-stack-health-che
 
 ## Reporting
 
-Return the script output as the basis of the answer. Keep the normal response brief: summary counts plus any `FAIL` or `WARN` checks. Do not include per-check `Evidence` blocks unless the user asked for a full report or the evidence is necessary for the next decision.
+Return the script output as the basis of the answer. Keep the normal response brief: summary counts plus any `FAIL` or `WARN` checks. Do not include per-check `Evidence` blocks unless the user asked for a full report or the evidence is necessary for the next decision. If the helper fails, report that failure and stop unless the user asks for diagnosis.
 
 Call out especially:
 

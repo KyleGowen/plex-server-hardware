@@ -1,0 +1,9 @@
+docs/crash_logs/**
+tools/downloads/**
+tools/ME_16.1.40.2765/**
+tools/ME-FW-update-SOP-E/**
+*.evtx
+*.clixml
+*.jsonl
+*.csv
+*.zip

@@ -30,6 +30,8 @@ Optional cutoff:
 powershell -ExecutionPolicy Bypass -File tools\codex-skills\overnight-media-audit\scripts\Get-OvernightMedia.ps1 -SinceLocal "2026-05-24 18:00" -NoQueueDetails -JsonCompact
 ```
 
+The helper caps returned item arrays by default. Increase `-MaxItems` only when the user asks for a full list.
+
 Run without `-NoQueueDetails` only when the user asks about stuck queue items or the compact report shows a health/download-client blocker.
 
 ## Reporting
@@ -41,6 +43,7 @@ Keep the final answer short:
 3. If no new media, say so plainly.
 4. Include current blockers only if present: qBit auth failures or Arr health errors. Check queue details only if the compact report suggests a blocker or the user asks.
 5. If qBit, Sonarr, or Radarr is unavailable, say which data could not be checked and do not perform extra debugging unless the user asks.
+6. If any capped list reaches the helper's `max_items` value, mention that the report is capped instead of dumping raw JSON.
 
 Do not trigger searches, downloads, imports, refreshes, deletes, moves, or torrent actions. Read-only only.
 

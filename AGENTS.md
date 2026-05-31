@@ -41,6 +41,11 @@ For deeper context, read only the directly relevant file:
 - Summarize command output; do not paste full raw output unless the user asks or the raw evidence is necessary.
 - For service APIs, request raw JSON/XML and parse only the fields needed for the decision.
 - Use compact reports by default; expand to detailed evidence only when troubleshooting requires it.
+- Default final reports should be short: 5-8 bullets, one small table, or a concise paragraph unless the user asks for full detail.
+- Do not paste raw JSON, XML, logs, command transcripts, torrent lists, or API responses unless the user explicitly asks or the raw evidence is required for a decision.
+- If a project helper script fails, report the short failure and stop. Do not fall into MCP/API/manual debugging unless the user asks for diagnosis.
+- Avoid broad recursive searches over generated evidence. Default to `rg --glob '!docs/crash_logs/**'`, `.rgignore`, `Get-Content -TotalCount`, `Get-Content -Tail`, and targeted API fields.
+- Do not read `docs/crash_logs/**`, large thermal CSV/JSONL files, firmware/tool downloads, or generated artifacts unless the task is explicitly crash, thermal, firmware, or evidence-log analysis.
 
 ## Secret Handling
 

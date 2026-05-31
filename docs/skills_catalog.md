@@ -11,11 +11,11 @@ Catalog the skills available for this project and what they can do. Use this fil
 | Skill | Location | Mutability | Use when | What it can do |
 |---|---|---|---|---|
 | `arr-current-downloads` | `skills/arr-current-downloads` and installed at `C:\Users\Kyle\.codex\skills\arr-current-downloads` | Read-only | User asks what is downloading now | Runs the helper script first, lists active Arr-managed qBittorrent downloads only, and omits unrelated/manual torrents |
-| `plex-stack-health-check` | `skills/plex-stack-health-check` and installed at `C:\Users\Kyle\.codex\skills\plex-stack-health-check` | Read-only | User asks to validate stack health, Docker containers, service ports, config folders, Windows media paths, native qBittorrent paths, or container `/downloads` mounts | Runs a compact redacted validation by default; full evidence is available when requested |
-| `media-internet-search` | `tools/codex-skills/media-internet-search` and installed at `C:\Users\Kyle\.codex\skills\media-internet-search` | Read-only | Ambiguous/current/future media facts, collections, chronology, remake/reboot risk, or sourced public verification | Researches public media facts with authoritative cross-checking and hands back to the main agent or relevant Plex skill without mutating local services |
-| `overnight-media-audit` | `tools/codex-skills/overnight-media-audit` and installed at `C:\Users\Kyle\.codex\skills\overnight-media-audit` | Read-only | User asks what downloaded, completed, imported, or got stuck overnight | Runs the bundled script in compact mode, reporting imports, qBittorrent completions, and blockers for a time window |
-| `add-media-to-plex` | `tools/codex-skills/add-media-to-plex` and installed at `C:\Users\Kyle\.codex\skills\add-media-to-plex` | Mutates Arr state and can trigger searches | User asks to add/search/download a movie or show for Plex | Uses Radarr/Sonarr helper lookup first for exact title/year/type requests, adds monitored media, triggers Arr search, and verifies queue handoff |
-| `plex-collection-curator` | `skills/plex-collection-curator` and installed at `C:\Users\Kyle\.codex\skills\plex-collection-curator` | Mutates Plex/Arr only in selected modes | User asks to audit, create, update, fill, or posterize a Plex collection | Chooses the smallest mode: audit-only, collection-only, fill-missing, posterize, or complete |
+| `plex-stack-health-check` | `skills/plex-stack-health-check` and installed at `C:\Users\Kyle\.codex\skills\plex-stack-health-check` | Read-only | User asks to validate stack health, Docker containers, service ports, config folders, Windows media paths, native qBittorrent paths, or container `/downloads` mounts | Runs `-SummaryOnly` or `-JsonSummary` by default; full evidence is available only when requested |
+| `media-internet-search` | `tools/codex-skills/media-internet-search` and installed at `C:\Users\Kyle\.codex\skills\media-internet-search` | Read-only | Ambiguous/current/future media facts, collections, chronology, remake/reboot risk, or sourced public verification | Uses the fewest authoritative public sources needed and hands back compact findings |
+| `overnight-media-audit` | `tools/codex-skills/overnight-media-audit` and installed at `C:\Users\Kyle\.codex\skills\overnight-media-audit` | Read-only | User asks what downloaded, completed, imported, or got stuck overnight | Runs the bundled script in compact capped mode, reporting imports, qBittorrent completions, and blockers for a time window |
+| `add-media-to-plex` | `tools/codex-skills/add-media-to-plex` and installed at `C:\Users\Kyle\.codex\skills\add-media-to-plex` | Mutates Arr state and can trigger searches | User asks to add/search/download a movie or show for Plex | Uses Radarr/Sonarr helper lookup first, compact output by default, and deeper queue detail only for troubleshooting |
+| `plex-collection-curator` | `skills/plex-collection-curator` and installed at `C:\Users\Kyle\.codex\skills\plex-collection-curator` | Mutates Plex/Arr only in selected modes | User asks to audit, create, update, fill, or posterize a Plex collection | Chooses the smallest mode implied by wording; complete mode only when explicitly requested |
 
 ## Project Skill Rules
 
@@ -25,6 +25,9 @@ Catalog the skills available for this project and what they can do. Use this fil
 - `add-media-to-plex` can mutate Sonarr/Radarr and trigger searches because that is its purpose.
 - Plex library refreshes are never part of these skills unless the user separately confirms a Plex refresh.
 - All skills must keep API keys, qBittorrent credentials, tracker credentials, passkeys, cookies, tokens, hashes, magnets, and secret URLs out of repo docs and final reports.
+- Helper success paths should not be cross-checked with MCP, public web, or extra APIs unless the user asks for verification or the helper output is ambiguous.
+- Default reports should be compact: summarize counts and notable failures, cap long item lists, and avoid raw JSON/XML/log output.
+- Default searches should honor `.rgignore`; do not search `docs/crash_logs/**` unless the task is explicitly about crash, thermal, or evidence logs.
 
 ---
 

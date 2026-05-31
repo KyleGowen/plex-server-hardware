@@ -35,16 +35,17 @@ Do not list:
 ## Workflow
 
 1. Run the bundled helper script first. It is the cheapest deterministic path and already filters to Arr-managed active downloads.
-2. If the helper fails, use the native local qBittorrent Web API read-only:
+2. If the helper returns `ok: true`, use its `downloads` field as authoritative for the answer. Do not cross-check Sonarr, Radarr, MCP, or raw qBittorrent unless the user asks for verification or the helper output is internally inconsistent.
+3. If the helper fails, report the short error and stop unless the user asks for diagnosis. For explicit diagnosis, use the native local qBittorrent Web API read-only:
 
 ```powershell
 Invoke-RestMethod http://127.0.0.1:8080/api/v2/torrents/info
 ```
 
-3. Only after qBittorrent data is unclear, use read-only MCP tools to cross-check:
+4. Only after qBittorrent data is unclear during requested diagnosis, use read-only MCP tools to cross-check:
    - Use `torrent_manager` only for listing/status if its login works.
    - Use `mcp_arr` queue tools when available to cross-check Sonarr/Radarr queues.
-4. Filter results to active download states:
+5. Filter results to active download states:
    - `downloading`
    - `stalledDL`
    - `metaDL`
@@ -52,9 +53,9 @@ Invoke-RestMethod http://127.0.0.1:8080/api/v2/torrents/info
    - `queuedDL`
    - `checkingDL`
    - `allocating`
-5. Filter the active results to Arr-managed categories only.
-6. Present a small table with media name, Arr category, progress, speed, ETA, and status.
-7. If no Arr-managed media is downloading, say so clearly and mention that unrelated or completed torrents were intentionally excluded.
+6. Filter the active results to Arr-managed categories only.
+7. Present a small table with media name, Arr category, progress, speed, ETA, and status.
+8. If no Arr-managed media is downloading, say so clearly and mention that unrelated or completed torrents were intentionally excluded.
 
 ## Helper Script
 
@@ -68,7 +69,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File skills\arr-current-downloads
 
 ## Output Style
 
-Read rows from the `downloads` field. If `ok` is false, report the error briefly and do not perform extra debugging unless the user asks. Keep the answer short. Example:
+Read rows from the `downloads` field. If `ok` is false, report the error briefly and do not perform extra debugging unless the user asks. Keep the answer short and do not paste raw JSON. Example:
 
 ```markdown
 Currently downloading in the Arr stack:

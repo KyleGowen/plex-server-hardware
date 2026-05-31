@@ -28,9 +28,10 @@ Prefer authoritative cross-checking:
 
 Use enough sources for the risk:
 
-- For a simple title/year/type lookup, one authoritative source plus one corroborating source is usually enough.
-- For collections, chronologies, remakes, reboots, disputed canon, or similarly named media, cross-check multiple sources and call out uncertainty.
+- For a simple title/year/type lookup, use no more than two sources when they agree: one authoritative source plus one corroborating source.
+- For collections, chronologies, remakes, reboots, disputed canon, or similarly named media, use the minimum authoritative set needed to resolve the uncertainty and call out remaining ambiguity.
 - For current or future releases, verify dates against current public sources and include the source date or publication context when useful.
+- Do not open general entertainment articles when TMDb, IMDb, TheTVDB, TVMaze, an official site, or another authoritative source settles the identity.
 
 ## Output Shape
 
@@ -56,3 +57,5 @@ For collections or watch orders, separate:
 - Hand off to `add-media-to-plex` only when the user explicitly asked to add, search, download, monitor, or request media in the local Plex ecosystem.
 - Hand off to `plex-collection-curator` when the user asked for collection creation, collection updates, collection audit, missing-media fill, or poster work.
 - Otherwise answer the media research question directly with sources.
+
+Keep source lists compact. For simple identity answers, include at most two source links unless the user asks for more evidence.
