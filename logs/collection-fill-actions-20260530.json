@@ -1,0 +1,44 @@
+﻿{
+    "radarrSearched":  [
+                           {
+                               "command":  "MoviesSearch",
+                               "movieIds":  [
+                                                372,
+                                                762,
+                                                1081,
+                                                1090,
+                                                1092,
+                                                1093,
+                                                1094,
+                                                1095,
+                                                1096
+                                            ]
+                           }
+                       ],
+    "sonarrAdded":  [
+                        {
+                            "title":  "Frozen Planet",
+                            "id":  234,
+                            "tvdbId":  251418,
+                            "path":  "/tv/tv2/TV Shows/Frozen Planet"
+                        }
+                    ],
+    "sonarrSearched":  [
+                           {
+                               "commandId":  10406,
+                               "seriesId":  229
+                           },
+                           {
+                               "commandId":  10407,
+                               "seriesId":  230
+                           },
+                           {
+                               "commandId":  10408,
+                               "seriesId":  231
+                           },
+                           {
+                               "commandId":  10409,
+                               "seriesId":  234
+                           }
+                       ]
+}

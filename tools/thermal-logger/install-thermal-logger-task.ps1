@@ -1,9 +1,7 @@
 param(
     [string]$LoggerTaskName = "Plex Thermal Sensor Logger",
-    [string]$Aida64TaskName = "Plex Thermal AIDA64 Sensor Source",
     [string]$CoreTempTaskName = "Plex Thermal Core Temp Source",
     [string]$ScriptPath = "C:\plex-server\tools\thermal-logger\start-libre-thermal-logger.ps1",
-    [string]$Aida64Path = "C:\Program Files\FinalWire\AIDA64 Extreme\aida64.exe",
     [string]$CoreTempPath = "C:\Program Files\Core Temp\Core Temp.exe"
 )
 
@@ -16,10 +14,6 @@ if (-not $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administra
 
 if (-not (Test-Path -LiteralPath $ScriptPath)) {
     throw "Logger script not found at $ScriptPath"
-}
-
-if (-not (Test-Path -LiteralPath $Aida64Path)) {
-    throw "AIDA64 executable not found at $Aida64Path"
 }
 
 if (-not (Test-Path -LiteralPath $CoreTempPath)) {
@@ -78,20 +72,23 @@ $taskPrincipal = New-ScheduledTaskPrincipal `
     -LogonType Interactive `
     -RunLevel Highest
 
-$aida64Action = New-PlexThermalAction -Execute $Aida64Path -Argument "/SILENT /IDLE"
 $coreTempAction = New-PlexThermalAction -Execute $CoreTempPath
 $loggerAction = New-PlexThermalAction `
     -Execute "powershell.exe" `
     -Argument "-NoProfile -ExecutionPolicy Bypass -File `"$ScriptPath`""
 
-Register-PlexThermalTask -TaskName $Aida64TaskName -Action $aida64Action -Trigger $sourceTrigger
+$obsoleteAidaTaskName = "Plex Thermal AIDA64 Sensor Source"
+if (Get-ScheduledTask -TaskName $obsoleteAidaTaskName -ErrorAction SilentlyContinue) {
+    Stop-ScheduledTask -TaskName $obsoleteAidaTaskName -ErrorAction SilentlyContinue
+    Unregister-ScheduledTask -TaskName $obsoleteAidaTaskName -Confirm:$false
+}
+
 Register-PlexThermalTask -TaskName $CoreTempTaskName -Action $coreTempAction -Trigger $sourceTrigger
 Register-PlexThermalTask -TaskName $LoggerTaskName -Action $loggerAction -Trigger $loggerTrigger
 
-Start-ScheduledTask -TaskName $Aida64TaskName
 Start-ScheduledTask -TaskName $CoreTempTaskName
 Start-Sleep -Seconds 20
 Start-ScheduledTask -TaskName $LoggerTaskName
 
-Get-ScheduledTask -TaskName $Aida64TaskName, $CoreTempTaskName, $LoggerTaskName |
+Get-ScheduledTask -TaskName $CoreTempTaskName, $LoggerTaskName |
     Select-Object TaskName, State, @{Name = "RunLevel"; Expression = { $_.Principal.RunLevel } }, @{Name = "UserId"; Expression = { $_.Principal.UserId } }

@@ -2,7 +2,19 @@
 
 Last updated: 2026-05-30
 
-Overall status: Complete; pending imports noted for Mallrats and Aquaman and the Lost Kingdom.
+Overall status: Complete for built collections; see the 2026-05-30 missing-media inventory for current collection gaps, pending imports, and proposed fill actions.
+
+## 2026-05-30 Missing-Media Inventory
+
+Read-only audit report: `docs/plex_collection_missing_media_inventory_20260530.md`
+
+- Audited 23 movie collections and 11 TV collections through the Plex HTTP API.
+- No Plex edits, Plex refreshes, Sonarr/Radarr adds, searches, qBittorrent actions, poster changes, path repairs, or drive-letter changes were performed.
+- Highest-value follow-ups are split between collection-membership fixes for media already in Plex and future Radarr/Sonarr fill candidates.
+- Notable already-in-Plex collection gaps: `Iron Man`, `The Fantastic Four: First Steps`, `Spider-Man` (2002), original `Beavis and Butt-Head`, and several `Star Trek TV` shows.
+- Notable absent/pending fill candidates: `Harry Potter and the Goblet of Fire`, `Evil Dead Rise`, `Mallrats`, `Aquaman and the Lost Kingdom`, `Spider-Man 2`, `Spider-Man 3`, `Madame Web`, `Tremors`, `Earwig and the Witch`, and `Frozen Planet`.
+- Fix execution completed after the audit: Plex collection-membership gaps above were updated; `Evil Dead Rise` and `Frozen Planet` were added to Arr; Radarr/Sonarr searches were triggered for the identified fill queue.
+- Immediate grab results: `Tremors` is downloading and `Mallrats` is queued in Radarr. Sonarr searches for `Frozen Planet`, `Star Trek: Short Treks`, `Teenage Mutant Ninja Turtles (2003)`, and `Tales of the Teenage Mutant Ninja Turtles` produced no current queue records.
 
 ## Ordered Checklist
 

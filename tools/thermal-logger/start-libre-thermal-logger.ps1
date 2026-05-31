@@ -1,4 +1,4 @@
-param(
+﻿param(
     [string]$LogRoot = "C:\plex-server\docs\crash_logs\thermal",
     [int]$IntervalSeconds = 2,
     [int]$SmartIntervalSeconds = 30,
@@ -369,177 +369,6 @@ function Get-CoreTempRows {
     }
 }
 
-function Convert-Aida64TagToSensorType {
-    param([string]$TagName)
-
-    switch -Regex ($TagName) {
-        "^temp$" { "Temperature" }
-        "^fan$" { "Fan" }
-        "^volt$" { "Voltage" }
-        "^pwr$|^power$" { "Power" }
-        "^curr$|^current$" { "Current" }
-        "^duty$" { "Control" }
-        "^sys$" { "System" }
-        default { $TagName }
-    }
-}
-
-function Get-Aida64Unit {
-    param(
-        [string]$SensorType,
-        [string]$RawValue
-    )
-
-    switch ($SensorType) {
-        "Temperature" { "C" }
-        "Fan" { "RPM" }
-        "Voltage" { "V" }
-        "Power" { "W" }
-        "Current" { "A" }
-        "Control" { "%" }
-        default {
-            if ($RawValue -match "%") { "%" }
-            elseif ($RawValue -match "MHz") { "MHz" }
-            elseif ($RawValue -match "GHz") { "GHz" }
-            elseif ($RawValue -match "RPM") { "RPM" }
-            elseif ($RawValue -match "°C| C$") { "C" }
-            else { "" }
-        }
-    }
-}
-
-function Convert-Aida64Value {
-    param([string]$RawValue)
-
-    if ($RawValue -match "[-+]?\d+([.,]\d+)?") {
-        return [double]($matches[0].Replace(",", "."))
-    }
-
-    return $RawValue
-}
-
-function Parse-Aida64XmlFragment {
-    param(
-        [string]$Fragment,
-        [string]$Timestamp
-    )
-
-    if ([string]::IsNullOrWhiteSpace($Fragment)) {
-        return
-    }
-
-    $clean = $Fragment.Trim([char]0).Trim()
-    if (-not $clean) {
-        return
-    }
-
-    try {
-        [xml]$xml = "<root>$clean</root>"
-    }
-    catch {
-        return
-    }
-
-    foreach ($node in $xml.root.ChildNodes) {
-        $id = $node.id
-        $label = $node.label
-        $rawValue = [string]$node.value
-        if (-not $label -or -not $rawValue) {
-            continue
-        }
-
-        $sensorType = Convert-Aida64TagToSensorType -TagName $node.Name
-        $unit = Get-Aida64Unit -SensorType $sensorType -RawValue $rawValue
-        $value = Convert-Aida64Value -RawValue $rawValue
-
-        [pscustomobject]@{
-            timestamp = $Timestamp
-            hardware_type = "AIDA64"
-            hardware_name = "AIDA64 External Applications"
-            sensor_type = $sensorType
-            sensor_name = if ($id) { "$label [$id]" } else { $label }
-            value = if ($value -is [double]) { [math]::Round($value, 3) } else { $value }
-            unit = $unit
-        }
-    }
-}
-
-function Get-Aida64SharedMemoryRows {
-    param([string]$Timestamp)
-
-    Add-SharedMemoryTextReaderType
-
-    foreach ($name in @("Global\AIDA64_SensorValues", "Local\AIDA64_SensorValues", "AIDA64_SensorValues")) {
-        try {
-            $text = [SharedMemoryTextReader]::Read($name, 262144)
-            foreach ($row in (Parse-Aida64XmlFragment -Fragment $text -Timestamp $Timestamp)) {
-                $row
-            }
-            return
-        }
-        catch {
-            continue
-        }
-    }
-}
-
-function Get-Aida64RegistryRows {
-    param([string]$Timestamp)
-
-    $key = "HKCU:\Software\FinalWire\AIDA64\SensorValues"
-    if (-not (Test-Path -LiteralPath $key)) {
-        return
-    }
-
-    $props = Get-ItemProperty -Path $key -ErrorAction SilentlyContinue
-    if (-not $props) {
-        return
-    }
-
-    $propertyNames = $props.PSObject.Properties.Name | Where-Object { $_ -notmatch "^PS" }
-    $ids = @{}
-    foreach ($name in $propertyNames) {
-        if ($name -match "^(Value|Label)\.(.+)$") {
-            $ids[$matches[2]] = $true
-        }
-    }
-
-    foreach ($id in $ids.Keys) {
-        $labelProp = "Label.$id"
-        $valueProp = "Value.$id"
-        $label = $props.$labelProp
-        $rawValue = [string]$props.$valueProp
-        if (-not $label -or -not $rawValue) {
-            continue
-        }
-
-        $sensorType = if ($id -match "^T") { "Temperature" } elseif ($id -match "^F") { "Fan" } elseif ($id -match "^V") { "Voltage" } elseif ($id -match "^P") { "Power" } else { "System" }
-        $unit = Get-Aida64Unit -SensorType $sensorType -RawValue $rawValue
-        $value = Convert-Aida64Value -RawValue $rawValue
-
-        [pscustomobject]@{
-            timestamp = $Timestamp
-            hardware_type = "AIDA64"
-            hardware_name = "AIDA64 Registry Export"
-            sensor_type = $sensorType
-            sensor_name = "$label [$id]"
-            value = if ($value -is [double]) { [math]::Round($value, 3) } else { $value }
-            unit = $unit
-        }
-    }
-}
-
-function Get-Aida64Rows {
-    param([string]$Timestamp)
-
-    $rows = @(Get-Aida64SharedMemoryRows -Timestamp $Timestamp)
-    if ($rows.Count -gt 0) {
-        return $rows
-    }
-
-    Get-Aida64RegistryRows -Timestamp $Timestamp
-}
-
 function Find-Smartctl {
     $candidates = @(
         "C:\Program Files\smartmontools\bin\smartctl.exe",
@@ -689,12 +518,10 @@ $metadata = [ordered]@{
     libreHardwareMonitorLib = $libPath
     coreTempAvailableAtStart = $coreTempAvailable
     coreTempExe = Find-CoreTempExe
-    aida64SharedMemory = "AIDA64_SensorValues"
-    aida64Registry = "HKCU:\Software\FinalWire\AIDA64\SensorValues"
     hardwareNameMap = $hardwareNameMap
     smartctl = $smartctl
     smartDevices = $smartDevices
-    note = "CSV is long-form: one row per sensor per sample. JSONL is one sensor object per line for easy searching after crashes. CoreTemp shared memory is used for Intel CPU core/package temperatures when available. AIDA64 shared memory/registry export is merged when AIDA64 External Applications export is enabled. smartctl is used for serial-specific drive temperatures."
+    note = "CSV is long-form: one row per sensor per sample. JSONL is one sensor object per line for easy searching after crashes. CoreTemp shared memory is used for Intel CPU core/package temperatures when available. smartctl is used for serial-specific drive temperatures."
 }
 $metadata | ConvertTo-Json | Set-Content -Path $metadataPath -Encoding UTF8
 
@@ -715,9 +542,6 @@ try {
             }
         }
         foreach ($row in (Get-CoreTempRows -Timestamp $timestamp)) {
-            $rows.Add($row)
-        }
-        foreach ($row in (Get-Aida64Rows -Timestamp $timestamp)) {
             $rows.Add($row)
         }
         if ($Once -or ((Get-Date) - $lastSmartSample).TotalSeconds -ge $SmartIntervalSeconds) {

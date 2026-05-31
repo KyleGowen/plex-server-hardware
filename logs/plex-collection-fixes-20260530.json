@@ -1,0 +1,44 @@
+﻿[
+    {
+        "Collection":  "Marvel Cinematic Universe",
+        "Section":  2,
+        "Before":  38,
+        "RequestedAdds":  "21536,22419",
+        "After":  40
+    },
+    {
+        "Collection":  "Spider-Man Collection",
+        "Section":  2,
+        "Before":  13,
+        "RequestedAdds":  "22569",
+        "After":  14
+    },
+    {
+        "Collection":  "Beavis and Butt-Head Collection",
+        "Section":  1,
+        "Before":  1,
+        "RequestedAdds":  "22829",
+        "After":  2
+    },
+    {
+        "Collection":  "Marvel Cinematic Universe",
+        "Section":  1,
+        "Before":  18,
+        "RequestedAdds":  "22442,22451,22393,22460,22507,22471",
+        "After":  24
+    },
+    {
+        "Collection":  "Star Trek TV",
+        "Section":  1,
+        "Before":  8,
+        "RequestedAdds":  "22584,22609,22663,22677",
+        "After":  12
+    },
+    {
+        "Collection":  "Marvel TV",
+        "Section":  1,
+        "Before":  18,
+        "RequestedAdds":  "22507,22471",
+        "After":  20
+    }
+]

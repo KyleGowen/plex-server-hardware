@@ -341,7 +341,7 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 - Windows still saw `C:`, `H:`, `I:`, and `J:` after reboot, and `I:\torrentfiles` returned `True`.
 - No checked pre-crash `disk`, `storahci`, or `NTFS` warning was found; storage visibility after reboot does not rule out a transient power/data-path fault during qBittorrent load.
 - Hardware monitor note: the crash-window logger initialized at `1:11:42 PM`, but the hard reset occurred before any complete JSON sensor row flushed. The file contains only BOM/header data plus NUL padding.
-- Post-reboot hardware monitoring was healthy: AIDA64 export was visible, Core Temp was running, sensor rows were captured, maximum observed post-reboot GPU hotspot was about `70 C`, CPU package/cores peaked about `68 C`, `+12 V` and `+3.3 V` readings were visible, and no thermal emergency was evident.
+- Post-reboot hardware monitoring was healthy at the time: the then-installed board sensor export was visible, Core Temp was running, sensor rows were captured, maximum observed post-reboot GPU hotspot was about `70 C`, CPU package/cores peaked about `68 C`, voltage readings were visible, and no thermal emergency was evident.
 - Interpretation: qBittorrent is now a confirmed trigger, but the root cause still looks below qBittorrent: platform/power/storage-path instability under qBittorrent's combined Docker bind mount, `I:` drive I/O, and peer/network activity.
 - Current top isolation target: put `I:` / Torrent on its own known-good native Corsair RM750e SATA power cable and a known-good locking SATA data cable, ideally on a different motherboard SATA port, before another qBittorrent load test.
 - If practical, repeat the next qBittorrent test with only `C:` and `I:` connected so `H:` / TV 2 and `J:` / TV 1 are not sharing the power/load path.
@@ -872,8 +872,8 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 - [x] Record memory profile/XMP state.
 - [ ] Confirm CPU and GPU temperatures at idle and during a controlled Plex playback/transcode.
 - [x] Install LibreHardwareMonitor thermal logger and reserve `C:\plex-server\docs\crash_logs\thermal` as the project sensor-log root for crash diagnosis.
-- [x] Add Core Temp CPU-temperature capture and AIDA64 export parser to the project thermal logger.
-- [x] Confirm AIDA64 exports motherboard/MOS/PCH temperatures, CPU fan RPM, chassis fan RPMs, and major voltage rails into the project thermal logs.
+- [x] Add Core Temp CPU-temperature capture to the project thermal logger.
+- [x] Remove the retired board-sensor tool from the active thermal logging stack and software docs after uninstall.
 - [x] Add smartctl drive-temperature capture so duplicate-model HDDs are logged by serial number.
 - [x] Capture Windows physical-disk health status for `C:` and all fixed media/data drives.
 - [x] Confirm qBittorrent `/downloads` mount after at least one crash before resuming torrents.

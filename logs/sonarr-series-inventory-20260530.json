@@ -1,0 +1,4569 @@
+﻿[
+    {
+        "title":  "Spider-Noir",
+        "year":  2026,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Spider-Noir",
+        "id":  1,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  8,
+                           "episodeCount":  8,
+                           "totalEpisodeCount":  8,
+                           "sizeOnDisk":  39231310692,
+                           "releaseGroups":  [
+                                                 "KRATOS"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "9-1-1",
+        "year":  2018,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/9-1-1",
+        "id":  2,
+        "statistics":  {
+                           "seasonCount":  9,
+                           "episodeFileCount":  31,
+                           "episodeCount":  142,
+                           "totalEpisodeCount":  142,
+                           "sizeOnDisk":  70834817752,
+                           "releaseGroups":  [
+                                                 "ETHEL",
+                                                 "FLUX",
+                                                 "NTb",
+                                                 "successfulcrab",
+                                                 "GRACE"
+                                             ],
+                           "percentOfEpisodes":  21.830985915492957746478873240
+                       }
+    },
+    {
+        "title":  "9-1-1: Lone Star",
+        "year":  2020,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/9-1-1 - Lone Star",
+        "id":  3,
+        "statistics":  {
+                           "seasonCount":  5,
+                           "episodeFileCount":  12,
+                           "episodeCount":  72,
+                           "totalEpisodeCount":  75,
+                           "sizeOnDisk":  21735013755,
+                           "releaseGroups":  [
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  16.666666666666666666666666670
+                       }
+    },
+    {
+        "title":  "A Perfect Planet",
+        "year":  2021,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/A Perfect Planet",
+        "id":  4,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  5,
+                           "episodeCount":  5,
+                           "totalEpisodeCount":  7,
+                           "sizeOnDisk":  20904290021,
+                           "releaseGroups":  [
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Abbott Elementary",
+        "year":  2021,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Abbott Elementary",
+        "id":  5,
+        "statistics":  {
+                           "seasonCount":  5,
+                           "episodeFileCount":  93,
+                           "episodeCount":  93,
+                           "totalEpisodeCount":  95,
+                           "sizeOnDisk":  127380839102,
+                           "releaseGroups":  [
+                                                 "BTN",
+                                                 "NTb",
+                                                 "FLUX",
+                                                 "ETHEL",
+                                                 "SuccessfulCrab",
+                                                 "GRACE"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Adventure Time",
+        "year":  2010,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Adventure Time",
+        "id":  6,
+        "statistics":  {
+                           "seasonCount":  10,
+                           "episodeFileCount":  278,
+                           "episodeCount":  279,
+                           "totalEpisodeCount":  293,
+                           "sizeOnDisk":  58089241817,
+                           "releaseGroups":  [
+                                                 "EDGE2020"
+                                             ],
+                           "percentOfEpisodes":  99.64157706093189964157706093
+                       }
+    },
+    {
+        "title":  "Adventure Time: Fionna and Cake",
+        "year":  2023,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Adventure Time - Fionna and Cake",
+        "id":  7,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  4,
+                           "episodeCount":  20,
+                           "totalEpisodeCount":  20,
+                           "sizeOnDisk":  2773662318,
+                           "releaseGroups":  [
+                                                 "DOLORES"
+                                             ],
+                           "percentOfEpisodes":  20.0
+                       }
+    },
+    {
+        "title":  "Alien: Earth",
+        "year":  2025,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Alien - Earth",
+        "id":  8,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  8,
+                           "episodeCount":  8,
+                           "totalEpisodeCount":  31,
+                           "sizeOnDisk":  44365684802,
+                           "releaseGroups":  [
+                                                 "ETHEL",
+                                                 "playWEB",
+                                                 "successfulcrab"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Animaniacs",
+        "year":  1993,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Animaniacs",
+        "id":  9,
+        "statistics":  {
+                           "seasonCount":  8,
+                           "episodeFileCount":  44,
+                           "episodeCount":  386,
+                           "totalEpisodeCount":  391,
+                           "sizeOnDisk":  51231553988,
+                           "releaseGroups":  [
+                                                 "rEx"
+                                             ],
+                           "percentOfEpisodes":  11.398963730569948186528497410
+                       }
+    },
+    {
+        "title":  "Awkwafina Is Nora From Queens",
+        "year":  2020,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Awkwafina is Nora from Queens",
+        "id":  10,
+        "statistics":  {
+                           "seasonCount":  3,
+                           "episodeFileCount":  27,
+                           "episodeCount":  27,
+                           "totalEpisodeCount":  27,
+                           "sizeOnDisk":  39909996645,
+                           "releaseGroups":  [
+                                                 "monkee",
+                                                 "FLUX",
+                                                 "LAZYCUNTS",
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Bad Monkey",
+        "year":  2024,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Bad Monkey",
+        "id":  11,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  10,
+                           "episodeCount":  10,
+                           "totalEpisodeCount":  11,
+                           "sizeOnDisk":  88599823503,
+                           "releaseGroups":  [
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Batman: Caped Crusader",
+        "year":  2024,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Batman - Caped Crusader",
+        "id":  12,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  10,
+                           "episodeCount":  10,
+                           "totalEpisodeCount":  11,
+                           "sizeOnDisk":  19027091390,
+                           "releaseGroups":  [
+                                                 "FLUX"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Batman: The Animated Series",
+        "year":  1992,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Batman - The Animated Series",
+        "id":  13,
+        "statistics":  {
+                           "seasonCount":  4,
+                           "episodeFileCount":  85,
+                           "episodeCount":  85,
+                           "totalEpisodeCount":  91,
+                           "sizeOnDisk":  131389440311,
+                           "releaseGroups":  [
+                                                 "BTN"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Batman: The Brave and the Bold",
+        "year":  2008,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Batman - The Brave and the Bold",
+        "id":  14,
+        "statistics":  {
+                           "seasonCount":  3,
+                           "episodeFileCount":  13,
+                           "episodeCount":  65,
+                           "totalEpisodeCount":  66,
+                           "sizeOnDisk":  6377390641,
+                           "releaseGroups":  [
+                                                 "Kitsune"
+                                             ],
+                           "percentOfEpisodes":  20.0
+                       }
+    },
+    {
+        "title":  "Batman Beyond",
+        "year":  1999,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Batman Beyond",
+        "id":  15,
+        "statistics":  {
+                           "seasonCount":  3,
+                           "episodeFileCount":  52,
+                           "episodeCount":  52,
+                           "totalEpisodeCount":  66,
+                           "sizeOnDisk":  70481232003,
+                           "releaseGroups":  [
+                                                 "SLiGNOME"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Bob\u0027s Burgers",
+        "year":  2011,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Bob\u0027s Burgers",
+        "id":  16,
+        "statistics":  {
+                           "seasonCount":  16,
+                           "episodeFileCount":  309,
+                           "episodeCount":  313,
+                           "totalEpisodeCount":  322,
+                           "sizeOnDisk":  243661459787,
+                           "releaseGroups":  [
+                                                 "PHOENiX",
+                                                 "Chotab",
+                                                 "iT00NZ",
+                                                 "FLUX",
+                                                 "NTb",
+                                                 "BAE",
+                                                 "ETHEL",
+                                                 "GRACE",
+                                                 "STC",
+                                                 "successfulcrab",
+                                                 "SuccessfulCrab",
+                                                 "EDITH"
+                                             ],
+                           "percentOfEpisodes":  98.72204472843450479233226837
+                       }
+    },
+    {
+        "title":  "Bored to Death",
+        "year":  2009,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Bored to Death",
+        "id":  17,
+        "statistics":  {
+                           "seasonCount":  3,
+                           "episodeFileCount":  24,
+                           "episodeCount":  24,
+                           "totalEpisodeCount":  38,
+                           "sizeOnDisk":  92913310213,
+                           "releaseGroups":  [
+                                                 "EPSiLON",
+                                                 "EDGE2020"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Broad City",
+        "year":  2014,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Broad City",
+        "id":  18,
+        "statistics":  {
+                           "seasonCount":  5,
+                           "episodeFileCount":  50,
+                           "episodeCount":  50,
+                           "totalEpisodeCount":  140,
+                           "sizeOnDisk":  67915715766,
+                           "releaseGroups":  [
+                                                 "TrollHD",
+                                                 "BTN",
+                                                 "QOQ"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Brooklyn Nine-Nine",
+        "year":  2013,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Brooklyn Nine-Nine",
+        "id":  19,
+        "statistics":  {
+                           "seasonCount":  8,
+                           "episodeFileCount":  153,
+                           "episodeCount":  153,
+                           "totalEpisodeCount":  166,
+                           "sizeOnDisk":  639880509562,
+                           "releaseGroups":  [
+                                                 "SiCFoI",
+                                                 "BTN"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Chicago Fire",
+        "year":  2012,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Chicago Fire",
+        "id":  20,
+        "statistics":  {
+                           "seasonCount":  14,
+                           "episodeFileCount":  42,
+                           "episodeCount":  295,
+                           "totalEpisodeCount":  296,
+                           "sizeOnDisk":  92560590384,
+                           "releaseGroups":  [
+                                                 "DKV",
+                                                 "ETHEL",
+                                                 "FLUX",
+                                                 "MeGusta",
+                                                 "NHTFS",
+                                                 "STC",
+                                                 "GRACE",
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  14.237288135593220338983050850
+                       }
+    },
+    {
+        "title":  "Chicago Med",
+        "year":  2015,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Chicago Med",
+        "id":  21,
+        "statistics":  {
+                           "seasonCount":  11,
+                           "episodeFileCount":  42,
+                           "episodeCount":  219,
+                           "totalEpisodeCount":  219,
+                           "sizeOnDisk":  105931509313,
+                           "releaseGroups":  [
+                                                 "ELiTE",
+                                                 "ETHEL",
+                                                 "FLUX",
+                                                 "LAZYCUNTS",
+                                                 "STC",
+                                                 "successfulcrab",
+                                                 "YELLO",
+                                                 "GRACE",
+                                                 "MeGusta",
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  19.178082191780821917808219180
+                       }
+    },
+    {
+        "title":  "Chicago P.D.",
+        "year":  2014,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Chicago P.D",
+        "id":  22,
+        "statistics":  {
+                           "seasonCount":  13,
+                           "episodeFileCount":  42,
+                           "episodeCount":  264,
+                           "totalEpisodeCount":  264,
+                           "sizeOnDisk":  84082475341,
+                           "releaseGroups":  [
+                                                 "DKV",
+                                                 "ELiTE",
+                                                 "ETHEL",
+                                                 "FLUX",
+                                                 "NHTFS",
+                                                 "STC",
+                                                 "successfulcrab",
+                                                 "YELLO",
+                                                 "GRACE",
+                                                 "MeGusta",
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  15.909090909090909090909090910
+                       }
+    },
+    {
+        "title":  "Comedians in Cars Getting Coffee",
+        "year":  2012,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Comedians in Cars Getting Coffee",
+        "id":  23,
+        "statistics":  {
+                           "seasonCount":  11,
+                           "episodeFileCount":  84,
+                           "episodeCount":  84,
+                           "totalEpisodeCount":  139,
+                           "sizeOnDisk":  79735238459,
+                           "releaseGroups":  [
+                                                 "monkee",
+                                                 "SiGMA"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Comedy Central Stand-Up Featuring...",
+        "year":  2019,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Comedy Central Stand Up Featuring",
+        "id":  24,
+        "statistics":  {
+                           "seasonCount":  15,
+                           "episodeFileCount":  51,
+                           "episodeCount":  221,
+                           "totalEpisodeCount":  224,
+                           "sizeOnDisk":  11921249480,
+                           "releaseGroups":  [
+                                                 "cookiemonster",
+                                                 "ROBOTS",
+                                                 "BAE"
+                                             ],
+                           "percentOfEpisodes":  23.076923076923076923076923080
+                       }
+    },
+    {
+        "title":  "Common Side Effects",
+        "year":  2025,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Common Side Effects",
+        "id":  25,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  10,
+                           "episodeCount":  10,
+                           "totalEpisodeCount":  10,
+                           "sizeOnDisk":  16513380857,
+                           "releaseGroups":  [
+                                                 "FLUX",
+                                                 "NORViNE",
+                                                 "successfulcrab",
+                                                 "VARYG"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Cross",
+        "year":  2024,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Cross",
+        "id":  26,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  8,
+                           "episodeCount":  16,
+                           "totalEpisodeCount":  16,
+                           "sizeOnDisk":  53025431111,
+                           "releaseGroups":  [
+                                                 "ETHEL",
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  50.0
+                       }
+    },
+    {
+        "title":  "Daredevil: Born Again",
+        "year":  2025,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Daredevil - Born Again",
+        "id":  27,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  17,
+                           "episodeCount":  17,
+                           "totalEpisodeCount":  17,
+                           "sizeOnDisk":  33977981710,
+                           "releaseGroups":  [
+                                                 "FLUX",
+                                                 "NTb",
+                                                 "SuccessfulCrab",
+                                                 "ETHEL"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Dark Winds",
+        "year":  2022,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Dark Winds",
+        "id":  28,
+        "statistics":  {
+                           "seasonCount":  5,
+                           "episodeFileCount":  28,
+                           "episodeCount":  28,
+                           "totalEpisodeCount":  34,
+                           "sizeOnDisk":  83748909217,
+                           "releaseGroups":  [
+                                                 "dB",
+                                                 "DiMEPiECE",
+                                                 "EDITH",
+                                                 "RAWR"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "David Attenborough\u0027s Natural Curiosities",
+        "year":  2013,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/David Attenborough\u0027s Natural Curiosities",
+        "id":  29,
+        "statistics":  {
+                           "seasonCount":  4,
+                           "episodeFileCount":  27,
+                           "episodeCount":  27,
+                           "totalEpisodeCount":  31,
+                           "sizeOnDisk":  28081061962,
+                           "releaseGroups":  [
+                                                 "Cinefeel",
+                                                 "POPPYCOCK"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Devil May Cry (2025)",
+        "year":  2025,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Devil May Cry (2023)",
+        "id":  30,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  7,
+                           "episodeCount":  16,
+                           "totalEpisodeCount":  16,
+                           "sizeOnDisk":  8527923983,
+                           "releaseGroups":  [
+                                                 "QUiNTESSENCE"
+                                             ],
+                           "percentOfEpisodes":  43.7500
+                       }
+    },
+    {
+        "title":  "Doc (US)",
+        "year":  2025,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Doc (US)",
+        "id":  31,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  32,
+                           "episodeCount":  32,
+                           "totalEpisodeCount":  32,
+                           "sizeOnDisk":  72262604533,
+                           "releaseGroups":  [
+                                                 "FLUX",
+                                                 "ETHEL",
+                                                 "GRACE",
+                                                 "Kitsune"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Doctor Who (2005)",
+        "year":  2005,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Doctor Who (2005)",
+        "id":  32,
+        "statistics":  {
+                           "seasonCount":  13,
+                           "episodeFileCount":  143,
+                           "episodeCount":  155,
+                           "totalEpisodeCount":  322,
+                           "sizeOnDisk":  404676646559,
+                           "releaseGroups":  [
+                                                 "GGEZ",
+                                                 "UKTV",
+                                                 "SLiGNOME",
+                                                 "ECI",
+                                                 "CtrlHD",
+                                                 "NTb",
+                                                 "NOSiViD"
+                                             ],
+                           "percentOfEpisodes":  92.25806451612903225806451613
+                       }
+    },
+    {
+        "title":  "Drunk History",
+        "year":  2013,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Drunk History",
+        "id":  33,
+        "statistics":  {
+                           "seasonCount":  6,
+                           "episodeFileCount":  70,
+                           "episodeCount":  70,
+                           "totalEpisodeCount":  80,
+                           "sizeOnDisk":  45302716566,
+                           "releaseGroups":  [
+                                                 "2hd",
+                                                 "EVOLVE",
+                                                 "killers",
+                                                 "BTN",
+                                                 "cookiemonster",
+                                                 "tbs",
+                                                 "trump"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Dune: Prophecy",
+        "year":  2024,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Dune - Prophecy",
+        "id":  34,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  6,
+                           "episodeCount":  6,
+                           "totalEpisodeCount":  12,
+                           "sizeOnDisk":  56444872776,
+                           "releaseGroups":  [
+                                                 "NTb",
+                                                 "playWEB"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Elena of Avalor",
+        "year":  2016,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Elena of Avalor",
+        "id":  35,
+        "statistics":  {
+                           "seasonCount":  3,
+                           "episodeFileCount":  24,
+                           "episodeCount":  79,
+                           "totalEpisodeCount":  100,
+                           "sizeOnDisk":  22342991029,
+                           "releaseGroups":  [
+                                                 "LAZY"
+                                             ],
+                           "percentOfEpisodes":  30.379746835443037974683544300
+                       }
+    },
+    {
+        "title":  "Eli Stone",
+        "year":  2008,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Eli Stone",
+        "id":  36,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  26,
+                           "episodeCount":  26,
+                           "totalEpisodeCount":  26,
+                           "sizeOnDisk":  73312374047,
+                           "releaseGroups":  [
+                                                 "WILLOW"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Fallen",
+        "year":  2024,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Fallen",
+        "id":  37,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  8,
+                           "episodeCount":  8,
+                           "totalEpisodeCount":  8,
+                           "sizeOnDisk":  47713973381,
+                           "releaseGroups":  [
+
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Fallout",
+        "year":  2024,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Fallout",
+        "id":  38,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  16,
+                           "episodeCount":  16,
+                           "totalEpisodeCount":  19,
+                           "sizeOnDisk":  108526901019,
+                           "releaseGroups":  [
+                                                 "FLUX",
+                                                 "ETHEL",
+                                                 "HONE",
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Firefly",
+        "year":  2002,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Firefly",
+        "id":  39,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  14,
+                           "episodeCount":  14,
+                           "totalEpisodeCount":  20,
+                           "sizeOnDisk":  39738721787,
+                           "releaseGroups":  [
+                                                 "FLUX"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Flight of the Conchords",
+        "year":  2007,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Flight of the Conchords",
+        "id":  40,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  22,
+                           "episodeCount":  22,
+                           "totalEpisodeCount":  35,
+                           "sizeOnDisk":  53750025269,
+                           "releaseGroups":  [
+                                                 "NTG",
+                                                 "herkz"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Found (2023)",
+        "year":  2023,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Found (2023)",
+        "id":  41,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  22,
+                           "episodeCount":  35,
+                           "totalEpisodeCount":  35,
+                           "sizeOnDisk":  50946358211,
+                           "releaseGroups":  [
+                                                 "ETHEL",
+                                                 "FLUX",
+                                                 "LAZYCUNTS",
+                                                 "STC",
+                                                 "YELLO"
+                                             ],
+                           "percentOfEpisodes":  62.857142857142857142857142860
+                       }
+    },
+    {
+        "title":  "Foundation (2021)",
+        "year":  2021,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Foundation (2021)",
+        "id":  42,
+        "statistics":  {
+                           "seasonCount":  3,
+                           "episodeFileCount":  29,
+                           "episodeCount":  30,
+                           "totalEpisodeCount":  30,
+                           "sizeOnDisk":  283708970615,
+                           "releaseGroups":  [
+                                                 "CasStudio",
+                                                 "FLUX",
+                                                 "NTb",
+                                                 "playWEB",
+                                                 "successfulcrab"
+                                             ],
+                           "percentOfEpisodes":  96.66666666666666666666666667
+                       }
+    },
+    {
+        "title":  "Futurama",
+        "year":  1999,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Futurama",
+        "id":  43,
+        "statistics":  {
+                           "seasonCount":  11,
+                           "episodeFileCount":  153,
+                           "episodeCount":  154,
+                           "totalEpisodeCount":  170,
+                           "sizeOnDisk":  133761384525,
+                           "releaseGroups":  [
+                                                 "Yatogam1",
+                                                 "Yassmiso",
+                                                 "CtrlHD",
+                                                 "DRAUGR",
+                                                 "NTb",
+                                                 "FLUX",
+                                                 "MeGusta",
+                                                 "STC"
+                                             ],
+                           "percentOfEpisodes":  99.35064935064935064935064935
+                       }
+    },
+    {
+        "title":  "Get Smart",
+        "year":  1965,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Get Smart",
+        "id":  44,
+        "statistics":  {
+                           "seasonCount":  5,
+                           "episodeFileCount":  138,
+                           "episodeCount":  138,
+                           "totalEpisodeCount":  169,
+                           "sizeOnDisk":  46575843436,
+                           "releaseGroups":  [
+                                                 "fqm",
+                                                 "FQM",
+                                                 "aurez29"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Ghosts (US)",
+        "year":  2021,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Ghosts (US)",
+        "id":  45,
+        "statistics":  {
+                           "seasonCount":  5,
+                           "episodeFileCount":  90,
+                           "episodeCount":  94,
+                           "totalEpisodeCount":  94,
+                           "sizeOnDisk":  139695170259,
+                           "releaseGroups":  [
+                                                 "ggez",
+                                                 "glhf",
+                                                 "NTb",
+                                                 "ETHEL",
+                                                 "FLUX",
+                                                 "successfulcrab",
+                                                 "SuccessfulCrab",
+                                                 "GRACE"
+                                             ],
+                           "percentOfEpisodes":  95.74468085106382978723404255
+                       }
+    },
+    {
+        "title":  "Hacks",
+        "year":  2021,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Hacks (2021)",
+        "id":  46,
+        "statistics":  {
+                           "seasonCount":  5,
+                           "episodeFileCount":  45,
+                           "episodeCount":  47,
+                           "totalEpisodeCount":  47,
+                           "sizeOnDisk":  171874431691,
+                           "releaseGroups":  [
+                                                 "WADU",
+                                                 "NTb",
+                                                 "ETHEL",
+                                                 "GRACE"
+                                             ],
+                           "percentOfEpisodes":  95.74468085106382978723404255
+                       }
+    },
+    {
+        "title":  "Hijack",
+        "year":  2023,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Hijack",
+        "id":  47,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  15,
+                           "episodeCount":  15,
+                           "totalEpisodeCount":  15,
+                           "sizeOnDisk":  120801207354,
+                           "releaseGroups":  [
+                                                 "NTb",
+                                                 "FLUX",
+                                                 "KRATOS"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "House",
+        "year":  2004,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/House",
+        "id":  48,
+        "statistics":  {
+                           "seasonCount":  8,
+                           "episodeFileCount":  152,
+                           "episodeCount":  176,
+                           "totalEpisodeCount":  181,
+                           "sizeOnDisk":  437146196759,
+                           "releaseGroups":  [
+                                                 "SiGMA",
+                                                 "playWEB"
+                                             ],
+                           "percentOfEpisodes":  86.36363636363636363636363636
+                       }
+    },
+    {
+        "title":  "Interior Chinatown",
+        "year":  2024,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Interior Chinatown",
+        "id":  49,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  10,
+                           "episodeCount":  10,
+                           "totalEpisodeCount":  10,
+                           "sizeOnDisk":  37389507474,
+                           "releaseGroups":  [
+                                                 "FLUX"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "The Invincible",
+        "year":  2024,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Invincible",
+        "id":  50,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  8,
+                           "episodeCount":  18,
+                           "totalEpisodeCount":  18,
+                           "sizeOnDisk":  11505197865,
+                           "releaseGroups":  [
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  44.444444444444444444444444440
+                       }
+    },
+    {
+        "title":  "Iron Man: Armored Adventures",
+        "year":  2008,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Iron Man - Armored Adventures",
+        "id":  51,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  52,
+                           "episodeCount":  52,
+                           "totalEpisodeCount":  52,
+                           "sizeOnDisk":  41253848033,
+                           "releaseGroups":  [
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Ironheart",
+        "year":  2025,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Ironheart",
+        "id":  52,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  6,
+                           "episodeCount":  6,
+                           "totalEpisodeCount":  6,
+                           "sizeOnDisk":  33978651398,
+                           "releaseGroups":  [
+                                                 "FFG"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "It\u0027s Always Sunny in Philadelphia",
+        "year":  2005,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/It\u0027s Always Sunny in Philadelphia",
+        "id":  53,
+        "statistics":  {
+                           "seasonCount":  17,
+                           "episodeFileCount":  177,
+                           "episodeCount":  177,
+                           "totalEpisodeCount":  177,
+                           "sizeOnDisk":  489589597490,
+                           "releaseGroups":  [
+                                                 "NhaNc3",
+                                                 "EGEN",
+                                                 "2-LPAiN",
+                                                 "EPSiLON",
+                                                 "HREAM",
+                                                 "TrollHD",
+                                                 "CasStudio",
+                                                 "CtrlHD",
+                                                 "NTb",
+                                                 "FLUX",
+                                                 "ETHEL",
+                                                 "playWEB",
+                                                 "successfulcrab"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Justice League",
+        "year":  2001,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Justice League",
+        "id":  54,
+        "statistics":  {
+                           "seasonCount":  5,
+                           "episodeFileCount":  81,
+                           "episodeCount":  91,
+                           "totalEpisodeCount":  110,
+                           "sizeOnDisk":  83352489927,
+                           "releaseGroups":  [
+                                                 "Kitsune",
+                                                 "FraMeSToR"
+                                             ],
+                           "percentOfEpisodes":  89.01098901098901098901098901
+                       }
+    },
+    {
+        "title":  "King of the Hill",
+        "year":  1997,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/King of the Hill",
+        "id":  55,
+        "statistics":  {
+                           "seasonCount":  15,
+                           "episodeFileCount":  265,
+                           "episodeCount":  265,
+                           "totalEpisodeCount":  284,
+                           "sizeOnDisk":  276190603799,
+                           "releaseGroups":  [
+                                                 "NTb",
+                                                 "CRFW",
+                                                 "FLUX"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Landman",
+        "year":  2024,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Landman",
+        "id":  56,
+        "statistics":  {
+                           "seasonCount":  3,
+                           "episodeFileCount":  20,
+                           "episodeCount":  20,
+                           "totalEpisodeCount":  24,
+                           "sizeOnDisk":  121407027570,
+                           "releaseGroups":  [
+                                                 "NTb",
+                                                 "BLOOM",
+                                                 "ETHEL",
+                                                 "FLUX"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Last Week Tonight with John Oliver",
+        "year":  2014,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Last Week Tonight with John Oliver",
+        "id":  57,
+        "statistics":  {
+                           "seasonCount":  13,
+                           "episodeFileCount":  52,
+                           "episodeCount":  362,
+                           "totalEpisodeCount":  441,
+                           "sizeOnDisk":  144294809563,
+                           "releaseGroups":  [
+                                                 "EDITH",
+                                                 "Kitsune",
+                                                 "MeGusta",
+                                                 "NHTFS",
+                                                 "NTb",
+                                                 "GRACE",
+                                                 "successfulcrab",
+                                                 "SuccessfulCrab"
+                                             ],
+                           "percentOfEpisodes":  14.364640883977900552486187850
+                       }
+    },
+    {
+        "title":  "Law \u0026 Order",
+        "year":  1990,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Law \u0026 Order",
+        "id":  58,
+        "statistics":  {
+                           "seasonCount":  25,
+                           "episodeFileCount":  41,
+                           "episodeCount":  544,
+                           "totalEpisodeCount":  547,
+                           "sizeOnDisk":  110712327316,
+                           "releaseGroups":  [
+                                                 "ETHEL",
+                                                 "FLUX",
+                                                 "MeGusta",
+                                                 "nhtfs",
+                                                 "NHTFS",
+                                                 "GRACE",
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  7.5367647058823529411764705900
+                       }
+    },
+    {
+        "title":  "Law \u0026 Order: Special Victims Unit",
+        "year":  1999,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Law \u0026 Order - Special Victims Unit",
+        "id":  59,
+        "statistics":  {
+                           "seasonCount":  27,
+                           "episodeFileCount":  41,
+                           "episodeCount":  594,
+                           "totalEpisodeCount":  599,
+                           "sizeOnDisk":  108511327281,
+                           "releaseGroups":  [
+                                                 "ETHEL",
+                                                 "FLUX",
+                                                 "nhtfs",
+                                                 "NHTFS",
+                                                 "NTb",
+                                                 "SuccessfulCrab",
+                                                 "GRACE",
+                                                 "PSA"
+                                             ],
+                           "percentOfEpisodes":  6.902356902356902356902356900
+                       }
+    },
+    {
+        "title":  "Lessons in Chemistry",
+        "year":  2023,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Lessons in Chemistry",
+        "id":  60,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  8,
+                           "episodeCount":  8,
+                           "totalEpisodeCount":  9,
+                           "sizeOnDisk":  29896705153,
+                           "releaseGroups":  [
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Loki",
+        "year":  2021,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Loki",
+        "id":  61,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  12,
+                           "episodeCount":  12,
+                           "totalEpisodeCount":  12,
+                           "sizeOnDisk":  72389684173,
+                           "releaseGroups":  [
+                                                 "SiC",
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Love, Death \u0026 Robots",
+        "year":  2019,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Love, Death \u0026 Robots",
+        "id":  62,
+        "statistics":  {
+                           "seasonCount":  4,
+                           "episodeFileCount":  45,
+                           "episodeCount":  45,
+                           "totalEpisodeCount":  45,
+                           "sizeOnDisk":  22593404509,
+                           "releaseGroups":  [
+                                                 "NTG",
+                                                 "E.N.D",
+                                                 "SMURF",
+                                                 "FLUX"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Marvel Zombies",
+        "year":  2025,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Marvel Zombies",
+        "id":  63,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  4,
+                           "episodeCount":  4,
+                           "totalEpisodeCount":  4,
+                           "sizeOnDisk":  11495964118,
+                           "releaseGroups":  [
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Metalocalypse",
+        "year":  2006,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Metalocalypse",
+        "id":  64,
+        "statistics":  {
+                           "seasonCount":  4,
+                           "episodeFileCount":  61,
+                           "episodeCount":  62,
+                           "totalEpisodeCount":  64,
+                           "sizeOnDisk":  48367902694,
+                           "releaseGroups":  [
+                                                 "FLUX",
+                                                 "CtrlHD"
+                                             ],
+                           "percentOfEpisodes":  98.38709677419354838709677419
+                       }
+    },
+    {
+        "title":  "Mike Judge\u0027s Beavis and Butt-Head",
+        "year":  2022,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Mike Judge\u0027s Beavis and Butt-Head",
+        "id":  65,
+        "statistics":  {
+                           "seasonCount":  3,
+                           "episodeFileCount":  71,
+                           "episodeCount":  71,
+                           "totalEpisodeCount":  72,
+                           "sizeOnDisk":  26181535674,
+                           "releaseGroups":  [
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Mobile Suit Gundam: The Witch from Mercury",
+        "year":  2022,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Mobile Suit Gundam - The Witch from Mercury",
+        "id":  66,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  4,
+                           "episodeCount":  24,
+                           "totalEpisodeCount":  30,
+                           "sizeOnDisk":  6090858251,
+                           "releaseGroups":  [
+                                                 "Kitsune",
+                                                 "SKYANiME"
+                                             ],
+                           "percentOfEpisodes":  16.666666666666666666666666670
+                       }
+    },
+    {
+        "title":  "Murder in a Small Town (2024)",
+        "year":  2024,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Murder in a Small Town (2024)",
+        "id":  67,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  7,
+                           "episodeCount":  18,
+                           "totalEpisodeCount":  18,
+                           "sizeOnDisk":  11174375241,
+                           "releaseGroups":  [
+                                                 "EDITH",
+                                                 "NTb",
+                                                 "RMTeam"
+                                             ],
+                           "percentOfEpisodes":  38.888888888888888888888888890
+                       }
+    },
+    {
+        "title":  "Murderbot",
+        "year":  2025,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Murderbot",
+        "id":  68,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  10,
+                           "episodeCount":  10,
+                           "totalEpisodeCount":  11,
+                           "sizeOnDisk":  41192036588,
+                           "releaseGroups":  [
+                                                 "RAWR"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "NCIS: Origins",
+        "year":  2024,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/NCIS - Origins",
+        "id":  69,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  29,
+                           "episodeCount":  36,
+                           "totalEpisodeCount":  36,
+                           "sizeOnDisk":  187680559485,
+                           "releaseGroups":  [
+                                                 "playWEB",
+                                                 "ETHEL",
+                                                 "GRACE",
+                                                 "Kitsune",
+                                                 "NTb",
+                                                 "STC"
+                                             ],
+                           "percentOfEpisodes":  80.55555555555555555555555556
+                       }
+    },
+    {
+        "title":  "NCIS: Tony \u0026 Ziva",
+        "year":  2025,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/NCIS - Tony \u0026 Ziva",
+        "id":  70,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  8,
+                           "episodeCount":  10,
+                           "totalEpisodeCount":  10,
+                           "sizeOnDisk":  32685530460,
+                           "releaseGroups":  [
+                                                 "ETHEL",
+                                                 "RAWR",
+                                                 "STC",
+                                                 "successfulcrab"
+                                             ],
+                           "percentOfEpisodes":  80.0
+                       }
+    },
+    {
+        "title":  "Olaf Presents",
+        "year":  2021,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Olaf Presents",
+        "id":  71,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  5,
+                           "episodeCount":  5,
+                           "totalEpisodeCount":  6,
+                           "sizeOnDisk":  398556272,
+                           "releaseGroups":  [
+                                                 "KOGi"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Party Down",
+        "year":  2009,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Party Down",
+        "id":  72,
+        "statistics":  {
+                           "seasonCount":  3,
+                           "episodeFileCount":  26,
+                           "episodeCount":  26,
+                           "totalEpisodeCount":  30,
+                           "sizeOnDisk":  46456435957,
+                           "releaseGroups":  [
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Patience",
+        "year":  2025,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Patience",
+        "id":  73,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  2,
+                           "episodeCount":  14,
+                           "totalEpisodeCount":  14,
+                           "sizeOnDisk":  7471390178,
+                           "releaseGroups":  [
+                                                 "Kitsune"
+                                             ],
+                           "percentOfEpisodes":  14.285714285714285714285714290
+                       }
+    },
+    {
+        "title":  "Peacemaker",
+        "year":  2022,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Peacemaker",
+        "id":  74,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  16,
+                           "episodeCount":  16,
+                           "totalEpisodeCount":  30,
+                           "sizeOnDisk":  69108628179,
+                           "releaseGroups":  [
+                                                 "ARGUS",
+                                                 "BiOMA",
+                                                 "ELiTE",
+                                                 "ETHEL",
+                                                 "successfulcrab"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Pocoyo",
+        "year":  2005,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Pocoyo",
+        "id":  75,
+        "statistics":  {
+                           "seasonCount":  5,
+                           "episodeFileCount":  104,
+                           "episodeCount":  209,
+                           "totalEpisodeCount":  239,
+                           "sizeOnDisk":  36126444666,
+                           "releaseGroups":  [
+                                                 "Kitsune",
+                                                 "UwU"
+                                             ],
+                           "percentOfEpisodes":  49.760765550239234449760765550
+                       }
+    },
+    {
+        "title":  "Pokémon",
+        "year":  1997,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Pokémon",
+        "id":  76,
+        "statistics":  {
+                           "seasonCount":  20,
+                           "episodeFileCount":  52,
+                           "episodeCount":  1358,
+                           "totalEpisodeCount":  1443,
+                           "sizeOnDisk":  60811805134,
+                           "releaseGroups":  [
+                                                 "haiku"
+                                             ],
+                           "percentOfEpisodes":  3.829160530191458026509572900
+                       }
+    },
+    {
+        "title":  "Rake",
+        "year":  2010,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Rake",
+        "id":  77,
+        "statistics":  {
+                           "seasonCount":  5,
+                           "episodeFileCount":  40,
+                           "episodeCount":  40,
+                           "totalEpisodeCount":  40,
+                           "sizeOnDisk":  95452171819,
+                           "releaseGroups":  [
+                                                 "NTb",
+                                                 "BWB",
+                                                 "RAK",
+                                                 "monkee"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Rapunzel\u0027s Tangled Adventure",
+        "year":  2017,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Rapunzel\u0027s Tangled Adventure",
+        "id":  78,
+        "statistics":  {
+                           "seasonCount":  3,
+                           "episodeFileCount":  21,
+                           "episodeCount":  59,
+                           "totalEpisodeCount":  91,
+                           "sizeOnDisk":  21403230277,
+                           "releaseGroups":  [
+                                                 "LAZY"
+                                             ],
+                           "percentOfEpisodes":  35.593220338983050847457627120
+                       }
+    },
+    {
+        "title":  "Resident Alien",
+        "year":  2021,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Resident Alien",
+        "id":  79,
+        "statistics":  {
+                           "seasonCount":  4,
+                           "episodeFileCount":  44,
+                           "episodeCount":  44,
+                           "totalEpisodeCount":  44,
+                           "sizeOnDisk":  129315535195,
+                           "releaseGroups":  [
+                                                 "NTb",
+                                                 "FLUX",
+                                                 "BAE",
+                                                 "Kitsune"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Rick and Morty",
+        "year":  2013,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Rick and Morty",
+        "id":  80,
+        "statistics":  {
+                           "seasonCount":  9,
+                           "episodeFileCount":  82,
+                           "episodeCount":  82,
+                           "totalEpisodeCount":  204,
+                           "sizeOnDisk":  82993861132,
+                           "releaseGroups":  [
+                                                 "PHOENiX",
+                                                 "QOQ",
+                                                 "CtrlHD",
+                                                 "NTb",
+                                                 "FLUX",
+                                                 "BiOMA",
+                                                 "lazycunts",
+                                                 "SuccessfulCrab"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Riot Women",
+        "year":  2025,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Riot Women",
+        "id":  81,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  6,
+                           "episodeCount":  6,
+                           "totalEpisodeCount":  6,
+                           "sizeOnDisk":  28023891832,
+                           "releaseGroups":  [
+                                                 "RAWR"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Rise of the Teenage Mutant Ninja Turtles",
+        "year":  2018,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Rise of the Teenage Mutant Ninja Turtles",
+        "id":  82,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  67,
+                           "episodeCount":  70,
+                           "totalEpisodeCount":  77,
+                           "sizeOnDisk":  32420457804,
+                           "releaseGroups":  [
+                                                 "TVSmash"
+                                             ],
+                           "percentOfEpisodes":  95.71428571428571428571428571
+                       }
+    },
+    {
+        "title":  "Rocko\u0027s Modern Life",
+        "year":  1993,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Rocko\u0027s Modern Life",
+        "id":  83,
+        "statistics":  {
+                           "seasonCount":  4,
+                           "episodeFileCount":  26,
+                           "episodeCount":  100,
+                           "totalEpisodeCount":  110,
+                           "sizeOnDisk":  15763910926,
+                           "releaseGroups":  [
+
+                                             ],
+                           "percentOfEpisodes":  26.00
+                       }
+    },
+    {
+        "title":  "Schitt\u0027s Creek",
+        "year":  2015,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Schitt\u0027s Creek",
+        "id":  84,
+        "statistics":  {
+                           "seasonCount":  6,
+                           "episodeFileCount":  79,
+                           "episodeCount":  79,
+                           "totalEpisodeCount":  156,
+                           "sizeOnDisk":  125984683704,
+                           "releaseGroups":  [
+                                                 "QOQ",
+                                                 "NTb",
+                                                 "CtrlHD"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Seven Worlds, One Planet",
+        "year":  2019,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Seven Worlds, One Planet",
+        "id":  85,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  7,
+                           "episodeCount":  7,
+                           "totalEpisodeCount":  16,
+                           "sizeOnDisk":  57691278219,
+                           "releaseGroups":  [
+
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Severance",
+        "year":  2022,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Severance",
+        "id":  86,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  19,
+                           "episodeCount":  19,
+                           "totalEpisodeCount":  40,
+                           "sizeOnDisk":  154371013824,
+                           "releaseGroups":  [
+                                                 "TEPES",
+                                                 "FLUX",
+                                                 "HONE",
+                                                 "NTb",
+                                                 "successfulcrab",
+                                                 "SuccessfulCrab"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "She-Hulk: Attorney at Law",
+        "year":  2022,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/She-Hulk - Attorney at Law",
+        "id":  87,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  9,
+                           "episodeCount":  9,
+                           "totalEpisodeCount":  11,
+                           "sizeOnDisk":  34435138356,
+                           "releaseGroups":  [
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Shoresy",
+        "year":  2022,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Shoresy",
+        "id":  88,
+        "statistics":  {
+                           "seasonCount":  5,
+                           "episodeFileCount":  30,
+                           "episodeCount":  30,
+                           "totalEpisodeCount":  30,
+                           "sizeOnDisk":  61808255964,
+                           "releaseGroups":  [
+                                                 "ggez",
+                                                 "NTb",
+                                                 "BAE",
+                                                 "STC"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Shrinking",
+        "year":  2023,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Shrinking",
+        "id":  89,
+        "statistics":  {
+                           "seasonCount":  3,
+                           "episodeFileCount":  33,
+                           "episodeCount":  33,
+                           "totalEpisodeCount":  34,
+                           "sizeOnDisk":  197355734389,
+                           "releaseGroups":  [
+                                                 "NTb",
+                                                 "ETHEL",
+                                                 "SuccessfulCrab",
+                                                 "sylix"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Silicon Valley",
+        "year":  2014,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Silicon Valley",
+        "id":  90,
+        "statistics":  {
+                           "seasonCount":  6,
+                           "episodeFileCount":  53,
+                           "episodeCount":  53,
+                           "totalEpisodeCount":  58,
+                           "sizeOnDisk":  138721034524,
+                           "releaseGroups":  [
+                                                 "NTb",
+                                                 "SA89",
+                                                 "rovers"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Space Force",
+        "year":  2020,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Space Force",
+        "id":  91,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  17,
+                           "episodeCount":  17,
+                           "totalEpisodeCount":  17,
+                           "sizeOnDisk":  59283733413,
+                           "releaseGroups":  [
+                                                 "NTb",
+                                                 "HONE"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Your Friendly Neighborhood Spider-Man",
+        "year":  2025,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Spider-Man - Freshman Year",
+        "id":  92,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  10,
+                           "episodeCount":  10,
+                           "totalEpisodeCount":  10,
+                           "sizeOnDisk":  27896713971,
+                           "releaseGroups":  [
+                                                 "ETHEL",
+                                                 "successfulcrab",
+                                                 "SuccessfulCrab"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Spider-Man: The Animated Series",
+        "year":  1994,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Spider-Man - The Animated Series",
+        "id":  93,
+        "statistics":  {
+                           "seasonCount":  5,
+                           "episodeFileCount":  65,
+                           "episodeCount":  65,
+                           "totalEpisodeCount":  67,
+                           "sizeOnDisk":  32017882263,
+                           "releaseGroups":  [
+                                                 "LAZY"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Star Trek: Deep Space Nine",
+        "year":  1993,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Star Trek - Deep Space Nine",
+        "id":  94,
+        "statistics":  {
+                           "seasonCount":  7,
+                           "episodeFileCount":  0,
+                           "episodeCount":  176,
+                           "totalEpisodeCount":  179,
+                           "sizeOnDisk":  0,
+                           "releaseGroups":  [
+
+                                             ],
+                           "percentOfEpisodes":  0
+                       }
+    },
+    {
+        "title":  "Star Trek: Voyager",
+        "year":  1995,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Star Trek - Voyager",
+        "id":  95,
+        "statistics":  {
+                           "seasonCount":  7,
+                           "episodeFileCount":  169,
+                           "episodeCount":  172,
+                           "totalEpisodeCount":  173,
+                           "sizeOnDisk":  225437824196,
+                           "releaseGroups":  [
+                                                 "JCH",
+                                                 "S0NNY"
+                                             ],
+                           "percentOfEpisodes":  98.25581395348837209302325581
+                       }
+    },
+    {
+        "title":  "Stick",
+        "year":  2025,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Stick",
+        "id":  96,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  5,
+                           "episodeCount":  10,
+                           "totalEpisodeCount":  19,
+                           "sizeOnDisk":  25332121177,
+                           "releaseGroups":  [
+                                                 "RAWR",
+                                                 "successfulcrab"
+                                             ],
+                           "percentOfEpisodes":  50.0
+                       }
+    },
+    {
+        "title":  "Suicide Squad Isekai",
+        "year":  2024,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Suicide Squad ISEKAI!",
+        "id":  97,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  4,
+                           "episodeCount":  10,
+                           "totalEpisodeCount":  10,
+                           "sizeOnDisk":  3160192834,
+                           "releaseGroups":  [
+                                                 "KAWAII",
+                                                 "QUiNTESSENCE"
+                                             ],
+                           "percentOfEpisodes":  40.0
+                       }
+    },
+    {
+        "title":  "Superman: The Animated Series",
+        "year":  1996,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Superman - The Animated Series",
+        "id":  98,
+        "statistics":  {
+                           "seasonCount":  4,
+                           "episodeFileCount":  54,
+                           "episodeCount":  54,
+                           "totalEpisodeCount":  56,
+                           "sizeOnDisk":  24401664521,
+                           "releaseGroups":  [
+                                                 "edge2020",
+                                                 "HeavyWeight"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Tales of the Tardis",
+        "year":  2023,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Tales of the Tardis",
+        "id":  99,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  6,
+                           "episodeCount":  7,
+                           "totalEpisodeCount":  7,
+                           "sizeOnDisk":  36502101285,
+                           "releaseGroups":  [
+                                                 "playWEB"
+                                             ],
+                           "percentOfEpisodes":  85.71428571428571428571428571
+                       }
+    },
+    {
+        "title":  "Task",
+        "year":  2025,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Task",
+        "id":  100,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  7,
+                           "episodeCount":  7,
+                           "totalEpisodeCount":  7,
+                           "sizeOnDisk":  52241320154,
+                           "releaseGroups":  [
+                                                 "SAUERKRAUT"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Ted Lasso",
+        "year":  2020,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Ted Lasso",
+        "id":  101,
+        "statistics":  {
+                           "seasonCount":  4,
+                           "episodeFileCount":  34,
+                           "episodeCount":  34,
+                           "totalEpisodeCount":  53,
+                           "sizeOnDisk":  219950359348,
+                           "releaseGroups":  [
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Teenage Mutant Ninja Turtles",
+        "year":  1987,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Teenage Mutant Ninja Turtles (1987)",
+        "id":  102,
+        "statistics":  {
+                           "seasonCount":  10,
+                           "episodeFileCount":  111,
+                           "episodeCount":  193,
+                           "totalEpisodeCount":  209,
+                           "sizeOnDisk":  84948655008,
+                           "releaseGroups":  [
+                                                 "RPG",
+                                                 "STC"
+                                             ],
+                           "percentOfEpisodes":  57.512953367875647668393782380
+                       }
+    },
+    {
+        "title":  "Teenage Mutant Ninja Turtles (2012)",
+        "year":  2012,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Teenage Mutant Ninja Turtles (2012)",
+        "id":  103,
+        "statistics":  {
+                           "seasonCount":  5,
+                           "episodeFileCount":  81,
+                           "episodeCount":  124,
+                           "totalEpisodeCount":  203,
+                           "sizeOnDisk":  79880594394,
+                           "releaseGroups":  [
+                                                 "iT00NZ",
+                                                 "YFN",
+                                                 "EDGE2020",
+                                                 "DiRT"
+                                             ],
+                           "percentOfEpisodes":  65.322580645161290322580645160
+                       }
+    },
+    {
+        "title":  "The Batman",
+        "year":  2004,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/The Batman",
+        "id":  104,
+        "statistics":  {
+                           "seasonCount":  5,
+                           "episodeFileCount":  65,
+                           "episodeCount":  65,
+                           "totalEpisodeCount":  74,
+                           "sizeOnDisk":  88983921596,
+                           "releaseGroups":  [
+                                                 "alfaHD"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "The Bear",
+        "year":  2022,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/The Bear",
+        "id":  105,
+        "statistics":  {
+                           "seasonCount":  5,
+                           "episodeFileCount":  37,
+                           "episodeCount":  38,
+                           "totalEpisodeCount":  47,
+                           "sizeOnDisk":  110822832881,
+                           "releaseGroups":  [
+                                                 "XEBEC",
+                                                 "FLUX",
+                                                 "NTb",
+                                                 "successfulcrab"
+                                             ],
+                           "percentOfEpisodes":  97.36842105263157894736842105
+                       }
+    },
+    {
+        "title":  "The Big Leap",
+        "year":  2021,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/The Big Leap",
+        "id":  106,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  11,
+                           "episodeCount":  11,
+                           "totalEpisodeCount":  11,
+                           "sizeOnDisk":  18163877806,
+                           "releaseGroups":  [
+                                                 "cakes"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "The Book of Boba Fett",
+        "year":  2021,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/The Book of Boba Fett",
+        "id":  107,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  7,
+                           "episodeCount":  7,
+                           "totalEpisodeCount":  7,
+                           "sizeOnDisk":  56191179040,
+                           "releaseGroups":  [
+                                                 "BobarBiriyani"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "The Boys",
+        "year":  2019,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/The Boys",
+        "id":  108,
+        "statistics":  {
+                           "seasonCount":  5,
+                           "episodeFileCount":  36,
+                           "episodeCount":  40,
+                           "totalEpisodeCount":  119,
+                           "sizeOnDisk":  288567380260,
+                           "releaseGroups":  [
+                                                 "NTb",
+                                                 "aKraa",
+                                                 "XEBEC",
+                                                 "GRACE",
+                                                 "KRATOS"
+                                             ],
+                           "percentOfEpisodes":  90.0
+                       }
+    },
+    {
+        "title":  "The Boys Presents: Diabolical",
+        "year":  2022,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/The Boys Presents - Diabolical",
+        "id":  109,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  8,
+                           "episodeCount":  8,
+                           "totalEpisodeCount":  8,
+                           "sizeOnDisk":  5843072188,
+                           "releaseGroups":  [
+                                                 "TEPES"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "The Falcon and The Winter Soldier",
+        "year":  2021,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/The Falcon and The Winter Soldier",
+        "id":  110,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  6,
+                           "episodeCount":  6,
+                           "totalEpisodeCount":  6,
+                           "sizeOnDisk":  40286863394,
+                           "releaseGroups":  [
+                                                 "BORDURE"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "The Good Lord Bird",
+        "year":  2020,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/The Good Lord Bird",
+        "id":  111,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  7,
+                           "episodeCount":  7,
+                           "totalEpisodeCount":  7,
+                           "sizeOnDisk":  14432234626,
+                           "releaseGroups":  [
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "The Good Place",
+        "year":  2016,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/The Good Place",
+        "id":  112,
+        "statistics":  {
+                           "seasonCount":  4,
+                           "episodeFileCount":  50,
+                           "episodeCount":  50,
+                           "totalEpisodeCount":  59,
+                           "sizeOnDisk":  72887775504,
+                           "releaseGroups":  [
+                                                 "VLAD",
+                                                 "SiGMA",
+                                                 "AJP69"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "The Irrational",
+        "year":  2023,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/The Irrational",
+        "id":  113,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  18,
+                           "episodeCount":  29,
+                           "totalEpisodeCount":  29,
+                           "sizeOnDisk":  46005999339,
+                           "releaseGroups":  [
+                                                 "ETHEL",
+                                                 "FLUX",
+                                                 "LAZYCUNTS",
+                                                 "MeGusta",
+                                                 "YELLO"
+                                             ],
+                           "percentOfEpisodes":  62.068965517241379310344827590
+                       }
+    },
+    {
+        "title":  "The Last Anniversary",
+        "year":  2025,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/The Last Anniversary",
+        "id":  114,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  6,
+                           "episodeCount":  6,
+                           "totalEpisodeCount":  6,
+                           "sizeOnDisk":  18286231797,
+                           "releaseGroups":  [
+                                                 "playWEB"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "The Last Frontier (2025)",
+        "year":  2025,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/The Last Frontier (2025)",
+        "id":  115,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  8,
+                           "episodeCount":  10,
+                           "totalEpisodeCount":  10,
+                           "sizeOnDisk":  63337422908,
+                           "releaseGroups":  [
+                                                 "ETHEL",
+                                                 "GRACE",
+                                                 "Kitsune",
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  80.0
+                       }
+    },
+    {
+        "title":  "The Legend of Korra",
+        "year":  2012,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/The Legend of Korra",
+        "id":  116,
+        "statistics":  {
+                           "seasonCount":  4,
+                           "episodeFileCount":  52,
+                           "episodeCount":  52,
+                           "totalEpisodeCount":  99,
+                           "sizeOnDisk":  59034642319,
+                           "releaseGroups":  [
+                                                 "RegEdits"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "The Legend of Vox Machina",
+        "year":  2022,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/The Legend of Vox Machina",
+        "id":  117,
+        "statistics":  {
+                           "seasonCount":  4,
+                           "episodeFileCount":  11,
+                           "episodeCount":  36,
+                           "totalEpisodeCount":  69,
+                           "sizeOnDisk":  21364783577,
+                           "releaseGroups":  [
+                                                 "FLUX",
+                                                 "Kitsune",
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  30.555555555555555555555555560
+                       }
+    },
+    {
+        "title":  "The Mandalorian",
+        "year":  2019,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/The Mandalorian",
+        "id":  118,
+        "statistics":  {
+                           "seasonCount":  3,
+                           "episodeFileCount":  24,
+                           "episodeCount":  24,
+                           "totalEpisodeCount":  25,
+                           "sizeOnDisk":  104153942015,
+                           "releaseGroups":  [
+                                                 "skgtv",
+                                                 "SiC",
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "The New Batman Adventures",
+        "year":  1997,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/The New Batman Adventures",
+        "id":  119,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  24,
+                           "episodeCount":  24,
+                           "totalEpisodeCount":  29,
+                           "sizeOnDisk":  68628032531,
+                           "releaseGroups":  [
+                                                 "BTN"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "The Orville",
+        "year":  2017,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/The Orville",
+        "id":  120,
+        "statistics":  {
+                           "seasonCount":  3,
+                           "episodeFileCount":  36,
+                           "episodeCount":  36,
+                           "totalEpisodeCount":  37,
+                           "sizeOnDisk":  127712553163,
+                           "releaseGroups":  [
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "The Penguin",
+        "year":  2024,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/The Penguin",
+        "id":  121,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  8,
+                           "episodeCount":  8,
+                           "totalEpisodeCount":  34,
+                           "sizeOnDisk":  75557745819,
+                           "releaseGroups":  [
+                                                 "HONE"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "The Pitt",
+        "year":  2025,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/The Pitt",
+        "id":  122,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  30,
+                           "episodeCount":  30,
+                           "totalEpisodeCount":  30,
+                           "sizeOnDisk":  95634719482,
+                           "releaseGroups":  [
+                                                 "NTb",
+                                                 "ETHEL",
+                                                 "FLUX",
+                                                 "Kitsune"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "The Powerpuff Girls",
+        "year":  1998,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/The Powerpuff Girls",
+        "id":  123,
+        "statistics":  {
+                           "seasonCount":  6,
+                           "episodeFileCount":  75,
+                           "episodeCount":  137,
+                           "totalEpisodeCount":  185,
+                           "sizeOnDisk":  25707035745,
+                           "releaseGroups":  [
+                                                 "boxXx",
+                                                 "FLUX"
+                                             ],
+                           "percentOfEpisodes":  54.744525547445255474452554740
+                       }
+    },
+    {
+        "title":  "The Righteous Gemstones",
+        "year":  2019,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/The Righteous Gemstones",
+        "id":  124,
+        "statistics":  {
+                           "seasonCount":  4,
+                           "episodeFileCount":  36,
+                           "episodeCount":  36,
+                           "totalEpisodeCount":  39,
+                           "sizeOnDisk":  86468455847,
+                           "releaseGroups":  [
+                                                 "NTb",
+                                                 "SuccessfulCrab"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "The Studio (2025)",
+        "year":  2025,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/The Studio (2025)",
+        "id":  125,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  10,
+                           "episodeCount":  10,
+                           "totalEpisodeCount":  10,
+                           "sizeOnDisk":  49991560136,
+                           "releaseGroups":  [
+                                                 "RAWR"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "The Venture Bros.",
+        "year":  2004,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/The Venture Bros",
+        "id":  126,
+        "statistics":  {
+                           "seasonCount":  7,
+                           "episodeFileCount":  68,
+                           "episodeCount":  81,
+                           "totalEpisodeCount":  96,
+                           "sizeOnDisk":  83824695769,
+                           "releaseGroups":  [
+                                                 "Pinski",
+                                                 "CtrlHD",
+                                                 "NTb",
+                                                 "brmp"
+                                             ],
+                           "percentOfEpisodes":  83.95061728395061728395061728
+                       }
+    },
+    {
+        "title":  "The White Lotus",
+        "year":  2021,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/The White Lotus",
+        "id":  127,
+        "statistics":  {
+                           "seasonCount":  3,
+                           "episodeFileCount":  21,
+                           "episodeCount":  21,
+                           "totalEpisodeCount":  42,
+                           "sizeOnDisk":  205612649990,
+                           "releaseGroups":  [
+                                                 "HONE",
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "The X-Files",
+        "year":  1993,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/The X-Files",
+        "id":  128,
+        "statistics":  {
+                           "seasonCount":  11,
+                           "episodeFileCount":  218,
+                           "episodeCount":  218,
+                           "totalEpisodeCount":  225,
+                           "sizeOnDisk":  930329656010,
+                           "releaseGroups":  [
+                                                 "VietHD",
+                                                 "rovers",
+                                                 "SA89",
+                                                 "SHORTBREHD"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Tracker (2024)",
+        "year":  2024,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Tracker (2024)",
+        "id":  129,
+        "statistics":  {
+                           "seasonCount":  3,
+                           "episodeFileCount":  40,
+                           "episodeCount":  55,
+                           "totalEpisodeCount":  55,
+                           "sizeOnDisk":  104020144090,
+                           "releaseGroups":  [
+                                                 "ETHEL",
+                                                 "FLUX",
+                                                 "LAZYCUNTS",
+                                                 "MeGusta",
+                                                 "NHTFS",
+                                                 "NTb",
+                                                 "successfulcrab",
+                                                 "SuccessfulCrab",
+                                                 "GRACE"
+                                             ],
+                           "percentOfEpisodes":  72.727272727272727272727272730
+                       }
+    },
+    {
+        "title":  "Twisted Metal",
+        "year":  2023,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Twisted Metal",
+        "id":  130,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  22,
+                           "episodeCount":  22,
+                           "totalEpisodeCount":  22,
+                           "sizeOnDisk":  72104066457,
+                           "releaseGroups":  [
+                                                 "NTb",
+                                                 "gloriousmongoose",
+                                                 "Kitsune",
+                                                 "lazycunts",
+                                                 "nhtfs",
+                                                 "NHTFS",
+                                                 "successfulcrab"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Unbreakable Kimmy Schmidt",
+        "year":  2015,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Unbreakable Kimmy Schmidt",
+        "id":  131,
+        "statistics":  {
+                           "seasonCount":  4,
+                           "episodeFileCount":  51,
+                           "episodeCount":  51,
+                           "totalEpisodeCount":  51,
+                           "sizeOnDisk":  72371938837,
+                           "releaseGroups":  [
+                                                 "DTS",
+                                                 "convoy",
+                                                 "AMCON",
+                                                 "METCON"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Veep",
+        "year":  2012,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Veep",
+        "id":  132,
+        "statistics":  {
+                           "seasonCount":  7,
+                           "episodeFileCount":  65,
+                           "episodeCount":  65,
+                           "totalEpisodeCount":  67,
+                           "sizeOnDisk":  118047993600,
+                           "releaseGroups":  [
+                                                 "SiGMA",
+                                                 "NTb",
+                                                 "BLiN"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Wellington Paranormal",
+        "year":  2018,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Wellington Paranormal",
+        "id":  133,
+        "statistics":  {
+                           "seasonCount":  4,
+                           "episodeFileCount":  25,
+                           "episodeCount":  25,
+                           "totalEpisodeCount":  59,
+                           "sizeOnDisk":  28460285331,
+                           "releaseGroups":  [
+                                                 "Dulus",
+                                                 "cbfm"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "What We Do in the Shadows",
+        "year":  2019,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/What We Do In The Shadows",
+        "id":  134,
+        "statistics":  {
+                           "seasonCount":  6,
+                           "episodeFileCount":  61,
+                           "episodeCount":  61,
+                           "totalEpisodeCount":  61,
+                           "sizeOnDisk":  164949269455,
+                           "releaseGroups":  [
+                                                 "SiGLA",
+                                                 "FLUX",
+                                                 "NTb",
+                                                 "SuccessfulCrab"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Will Trent",
+        "year":  2023,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Will Trent",
+        "id":  135,
+        "statistics":  {
+                           "seasonCount":  4,
+                           "episodeFileCount":  32,
+                           "episodeCount":  59,
+                           "totalEpisodeCount":  59,
+                           "sizeOnDisk":  66891441274,
+                           "releaseGroups":  [
+                                                 "ETHEL",
+                                                 "FLUX",
+                                                 "STC",
+                                                 "successfulcrab",
+                                                 "SuccessfulCrab",
+                                                 "UKDTV",
+                                                 "YELLO",
+                                                 "GRACE",
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  54.237288135593220338983050850
+                       }
+    },
+    {
+        "title":  "Wonder Man",
+        "year":  2026,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Wonder Man",
+        "id":  136,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  8,
+                           "episodeCount":  8,
+                           "totalEpisodeCount":  8,
+                           "sizeOnDisk":  26726375970,
+                           "releaseGroups":  [
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "X-Men: The Animated Series",
+        "year":  1992,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/X-Men - The Animated Series",
+        "id":  137,
+        "statistics":  {
+                           "seasonCount":  5,
+                           "episodeFileCount":  76,
+                           "episodeCount":  76,
+                           "totalEpisodeCount":  78,
+                           "sizeOnDisk":  37667366412,
+                           "releaseGroups":  [
+                                                 "playWEB"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "X-Men \u002797",
+        "year":  2024,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/X-Men 97",
+        "id":  138,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  10,
+                           "episodeCount":  10,
+                           "totalEpisodeCount":  12,
+                           "sizeOnDisk":  626436190,
+                           "releaseGroups":  [
+                                                 "thecuteness"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "30 Rock",
+        "year":  2006,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/30 Rock",
+        "id":  139,
+        "statistics":  {
+                           "seasonCount":  7,
+                           "episodeFileCount":  138,
+                           "episodeCount":  138,
+                           "totalEpisodeCount":  147,
+                           "sizeOnDisk":  292358750396,
+                           "releaseGroups":  [
+                                                 "BEDLAM",
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "A.P. Bio",
+        "year":  2018,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/A.P. Bio",
+        "id":  140,
+        "statistics":  {
+                           "seasonCount":  4,
+                           "episodeFileCount":  42,
+                           "episodeCount":  42,
+                           "totalEpisodeCount":  42,
+                           "sizeOnDisk":  56744926356,
+                           "releaseGroups":  [
+                                                 "NTb",
+                                                 "ggez"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Accused (US)",
+        "year":  2023,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Accused (US)",
+        "id":  141,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  6,
+                           "episodeCount":  23,
+                           "totalEpisodeCount":  23,
+                           "sizeOnDisk":  9660345290,
+                           "releaseGroups":  [
+                                                 "SuccessfulCrab"
+                                             ],
+                           "percentOfEpisodes":  26.086956521739130434782608700
+                       }
+    },
+    {
+        "title":  "Adam Ruins Everything",
+        "year":  2015,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Adam Ruins Everything",
+        "id":  142,
+        "statistics":  {
+                           "seasonCount":  3,
+                           "episodeFileCount":  64,
+                           "episodeCount":  64,
+                           "totalEpisodeCount":  73,
+                           "sizeOnDisk":  95782875377,
+                           "releaseGroups":  [
+                                                 "CtrlHD",
+                                                 "SiGMA",
+                                                 "Xplosionist"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "After Midnight",
+        "year":  2024,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/After Midnight",
+        "id":  143,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  6,
+                           "episodeCount":  199,
+                           "totalEpisodeCount":  199,
+                           "sizeOnDisk":  17429964723,
+                           "releaseGroups":  [
+                                                 "Kitsune"
+                                             ],
+                           "percentOfEpisodes":  3.0150753768844221105527638200
+                       }
+    },
+    {
+        "title":  "Agatha All Along",
+        "year":  2024,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Agatha All Along",
+        "id":  144,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  9,
+                           "episodeCount":  9,
+                           "totalEpisodeCount":  9,
+                           "sizeOnDisk":  14115291154,
+                           "releaseGroups":  [
+                                                 "ELiTE",
+                                                 "ETHEL",
+                                                 "FLUX",
+                                                 "NHTFS"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Ahsoka",
+        "year":  2023,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Ahsoka",
+        "id":  145,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  8,
+                           "episodeCount":  8,
+                           "totalEpisodeCount":  14,
+                           "sizeOnDisk":  4291471686,
+                           "releaseGroups":  [
+                                                 "PSA"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Akudama Drive",
+        "year":  2020,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Akudama Drive",
+        "id":  146,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  12,
+                           "episodeCount":  12,
+                           "totalEpisodeCount":  13,
+                           "sizeOnDisk":  17302412315,
+                           "releaseGroups":  [
+                                                 "SKYANiME"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Andor",
+        "year":  2022,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Andor",
+        "id":  147,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  24,
+                           "episodeCount":  24,
+                           "totalEpisodeCount":  47,
+                           "sizeOnDisk":  123212293780,
+                           "releaseGroups":  [
+                                                 "NTb",
+                                                 "ETHEL",
+                                                 "Kitsune",
+                                                 "successfulcrab",
+                                                 "SuccessfulCrab"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Ash vs Evil Dead",
+        "year":  2015,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Ash vs Evil Dead",
+        "id":  148,
+        "statistics":  {
+                           "seasonCount":  3,
+                           "episodeFileCount":  30,
+                           "episodeCount":  30,
+                           "totalEpisodeCount":  63,
+                           "sizeOnDisk":  59119361432,
+                           "releaseGroups":  [
+                                                 "Coo7",
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Better Call Saul",
+        "year":  2015,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Better Call Saul",
+        "id":  149,
+        "statistics":  {
+                           "seasonCount":  6,
+                           "episodeFileCount":  60,
+                           "episodeCount":  63,
+                           "totalEpisodeCount":  160,
+                           "sizeOnDisk":  459666007249,
+                           "releaseGroups":  [
+                                                 "TrollUHD",
+                                                 "HONE",
+                                                 "ViSUM",
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  95.23809523809523809523809524
+                       }
+    },
+    {
+        "title":  "Blue Planet II",
+        "year":  2017,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Blue Planet II",
+        "id":  150,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  7,
+                           "episodeCount":  7,
+                           "totalEpisodeCount":  16,
+                           "sizeOnDisk":  32853579137,
+                           "releaseGroups":  [
+                                                 "SHORTBREHD"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Bluey (2018)",
+        "year":  2018,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Bluey (2018)",
+        "id":  151,
+        "statistics":  {
+                           "seasonCount":  3,
+                           "episodeFileCount":  154,
+                           "episodeCount":  154,
+                           "totalEpisodeCount":  226,
+                           "sizeOnDisk":  57298771139,
+                           "releaseGroups":  [
+                                                 "ECLiPSE",
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Blunt Talk",
+        "year":  2015,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Blunt Talk",
+        "id":  152,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  20,
+                           "episodeCount":  20,
+                           "totalEpisodeCount":  20,
+                           "sizeOnDisk":  41583378075,
+                           "releaseGroups":  [
+                                                 "NTb",
+                                                 "ETHiCS"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Chad Powers",
+        "year":  2025,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Chad Powers",
+        "id":  153,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  3,
+                           "episodeCount":  6,
+                           "totalEpisodeCount":  12,
+                           "sizeOnDisk":  7597499836,
+                           "releaseGroups":  [
+                                                 "FLUX",
+                                                 "GRACE"
+                                             ],
+                           "percentOfEpisodes":  50.0
+                       }
+    },
+    {
+        "title":  "Community",
+        "year":  2009,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Community",
+        "id":  154,
+        "statistics":  {
+                           "seasonCount":  6,
+                           "episodeFileCount":  110,
+                           "episodeCount":  110,
+                           "totalEpisodeCount":  123,
+                           "sizeOnDisk":  216611513103,
+                           "releaseGroups":  [
+                                                 "TrollHD",
+                                                 "AJP69",
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Curb Your Enthusiasm",
+        "year":  2000,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Curb Your Enthusiasm",
+        "id":  155,
+        "statistics":  {
+                           "seasonCount":  12,
+                           "episodeFileCount":  120,
+                           "episodeCount":  120,
+                           "totalEpisodeCount":  163,
+                           "sizeOnDisk":  376964909577,
+                           "releaseGroups":  [
+                                                 "AJP69",
+                                                 "herkz",
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "From the Earth to the Moon",
+        "year":  1998,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/From the Earth to the Moon",
+        "id":  156,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  12,
+                           "episodeCount":  12,
+                           "totalEpisodeCount":  13,
+                           "sizeOnDisk":  28775454814,
+                           "releaseGroups":  [
+
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Frozen Planet II",
+        "year":  2022,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Frozen Planet II",
+        "id":  157,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  6,
+                           "episodeCount":  6,
+                           "totalEpisodeCount":  9,
+                           "sizeOnDisk":  125263986843,
+                           "releaseGroups":  [
+                                                 "FraMeSToR"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Gargoyles",
+        "year":  1994,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Gargoyles",
+        "id":  158,
+        "statistics":  {
+                           "seasonCount":  3,
+                           "episodeFileCount":  78,
+                           "episodeCount":  78,
+                           "totalEpisodeCount":  81,
+                           "sizeOnDisk":  41672631934,
+                           "releaseGroups":  [
+                                                 "AJP69"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Grey\u0027s Anatomy",
+        "year":  2005,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Grey\u0027s Anatomy",
+        "id":  159,
+        "statistics":  {
+                           "seasonCount":  22,
+                           "episodeFileCount":  35,
+                           "episodeCount":  466,
+                           "totalEpisodeCount":  475,
+                           "sizeOnDisk":  78843202218,
+                           "releaseGroups":  [
+                                                 "ETHEL",
+                                                 "FLUX",
+                                                 "Kitsune",
+                                                 "LAZYCUNTS",
+                                                 "STC",
+                                                 "successfulcrab",
+                                                 "YELLO",
+                                                 "ELiTE",
+                                                 "GRACE",
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  7.5107296137339055793991416300
+                       }
+    },
+    {
+        "title":  "High Maintenance",
+        "year":  2012,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/High Maintenance",
+        "id":  160,
+        "statistics":  {
+                           "seasonCount":  6,
+                           "episodeFileCount":  19,
+                           "episodeCount":  19,
+                           "totalEpisodeCount":  19,
+                           "sizeOnDisk":  13258866623,
+                           "releaseGroups":  [
+                                                 "P2P"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Hoops",
+        "year":  2020,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Hoops",
+        "id":  161,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  10,
+                           "episodeCount":  10,
+                           "totalEpisodeCount":  10,
+                           "sizeOnDisk":  6417587860,
+                           "releaseGroups":  [
+                                                 "NTG"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Jack Whitehall: Fatherhood with My Father",
+        "year":  2024,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Jack Whitehall - Fatherhood with My Father",
+        "id":  162,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  1,
+                           "episodeCount":  4,
+                           "totalEpisodeCount":  4,
+                           "sizeOnDisk":  1825750904,
+                           "releaseGroups":  [
+                                                 "EDITH"
+                                             ],
+                           "percentOfEpisodes":  25.00
+                       }
+    },
+    {
+        "title":  "Jack Whitehall: Travels with My Father",
+        "year":  2017,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Jack Whitehall - Travels with My Father",
+        "id":  163,
+        "statistics":  {
+                           "seasonCount":  5,
+                           "episodeFileCount":  18,
+                           "episodeCount":  18,
+                           "totalEpisodeCount":  19,
+                           "sizeOnDisk":  59906477267,
+                           "releaseGroups":  [
+                                                 "HONE",
+                                                 "GOSSIP"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Kim\u0027s Convenience",
+        "year":  2016,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Kim\u0027s Convenience",
+        "id":  164,
+        "statistics":  {
+                           "seasonCount":  5,
+                           "episodeFileCount":  65,
+                           "episodeCount":  65,
+                           "totalEpisodeCount":  66,
+                           "sizeOnDisk":  81224608402,
+                           "releaseGroups":  [
+                                                 "NTb",
+                                                 "alfaHD",
+                                                 "Cinefeel",
+                                                 "BTN"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Legion",
+        "year":  2017,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Legion",
+        "id":  165,
+        "statistics":  {
+                           "seasonCount":  3,
+                           "episodeFileCount":  27,
+                           "episodeCount":  27,
+                           "totalEpisodeCount":  55,
+                           "sizeOnDisk":  108707550526,
+                           "releaseGroups":  [
+                                                 "KiNGS",
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Letterkenny",
+        "year":  2016,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Letterkenny",
+        "id":  166,
+        "statistics":  {
+                           "seasonCount":  12,
+                           "episodeFileCount":  77,
+                           "episodeCount":  77,
+                           "totalEpisodeCount":  92,
+                           "sizeOnDisk":  194739651035,
+                           "releaseGroups":  [
+                                                 "BTW",
+                                                 "ggez",
+                                                 "Cinefeel",
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Mad Men",
+        "year":  2007,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Mad Men",
+        "id":  167,
+        "statistics":  {
+                           "seasonCount":  7,
+                           "episodeFileCount":  92,
+                           "episodeCount":  92,
+                           "totalEpisodeCount":  169,
+                           "sizeOnDisk":  639703046463,
+                           "releaseGroups":  [
+                                                 "WADU"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Marvel\u0027s 616",
+        "year":  2020,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Marvel\u0027s 616",
+        "id":  168,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  8,
+                           "episodeCount":  8,
+                           "totalEpisodeCount":  8,
+                           "sizeOnDisk":  26892748329,
+                           "releaseGroups":  [
+                                                 "ROCCaT"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Marvel\u0027s Daredevil",
+        "year":  2015,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Marvel\u0027s Daredevil",
+        "id":  169,
+        "statistics":  {
+                           "seasonCount":  3,
+                           "episodeFileCount":  39,
+                           "episodeCount":  39,
+                           "totalEpisodeCount":  39,
+                           "sizeOnDisk":  281408518022,
+                           "releaseGroups":  [
+                                                 "SiC"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Marvel\u0027s Iron Fist",
+        "year":  2017,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Marvel\u0027s Iron Fist",
+        "id":  170,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  23,
+                           "episodeCount":  23,
+                           "totalEpisodeCount":  23,
+                           "sizeOnDisk":  167133415010,
+                           "releaseGroups":  [
+                                                 "SiC"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Marvel\u0027s Jessica Jones",
+        "year":  2015,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Marvel\u0027s Jessica Jones",
+        "id":  171,
+        "statistics":  {
+                           "seasonCount":  3,
+                           "episodeFileCount":  39,
+                           "episodeCount":  39,
+                           "totalEpisodeCount":  39,
+                           "sizeOnDisk":  195242630189,
+                           "releaseGroups":  [
+                                                 "SiC",
+                                                 "NTb",
+                                                 "FFG"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Marvel\u0027s Luke Cage",
+        "year":  2016,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Marvel\u0027s Luke Cage",
+        "id":  172,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  19,
+                           "episodeCount":  26,
+                           "totalEpisodeCount":  26,
+                           "sizeOnDisk":  143103054156,
+                           "releaseGroups":  [
+                                                 "SiC"
+                                             ],
+                           "percentOfEpisodes":  73.076923076923076923076923080
+                       }
+    },
+    {
+        "title":  "Marvel\u0027s The Defenders",
+        "year":  2017,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Marvel\u0027s The Defenders",
+        "id":  173,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  8,
+                           "episodeCount":  8,
+                           "totalEpisodeCount":  8,
+                           "sizeOnDisk":  12411495968,
+                           "releaseGroups":  [
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Marvel\u0027s The Punisher",
+        "year":  2017,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Marvel\u0027s The Punisher",
+        "id":  174,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  26,
+                           "episodeCount":  26,
+                           "totalEpisodeCount":  27,
+                           "sizeOnDisk":  172708910375,
+                           "releaseGroups":  [
+                                                 "SMURF"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Mira, Royal Detective",
+        "year":  2020,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Mira, Royal Detective",
+        "id":  175,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  104,
+                           "episodeCount":  104,
+                           "totalEpisodeCount":  114,
+                           "sizeOnDisk":  69966167238,
+                           "releaseGroups":  [
+                                                 "LAZY"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Moon Knight",
+        "year":  2022,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Moon Knight",
+        "id":  176,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  6,
+                           "episodeCount":  6,
+                           "totalEpisodeCount":  6,
+                           "sizeOnDisk":  47952703300,
+                           "releaseGroups":  [
+                                                 "TBD"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "MythBusters",
+        "year":  2003,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/MythBusters",
+        "id":  177,
+        "statistics":  {
+                           "seasonCount":  16,
+                           "episodeFileCount":  0,
+                           "episodeCount":  284,
+                           "totalEpisodeCount":  315,
+                           "sizeOnDisk":  0,
+                           "releaseGroups":  [
+
+                                             ],
+                           "percentOfEpisodes":  0
+                       }
+    },
+    {
+        "title":  "Mythic Quest",
+        "year":  2020,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Mythic Quest",
+        "id":  178,
+        "statistics":  {
+                           "seasonCount":  4,
+                           "episodeFileCount":  40,
+                           "episodeCount":  40,
+                           "totalEpisodeCount":  45,
+                           "sizeOnDisk":  200381769335,
+                           "releaseGroups":  [
+                                                 "KOGi",
+                                                 "nixon",
+                                                 "CasStudio",
+                                                 "ETHEL",
+                                                 "FLUX",
+                                                 "SuccessfulCrab"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Obi-Wan Kenobi",
+        "year":  2022,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Obi-Wan Kenobi",
+        "id":  179,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  6,
+                           "episodeCount":  6,
+                           "totalEpisodeCount":  6,
+                           "sizeOnDisk":  39602841412,
+                           "releaseGroups":  [
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "One Strange Rock",
+        "year":  2018,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/One Strange Rock",
+        "id":  180,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  10,
+                           "episodeCount":  10,
+                           "totalEpisodeCount":  11,
+                           "sizeOnDisk":  37843098816,
+                           "releaseGroups":  [
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Our Planet",
+        "year":  2010,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Our Planet",
+        "id":  181,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  5,
+                           "episodeCount":  5,
+                           "totalEpisodeCount":  5,
+                           "sizeOnDisk":  80061429125,
+                           "releaseGroups":  [
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Parks and Recreation",
+        "year":  2009,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Parks and Recreation",
+        "id":  182,
+        "statistics":  {
+                           "seasonCount":  7,
+                           "episodeFileCount":  126,
+                           "episodeCount":  126,
+                           "totalEpisodeCount":  138,
+                           "sizeOnDisk":  275423204234,
+                           "releaseGroups":  [
+                                                 "NTG",
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Planet Earth",
+        "year":  2006,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Planet Earth",
+        "id":  183,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  11,
+                           "episodeCount":  11,
+                           "totalEpisodeCount":  32,
+                           "sizeOnDisk":  138476647679,
+                           "releaseGroups":  [
+                                                 "EPSiLON"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Planet Earth II",
+        "year":  2016,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Planet Earth II",
+        "id":  184,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  6,
+                           "episodeCount":  6,
+                           "totalEpisodeCount":  18,
+                           "sizeOnDisk":  105466066319,
+                           "releaseGroups":  [
+                                                 "FraMeSToR"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Planet Earth III",
+        "year":  2023,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Planet Earth III",
+        "id":  185,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  8,
+                           "episodeCount":  8,
+                           "totalEpisodeCount":  11,
+                           "sizeOnDisk":  103480921847,
+                           "releaseGroups":  [
+                                                 "MainFrame"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Poker Face (2023)",
+        "year":  2023,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Poker Face (2023)",
+        "id":  186,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  22,
+                           "episodeCount":  22,
+                           "totalEpisodeCount":  27,
+                           "sizeOnDisk":  129058954116,
+                           "releaseGroups":  [
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Portlandia",
+        "year":  2011,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Portlandia",
+        "id":  187,
+        "statistics":  {
+                           "seasonCount":  8,
+                           "episodeFileCount":  77,
+                           "episodeCount":  77,
+                           "totalEpisodeCount":  83,
+                           "sizeOnDisk":  73107935221,
+                           "releaseGroups":  [
+                                                 "EDHD",
+                                                 "BTN"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Prehistoric Planet",
+        "year":  2022,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Prehistoric Planet",
+        "id":  188,
+        "statistics":  {
+                           "seasonCount":  3,
+                           "episodeFileCount":  15,
+                           "episodeCount":  15,
+                           "totalEpisodeCount":  36,
+                           "sizeOnDisk":  111159414799,
+                           "releaseGroups":  [
+                                                 "FLUX"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Reno 911!",
+        "year":  2003,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Reno 911!",
+        "id":  189,
+        "statistics":  {
+                           "seasonCount":  8,
+                           "episodeFileCount":  124,
+                           "episodeCount":  124,
+                           "totalEpisodeCount":  214,
+                           "sizeOnDisk":  138456771073,
+                           "releaseGroups":  [
+                                                 "FLUX",
+                                                 "BFM",
+                                                 "SotB",
+                                                 "playWEB",
+                                                 "TEPES",
+                                                 "WELP",
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Saturday Night Live",
+        "year":  1975,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Saturday Night Live",
+        "id":  190,
+        "statistics":  {
+                           "seasonCount":  51,
+                           "episodeFileCount":  77,
+                           "episodeCount":  1009,
+                           "totalEpisodeCount":  1385,
+                           "sizeOnDisk":  335083823889,
+                           "releaseGroups":  [
+                                                 "None",
+                                                 "WhiteHat",
+                                                 "EDITH",
+                                                 "ppkhoa"
+                                             ],
+                           "percentOfEpisodes":  7.631318136769078295341922700
+                       }
+    },
+    {
+        "title":  "Seinfeld",
+        "year":  1989,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Seinfeld",
+        "id":  191,
+        "statistics":  {
+                           "seasonCount":  9,
+                           "episodeFileCount":  180,
+                           "episodeCount":  180,
+                           "totalEpisodeCount":  187,
+                           "sizeOnDisk":  516548717432,
+                           "releaseGroups":  [
+                                                 "OBSESSiON",
+                                                 "REJECTiON",
+                                                 "ABBiE"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "SpongeBob SquarePants",
+        "year":  1999,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/SpongeBob SquarePants",
+        "id":  192,
+        "statistics":  {
+                           "seasonCount":  17,
+                           "episodeFileCount":  41,
+                           "episodeCount":  613,
+                           "totalEpisodeCount":  748,
+                           "sizeOnDisk":  36096897180,
+                           "releaseGroups":  [
+                                                 "TVSmash"
+                                             ],
+                           "percentOfEpisodes":  6.6884176182707993474714518800
+                       }
+    },
+    {
+        "title":  "Star Trek",
+        "year":  1966,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Star Trek",
+        "id":  193,
+        "statistics":  {
+                           "seasonCount":  3,
+                           "episodeFileCount":  79,
+                           "episodeCount":  79,
+                           "totalEpisodeCount":  84,
+                           "sizeOnDisk":  366354000386,
+                           "releaseGroups":  [
+                                                 "FraMeSToR"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Star Trek: Discovery",
+        "year":  2017,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Star Trek - Discovery",
+        "id":  194,
+        "statistics":  {
+                           "seasonCount":  5,
+                           "episodeFileCount":  65,
+                           "episodeCount":  65,
+                           "totalEpisodeCount":  70,
+                           "sizeOnDisk":  276698352038,
+                           "releaseGroups":  [
+                                                 "rovers",
+                                                 "NTb",
+                                                 "BTN"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Star Trek: Starfleet Academy",
+        "year":  2026,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Star Trek - Starfleet Academy",
+        "id":  195,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  9,
+                           "episodeCount":  10,
+                           "totalEpisodeCount":  10,
+                           "sizeOnDisk":  69638706226,
+                           "releaseGroups":  [
+                                                 "ETHEL",
+                                                 "RAWR"
+                                             ],
+                           "percentOfEpisodes":  90.0
+                       }
+    },
+    {
+        "title":  "Star Trek: The Next Generation",
+        "year":  1987,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Star Trek - The Next Generation",
+        "id":  196,
+        "statistics":  {
+                           "seasonCount":  7,
+                           "episodeFileCount":  178,
+                           "episodeCount":  178,
+                           "totalEpisodeCount":  180,
+                           "sizeOnDisk":  1320286110655,
+                           "releaseGroups":  [
+                                                 "NTb",
+                                                 "decibeL",
+                                                 "FraMeSToR",
+                                                 "RCSW",
+                                                 "Choreboy"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Star Trek: Lower Decks",
+        "year":  2020,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Star Trek Lower Decks",
+        "id":  197,
+        "statistics":  {
+                           "seasonCount":  5,
+                           "episodeFileCount":  50,
+                           "episodeCount":  50,
+                           "totalEpisodeCount":  54,
+                           "sizeOnDisk":  86404190605,
+                           "releaseGroups":  [
+                                                 "AJP69",
+                                                 "NTb",
+                                                 "ETHEL",
+                                                 "NHTFS",
+                                                 "SuccessfulCrab"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Star Trek: Strange New Worlds",
+        "year":  2022,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Star Trek Strange New Worlds",
+        "id":  198,
+        "statistics":  {
+                           "seasonCount":  4,
+                           "episodeFileCount":  30,
+                           "episodeCount":  30,
+                           "totalEpisodeCount":  43,
+                           "sizeOnDisk":  176402203155,
+                           "releaseGroups":  [
+                                                 "NTb",
+                                                 "Ginnungagap",
+                                                 "playWEB",
+                                                 "successfulcrab"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Tacoma FD",
+        "year":  2019,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Tacoma FD",
+        "id":  199,
+        "statistics":  {
+                           "seasonCount":  4,
+                           "episodeFileCount":  49,
+                           "episodeCount":  49,
+                           "totalEpisodeCount":  73,
+                           "sizeOnDisk":  90834006148,
+                           "releaseGroups":  [
+                                                 "CtrlHD",
+                                                 "NOSiViD",
+                                                 "CSd"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "The Acolyte",
+        "year":  2024,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/The Acolyte",
+        "id":  200,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  8,
+                           "episodeCount":  8,
+                           "totalEpisodeCount":  8,
+                           "sizeOnDisk":  39876582598,
+                           "releaseGroups":  [
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "The Cleaner (2021)",
+        "year":  2021,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/The Cleaner (2021)",
+        "id":  201,
+        "statistics":  {
+                           "seasonCount":  3,
+                           "episodeFileCount":  6,
+                           "episodeCount":  18,
+                           "totalEpisodeCount":  19,
+                           "sizeOnDisk":  23459387655,
+                           "releaseGroups":  [
+                                                 "playWEB"
+                                             ],
+                           "percentOfEpisodes":  33.333333333333333333333333330
+                       }
+    },
+    {
+        "title":  "The Equalizer",
+        "year":  1985,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/The Equalizer",
+        "id":  202,
+        "statistics":  {
+                           "seasonCount":  4,
+                           "episodeFileCount":  28,
+                           "episodeCount":  88,
+                           "totalEpisodeCount":  89,
+                           "sizeOnDisk":  23090354431,
+                           "releaseGroups":  [
+                                                 "ZMNT"
+                                             ],
+                           "percentOfEpisodes":  31.818181818181818181818181820
+                       }
+    },
+    {
+        "title":  "The Expanse",
+        "year":  2015,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/The Expanse",
+        "id":  203,
+        "statistics":  {
+                           "seasonCount":  6,
+                           "episodeFileCount":  62,
+                           "episodeCount":  62,
+                           "totalEpisodeCount":  119,
+                           "sizeOnDisk":  391536867433,
+                           "releaseGroups":  [
+                                                 "SAFETY",
+                                                 "NTb",
+                                                 "GNOME",
+                                                 "MZABI"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "The G Word with Adam Conover",
+        "year":  2022,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/The G Word with Adam Conover",
+        "id":  204,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  6,
+                           "episodeCount":  6,
+                           "totalEpisodeCount":  6,
+                           "sizeOnDisk":  5878193433,
+                           "releaseGroups":  [
+                                                 "SMURF"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "The Green Planet",
+        "year":  2022,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/The Green Planet",
+        "id":  205,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  5,
+                           "episodeCount":  5,
+                           "totalEpisodeCount":  5,
+                           "sizeOnDisk":  66532642303,
+                           "releaseGroups":  [
+                                                 "GREENFiNGERS"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "The Joy of Painting",
+        "year":  1983,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/The Joy of Painting",
+        "id":  206,
+        "statistics":  {
+                           "seasonCount":  31,
+                           "episodeFileCount":  403,
+                           "episodeCount":  403,
+                           "totalEpisodeCount":  441,
+                           "sizeOnDisk":  263719709091,
+                           "releaseGroups":  [
+                                                 "WEBTUBE",
+                                                 "OldT",
+                                                 "BOBROSS",
+                                                 "WHAM",
+                                                 "MeGusta"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "The Kids in the Hall (2022)",
+        "year":  2022,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/The Kids in the Hall (2022)",
+        "id":  207,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  8,
+                           "episodeCount":  8,
+                           "totalEpisodeCount":  8,
+                           "sizeOnDisk":  14714032750,
+                           "releaseGroups":  [
+                                                 "MiON"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "The League",
+        "year":  2009,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/The League",
+        "id":  208,
+        "statistics":  {
+                           "seasonCount":  7,
+                           "episodeFileCount":  84,
+                           "episodeCount":  84,
+                           "totalEpisodeCount":  84,
+                           "sizeOnDisk":  151645844567,
+                           "releaseGroups":  [
+                                                 "FLUX",
+                                                 "CasStudio"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "The Mick",
+        "year":  2017,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/The Mick",
+        "id":  209,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  37,
+                           "episodeCount":  37,
+                           "totalEpisodeCount":  37,
+                           "sizeOnDisk":  76809620900,
+                           "releaseGroups":  [
+                                                 "TrollHD",
+                                                 "SiGMA"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "The Tick (2017)",
+        "year":  2017,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/The Tick (2017)",
+        "id":  210,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  22,
+                           "episodeCount":  22,
+                           "totalEpisodeCount":  26,
+                           "sizeOnDisk":  26558420980,
+                           "releaseGroups":  [
+                                                 "AJP69",
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "The Wire",
+        "year":  2002,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/The Wire",
+        "id":  211,
+        "statistics":  {
+                           "seasonCount":  5,
+                           "episodeFileCount":  60,
+                           "episodeCount":  60,
+                           "totalEpisodeCount":  86,
+                           "sizeOnDisk":  143446008062,
+                           "releaseGroups":  [
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Time Traveling Bong",
+        "year":  2016,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Time Traveling Bong",
+        "id":  212,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  3,
+                           "episodeCount":  3,
+                           "totalEpisodeCount":  3,
+                           "sizeOnDisk":  4035977866,
+                           "releaseGroups":  [
+                                                 "TrollHD"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "WandaVision",
+        "year":  2021,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/WandaVision",
+        "id":  213,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  9,
+                           "episodeCount":  9,
+                           "totalEpisodeCount":  9,
+                           "sizeOnDisk":  18323475349,
+                           "releaseGroups":  [
+                                                 "TOMMY"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "What If…?",
+        "year":  2021,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/What If…!",
+        "id":  214,
+        "statistics":  {
+                           "seasonCount":  3,
+                           "episodeFileCount":  26,
+                           "episodeCount":  26,
+                           "totalEpisodeCount":  26,
+                           "sizeOnDisk":  90267300739,
+                           "releaseGroups":  [
+                                                 "EMPATHY",
+                                                 "KOGi",
+                                                 "NTb",
+                                                 "ETHEL",
+                                                 "NHTFS",
+                                                 "SuccessfulCrab"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Mako: Island of Secrets",
+        "year":  2013,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Mako - Island of Secrets",
+        "id":  215,
+        "statistics":  {
+                           "seasonCount":  3,
+                           "episodeFileCount":  0,
+                           "episodeCount":  68,
+                           "totalEpisodeCount":  68,
+                           "sizeOnDisk":  0,
+                           "releaseGroups":  [
+
+                                             ],
+                           "percentOfEpisodes":  0
+                       }
+    },
+    {
+        "title":  "H2O: Just Add Water",
+        "year":  2006,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/H2O - Just Add Water",
+        "id":  216,
+        "statistics":  {
+                           "seasonCount":  3,
+                           "episodeFileCount":  78,
+                           "episodeCount":  78,
+                           "totalEpisodeCount":  78,
+                           "sizeOnDisk":  23534390395,
+                           "releaseGroups":  [
+                                                 "SA89"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Vought Rising",
+        "year":  0,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Vought Rising",
+        "id":  217,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  0,
+                           "episodeCount":  0,
+                           "totalEpisodeCount":  8,
+                           "sizeOnDisk":  0,
+                           "releaseGroups":  [
+
+                                             ],
+                           "percentOfEpisodes":  0
+                       }
+    },
+    {
+        "title":  "Hawkeye (2021)",
+        "year":  2021,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Hawkeye (2021)",
+        "id":  218,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  6,
+                           "episodeCount":  6,
+                           "totalEpisodeCount":  21,
+                           "sizeOnDisk":  33971919424,
+                           "releaseGroups":  [
+                                                 "SiC"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "I Am Groot",
+        "year":  2022,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/I Am Groot",
+        "id":  219,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  10,
+                           "episodeCount":  10,
+                           "totalEpisodeCount":  10,
+                           "sizeOnDisk":  4019984978,
+                           "releaseGroups":  [
+                                                 "SiC",
+                                                 "FLUX"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Ms. Marvel",
+        "year":  2022,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Ms. Marvel",
+        "id":  220,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  6,
+                           "episodeCount":  6,
+                           "totalEpisodeCount":  12,
+                           "sizeOnDisk":  33483325902,
+                           "releaseGroups":  [
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Secret Invasion",
+        "year":  2023,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Secret Invasion",
+        "id":  221,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  6,
+                           "episodeCount":  6,
+                           "totalEpisodeCount":  6,
+                           "sizeOnDisk":  25266707237,
+                           "releaseGroups":  [
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Echo",
+        "year":  2024,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Echo",
+        "id":  222,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  5,
+                           "episodeCount":  5,
+                           "totalEpisodeCount":  6,
+                           "sizeOnDisk":  19799525751,
+                           "releaseGroups":  [
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Eyes of Wakanda",
+        "year":  2025,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Eyes of Wakanda",
+        "id":  223,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  4,
+                           "episodeCount":  4,
+                           "totalEpisodeCount":  4,
+                           "sizeOnDisk":  11316091904,
+                           "releaseGroups":  [
+                                                 "NTb"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Creature Commandos",
+        "year":  2024,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Creature Commandos",
+        "id":  224,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  0,
+                           "episodeCount":  7,
+                           "totalEpisodeCount":  7,
+                           "sizeOnDisk":  0,
+                           "releaseGroups":  [
+
+                                             ],
+                           "percentOfEpisodes":  0
+                       }
+    },
+    {
+        "title":  "Star Trek: The Animated Series",
+        "year":  1973,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Star Trek - The Animated Series",
+        "id":  225,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  22,
+                           "episodeCount":  22,
+                           "totalEpisodeCount":  24,
+                           "sizeOnDisk":  34319848741,
+                           "releaseGroups":  [
+                                                 "PRESENT"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Star Trek: Enterprise",
+        "year":  2001,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Star Trek - Enterprise",
+        "id":  226,
+        "statistics":  {
+                           "seasonCount":  4,
+                           "episodeFileCount":  98,
+                           "episodeCount":  98,
+                           "totalEpisodeCount":  99,
+                           "sizeOnDisk":  344661002624,
+                           "releaseGroups":  [
+                                                 "rovers",
+                                                 "greenblade"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Star Trek: Picard",
+        "year":  2020,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Star Trek - Picard",
+        "id":  227,
+        "statistics":  {
+                           "seasonCount":  3,
+                           "episodeFileCount":  30,
+                           "episodeCount":  30,
+                           "totalEpisodeCount":  31,
+                           "sizeOnDisk":  146359774640,
+                           "releaseGroups":  [
+                                                 "BTN",
+                                                 "BORDURE"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Star Trek: Prodigy",
+        "year":  2021,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Star Trek - Prodigy",
+        "id":  228,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  40,
+                           "episodeCount":  40,
+                           "totalEpisodeCount":  40,
+                           "sizeOnDisk":  130839348785,
+                           "releaseGroups":  [
+                                                 "BTN"
+                                             ],
+                           "percentOfEpisodes":  100
+                       }
+    },
+    {
+        "title":  "Star Trek: Short Treks",
+        "year":  2018,
+        "monitored":  true,
+        "path":  "/tv/tv2/TV Shows/Star Trek - Short Treks",
+        "id":  229,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  0,
+                           "episodeCount":  10,
+                           "totalEpisodeCount":  25,
+                           "sizeOnDisk":  0,
+                           "releaseGroups":  [
+
+                                             ],
+                           "percentOfEpisodes":  0
+                       }
+    },
+    {
+        "title":  "Teenage Mutant Ninja Turtles (2003)",
+        "year":  2003,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Teenage Mutant Ninja Turtles (2003)",
+        "id":  230,
+        "statistics":  {
+                           "seasonCount":  7,
+                           "episodeFileCount":  0,
+                           "episodeCount":  155,
+                           "totalEpisodeCount":  185,
+                           "sizeOnDisk":  0,
+                           "releaseGroups":  [
+
+                                             ],
+                           "percentOfEpisodes":  0
+                       }
+    },
+    {
+        "title":  "Tales of the Teenage Mutant Ninja Turtles",
+        "year":  2024,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Tales of the Teenage Mutant Ninja Turtles",
+        "id":  231,
+        "statistics":  {
+                           "seasonCount":  2,
+                           "episodeFileCount":  0,
+                           "episodeCount":  24,
+                           "totalEpisodeCount":  24,
+                           "sizeOnDisk":  0,
+                           "releaseGroups":  [
+
+                                             ],
+                           "percentOfEpisodes":  0
+                       }
+    },
+    {
+        "title":  "Spider-Noir - Color",
+        "year":  2026,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Spider-Noir - Color",
+        "id":  232,
+        "statistics":  {
+                           "seasonCount":  1,
+                           "episodeFileCount":  0,
+                           "episodeCount":  8,
+                           "totalEpisodeCount":  8,
+                           "sizeOnDisk":  0,
+                           "releaseGroups":  [
+
+                                             ],
+                           "percentOfEpisodes":  0
+                       }
+    },
+    {
+        "title":  "Beavis and Butt-Head",
+        "year":  1993,
+        "monitored":  true,
+        "path":  "/tv/tv1/TV Shows/Beavis and Butt-Head",
+        "id":  233,
+        "statistics":  {
+                           "seasonCount":  8,
+                           "episodeFileCount":  54,
+                           "episodeCount":  216,
+                           "totalEpisodeCount":  226,
+                           "sizeOnDisk":  5577520274,
+                           "releaseGroups":  [
+                                                 "OLDMTV"
+                                             ],
+                           "percentOfEpisodes":  25.00
+                       }
+    }
+]
