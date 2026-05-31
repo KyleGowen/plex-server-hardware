@@ -19,6 +19,8 @@ Modes:
 
 Read only the selected mode file under `references/modes/` when possible. Read `references/workflow.md` only for a full end-to-end task or when a mode file is insufficient.
 
+The mode files include fast-path notes from prior local runs. Follow those before improvising manual API loops, especially for Radarr add/search verification and TPDb poster URL extraction.
+
 ## Non-Negotiables
 
 - Treat Plex tokens, Arr API keys, cookies, and TPDb/login details as secrets. Never print, write, commit, or document them.
@@ -87,6 +89,7 @@ When adding missing media:
 - Add monitored by default.
 - Choose the existing root folder and quality profile that best matches local conventions; inspect existing items first.
 - Trigger Radarr `MoviesSearch` for newly added missing movies and Sonarr `SeriesSearch` for newly added missing series by default after verifying qBittorrent storage is healthy.
+- If the local add-media helper is used and PowerShell blocks script execution, rerun the same helper through `powershell -NoProfile -ExecutionPolicy Bypass -File ...`; this is process-scoped and avoids manual API fallback.
 - Report what was added and what could not be confidently matched.
 
 ## TPDb Poster Strategy
@@ -107,6 +110,8 @@ If no single set covers everything:
 - Report gaps or substitutions.
 
 Apply posters via Plex URL upload endpoints and verify `metadata_items.user_thumb_url` is populated for the collection and each item.
+
+When a TPDb set/uploader has already been chosen, extract the set link and optimized image URLs from one TPDb poster page HTML and map them by nearby title/year text instead of running multiple searches.
 
 ## Final Response
 

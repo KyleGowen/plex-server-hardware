@@ -1,6 +1,6 @@
 # Plex Collection Build Tracker
 
-Last updated: 2026-05-30
+Last updated: 2026-05-31
 
 Overall status: Complete for built collections; see the 2026-05-30 missing-media inventory for current collection gaps, pending imports, and proposed fill actions.
 
@@ -30,6 +30,8 @@ Read-only audit report: `docs/plex_collection_missing_media_inventory_20260530.m
 | 8 | DC Animated Movies | Complete | 22 local DC animated films assigned; poster overrides verified. |
 | 9 | Shark Attack / Creature Features | Complete | 27 local creature-feature movies assigned; no coherent TPDb set applied. |
 | 10 | Batman Collection | Complete | 29 local Batman/Joker movies and specials assigned. |
+| 17 | Highlander Collection | Complete | 5 live-action movies assigned; Aloha_Alona posters verified; animated spin-off added to Radarr, no queue grab. |
+| 18 | Jackass Collection | Complete; pending imports | 6 local movies/specials assigned; missing movies and original TV series added/searched; Bad Grandpa excluded. |
 
 ## 1. John Wick Universe
 
@@ -238,3 +240,27 @@ Status: Complete; missing local entries noted
 - Poster set/source: TPDb Ghostbusters Collection by Jezzfreeman, https://theposterdb.com/set/261112, applied to the collection plus all 3 matching local movies.
 - Radarr/Sonarr actions: None.
 - Verification notes: Collection children verified through Plex API. Poster overrides verified in Plex DB for the collection plus all 3 movies. No Plex library refreshes, drive-letter changes, path repairs, download-client actions, Sonarr/Radarr actions, or downloads were performed.
+
+## 17. Highlander Collection
+
+Status: Complete
+
+- Scope: Plex Movies section only; five live-action Highlander films present in Plex.
+- Plex collection rating key: 23117
+- Item count: 5 movies
+- Missing items: Highlander: The Search for Vengeance (2007) is not present in Plex; added to Radarr as monitored for acquisition.
+- Poster set/source: TPDb Highlander Collection by Aloha_Alona, https://theposterdb.com/set/94799, applied to the collection plus all 5 matching Plex movies.
+- Radarr/Sonarr actions: Added Highlander: The Search for Vengeance (2007) to Radarr as monitored, Radarr movie id 1118, and triggered MoviesSearch command 12195. Search completed with no current queue match.
+- Verification notes: Collection children verified through Plex API. Poster overrides verified in Plex DB for the collection plus all 5 current Plex movies. Before the Radarr search, `I:\torrentfiles` existed on Windows and Radarr `/downloads` resolved to the `I:` volume. No Plex library refreshes, drive-letter changes, path repairs, qBittorrent manual actions, or downloads were performed.
+
+## 18. Jackass Collection
+
+Status: Complete; pending imports
+
+- Scope: Plex Movies section and Sonarr TV acquisition; Jackass-branded movies/specials plus original Jackass TV series. Jackass Presents: Bad Grandpa and Bad Grandpa .5 were intentionally excluded.
+- Plex collection rating key: 23118
+- Item count: 6 current Plex movies/specials: Jackass 2.5, Jackass 4.5, Jackass Forever, Jackass Number Two, Jackass Shark Week, and Jackass Shark Week 2.0.
+- Missing items: Jackass: The Movie, Jackass 3D, Jackass 3.5, Mat Hoffman's Tribute to Evel Knievel, Jackass: 24 Hour Takeover, and Jackass TV are not present in Plex yet; all were added to Arr as monitored.
+- Poster set/source: None applied.
+- Radarr/Sonarr actions: Added/searched Radarr movie ids 1119, 1120, 1121, 1122, and 1123; added/searched Sonarr series id 243. All search commands completed with no current queue match.
+- Verification notes: Collection children verified through Plex API. Before searches, `I:\torrentfiles` existed on Windows and both Radarr and Sonarr `/downloads` resolved to the `I:` volume with remote path mapping from `I:\torrentfiles\` to `/downloads/`. No Plex library refreshes, drive-letter changes, path repairs, qBittorrent manual actions, or poster changes were performed.
