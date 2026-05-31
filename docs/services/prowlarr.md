@@ -42,6 +42,9 @@ Prowlarr is the active indexer manager for the Docker media stack. It stores tra
 
 ## Current Notes
 
+- Current active indexers: MoreThanTV and SpeedCD.
+- Current app sync targets: Sonarr and Radarr.
 - MoreThanTV was configured and synced to Sonarr/Radarr on 2026-05-24.
-- Prowlarr indexer testing passed during the setup notes.
 - On 2026-05-26, Prowlarr `config.xml` was repaired after NUL-byte corruption. Sonarr/Radarr application links and their Prowlarr-backed Torznab indexers were updated to match the new local API keys.
+- On 2026-05-31, SpeedCD caused a Sonarr search outage because searches succeeded but proxied torrent downloads returned an HTML account restriction page instead of valid `.torrent` content. After the SpeedCD account restriction was lifted, Prowlarr proxied download validation returned valid torrent data and SpeedCD was re-enabled for Sonarr/Radarr.
+- Detailed outage notes are in `docs/indexer_outage_2026-05-31.md`.

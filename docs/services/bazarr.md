@@ -51,7 +51,7 @@ Enabled providers recorded during setup:
 - Do not run bulk subtitle searches until provider credentials, rate limits, path mappings, and write behavior are confirmed.
 - Test one manual subtitle search/download for a single known item first.
 - Confirm the subtitle file is written next to the correct media file.
-- Do not write subtitles under `/tv/tv2` while `H:` / TV 2 is absent. On 2026-05-30 `H:` is present again for the current test, but verify it after any crash/reboot before trusting writes.
+- Do not write subtitles to any TV root until the matching Windows drive letter and Docker mount are verified after boot, crash, Docker restart, WSL restart, or storage work.
 - TV roots are mounted as `/tv/tv1` from `J:\`, `/tv/tv2` from `H:\`, and `/tv/tv3` from `G:\`.
 - Do not refresh Plex for subtitle visibility without explicit confirmation.
 - Keep Bazarr, Sonarr, Radarr, and provider credentials out of repo docs and logs.
@@ -60,5 +60,5 @@ Enabled providers recorded during setup:
 
 - Add OpenSubtitles.com credentials if that provider should be primary.
 - Complete one controlled subtitle download/write test.
-- Verify all TV root mounts before any `/tv/tv2` or `/tv/tv3` subtitle write test.
+- Verify all TV root mounts before any `/tv/tv1`, `/tv/tv2`, or `/tv/tv3` subtitle write test.
 - Confirm Plex subtitle visibility only after file existence is verified.

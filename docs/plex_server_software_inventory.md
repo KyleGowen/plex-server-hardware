@@ -36,7 +36,7 @@ Per-service details live in `docs/services/`. This file is the summary table and
 | Uptime Kuma | Service health monitoring, uptime history, outage/recovery notifications | Docker | Running via compose; monitors created and reporting healthy | `C:\media-stack\config\uptime-kuma` | `http://localhost:3001` | [services/uptime-kuma.md](services/uptime-kuma.md) |
 | qBittorrent | Torrent download client | Native Windows | Running outside Docker | `%APPDATA%\qBittorrent`; tracked conservative config at `C:\plex-server\config\qbittorrent\native-conservative` | `http://localhost:8080` | [services/qbittorrent.md](services/qbittorrent.md) |
 | Unpackerr | Automated archive extraction | Docker | Running via compose; app integrations need confirmation | `C:\media-stack\config\unpackerr` | No normal Web UI | [services/unpackerr.md](services/unpackerr.md) |
-| Jackett | Legacy Torznab/indexer fallback | Optional Docker profile | Disabled unless profile is used | `C:\media-stack\config\jackett` if enabled | `http://localhost:9117` if enabled | [services/jackett.md](services/jackett.md) |
+| Jackett | Legacy Torznab/indexer fallback | Optional Docker profile | Stopped; config may exist from 2026-05-31 SpeedCD fallback test | `C:\media-stack\config\jackett` if enabled | `http://localhost:9117` if enabled | [services/jackett.md](services/jackett.md) |
 
 ---
 
@@ -97,7 +97,7 @@ Per-service details live in `docs/services/`. This file is the summary table and
 - Plex remains native Windows.
 - qBittorrent is the only confirmed downloader.
 - Prowlarr is the active indexer layer.
-- Jackett is optional legacy fallback only.
+- Jackett is optional legacy fallback only and is currently stopped.
 - Docker download path `/downloads` maps to `I:\torrentfiles` for Sonarr, Radarr, and Unpackerr.
 - qBittorrent is native Windows and should be checked through `127.0.0.1:8080` plus its Windows save paths, not through Docker.
 - Usenet tools, Overseerr/Jellyseerr, VPN tools, and dedicated backup tools are not confirmed current installs.

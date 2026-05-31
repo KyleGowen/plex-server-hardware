@@ -945,3 +945,14 @@ These are hypotheses, not conclusions:
 # Current Rule
 
 The crash pattern recurred after the broken-pin HDD was removed. Preserve data first, keep the broken-pin drive out of service, verify drive mounts after every crash, and treat the current leading problem as platform-level hardware/firmware/power instability triggered most reliably by qBittorrent live peer/network activity until isolation testing proves otherwise.
+
+---
+
+## 2026-05-31 Indexer Outage Follow-Up
+
+- Sonarr searches briefly appeared empty even though Sonarr, Radarr, and Prowlarr were reachable.
+- Root cause was SpeedCD account download restriction: searches returned results, but proxied torrent downloads returned an HTML restriction page instead of `.torrent` bytes.
+- Short mitigation disabled SpeedCD in Prowlarr/Sonarr to stop indexer backoff.
+- Jackett `legacy-jackett` was tested as a SpeedCD fallback and showed the same account-level download restriction, so Jackett was stopped.
+- After the SpeedCD restriction was lifted, Prowlarr proxied download validation returned valid torrent data. SpeedCD and MoreThanTV are both enabled through Prowlarr for Sonarr/Radarr.
+- Detailed notes live in `docs/indexer_outage_2026-05-31.md`.

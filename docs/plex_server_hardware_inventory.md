@@ -105,7 +105,7 @@ Current physical disks detected on 2026-05-26:
 | ST8000DM004-2CX188 | ZCT18865 | 8 TB | SATA | HDD | Healthy / OK |
 | ST8000DM004-2CX188 | ZCT1AK4D | 8 TB | SATA | HDD | Healthy / OK |
 
-The former `H:` / `TV 2` volume is absent in the 2026-05-26 snapshot. Do not repair paths, start imports, or write to `/tv/tv2` until the missing TV 2 drive and intended replacement plan are confirmed.
+The former `H:` / `TV 2` volume was absent in the 2026-05-26 snapshot. That state was superseded by the 2026-05-30 TV volume snapshot below, where `G:`, `H:`, and `J:` were present. Keep the 2026-05-26 absence as historical context for why TV mounts must be verified after storage changes.
 
 ## Current TV Volume Snapshot From 2026-05-30
 

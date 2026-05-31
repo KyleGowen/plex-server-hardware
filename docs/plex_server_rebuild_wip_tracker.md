@@ -18,7 +18,7 @@ The original hardware rebuild is no longer the active phase. The server has been
 | Plex deployment | Native Windows install |
 | Docker media stack | Running Sonarr, Radarr, Prowlarr, Bazarr, Tautulli, Uptime Kuma, and Unpackerr |
 | qBittorrent deployment | Native Windows install |
-| Optional legacy service | Jackett available through the `legacy-jackett` compose profile, not active by default |
+| Optional legacy service | Jackett available through the `legacy-jackett` compose profile; stopped unless a legacy indexer fallback is explicitly needed |
 | Storage architecture | Windows-native drive letters mounted into containers |
 | Torrent root | `I:\torrentfiles` mounted as `/downloads` |
 | qBittorrent path status | Native qBittorrent uses `I:\torrentfiles`; Arr/Unpackerr containers map that root as `/downloads` |
@@ -44,7 +44,7 @@ Track evidence and diagnostic steps in [current_stability_crash_tracker.md](curr
 - [ ] CPU, GPU, and drive temperatures during idle and load.
 - [ ] SMART health for the OS SSD and media/data HDDs.
 - [ ] Continued no-crash soak with the removed broken-pin drive absent.
-- [ ] Decision on the missing `H:` / TV 2 path before allowing imports to `/tv/tv2`.
+- [x] Confirm current TV root drive letters after reconnecting TV drives.
 
 ---
 
@@ -60,7 +60,7 @@ Track evidence and diagnostic steps in [current_stability_crash_tracker.md](curr
 | PSU | Corsair RM750e, reused |
 | GPU | GIGABYTE GeForce RTX 3050 WINDFORCE OC 6G, GV-N3050WF2OC-6GD, reused |
 | OS storage | Samsung SSD 840 EVO 250GB on `C:` |
-| Media/data storage | Current detected HDD volumes on `D:`, `E:`, `F:`, `G:`, `I:`, and `J:`; former `H:` / TV 2 absent after drive swap |
+| Media/data storage | Current detected HDD volumes on `D:`, `E:`, `F:`, `G:`, `H:`, `I:`, and `J:`; TV roots are `G:`, `H:`, and `J:` |
 
 Detailed hardware and drive inventory lives in [plex_server_hardware_inventory.md](plex_server_hardware_inventory.md).
 
@@ -78,7 +78,7 @@ Detailed hardware and drive inventory lives in [plex_server_hardware_inventory.m
 | Tautulli | Docker | Running; first-run Plex setup and token-handling notes documented in [services/tautulli.md](services/tautulli.md); setup still needs completion/confirmation |
 | qBittorrent | Native Windows | Running outside Docker; verify `I:\torrentfiles` before trusting torrents |
 | Unpackerr | Docker | Running; Starr app integrations still need confirmation/configuration |
-| Jackett | Optional Docker profile | Disabled by default; use only for legacy indexer needs |
+| Jackett | Optional Docker profile | Stopped; use only for legacy indexer needs |
 
 Per-service docs live in [services](services).
 
@@ -105,7 +105,7 @@ Per-service docs live in [services](services).
 - [x] Confirm qBittorrent download root is `I:\torrentfiles`.
 - [x] Confirm qBittorrent download root is native `I:\torrentfiles`.
 - [x] Document historical qBittorrent stale Docker bind-mount recovery.
-- [ ] Do not allow Sonarr/Bazarr writes to `/tv/tv2` while `H:` is absent.
+- [ ] Verify `G:`, `H:`, `J:`, and container TV mounts before allowing Sonarr/Bazarr writes after any boot, crash, Docker restart, WSL restart, or storage work.
 - [ ] Add or run a qBittorrent startup guard that verifies `I:\torrentfiles` before torrents resume.
 - [ ] Document physical bay-to-drive mapping.
 - [ ] Document SATA port map.

@@ -40,4 +40,7 @@ Jackett is a legacy Torznab/indexer aggregation fallback. Prowlarr is the curren
 ## Current Gaps
 
 - Jackett is not part of the active default stack.
-- If enabled later, confirm indexers, app connections, and whether it duplicates Prowlarr behavior.
+- The `legacy-jackett` profile was started on 2026-05-31 to test SpeedCD as a fallback while Prowlarr SpeedCD grabs were failing.
+- SpeedCD was configured in Jackett and Jackett search/test passed, but downloads were blocked by the same SpeedCD account restriction.
+- After SpeedCD account download access was restored, SpeedCD worked directly through Prowlarr again. Jackett was stopped and remains unnecessary for active Sonarr/Radarr routing.
+- Jackett config may exist locally because of the fallback test. Treat it as secret-bearing local state and do not commit Jackett config files.

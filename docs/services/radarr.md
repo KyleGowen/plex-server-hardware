@@ -75,3 +75,12 @@ On 2026-05-24, these movies were added or updated in Radarr as monitored `Ultra-
 
 - Confirm completed download handling with one controlled test.
 - Keep Radarr API key and qBittorrent credentials out of repo docs and logs.
+
+## Current Indexer State
+
+| Indexer | Source | RSS | Automatic search | Interactive search |
+|---|---|---|---|---|
+| MoreThanTV | Prowlarr | Enabled | Enabled | Enabled |
+| SpeedCD | Prowlarr | Enabled | Enabled | Enabled |
+
+Prowlarr remains the active indexer layer for Radarr. Jackett is not part of the active Radarr routing.

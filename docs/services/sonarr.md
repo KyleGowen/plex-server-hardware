@@ -65,3 +65,12 @@ As of `2026-05-30`, Sonarr runs in Docker while qBittorrent runs natively on Win
 - Verify all TV root mounts before allowing any `/tv/tv2` or `/tv/tv3` imports.
 - Confirm existing unmapped folders/import decisions before any bulk import.
 - Keep Sonarr API key and qBittorrent credentials out of repo docs and logs.
+
+## Current Indexer State
+
+| Indexer | Source | RSS | Automatic search | Interactive search |
+|---|---|---|---|---|
+| MoreThanTV | Prowlarr | Enabled | Enabled | Enabled |
+| SpeedCD | Prowlarr | Enabled | Enabled | Enabled |
+
+On 2026-05-31, SpeedCD briefly caused Sonarr searches to appear empty because SpeedCD search worked but torrent grabs returned an HTML account restriction page. Sonarr suppressed SpeedCD after repeated failures. After the SpeedCD account restriction was lifted, Prowlarr torrent-download validation passed, SpeedCD was re-enabled, and a Bob's Burgers S16E10 interactive search returned SpeedCD results. See `docs/indexer_outage_2026-05-31.md`.
