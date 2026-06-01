@@ -264,3 +264,27 @@ Status: Complete; pending imports
 - Poster set/source: None applied.
 - Radarr/Sonarr actions: Added/searched Radarr movie ids 1119, 1120, 1121, 1122, and 1123; added/searched Sonarr series id 243. All search commands completed with no current queue match.
 - Verification notes: Collection children verified through Plex API. Before searches, `I:\torrentfiles` existed on Windows and both Radarr and Sonarr `/downloads` resolved to the `I:` volume with remote path mapping from `I:\torrentfiles\` to `/downloads/`. No Plex library refreshes, drive-letter changes, path repairs, qBittorrent manual actions, or poster changes were performed.
+
+## 19. Middle-earth Collection
+
+Status: Complete; pending imports
+
+- Scope: Plex Movies section for local Middle-earth films/fan edit; Arr acquisition for confident official movie and TV gaps.
+- Plex collection rating key: 23139
+- Item count: 7 current Plex movies: the six Peter Jackson Hobbit/LOTR films plus `Middle-earth: There and Back Again` fan edit.
+- Missing items: `The Hobbit` (1977), `The Lord of the Rings` (1978), `The Return of the King` (1980), `The Lord of the Rings: The War of the Rohirrim` (2024), and `The Lord of the Rings: The Rings of Power` are not present in Plex yet. `The Lord of the Rings: The Return of the King` (2003) is present in Plex only as the older local extended file and was added to Radarr for the UHD extended release.
+- Poster set/source: TPDb Middle-Earth Collection by deArt, https://theposterdb.com/poster/370619, with deArt extended LOTR set https://theposterdb.com/set/71463 and Hobbit set https://theposterdb.com/set/71575, applied to the collection plus the six matching Jackson films. The existing fan edit already had a poster override and was not changed.
+- Radarr/Sonarr actions: Added/searched Radarr movie ids 1129, 1130, 1131, 1132, and 1133; added/searched Sonarr series id 245. Radarr queued all five movie searches. Sonarr queued Rings of Power season packs, reported as per-episode queue rows.
+- Verification notes: Collection children verified through Plex API. Poster overrides verified in Plex DB for the collection, the six matched Jackson films, and the existing fan edit. Before searches, `I:\torrentfiles` existed on Windows and `/downloads` resolved to the `I:` volume. No Plex library refreshes, drive-letter changes, path repairs, qBittorrent manual actions, or torrent removals were performed.
+
+## 20. Mad Max Collection
+
+Status: Complete
+
+- Scope: Plex Movies section only; five released Mad Max feature films present in Plex.
+- Plex collection rating key: 23433
+- Item count: 5 movies: `Mad Max`, `The Road Warrior`, `Mad Max: Beyond Thunderdome`, `Mad Max: Fury Road`, and `Furiosa: A Mad Max Saga`.
+- Missing items: None for released feature-film scope.
+- Poster set/source: None applied.
+- Radarr/Sonarr actions: None. Radarr was checked and already had `Mad Max: Fury Road` and `Furiosa: A Mad Max Saga`; the original trilogy was not added because Plex already had all five items and the requested gap was collection membership.
+- Verification notes: Collection children verified through Plex API. Before deciding not to run searches, `I:\torrentfiles` existed on Windows and Sonarr/Radarr/Unpackerr `/downloads` resolved to the `I:` volume. No Plex library refreshes, drive-letter changes, path repairs, download-client actions, qBittorrent manual actions, poster changes, or downloads were performed.
