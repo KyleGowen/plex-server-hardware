@@ -74,7 +74,7 @@ Detailed hardware and drive inventory lives in [plex_server_hardware_inventory.m
 | Sonarr | Docker | Running; TV root folders and qBittorrent client configured |
 | Radarr | Docker | Running; movie root folders and qBittorrent client configured |
 | Prowlarr | Docker | Running; active indexer manager for Sonarr/Radarr |
-| Bazarr | Docker | Running; connected to Sonarr/Radarr; one controlled subtitle test still recommended |
+| Bazarr | Docker | Running; connected to Sonarr/Radarr; controlled SubDL subtitle writes verified; OpenSubtitles/Podnapisi still need provider troubleshooting |
 | Tautulli | Docker | Running; first-run Plex setup and token-handling notes documented in [services/tautulli.md](services/tautulli.md); setup still needs completion/confirmation |
 | qBittorrent | Native Windows | Running outside Docker; verify `I:\torrentfiles` before trusting torrents |
 | Unpackerr | Docker | Running; Starr app integrations still need confirmation/configuration |
@@ -119,7 +119,7 @@ Per-service docs live in [services](services).
 - [ ] Confirm qBittorrent Web UI credentials are not default.
 - [ ] Confirm qBittorrent category behavior with one controlled Sonarr/Radarr grab.
 - [ ] Confirm completed download handling for Sonarr and Radarr.
-- [ ] Confirm Bazarr can write one downloaded subtitle beside the correct media file.
+- [x] Confirm Bazarr can write one downloaded subtitle beside the correct media file.
 - [ ] Configure or confirm Unpackerr Sonarr/Radarr integrations.
 - [ ] Keep Jackett disabled unless a specific legacy indexer requires it.
 
