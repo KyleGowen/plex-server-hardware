@@ -16,7 +16,7 @@ The original hardware rebuild is no longer the active phase. The server has been
 | Current top priority | Continue stability soak after broken-pin HDD removal |
 | Operating system | Windows 10 Home build 19045, native install |
 | Plex deployment | Native Windows install |
-| Docker media stack | Running Sonarr, Radarr, Prowlarr, Bazarr, Tautulli, Uptime Kuma, and Unpackerr |
+| Docker media stack | Running Sonarr, Radarr, Prowlarr, Bazarr, Tautulli, Uptime Kuma, Homarr, and Unpackerr |
 | qBittorrent deployment | Native Windows install |
 | Optional legacy service | Jackett available through the `legacy-jackett` compose profile; stopped unless a legacy indexer fallback is explicitly needed |
 | Storage architecture | Windows-native drive letters mounted into containers |
@@ -76,6 +76,7 @@ Detailed hardware and drive inventory lives in [plex_server_hardware_inventory.m
 | Prowlarr | Docker | Running; active indexer manager for Sonarr/Radarr |
 | Bazarr | Docker | Running; connected to Sonarr/Radarr; controlled SubDL subtitle writes verified; OpenSubtitles/Podnapisi still need provider troubleshooting |
 | Tautulli | Docker | Running; first-run Plex setup and token-handling notes documented in [services/tautulli.md](services/tautulli.md); setup still needs completion/confirmation |
+| Homarr | Docker | Running; local dashboard for Plex ecosystem links and optional widgets; no Docker socket mounted |
 | qBittorrent | Native Windows | Running outside Docker; verify `I:\torrentfiles` before trusting torrents |
 | Unpackerr | Docker | Running; Starr app integrations still need confirmation/configuration |
 | Jackett | Optional Docker profile | Stopped; use only for legacy indexer needs |
@@ -121,6 +122,7 @@ Per-service docs live in [services](services).
 - [ ] Confirm completed download handling for Sonarr and Radarr.
 - [x] Confirm Bazarr can write one downloaded subtitle beside the correct media file.
 - [ ] Configure or confirm Unpackerr Sonarr/Radarr integrations.
+- [ ] Complete Homarr first-run admin setup and create the media-stack dashboard items listed in [services/homarr.md](services/homarr.md).
 - [ ] Keep Jackett disabled unless a specific legacy indexer requires it.
 
 ## Backups

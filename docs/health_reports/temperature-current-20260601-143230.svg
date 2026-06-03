@@ -1,0 +1,84 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="544" viewBox="0 0 1040 544" role="img" aria-label="Current Plex server temperatures">
+  <style>
+    text { font-family: Segoe UI, Arial, sans-serif; fill: #172033; }
+    .title { font-size: 25px; font-weight: 700; }
+    .sub { font-size: 14px; fill: #5d6b7a; }
+    .axis { font-size: 12px; fill: #667789; }
+    .label { font-size: 14px; font-weight: 650; }
+    .value { font-size: 14px; font-weight: 700; fill: #172033; }
+    .detail { font-size: 11px; fill: #667789; }
+  </style>
+  <rect width="100%" height="100%" fill="#ffffff" />
+  <text x="36" y="35" class="title">Current temperatures</text>
+  <text x="36" y="58" class="sub">Fresh sensor sample from Jun 1, 2026 2:31:50 PM. HDD bars exclude SSD/NVMe sensors.</text>
+  <line x1="150.0" y1="68" x2="150.0" y2="506" stroke="#e7edf3" stroke-width="1" />
+<text x="150.0" y="58" text-anchor="middle" class="axis">0</text>
+<line x1="245.0" y1="68" x2="245.0" y2="506" stroke="#e7edf3" stroke-width="1" />
+<text x="245.0" y="58" text-anchor="middle" class="axis">10</text>
+<line x1="340.0" y1="68" x2="340.0" y2="506" stroke="#e7edf3" stroke-width="1" />
+<text x="340.0" y="58" text-anchor="middle" class="axis">20</text>
+<line x1="435.0" y1="68" x2="435.0" y2="506" stroke="#e7edf3" stroke-width="1" />
+<text x="435.0" y="58" text-anchor="middle" class="axis">30</text>
+<line x1="530.0" y1="68" x2="530.0" y2="506" stroke="#e7edf3" stroke-width="1" />
+<text x="530.0" y="58" text-anchor="middle" class="axis">40</text>
+<line x1="625.0" y1="68" x2="625.0" y2="506" stroke="#e7edf3" stroke-width="1" />
+<text x="625.0" y="58" text-anchor="middle" class="axis">50</text>
+<line x1="720.0" y1="68" x2="720.0" y2="506" stroke="#e7edf3" stroke-width="1" />
+<text x="720.0" y="58" text-anchor="middle" class="axis">60</text>
+<line x1="815.0" y1="68" x2="815.0" y2="506" stroke="#e7edf3" stroke-width="1" />
+<text x="815.0" y="58" text-anchor="middle" class="axis">70</text>
+<line x1="910.0" y1="68" x2="910.0" y2="506" stroke="#e7edf3" stroke-width="1" />
+<text x="910.0" y="58" text-anchor="middle" class="axis">80</text>
+
+  <text x="136" y="105" text-anchor="end" class="label">CPU avg</text>
+<rect x="150" y="87" width="760" height="22" rx="5" fill="#edf2f7" />
+<rect x="150" y="87" width="474" height="22" rx="5" fill="#2563eb" />
+<text x="634" y="105" class="value">49.9 C</text>
+<text x="150" y="122" class="detail">max 64.5 C</text>
+<text x="136" y="147" text-anchor="end" class="label">GPU core</text>
+<rect x="150" y="129" width="760" height="22" rx="5" fill="#edf2f7" />
+<rect x="150" y="129" width="551" height="22" rx="5" fill="#dc2626" />
+<text x="711" y="147" class="value">58.0 C</text>
+<text x="150" y="164" class="detail">RTX 3050</text>
+<text x="136" y="189" text-anchor="end" class="label">GPU hot spot</text>
+<rect x="150" y="171" width="760" height="22" rx="5" fill="#edf2f7" />
+<rect x="150" y="171" width="653.6" height="22" rx="5" fill="#f97316" />
+<text x="813.6" y="189" class="value">68.8 C</text>
+<text x="150" y="206" class="detail">RTX 3050</text>
+<text x="136" y="231" text-anchor="end" class="label">HDD ZVTBPM4J</text>
+<rect x="150" y="213" width="760" height="22" rx="5" fill="#edf2f7" />
+<rect x="150" y="213" width="446.5" height="22" rx="5" fill="#059669" />
+<text x="606.5" y="231" class="value">47.0 C</text>
+<text x="150" y="248" class="detail">ST16000NE000-3UN101</text>
+<text x="136" y="273" text-anchor="end" class="label">HDD ZYD022FT</text>
+<rect x="150" y="255" width="760" height="22" rx="5" fill="#edf2f7" />
+<rect x="150" y="255" width="332.5" height="22" rx="5" fill="#059669" />
+<text x="492.5" y="273" class="value">35.0 C</text>
+<text x="150" y="290" class="detail">ST20000NM000H-3KV103</text>
+<text x="136" y="315" text-anchor="end" class="label">HDD ZYD02EQ2</text>
+<rect x="150" y="297" width="760" height="22" rx="5" fill="#edf2f7" />
+<rect x="150" y="297" width="503.5" height="22" rx="5" fill="#059669" />
+<text x="663.5" y="315" class="value">53.0 C</text>
+<text x="150" y="332" class="detail">ST20000NM000H-3KV103</text>
+<text x="136" y="357" text-anchor="end" class="label">HDD ZYD046SE</text>
+<rect x="150" y="339" width="760" height="22" rx="5" fill="#edf2f7" />
+<rect x="150" y="339" width="475" height="22" rx="5" fill="#059669" />
+<text x="635" y="357" class="value">50.0 C</text>
+<text x="150" y="374" class="detail">ST20000NM000H-3KV103</text>
+<text x="136" y="399" text-anchor="end" class="label">HDD ZYE00444</text>
+<rect x="150" y="381" width="760" height="22" rx="5" fill="#edf2f7" />
+<rect x="150" y="381" width="494" height="22" rx="5" fill="#059669" />
+<text x="654" y="399" class="value">52.0 C</text>
+<text x="150" y="416" class="detail">ST20000NM000H-3KV103</text>
+<text x="136" y="441" text-anchor="end" class="label">HDD ZCT0QF7Y</text>
+<rect x="150" y="423" width="760" height="22" rx="5" fill="#edf2f7" />
+<rect x="150" y="423" width="370.5" height="22" rx="5" fill="#059669" />
+<text x="530.5" y="441" class="value">39.0 C</text>
+<text x="150" y="458" class="detail">ST8000DM004-2CX188</text>
+<text x="136" y="483" text-anchor="end" class="label">HDD ZCT1AK4D</text>
+<rect x="150" y="465" width="760" height="22" rx="5" fill="#edf2f7" />
+<rect x="150" y="465" width="399" height="22" rx="5" fill="#059669" />
+<text x="559" y="483" class="value">42.0 C</text>
+<text x="150" y="500" class="detail">ST8000DM004-2CX188</text>
+
+</svg>

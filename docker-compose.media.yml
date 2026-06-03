@@ -89,6 +89,18 @@ services:
       - "${WEBUI_HOST_IP}:${UPTIME_KUMA_PORT}:3001"
     restart: unless-stopped
 
+  homarr:
+    image: ghcr.io/homarr-labs/homarr:latest
+    container_name: homarr
+    environment:
+      - TZ=${TZ}
+      - SECRET_ENCRYPTION_KEY=${HOMARR_SECRET_ENCRYPTION_KEY:?Set HOMARR_SECRET_ENCRYPTION_KEY in .env}
+    volumes:
+      - ${MEDIA_STACK_CONFIG}/homarr:/appdata
+    ports:
+      - "${WEBUI_HOST_IP}:${HOMARR_PORT}:7575"
+    restart: unless-stopped
+
   unpackerr:
     image: golift/unpackerr:latest
     container_name: unpackerr

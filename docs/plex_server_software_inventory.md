@@ -14,7 +14,7 @@ Per-service details live in `docs/services/`. This file is the summary table and
 |---|---|
 | Plex Media Server | Native Windows install |
 | Supporting media stack | Docker containers |
-| Active Docker services | Sonarr, Radarr, Prowlarr, Bazarr, Tautulli, Uptime Kuma, Unpackerr |
+| Active Docker services | Sonarr, Radarr, Prowlarr, Bazarr, Tautulli, Uptime Kuma, Homarr, Unpackerr |
 | Native Windows download client | qBittorrent |
 | Optional legacy service | Jackett via `legacy-jackett` compose profile |
 | Config root | `C:\media-stack\config` |
@@ -34,6 +34,7 @@ Per-service details live in `docs/services/`. This file is the summary table and
 | Bazarr | Subtitle automation for TV and movies | Docker | Running via compose; connected to Sonarr/Radarr | `C:\media-stack\config\bazarr` | `http://localhost:6767` | [services/bazarr.md](services/bazarr.md) |
 | Tautulli | Plex monitoring, stream history, usage analytics | Docker | Running via compose; first-run Plex setup notes documented, setup still needs confirmation | `C:\media-stack\config\tautulli` | `http://localhost:8181` | [services/tautulli.md](services/tautulli.md) |
 | Uptime Kuma | Service health monitoring, uptime history, outage/recovery notifications | Docker | Running via compose; monitors created and reporting healthy | `C:\media-stack\config\uptime-kuma` | `http://localhost:3001` | [services/uptime-kuma.md](services/uptime-kuma.md) |
+| Homarr | Local dashboard for Plex ecosystem links, widgets, and optional integrations | Docker | Running via compose; conservative no-Docker-socket deployment | `C:\media-stack\config\homarr` | `http://localhost:7575` | [services/homarr.md](services/homarr.md) |
 | qBittorrent | Torrent download client | Native Windows | Running outside Docker | `%APPDATA%\qBittorrent`; tracked conservative config at `C:\plex-server\config\qbittorrent\native-conservative` | `http://localhost:8080` | [services/qbittorrent.md](services/qbittorrent.md) |
 | Unpackerr | Automated archive extraction | Docker | Running via compose; app integrations need confirmation | `C:\media-stack\config\unpackerr` | No normal Web UI | [services/unpackerr.md](services/unpackerr.md) |
 | Jackett | Legacy Torznab/indexer fallback | Optional Docker profile | Stopped; config may exist from 2026-05-31 SpeedCD fallback test | `C:\media-stack\config\jackett` if enabled | `http://localhost:9117` if enabled | [services/jackett.md](services/jackett.md) |
@@ -47,6 +48,7 @@ Per-service details live in `docs/services/`. This file is the summary table and
 | Plex | Windows media folders | Plex clients; local metadata database | Serves libraries and streams media |
 | Tautulli | Plex HTTP API | Tautulli history database; optional notifications | Tracks Plex sessions, history, users, and bandwidth |
 | Uptime Kuma | Plex, Docker service HTTP endpoints | Uptime history database; optional notifications | Tracks whether services are reachable and when they recover |
+| Homarr | Plex ecosystem Web UIs and optional service APIs | Homarr app database only | Provides a single dashboard for local media-stack operation |
 | Sonarr | Prowlarr, TV root folders, qBittorrent queue | qBittorrent, TV media folders | TV acquisition and import |
 | Radarr | Prowlarr, movie root folders, qBittorrent queue | qBittorrent, movie media folders | Movie acquisition and import |
 | Prowlarr | Torrent indexers | Sonarr/Radarr app sync | Central indexer management |

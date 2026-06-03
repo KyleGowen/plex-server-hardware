@@ -342,6 +342,8 @@ foreach ($requiredName in @(
     "BAZARR_PORT",
     "TAUTULLI_PORT",
     "UPTIME_KUMA_PORT",
+    "HOMARR_PORT",
+    "HOMARR_SECRET_ENCRYPTION_KEY",
     "QBITTORRENT_WEBUI_PORT",
     "QBITTORRENT_TORRENT_PORT"
 )) {
@@ -367,6 +369,7 @@ $expectedRunning = @(
     "bazarr",
     "tautulli",
     "uptime-kuma",
+    "homarr",
     "unpackerr"
 )
 
@@ -412,6 +415,7 @@ $servicePorts = @(
     @{ Name = "Bazarr Web UI"; Env = "BAZARR_PORT"; Default = "6767"; Container = "bazarr"; Required = $true },
     @{ Name = "Tautulli Web UI"; Env = "TAUTULLI_PORT"; Default = "8181"; Container = "tautulli"; Required = $true },
     @{ Name = "Uptime Kuma Web UI"; Env = "UPTIME_KUMA_PORT"; Default = "3001"; Container = "uptime-kuma"; Required = $true },
+    @{ Name = "Homarr Web UI"; Env = "HOMARR_PORT"; Default = "7575"; Container = "homarr"; Required = $true },
     @{ Name = "qBittorrent Web UI"; Env = "QBITTORRENT_WEBUI_PORT"; Default = "8080"; Container = "native-qbittorrent"; Required = $true },
     @{ Name = "qBittorrent torrent TCP"; Env = "QBITTORRENT_TORRENT_PORT"; Default = "6881"; Container = "native-qbittorrent"; Required = $true },
     @{ Name = "Jackett Web UI"; Env = "JACKETT_PORT"; Default = "9117"; Container = "jackett"; Required = $false }
@@ -445,7 +449,7 @@ foreach ($entry in $servicePorts) {
 
 $configRoot = Get-EnvValue $envValues "MEDIA_STACK_CONFIG" "C:\media-stack\config"
 Test-PathDetail "Config folders" "Config root" $configRoot $true
-foreach ($service in @("sonarr", "radarr", "prowlarr", "bazarr", "tautulli", "uptime-kuma", "unpackerr")) {
+foreach ($service in @("sonarr", "radarr", "prowlarr", "bazarr", "tautulli", "uptime-kuma", "homarr", "unpackerr")) {
     Test-PathDetail "Config folders" "$service config" (Join-Path $configRoot $service) $true
 }
 Test-PathDetail "Config folders" "jackett config (optional)" (Join-Path $configRoot "jackett") $false
