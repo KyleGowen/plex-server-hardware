@@ -1,0 +1,69 @@
+﻿{
+    "Process":  [
+                    {
+                        "Id":  13908,
+                        "StartTime":  "\/Date(1780596267528)\/",
+                        "WorkingSet64":  103772160,
+                        "Path":  "C:\\Program Files\\qBittorrent\\qbittorrent.exe"
+                    }
+                ],
+    "HttpReachable":  true,
+    "SelectedSettings":  {
+                             "Session\\ShareLimitAction":  "Stop",
+                             "Session\\MaxActiveDownloads":  "2",
+                             "Session\\MaxConnectionsPerTorrent":  "10",
+                             "Session\\MaxConnections":  "50",
+                             "WebUI\\ServerDomains":  "*",
+                             "Session\\DHTEnabled":  "false",
+                             "Session\\MaxActiveTorrents":  "2",
+                             "Session\\TempPath":  "I:/torrentfiles/incomplete/",
+                             "Session\\LSDEnabled":  "false",
+                             "Session\\SSL\\Port":  "57699",
+                             "Downloads\\TempPath":  "I:/torrentfiles/incomplete/",
+                             "Session\\BTProtocol":  "TCP",
+                             "Downloads\\SavePath":  "I:/torrentfiles/",
+                             "Session\\AddTorrentStopped":  "false",
+                             "WebUI\\Port":  "8080",
+                             "Session\\DefaultSavePath":  "I:/torrentfiles/",
+                             "Connection\\UPnP":  "false",
+                             "WebUI\\LocalHostAuth":  "false",
+                             "Connection\\PortRangeMin":  "6881",
+                             "WebUI\\Address":  "0.0.0.0",
+                             "Session\\QueueingSystemEnabled":  "true",
+                             "Session\\Port":  "6881",
+                             "Session\\PeXEnabled":  "false",
+                             "Session\\StartPaused":  "false",
+                             "Session\\MaxUploadsPerTorrent":  "4",
+                             "Session\\MaxUploads":  "20",
+                             "WebUI\\Enabled":  "true",
+                             "Session\\MaxActiveUploads":  "2"
+                         },
+    "LogFiles":  [
+                     {
+                         "Name":  "qbittorrent.log",
+                         "Length":  1811,
+                         "LastWriteTime":  "\/Date(1780596286659)\/"
+                     },
+                     {
+                         "Name":  "qbittorrent.log.bak",
+                         "Length":  66739,
+                         "LastWriteTime":  "\/Date(1780291686087)\/"
+                     },
+                     {
+                         "Name":  "qbittorrent.log.bak1",
+                         "Length":  66705,
+                         "LastWriteTime":  "\/Date(1780339459509)\/"
+                     },
+                     {
+                         "Name":  "qbittorrent.log.bak2",
+                         "Length":  66792,
+                         "LastWriteTime":  "\/Date(1780340895038)\/"
+                     },
+                     {
+                         "Name":  "qbittorrent.log.bak3",
+                         "Length":  66724,
+                         "LastWriteTime":  "\/Date(1780596270164)\/"
+                     }
+                 ],
+    "LogObservation":  "Raw qBittorrent log was not persisted because it may contain torrent names or tracker-adjacent details."
+}

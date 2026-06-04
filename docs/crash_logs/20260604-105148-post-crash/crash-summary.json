@@ -1,0 +1,62 @@
+﻿{
+    "Bundle":  "C:\\plex-server\\docs\\crash_logs\\20260604-105148-post-crash",
+    "CrashPreviousShutdownLocal":  "\/Date(1780595508000)\/",
+    "CaptureStartLocal":  "\/Date(1780593708000)\/",
+    "CaptureEndLocal":  "\/Date(1780598277716)\/",
+    "CurrentBoot":  "\/Date(1780595986500)\/",
+    "KernelPower41Count":  1,
+    "EventLog6008Count":  1,
+    "WheaEvent1Count":  1,
+    "LatestWheaDecoded":  {
+                              "EventTime":  "2026-06-04T11:00:04.4927329-07:00",
+                              "RecordBytes":  3552,
+                              "Signature":  "CPER",
+                              "Revision":  528,
+                              "SectionCount":  3,
+                              "ErrorSeverity":  1,
+                              "RecordLengthFromHeader":  3552,
+                              "Sections":  [
+                                               {
+                                                   "Index":  0,
+                                                   "SectionOffset":  344,
+                                                   "SectionLength":  2592,
+                                                   "Revision":  768,
+                                                   "ValidationBits":  0,
+                                                   "Flags":  0,
+                                                   "SectionTypeGuid":  "81212a96-09ed-4996-9471-8d729c8e69ed",
+                                                   "FruIdGuid":  "00000000-0000-0000-0000-000000000000",
+                                                   "Severity":  1,
+                                                   "FirstPayloadByte":  2
+                                               },
+                                               {
+                                                   "Index":  1,
+                                                   "SectionOffset":  2936,
+                                                   "SectionLength":  544,
+                                                   "Revision":  768,
+                                                   "ValidationBits":  0,
+                                                   "Flags":  0,
+                                                   "SectionTypeGuid":  "81212a96-09ed-4996-9471-8d729c8e69ed",
+                                                   "FruIdGuid":  "00000000-0000-0000-0000-000000000000",
+                                                   "Severity":  1,
+                                                   "FirstPayloadByte":  2
+                                               },
+                                               {
+                                                   "Index":  2,
+                                                   "SectionOffset":  3480,
+                                                   "SectionLength":  72,
+                                                   "Revision":  768,
+                                                   "ValidationBits":  0,
+                                                   "Flags":  0,
+                                                   "SectionTypeGuid":  "81212a96-09ed-4996-9471-8d729c8e69ed",
+                                                   "FruIdGuid":  "00000000-0000-0000-0000-000000000000",
+                                                   "Severity":  1,
+                                                   "FirstPayloadByte":  2
+                                               }
+                                           ]
+                          },
+    "MinidumpsFound":  0,
+    "MemoryDumpExists":  false,
+    "NetworkEvidenceSummary":  "Network/WSL/I226 events found after boot/recovery; no specific pre-crash NIC failure event was captured in this window.",
+    "RamEvidenceSummary":  "No RAM-specific MemoryDiagnostics records or WHEA corrected memory/cache/PCIe event IDs found; latest WHEA is fatal Event 1 CPER.",
+    "ThermalEvidenceSummary":  "Current thermal logger file started after reboot; no confirmed pre-crash thermal coverage found by file timestamps in the latest files."
+}

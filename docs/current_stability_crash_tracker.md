@@ -16,7 +16,7 @@ This file is for evidence and non-destructive diagnostics only. Do not claim a r
 | Status | Recurred after initial post-drive-swap soak; unresolved hardware/platform fault |
 | Affected system | Rebuilt MSI PRO Z790-A WiFi II / Intel Core i5-14500 Windows 10 Plex server |
 | Known service state | Plex and Docker media stack can run |
-| Current evidence level | Multiple hard resets with `BugcheckCode=0`; repeated fatal WHEA firmware error records; current soak has only the OS drive connected |
+| Current evidence level | Multiple hard resets with `BugcheckCode=0`; repeated fatal WHEA firmware error records; qBittorrent live peer/network load remains the most repeatable trigger family |
 
 ---
 
@@ -769,6 +769,19 @@ Source: [driver_install_status_2026-05-22.md](driver_install_status_2026-05-22.m
 - Sonarr and Radarr queues both reported zero items.
 - Native qBittorrent had 14 completed torrents loaded under the conservative settings: DHT off, PeX off, LSD off, max global connections `50`, max per-torrent connections `10`.
 - Full stack health report saved at `docs/health_reports/20260530-full-ecosystem-native-qbit.md`.
+
+## 2026-06-04 Post-Crash Network/RAM Check
+
+- User reported another machine crash and asked whether network or RAM might be involved.
+- Capture directory: `docs/crash_logs/20260604-105148-post-crash`.
+- Windows recorded the previous unexpected shutdown at `2026-06-04 10:51:48 AM`; current boot at capture was about `2026-06-04 11:00 AM`.
+- Post-recovery evidence again showed `Kernel-Power 41`, `EventLog 6008`, no bugcheck dump, no minidump, no `MEMORY.DMP`, and no LiveKernelReports dump.
+- `WHEA-Logger` Event 1 at `2026-06-04 11:00:04 AM` preserved another 3552-byte CPER record with three fatal Firmware Error Record Reference sections: section type `81212a96-09ed-4996-9471-8d729c8e69ed`, section lengths `2592`, `544`, and `72`, first payload byte `2`.
+- No RAM-specific `MemoryDiagnostics` record and no WHEA corrected memory/cache/PCIe IDs were found in the checked window. This weakens RAM as the direct explanation for this particular logged crash, though RAM/IMC is not fully ruled out by Windows logs.
+- Network-related records in the checked window were mostly post-boot/recovery events: Hyper-V/WSL switch creation and Intel I226-V link disconnect/reconnect during startup. No specific pre-crash NIC driver failure was captured.
+- Native qBittorrent was running again after reboot with the conservative profile still visible in config: TCP mode, DHT/PeX/LSD disabled, max global connections `50`, per-torrent connections `10`, and save paths under `I:\torrentfiles`.
+- Thermal coverage did not cover the crash. The newest thermal CSV started after reboot at about `2026-06-04 11:04:54 AM`; the previous thermal CSV stopped on `2026-06-02`.
+- Interpretation: this recurrence still looks more like a low-level platform/firmware/power/CPU-complex hard reset exposed by qBittorrent/network/storage load than a normal Windows application crash. Network-triggered load remains more plausible than RAM from the available evidence, but the log does not prove the Intel I226-V as the root cause.
 
 ## 2026-05-25 WHEA / IOMMU Finding
 

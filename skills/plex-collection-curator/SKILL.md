@@ -21,6 +21,14 @@ Read only the selected mode file under `references/modes/` when possible. Read `
 
 The mode files include fast-path notes from prior local runs. Follow those before improvising manual API loops, especially for Radarr add/search verification and TPDb poster URL extraction.
 
+## Credit-Saving Fast Paths
+
+- For broad studio/franchise audits, fetch each relevant Plex section and Arr library once, then match locally by normalized title plus year. Avoid per-title Plex searches or MCP calls unless a title is ambiguous.
+- For mixed movie/show collections, first list existing collection titles in both sections. Reuse the user's existing title exactly and create same-title section-local collections; Plex clients may not show TV children inside a movie-library collection view.
+- Treat `Plex has file` plus `Radarr/Sonarr has no file` as a mismatch, not a missing item. Do not trigger duplicate downloads until the Arr path/import association is reconciled.
+- For bulk Radarr fills, use one API inventory, add exact title/year matches in a loop, and trigger a single `MoviesSearch` command with all no-file movie ids. Use MCP one-title add/search tools only for small or ambiguous batches.
+- For TPDb, prefer one known set page and extract all optimized image URLs from that HTML; avoid repeated web searches for each title.
+
 ## Non-Negotiables
 
 - Treat Plex tokens, Arr API keys, cookies, and TPDb/login details as secrets. Never print, write, commit, or document them.
@@ -89,6 +97,7 @@ When adding missing media:
 - Add monitored by default.
 - Choose the existing root folder and quality profile that best matches local conventions; inspect existing items first.
 - Trigger Radarr `MoviesSearch` for newly added missing movies and Sonarr `SeriesSearch` for newly added missing series by default after verifying qBittorrent storage is healthy.
+- For user-scoped fills, add only the explicitly approved titles. Keep audited-but-unapproved gaps in the report, not in Radarr/Sonarr.
 - If the local add-media helper is used and PowerShell blocks script execution, rerun the same helper through `powershell -NoProfile -ExecutionPolicy Bypass -File ...`; this is process-scoped and avoids manual API fallback.
 - Report what was added and what could not be confidently matched.
 

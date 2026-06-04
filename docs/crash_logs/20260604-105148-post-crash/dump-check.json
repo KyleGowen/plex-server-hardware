@@ -1,0 +1,11 @@
+﻿{
+    "MinidumpDirectory":  "C:\\Windows\\Minidump",
+    "Minidumps":  [
+
+                  ],
+    "MemoryDumpExists":  false,
+    "MemoryDump":  null,
+    "LiveKernelReports":  [
+
+                          ]
+}

@@ -6,7 +6,7 @@ Use when the user asks to fill, add, search, download, acquire, or complete miss
 2. Check Radarr/Sonarr for existing monitored or unmonitored entries before adding.
 3. Verify native `I:\torrentfiles` and Sonarr/Radarr `/downloads` point to the real download storage before triggering searches.
 4. Add missing movies to Radarr and missing series to Sonarr as monitored.
-5. Trigger searches only for newly added missing items unless the user requests broader searching.
+5. Trigger searches only for newly added or already-present no-file items that the user explicitly approved.
 
 Do not update Plex collection membership or posters unless the user asks for those actions.
 
@@ -19,5 +19,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File 'tools\codex-skills\add-medi
 ```
 
 - Before triggering searches, keep the required download-path checks compact: `Test-Path I:\torrentfiles`, confirm Radarr/Sonarr `/downloads` inside Docker, and confirm remote path mapping from `I:\torrentfiles\` to `/downloads/`.
+- For bulk Radarr fills, prefer one `/api/v3/movie` inventory, exact normalized title/year matching, API adds for unmatched titles, then one `MoviesSearch` command with all approved no-file movie ids.
+- If Plex has a file but Radarr says `hasFile: false`, stop treating that item as a gap. Report it as a Radarr path/import association mismatch unless the user explicitly asks to redownload.
 - For Radarr verification, do not rely on `/movie?tmdbId=...` returning one record. If needed, call `/movie` and filter client-side by `tmdbId`, or use the helper's returned `tmdbId`/title and a compact queue check.
 - After a Radarr `MoviesSearch`, `queueMatches: 0` with a completed command means Radarr accepted the search but did not grab a currently acceptable release.

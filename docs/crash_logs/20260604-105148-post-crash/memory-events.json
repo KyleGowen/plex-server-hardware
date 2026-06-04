@@ -1,0 +1,37 @@
+﻿[
+    {
+        "TimeCreated":  "\/Date(1780596004492)\/",
+        "Id":  1,
+        "ProviderName":  "Microsoft-Windows-WHEA-Logger",
+        "LevelDisplayName":  "Error",
+        "Message":  "A fatal hardware error has occurred. A record describing the condition is contained in the data section of this event."
+    },
+    {
+        "TimeCreated":  "\/Date(1780596250381)\/",
+        "Id":  7001,
+        "ProviderName":  "Microsoft-Windows-Winlogon",
+        "LevelDisplayName":  "Information",
+        "Message":  "User Logon Notification for Customer Experience Improvement Program"
+    },
+    {
+        "TimeCreated":  "\/Date(1780596264307)\/",
+        "Id":  7045,
+        "ProviderName":  "Service Control Manager",
+        "LevelDisplayName":  "Information",
+        "Message":  "A service was installed in the system. Service Name: NTIOLib_CC_COMM Service File Name: C:\\Program Files (x86)\\MSI\\MSI Center\\Lib\\SYS\\NTIOLib_X64.sys Service Type: kernel mode driver Service Start Type: demand start Service Account:"
+    },
+    {
+        "TimeCreated":  "\/Date(1780596320701)\/",
+        "Id":  16,
+        "ProviderName":  "Microsoft-Windows-Kernel-General",
+        "LevelDisplayName":  "Information",
+        "Message":  "The access history in hive \\??\\C:\\ProgramData\\Microsoft\\Windows\\AppRepository\\Packages\\OpenAI.Codex_26.601.2237.0_x64__2p2nqsd0c76g0\\ActivationStore.dat was cleared updating 0 keys and creating 0 modified pages."
+    },
+    {
+        "TimeCreated":  "\/Date(1780596613430)\/",
+        "Id":  16,
+        "ProviderName":  "Microsoft-Windows-Kernel-General",
+        "LevelDisplayName":  "Information",
+        "Message":  "The access history in hive \\??\\C:\\ProgramData\\Microsoft\\Provisioning\\Microsoft-Desktop-Provisioning-Sequence.dat was cleared updating 0 keys and creating 0 modified pages."
+    }
+]

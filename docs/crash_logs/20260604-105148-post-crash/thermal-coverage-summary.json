@@ -1,0 +1,98 @@
+[
+    {
+        "FileName":  "libre-sensors-20260604-110454-d6fdc4a5.csv",
+        "LengthMiB":  21,
+        "CreationTime":  "2026-06-04T11:04:54.5001074-07:00",
+        "LastWriteTime":  "2026-06-04T11:38:54.2062506-07:00",
+        "CoversCrashWindowByFileTimes":  false,
+        "Notes":  "Started after crash/reboot"
+    },
+    {
+        "FileName":  "libre-sensors-20260601-231128-45b779ea.csv",
+        "LengthMiB":  60.02,
+        "CreationTime":  "2026-06-01T23:11:28.2090456-07:00",
+        "LastWriteTime":  "2026-06-02T00:51:13.1153144-07:00",
+        "CoversCrashWindowByFileTimes":  false,
+        "Notes":  "Stopped before crash window"
+    },
+    {
+        "FileName":  "libre-sensors-20260601-231052-c18deb0e.csv",
+        "LengthMiB":  0.01,
+        "CreationTime":  "2026-06-01T23:10:52.0687527-07:00",
+        "LastWriteTime":  "2026-06-01T23:10:53.0478740-07:00",
+        "CoversCrashWindowByFileTimes":  false,
+        "Notes":  "Stopped before crash window"
+    },
+    {
+        "FileName":  "libre-sensors-20260601-143150-3758368e.csv",
+        "LengthMiB":  0.01,
+        "CreationTime":  "2026-06-01T14:31:50.9276871-07:00",
+        "LastWriteTime":  "2026-06-01T14:31:52.0126135-07:00",
+        "CoversCrashWindowByFileTimes":  false,
+        "Notes":  "Stopped before crash window"
+    },
+    {
+        "FileName":  "libre-sensors-20260601-092929-e0cfcafa.csv",
+        "LengthMiB":  23.85,
+        "CreationTime":  "2026-06-01T09:29:29.9009979-07:00",
+        "LastWriteTime":  "2026-06-01T10:09:09.7245637-07:00",
+        "CoversCrashWindowByFileTimes":  false,
+        "Notes":  "Stopped before crash window"
+    },
+    {
+        "FileName":  "libre-sensors-20260531-232118-7ba184af.csv",
+        "LengthMiB":  0.01,
+        "CreationTime":  "2026-05-31T23:21:18.0978811-07:00",
+        "LastWriteTime":  "2026-05-31T23:21:19.0630332-07:00",
+        "CoversCrashWindowByFileTimes":  false,
+        "Notes":  "Stopped before crash window"
+    },
+    {
+        "FileName":  "libre-sensors-20260531-204143-a75211ac.csv",
+        "LengthMiB":  32.54,
+        "CreationTime":  "2026-05-31T20:41:43.3322865-07:00",
+        "LastWriteTime":  "2026-05-31T21:34:43.1259611-07:00",
+        "CoversCrashWindowByFileTimes":  false,
+        "Notes":  "Stopped before crash window"
+    },
+    {
+        "FileName":  "libre-sensors-20260531-202253-340b17b9.csv",
+        "LengthMiB":  3.18,
+        "CreationTime":  "2026-05-31T20:22:53.6427930-07:00",
+        "LastWriteTime":  "2026-05-31T20:28:17.4867511-07:00",
+        "CoversCrashWindowByFileTimes":  false,
+        "Notes":  "Stopped before crash window"
+    },
+    {
+        "FileName":  "libre-sensors-20260530-175259-b732ee65.csv",
+        "LengthMiB":  0.01,
+        "CreationTime":  "2026-05-30T17:52:59.7467775-07:00",
+        "LastWriteTime":  "2026-05-30T17:53:00.8470313-07:00",
+        "CoversCrashWindowByFileTimes":  false,
+        "Notes":  "Stopped before crash window"
+    },
+    {
+        "FileName":  "libre-sensors-20260530-142645-f09daa78.csv",
+        "LengthMiB":  2.29,
+        "CreationTime":  "2026-05-30T14:26:45.5878416-07:00",
+        "LastWriteTime":  "2026-05-30T14:29:18.7586569-07:00",
+        "CoversCrashWindowByFileTimes":  false,
+        "Notes":  "Stopped before crash window"
+    },
+    {
+        "FileName":  "libre-sensors-20260530-090047-f91c25e6.csv",
+        "LengthMiB":  3.55,
+        "CreationTime":  "2026-05-30T09:00:47.9029284-07:00",
+        "LastWriteTime":  "2026-05-30T09:05:02.8329295-07:00",
+        "CoversCrashWindowByFileTimes":  false,
+        "Notes":  "Stopped before crash window"
+    },
+    {
+        "FileName":  "libre-sensors-20260530-080038-a2747d27.csv",
+        "LengthMiB":  42.6,
+        "CreationTime":  "2026-05-30T08:00:38.0235231-07:00",
+        "LastWriteTime":  "2026-05-30T08:58:43.7694535-07:00",
+        "CoversCrashWindowByFileTimes":  false,
+        "Notes":  "Stopped before crash window"
+    }
+]

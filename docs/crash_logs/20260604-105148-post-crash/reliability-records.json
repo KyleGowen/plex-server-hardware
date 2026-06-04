@@ -1,0 +1,23 @@
+﻿[
+    {
+        "TimeGenerated":  "\/Date(1780596003669)\/",
+        "SourceName":  "EventLog",
+        "EventIdentifier":  6008,
+        "ProductName":  "Windows",
+        "Message":  "The previous system shutdown at 10:51:48 AM on ‎6/‎4/‎2026 was unexpected."
+    },
+    {
+        "TimeGenerated":  "\/Date(1780596319079)\/",
+        "SourceName":  "Microsoft-Windows-WindowsUpdateClient",
+        "EventIdentifier":  19,
+        "ProductName":  "9NBLGGH4NNS1-Microsoft.DesktopAppInstaller",
+        "Message":  "Installation Successful: Windows successfully installed the following update: 9NBLGGH4NNS1-Microsoft.DesktopAppInstaller"
+    },
+    {
+        "TimeGenerated":  "\/Date(1780596622135)\/",
+        "SourceName":  "Microsoft-Windows-WindowsUpdateClient",
+        "EventIdentifier":  19,
+        "ProductName":  "Security Intelligence Update for Microsoft Defender Antivirus - KB2267602 (Version 1.451.264.0) - Current Channel (Broad)",
+        "Message":  "Installation Successful: Windows successfully installed the following update: Security Intelligence Update for Microsoft Defender Antivirus - KB2267602 (Version 1.451.264.0) - Current Channel (Broad)"
+    }
+]

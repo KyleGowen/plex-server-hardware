@@ -27,8 +27,8 @@ Choose the smallest mode implied by the user's wording. Prefer the short selecte
 1. Read Plex token at runtime and keep it secret.
 2. Query `/library/sections`.
 3. Identify movie and TV sections by type, not by assumed names.
-4. Query each relevant section and search for every master-list entry.
-5. If API search misses likely entries, query Plex SQLite read-only:
+4. For large collections, query each relevant section once and match locally by normalized title plus year. Use `/search` only for ambiguous, duplicate, or stubborn titles.
+5. If API matching misses likely entries, query Plex SQLite read-only:
 
 ```sql
 SELECT mi.id, mi.title, mi.original_title, mi.year, mi.metadata_type,
@@ -73,7 +73,7 @@ For a normal manual collection:
 
 `PUT /library/collections/{collectionKey}/items?uri={encodedUri}`
 
-For mixed movie/show collections, maintain separate Plex collections per library section when Plex requires section-local collections. Use the same collection title unless the user wants separate names.
+For mixed movie/show collections, maintain separate Plex collections per library section when Plex requires section-local collections. Before creating anything, list existing relevant collection titles in each section and reuse the title the user is already seeing. Same-title movie and TV collections are the most reliable Plex client behavior; some clients will not display TV children inside the movie collection view.
 
 ## 5. Missing Media Adds
 
@@ -82,12 +82,13 @@ Run this section only in `fill-missing` or `complete` mode.
 For master-list entries not in Plex and not found on disk:
 
 1. Check Radarr/Sonarr for existing monitored/unmonitored entries before adding.
-2. Add missing movies to Radarr as monitored.
-3. Add missing shows to Sonarr as monitored.
-4. For Sonarr, monitor normal seasons and leave specials unmonitored unless requested.
-5. Verify `I:\torrentfiles` exists for native qBittorrent and Sonarr/Radarr `/downloads` map to the real `I:\` multi-terabyte filesystem before triggering downloads.
-6. For newly added Radarr movies, trigger `MoviesSearch` for the new movie ids. For newly added Sonarr series, trigger `SeriesSearch` for each new series id. This is the default for missing-media fill work unless the user explicitly asks to add only.
-7. If matching is ambiguous, skip and report rather than adding the wrong item.
+2. If Plex has a file but Arr says `hasFile: false`, treat it as a path/import association mismatch and do not search it unless the user explicitly accepts duplicate-download risk.
+3. Add missing movies to Radarr as monitored.
+4. Add missing shows to Sonarr as monitored.
+5. For Sonarr, monitor normal seasons and leave specials unmonitored unless requested.
+6. Verify `I:\torrentfiles` exists for native qBittorrent and Sonarr/Radarr `/downloads` map to the real `I:\` multi-terabyte filesystem before triggering downloads.
+7. For bulk Radarr fills, collect all exact title/year no-file ids and trigger one `MoviesSearch` command. For newly added Sonarr series, trigger `SeriesSearch` for each new series id.
+8. If matching is ambiguous, skip and report rather than adding the wrong item.
 
 ## 6. TPDb Poster Application
 

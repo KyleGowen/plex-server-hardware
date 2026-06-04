@@ -1,0 +1,58 @@
+﻿[
+    {
+        "DeviceID":  "C:",
+        "VolumeName":  "",
+        "FileSystem":  "NTFS",
+        "SizeTiB":  0.23,
+        "FreeTiB":  0.14
+    },
+    {
+        "DeviceID":  "D:",
+        "VolumeName":  "Movies 1",
+        "FileSystem":  "NTFS",
+        "SizeTiB":  18.19,
+        "FreeTiB":  9.43
+    },
+    {
+        "DeviceID":  "E:",
+        "VolumeName":  "Movies 3",
+        "FileSystem":  "NTFS",
+        "SizeTiB":  7.28,
+        "FreeTiB":  6.09
+    },
+    {
+        "DeviceID":  "F:",
+        "VolumeName":  "Movies 2",
+        "FileSystem":  "NTFS",
+        "SizeTiB":  7.28,
+        "FreeTiB":  2.37
+    },
+    {
+        "DeviceID":  "G:",
+        "VolumeName":  "TV 3",
+        "FileSystem":  "NTFS",
+        "SizeTiB":  18.19,
+        "FreeTiB":  17.93
+    },
+    {
+        "DeviceID":  "H:",
+        "VolumeName":  "TV 2",
+        "FileSystem":  "NTFS",
+        "SizeTiB":  18.19,
+        "FreeTiB":  7.65
+    },
+    {
+        "DeviceID":  "I:",
+        "VolumeName":  "Torrent",
+        "FileSystem":  "NTFS",
+        "SizeTiB":  18.19,
+        "FreeTiB":  11.48
+    },
+    {
+        "DeviceID":  "J:",
+        "VolumeName":  "TV 1",
+        "FileSystem":  "NTFS",
+        "SizeTiB":  14.55,
+        "FreeTiB":  2.93
+    }
+]
