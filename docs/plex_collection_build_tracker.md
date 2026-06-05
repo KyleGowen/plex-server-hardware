@@ -284,10 +284,10 @@ Status: Complete
 - Scope: Plex Movies section only; five released Mad Max feature films present in Plex.
 - Plex collection rating key: 23433
 - Item count: 5 movies: `Mad Max`, `The Road Warrior`, `Mad Max: Beyond Thunderdome`, `Mad Max: Fury Road`, and `Furiosa: A Mad Max Saga`.
-- Missing items: None for released feature-film scope.
-- Poster set/source: None applied.
-- Radarr/Sonarr actions: None. Radarr was checked and already had `Mad Max: Fury Road` and `Furiosa: A Mad Max Saga`; the original trilogy was not added because Plex already had all five items and the requested gap was collection membership.
-- Verification notes: Collection children verified through Plex API. Before deciding not to run searches, `I:\torrentfiles` existed on Windows and Sonarr/Radarr/Unpackerr `/downloads` resolved to the `I:` volume. No Plex library refreshes, drive-letter changes, path repairs, download-client actions, qBittorrent manual actions, poster changes, or downloads were performed.
+- Missing items: None for released feature-film scope. `Mad Max: Fury Road - Black & Chrome Edition` was requested as a separate item, but it is an alternate edition without a distinct TMDb movie identity and therefore cannot be added separately to Radarr without incorrect metadata.
+- Poster set/source: TPDb Mad Max Collection by XDM, https://theposterdb.com/set/298259, applied on 2026-06-05 to the collection and all five current movies.
+- Radarr/Sonarr actions: No add or search was performed for Black & Chrome. Radarr returned no correct separate metadata record; the unrelated `Black Chrome` (2021) result was rejected.
+- Verification notes: Collection children verified through Plex API. Poster overrides were verified in Plex DB for the collection plus all five movies. Before the Radarr lookup, `I:\torrentfiles` existed on Windows, Radarr `/downloads` resolved to the `I:` volume, and the remote path mapping remained `I:\torrentfiles\` to `/downloads/`. No Plex library refreshes, drive-letter changes, path repairs, download-client actions, qBittorrent manual actions, or downloads were performed.
 
 ## 21. Existing Collection Gap Reconciliation
 

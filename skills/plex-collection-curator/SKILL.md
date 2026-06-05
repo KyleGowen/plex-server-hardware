@@ -32,6 +32,11 @@ The mode files include fast-path notes from prior local runs. Follow those befor
 ## Non-Negotiables
 
 - Treat Plex tokens, Arr API keys, cookies, and TPDb/login details as secrets. Never print, write, commit, or document them.
+- Use `C:\plex-server\COLLECTIONS.md` as the collection ledger and update the relevant collection entry during every curator task.
+- Record the exact collection name; movie and TV content; known missing and blacklisted titles; content waiting for download or ready to add; poster-set details; and created/updated dates when those fields are known or changed.
+- Whenever collection membership changes, reconcile the movie/TV content and any affected missing, blacklisted, or waiting rows in `COLLECTIONS.md`.
+- Whenever a collection poster or poster set is applied or changed, record the set/style, creator/uploader, source URL when public, and notes in `COLLECTIONS.md`.
+- Preserve the entry's original `Created at` date and set `Updated at` to the current date whenever tracked information changes. Never store credentials, tokens, or private URLs there.
 - Use Plex HTTP API directly. Do not use an unapproved Plex MCP server.
 - Prefer read-only Plex checks before write actions.
 - Plex collection creation/update, poster changes, and library scans are allowed when the user has asked for that work. For unrelated refreshes or broad repairs, confirm first.
@@ -130,5 +135,6 @@ Keep the final concise:
 - Count items assigned.
 - List major missing/unavailable items.
 - State which TPDb set/uploader was applied.
+- Confirm that `C:\plex-server\COLLECTIONS.md` was updated, or state why no tracked information changed.
 - Mention if Radarr/Sonarr adds were made, whether Radarr/Sonarr searches were started, and any titles that did not grab an acceptable release.
 - Mention any verification limitations.
