@@ -117,9 +117,9 @@ Status: Complete
 - Plex collection rating key: 22564
 - Item count: 22 movies
 - Missing items: None for the local-themed scope. This was intentionally scoped to local DC animated films rather than the full DC animated originals catalog.
-- Poster set/source: TPDb DC Universe Animated Original Movies by CmdrRiker, https://theposterdb.com/set/97366
+- Poster set/source: Replaced on 2026-06-05 with TPDb DC Universe Animated Original Movies by CeeFight, https://theposterdb.com/set/46473
 - Radarr/Sonarr actions: None
-- Verification notes: Collection children verified through Plex API. Poster overrides verified in Plex DB for collection plus all 22 items.
+- Verification notes: Collection children verified through Plex API. The set's collection poster and 14 exact title/year movie matches were applied and verified in Plex DB. Existing posters were retained for `Batman: Mask of the Phantasm`, `Batman Beyond: Return of the Joker`, `The Batman vs. Dracula`, `The Lego Batman Movie`, `Batman vs. Two-Face`, `Batman: Death in the Family`, `DC League of Super-Pets`, and `Batman Ninja vs. Yakuza League` because set 46473 does not include them. No Radarr/Sonarr actions, downloads, Plex scans, or collection-membership changes were performed.
 
 ## 9. Shark Attack / Creature Features
 
@@ -288,3 +288,23 @@ Status: Complete
 - Poster set/source: None applied.
 - Radarr/Sonarr actions: None. Radarr was checked and already had `Mad Max: Fury Road` and `Furiosa: A Mad Max Saga`; the original trilogy was not added because Plex already had all five items and the requested gap was collection membership.
 - Verification notes: Collection children verified through Plex API. Before deciding not to run searches, `I:\torrentfiles` existed on Windows and Sonarr/Radarr/Unpackerr `/downloads` resolved to the `I:` volume. No Plex library refreshes, drive-letter changes, path repairs, download-client actions, qBittorrent manual actions, poster changes, or downloads were performed.
+
+## 21. Existing Collection Gap Reconciliation
+
+Date: 2026-06-05
+
+Status: Complete
+
+- Scope: Existing Plex collections only. Candidates were accepted only when Plex metadata resolved to a media file that currently exists on a Windows library drive.
+- Movie collection gaps filled:
+  - `Aquaman and the Lost Kingdom` -> `DC Cinematic Universe`
+  - `Evil Dead Rise` -> `Evil Dead Collection`
+  - `Mallrats` -> `Kevin Smith / View Askewniverse`
+  - `Spider-Man 2`, `Spider-Man 3`, and `Madame Web` -> `Spider-Man Collection`
+  - `Pitch Perfect` -> `Pitch Perfect Collection`
+  - `Star Trek: Section 31` -> `Star Trek: Complete Collection`
+  - `The Return of the King` (1980) -> `Middle-earth`
+  - `Tremors` -> `Shark Attack / Creature Features`
+- TV collection gap filled:
+  - `Tales of the Teenage Mutant Ninja Turtles` -> `Teenage Mutant Ninja Turtles`
+- Verification notes: Every updated collection was re-read through the Plex API and each added rating key was present. Movie files were verified on `D:` or `E:`; 24 episode files for `Tales of the Teenage Mutant Ninja Turtles` were verified on `J:`. No Plex library refreshes, Radarr/Sonarr additions or searches, qBittorrent actions, downloads, path repairs, poster changes, or drive-letter changes were performed.
