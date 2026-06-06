@@ -98,9 +98,10 @@ Still require explicit user confirmation for destructive storage actions, Plex l
 - If Arr shows media imported on disk but Plex does not show it, check the relevant Plex library and active activities before proposing a refresh.
 - Plex library refreshes require explicit user confirmation. Current library sections: `1` is `TV Shows`; `2` is `Movies`.
 - After a confirmed refresh, verify the expected show or movie appears in Plex.
-- Use root `COLLECTIONS.md` as the collection ledger.
-- Whenever a poster or poster set is applied to or changed for a collection, update that collection's poster details and `Updated at` date in `COLLECTIONS.md`.
-- Whenever an item is added to or removed from a collection, update its movie/TV membership and any affected missing, blacklisted, or waiting status in `COLLECTIONS.md`, then update `Updated at`.
+- Use root `COLLECTIONS.md` as the collection index. Resolve the exact Plex collection name there, then load only its linked record under `collections/` for normal single-collection work.
+- Whenever a poster or poster set is applied to or changed for a collection, update that collection record's poster details and `Updated at` date.
+- Whenever an item is added to or removed from a collection, update its record's movie/TV membership and any affected missing, blacklisted, or waiting status, then update `Updated at`.
+- For a new collection, create a dedicated `collections/<stable-lowercase-ascii-slug>.md` record and add its exact Plex name and link to `COLLECTIONS.md`.
 - Preserve each collection entry's original `Created at` date. Never write Plex tokens, Arr keys, credentials, or private URLs to the ledger.
 
 ## MCP And Fallbacks
