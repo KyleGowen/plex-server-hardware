@@ -1233,18 +1233,18 @@ Catalogue the state of each Plex collection and the work still needed. Update th
 
 | Type | Title | Year | Status | Notes |
 |---|---|---:|---|---|
-| Movie | Jackass: The Movie | 2002 | Monitored; no file | Radarr search previously completed without a queue match. |
-| Movie | Jackass 3D | 2010 | Monitored; no file | Radarr search previously completed without a queue match. |
-| Movie | Jackass 3.5 | 2011 | Monitored; no file | Radarr search previously completed without a queue match. |
-| Movie | Mat Hoffman's Tribute to Evel Knievel | 2008 | Monitored; no file | Radarr search previously completed without a queue match. |
-| Movie | Jackass: 24 Hour Takeover | 2008 | Monitored; no file | Radarr search previously completed without a queue match. |
+| Movie | Jackass: The Movie | 2002 | Queued | Radarr batch search command `25468` grabbed a tracked-OK release on 2026-06-05. |
+| Movie | Jackass 3D | 2010 | Downloading | Radarr batch search command `25468` grabbed a tracked-OK release on 2026-06-05. |
+| Movie | Jackass 3.5 | 2011 | Downloading | Radarr batch search command `25468` grabbed a tracked-OK release on 2026-06-05. |
+| Movie | Mat Hoffman's Tribute to Evel Knievel | 2008 | Monitored; no file | Radarr batch search command `25468` completed on 2026-06-05 with no queue match. |
+| Movie | Jackass: 24 Hour Takeover | 2008 | Monitored; no file | Radarr batch search command `25468` completed on 2026-06-05 with no queue match. |
 | TV Show | Jackass | 2000 | Monitored; no files | Sonarr search previously completed without a queue match. |
 
 ### Poster Set
 
 | Applied | Set / Style | Creator / Uploader | Source | Notes |
 |---|---|---|---|---|
-| No | None documented |  |  | Project tracker explicitly says no poster set was applied. |
+| Yes | TPDb Jackass Collection; Jackass Shark Week Collection | BandicootDesign | <https://theposterdb.com/set/220788>; <https://theposterdb.com/set/220787> | Applied and verified on 2026-06-05 for the collection and all six current movies. Set 220787 was used for both Shark Week movies. |
 
 ## John Wick
 

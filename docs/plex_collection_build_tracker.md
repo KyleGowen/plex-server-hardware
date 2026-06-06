@@ -261,9 +261,9 @@ Status: Complete; pending imports
 - Plex collection rating key: 23118
 - Item count: 6 current Plex movies/specials: Jackass 2.5, Jackass 4.5, Jackass Forever, Jackass Number Two, Jackass Shark Week, and Jackass Shark Week 2.0.
 - Missing items: Jackass: The Movie, Jackass 3D, Jackass 3.5, Mat Hoffman's Tribute to Evel Knievel, Jackass: 24 Hour Takeover, and Jackass TV are not present in Plex yet; all were added to Arr as monitored.
-- Poster set/source: None applied.
-- Radarr/Sonarr actions: Added/searched Radarr movie ids 1119, 1120, 1121, 1122, and 1123; added/searched Sonarr series id 243. All search commands completed with no current queue match.
-- Verification notes: Collection children verified through Plex API. Before searches, `I:\torrentfiles` existed on Windows and both Radarr and Sonarr `/downloads` resolved to the `I:` volume with remote path mapping from `I:\torrentfiles\` to `/downloads/`. No Plex library refreshes, drive-letter changes, path repairs, qBittorrent manual actions, or poster changes were performed.
+- Poster set/source: TPDb Jackass Collection by BandicootDesign, https://theposterdb.com/set/220788, applied to the collection and four standard Jackass entries; TPDb Jackass Shark Week Collection, https://theposterdb.com/set/220787, applied to both Shark Week movies.
+- Radarr/Sonarr actions: On 2026-06-05, Radarr batch search command `25468` searched monitored movie ids 1119, 1120, 1121, 1122, and 1123. It grabbed tracked-OK releases for `Jackass: The Movie`, `Jackass 3D`, and `Jackass 3.5`; `Mat Hoffman's Tribute to Evel Knievel` and `Jackass: 24 Hour Takeover` had no queue match. No Sonarr search was triggered.
+- Verification notes: Collection children verified through Plex API. Poster overrides verified in Plex DB for the collection plus all six current movies. `Jackass Presents: Bad Grandpa` and `Bad Grandpa .5` remain intentionally excluded from this collection. No Plex library refreshes, drive-letter changes, path repairs, qBittorrent actions, or Arr mutations were performed during the poster update.
 
 ## 19. Middle-earth Collection
 
