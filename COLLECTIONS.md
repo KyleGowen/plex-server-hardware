@@ -52,6 +52,7 @@ Route agents to the record for each Plex collection without loading the complete
 | Highlander Collection | [`collections/highlander-collection.md`](collections/highlander-collection.md) |
 | Hotel Transylvania Collection | [`collections/hotel-transylvania-collection.md`](collections/hotel-transylvania-collection.md) |
 | Jackass Collection | [`collections/jackass-collection.md`](collections/jackass-collection.md) |
+| James Bond Collection | [`collections/james-bond-collection.md`](collections/james-bond-collection.md) |
 | John Wick | [`collections/john-wick.md`](collections/john-wick.md) |
 | Jurassic Park / Jurassic World | [`collections/jurassic-park-jurassic-world.md`](collections/jurassic-park-jurassic-world.md) |
 | Kevin Smith / View Askewniverse | [`collections/kevin-smith-view-askewniverse.md`](collections/kevin-smith-view-askewniverse.md) |

@@ -133,13 +133,22 @@ if ($Type -eq 'movie') {
         $action = 'updatedExisting'
     }
     else {
-        $match | Add-Member -NotePropertyName qualityProfileId -NotePropertyValue $qualityProfileId -Force
-        $match | Add-Member -NotePropertyName monitored -NotePropertyValue $true -Force
-        $match | Add-Member -NotePropertyName minimumAvailability -NotePropertyValue 'released' -Force
-        $match | Add-Member -NotePropertyName rootFolderPath -NotePropertyValue $root -Force
-        $match | Add-Member -NotePropertyName path -NotePropertyValue "$root/$($match.title) ($($match.year))" -Force
-        $match | Add-Member -NotePropertyName addOptions -NotePropertyValue @{ searchForMovie = $false } -Force
-        $media = Invoke-ArrPost -BaseUrl $base -Headers $headers -Path '/movie' -Body $match
+        # Radarr lookup responses contain metadata that is not accepted unchanged by
+        # the movie-create endpoint. Send only the fields required for a new movie.
+        $movieBody = [ordered]@{
+            title = [string]$match.title
+            tmdbId = [int]$match.tmdbId
+            titleSlug = [string]$match.titleSlug
+            year = [int]$match.year
+            qualityProfileId = $qualityProfileId
+            monitored = $true
+            minimumAvailability = 'released'
+            rootFolderPath = $root
+            path = "$root/$($match.title) ($($match.year))"
+            images = @($match.images)
+            addOptions = @{ searchForMovie = $false }
+        }
+        $media = Invoke-ArrPost -BaseUrl $base -Headers $headers -Path '/movie' -Body $movieBody
         $action = 'added'
     }
 
