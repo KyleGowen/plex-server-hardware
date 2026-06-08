@@ -99,10 +99,14 @@ Still require explicit user confirmation for destructive storage actions, Plex l
 - Plex library refreshes require explicit user confirmation. Current library sections: `1` is `TV Shows`; `2` is `Movies`.
 - After a confirmed refresh, verify the expected show or movie appears in Plex.
 - Use root `COLLECTIONS.md` as the collection index. Resolve the exact Plex collection name there, then load only its linked record under `collections/` for normal single-collection work.
+- Use root `TV_SHOWS.md` as the TV show index. Resolve the exact Plex title and year there, then load only its linked record under `tv-shows/` for normal single-show work.
 - Whenever a poster or poster set is applied to or changed for a collection, update that collection record's poster details and `Updated at` date.
 - Whenever an item is added to or removed from a collection, update its record's movie/TV membership and any affected missing, blacklisted, or waiting status, then update `Updated at`.
 - For a new collection, create a dedicated `collections/<stable-lowercase-ascii-slug>.md` record and add its exact Plex name and link to `COLLECTIONS.md`.
 - Preserve each collection entry's original `Created at` date. Never write Plex tokens, Arr keys, credentials, or private URLs to the ledger.
+- Whenever a tracked show's posters, imports, missing-media state, or season completeness changes, update its `tv-shows/` record and `Updated at` date.
+- For a new tracked show, create `tv-shows/<stable-lowercase-ascii-slug>.md` and add its exact Plex title, year, and link to `TV_SHOWS.md`.
+- Preserve each TV show record's original Plex-derived `Created at` date. Never write Plex tokens, Arr keys, credentials, or private URLs to TV show records.
 
 ## MCP And Fallbacks
 
