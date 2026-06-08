@@ -1,11 +1,11 @@
 # Marvel Cinematic Universe
 
 **Created at:** 2026-05-25  
-**Updated at:** 2026-06-05
+**Updated at:** 2026-06-07
 
 **Plex records:**
-- TV Shows: rating key 15534; 25 items; Plex updated 2026-06-05.
-- Movies: rating key 15533; 40 items; Plex updated 2026-05-30.
+- TV Shows: rating key 15534; 25 items; all 25 have attached media; verified 2026-06-07.
+- Movies: rating key 15533; 40 items; all 40 have attached media; verified 2026-06-07.
 
 ### Movie Content
 
@@ -56,13 +56,13 @@
 
 | Movie | Year | Status / Notes |
 |---|---:|---|
-| Unknown |  | No current, explicitly supported missing-movie fact was found in this first pass. |
+| None verified |  | All 40 current movie members have attached media in Plex as of 2026-06-07. |
 
 ### Blacklisted Movies
 
 | Movie | Year | Reason |
 |---|---:|---|
-| Unknown |  | No explicit movie blacklist evidence found. |
+| None verified |  | No explicit movie blacklist evidence found as of 2026-06-07. |
 
 ### TV Show Content
 
@@ -78,7 +78,7 @@
 | Loki | 2021 | Current Plex member. |
 | The Falcon and The Winter Soldier | 2021 | Current Plex member. |
 | WandaVision | 2021 | Current Plex member. |
-| What Ifâ¦? | 2021 | Current Plex member. |
+| What If...? | 2021 | Current Plex member. |
 | I Am Groot | 2022 | Current Plex member. |
 | Moon Knight | 2022 | Current Plex member. |
 | Ms. Marvel | 2022 | Current Plex member. |
@@ -98,22 +98,36 @@
 
 | TV Show | Year | Status / Notes |
 |---|---:|---|
-| Unknown |  | No current, explicitly supported missing-show fact was found in this first pass. |
+| None verified |  | All 25 current TV members have attached media in Plex as of 2026-06-07. |
 
 ### Blacklisted TV Shows
 
 | TV Show | Year | Reason |
 |---|---:|---|
-| Unknown |  | No explicit TV blacklist evidence found. |
+| None verified |  | No explicit TV blacklist evidence found as of 2026-06-07. |
 
 ### Waiting For Download / Ready To Add
 
 | Type | Title | Year | Status | Notes |
 |---|---|---:|---|---|
-| Unknown |  |  |  | No collection-specific waiting item was conclusively established in this first pass. |
+| None verified |  |  |  | No collection-specific waiting item was found as of 2026-06-07. |
+
+### Arr Reconciliation Notes
+
+| Type | Title | Status / Notes |
+|---|---|---|
+| Movie | Captain America: Brave New World | Added to Radarr as monitored and associated with the existing file on 2026-06-07. Radarr reports a 16.03 GB file. No search was started. |
+| Movie | The Fantastic Four: First Steps | Verified in Radarr under the official title `The Fantastic 4: First Steps`; monitored with an existing 45.11 GB file on 2026-06-07. No search was started. |
+| Movie | Thunderbolts* | Present with media in Plex and monitored with a file in Radarr on 2026-06-07. |
+| TV | Daredevil: Born Again | Complete in Sonarr at 17/17 episodes on 2026-06-07. |
+| TV | Eyes of Wakanda | Complete in Sonarr at 4/4 episodes on 2026-06-07. |
+| TV | Ironheart | Complete in Sonarr at 6/6 episodes on 2026-06-07. |
+| TV | Marvel Zombies | Complete in Sonarr at 4/4 episodes on 2026-06-07. |
+| TV | Spider-Noir | Complete in Sonarr at 8/8 episodes on 2026-06-07. |
+| TV | Wonder Man | Complete in Sonarr at 8/8 episodes on 2026-06-07. |
 
 ### Poster Set
 
 | Applied | Set / Style | Creator / Uploader | Source | Notes |
 |---|---|---|---|---|
-| Unknown | Unknown | Unknown |  | The live Plex collection has artwork, but no verified poster-set provenance was found. |
+| 2026-06-07 | Marvel Cinematic Universe set | XDM | https://theposterdb.com/set/99475 | Applied to both section-local collection records and 57 matching items: all 40 movies and 17 TV shows. The set has no matching poster for the six Netflix-era shows, `Wonder Man`, or `Spider-Noir`; their existing posters were left unchanged. |

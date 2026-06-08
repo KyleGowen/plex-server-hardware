@@ -1,7 +1,7 @@
 # Highlander Collection
 
 **Created at:** 2026-05-31  
-**Updated at:** 2026-06-05
+**Updated at:** 2026-06-08
 
 **Plex records:**
 - Movies: rating key 23117; 5 items; Plex updated 2026-05-31.
@@ -56,4 +56,4 @@
 
 | Applied | Set / Style | Creator / Uploader | Source | Notes |
 |---|---|---|---|---|
-| Yes | TPDb Highlander Collection | Aloha_Alona | <https://theposterdb.com/set/94799> | Applied to the collection and all five current movies. |
+| 2026-06-08 | TPDb Highlander Collection | DarkMatte | <https://theposterdb.com/set/333889> | Applied and verified for the collection and all five current movies. TPDb's `Highlander III: The Sorcerer` poster was mapped to Plex's alternate title `Highlander: The Final Dimension`. |

@@ -1,7 +1,7 @@
 # Pitch Perfect Collection
 
 **Created at:** 2026-06-02  
-**Updated at:** 2026-06-05
+**Updated at:** 2026-06-08
 
 **Plex records:**
 - Movies: rating key 23630; 3 items; Plex updated 2026-06-05.
@@ -54,4 +54,4 @@
 
 | Applied | Set / Style | Creator / Uploader | Source | Notes |
 |---|---|---|---|---|
-| Unknown | Unknown | Unknown |  | The live Plex collection has artwork, but no verified poster-set provenance was found. |
+| 2026-06-08 | TPDb Pitch Perfect Collection | conorsavage | <https://theposterdb.com/set/40776> | User selected collection poster `63943`; applied and verified for the collection and all three current movies. |
