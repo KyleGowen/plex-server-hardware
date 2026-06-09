@@ -37,6 +37,7 @@ Route agents to concise, show-specific records without loading the full TV libra
 |---|---:|---|
 | Bob's Burgers | 2011 | [`tv-shows/bobs-burgers.md`](tv-shows/bobs-burgers.md) |
 | INVINCIBLE (2021) | 2021 | [`tv-shows/invincible-2021.md`](tv-shows/invincible-2021.md) |
+| It's Always Sunny in Philadelphia | 2005 | [`tv-shows/its-always-sunny-in-philadelphia.md`](tv-shows/its-always-sunny-in-philadelphia.md) |
 | Rick and Morty | 2013 | [`tv-shows/rick-and-morty.md`](tv-shows/rick-and-morty.md) |
 | Rise of the Teenage Mutant Ninja Turtles | 2018 | [`tv-shows/rise-of-the-teenage-mutant-ninja-turtles.md`](tv-shows/rise-of-the-teenage-mutant-ninja-turtles.md) |
 | Tales of the Teenage Mutant Ninja Turtles | 2024 | [`tv-shows/tales-of-the-teenage-mutant-ninja-turtles.md`](tv-shows/tales-of-the-teenage-mutant-ninja-turtles.md) |
