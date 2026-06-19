@@ -11,6 +11,7 @@ Radarr manages movie acquisition and imports. It monitors wanted movies, evaluat
 | Deployment | Docker container |
 | Container name | `radarr` |
 | Image | `lscr.io/linuxserver/radarr:latest` |
+| Current version | `6.2.1.10461` (`6.2.1.10461-ls306`) |
 | Compose file | `C:\plex-server\docker-compose.media.yml` |
 | Config path | `C:\media-stack\config\radarr` |
 | Web UI | `http://localhost:7878` |
@@ -18,7 +19,7 @@ Radarr manages movie acquisition and imports. It monitors wanted movies, evaluat
 
 ## Current Configuration
 
-As of `2026-05-30`, Radarr runs in Docker while qBittorrent runs natively on Windows.
+As of `2026-06-15`, Radarr runs in Docker while qBittorrent runs natively on Windows.
 
 | Item | Value |
 |---|---|
@@ -84,3 +85,12 @@ On 2026-05-24, these movies were added or updated in Radarr as monitored `Ultra-
 | SpeedCD | Prowlarr | Enabled | Enabled | Enabled |
 
 Prowlarr remains the active indexer layer for Radarr. Jackett is not part of the active Radarr routing.
+
+## Update History
+
+### 2026-06-15
+
+- Updated the LinuxServer container from Radarr `6.1.1.10360` (`6.1.1.10360-ls303`) to `6.2.1.10461` (`6.2.1.10461-ls306`).
+- Recreated only the Radarr container with the existing persistent configuration.
+- Verified zero Radarr health issues after startup.
+- Verified native qBittorrent remains enabled, the `I:\torrentfiles\` to `/downloads/` remote path mapping is unchanged, and all three movie roots remain accessible.

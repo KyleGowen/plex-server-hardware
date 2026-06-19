@@ -11,6 +11,7 @@ Prowlarr is the active indexer manager for the Docker media stack. It stores tra
 | Deployment | Docker container |
 | Container name | `prowlarr` |
 | Image | `lscr.io/linuxserver/prowlarr:latest` |
+| Current version | `2.4.0.5397` (`2.4.0.5397-ls149`) |
 | Compose file | `C:\plex-server\docker-compose.media.yml` |
 | Config path | `C:\media-stack\config\prowlarr` |
 | Web UI | `http://localhost:9696` |
@@ -48,3 +49,12 @@ Prowlarr is the active indexer manager for the Docker media stack. It stores tra
 - On 2026-05-26, Prowlarr `config.xml` was repaired after NUL-byte corruption. Sonarr/Radarr application links and their Prowlarr-backed Torznab indexers were updated to match the new local API keys.
 - On 2026-05-31, SpeedCD caused a Sonarr search outage because searches succeeded but proxied torrent downloads returned an HTML account restriction page instead of valid `.torrent` content. After the SpeedCD account restriction was lifted, Prowlarr proxied download validation returned valid torrent data and SpeedCD was re-enabled for Sonarr/Radarr.
 - Detailed outage notes are in `docs/indexer_outage_2026-05-31.md`.
+
+## Update History
+
+### 2026-06-15
+
+- Updated the LinuxServer container from Prowlarr `2.3.5.5327` (`2.3.5.5327-ls147`) to `2.4.0.5397` (`2.4.0.5397-ls149`).
+- Recreated only the Prowlarr container with the existing persistent configuration.
+- Verified zero Prowlarr health issues after startup.
+- Verified MoreThanTV and SpeedCD remain enabled and the Sonarr and Radarr application links remain configured for full sync.
