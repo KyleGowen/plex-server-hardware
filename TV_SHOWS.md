@@ -37,6 +37,7 @@ Route agents to concise, show-specific records without loading the full TV libra
 |---|---:|---|
 | Bob's Burgers | 2011 | [`tv-shows/bobs-burgers.md`](tv-shows/bobs-burgers.md) |
 | Daredevil: Born Again | 2025 | [`tv-shows/daredevil-born-again.md`](tv-shows/daredevil-born-again.md) |
+| High Potential | 2024 | [`tv-shows/high-potential.md`](tv-shows/high-potential.md) |
 | INVINCIBLE (2021) | 2021 | [`tv-shows/invincible-2021.md`](tv-shows/invincible-2021.md) |
 | It's Always Sunny in Philadelphia | 2005 | [`tv-shows/its-always-sunny-in-philadelphia.md`](tv-shows/its-always-sunny-in-philadelphia.md) |
 | King of the Hill | 1997 | [`tv-shows/king-of-the-hill.md`](tv-shows/king-of-the-hill.md) |
