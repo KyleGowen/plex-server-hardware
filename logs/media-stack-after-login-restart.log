@@ -471,3 +471,53 @@
 [2026-05-28 12:29:28] Tautulli HTTP 303
 [2026-05-28 12:29:29] qBittorrent /downloads: I:\              19T  3.6T   15T  20% /downloads
 [2026-05-28 12:29:29] Delayed media stack restart helper finished.
+[2026-06-23 22:02:43] Starting delayed media stack restart helper.
+[2026-06-23 22:04:49] Docker is available.
+[2026-06-23 22:04:49] I:\torrentfiles present: True
+[2026-06-23 22:04:49] I:\torrentfiles\incomplete present: True
+[2026-06-23 22:04:49] docker:  Container tautulli Running 
+[2026-06-23 22:04:49] docker:  Container uptime-kuma Running 
+[2026-06-23 22:04:49] docker:  Container sonarr Running 
+[2026-06-23 22:04:49] docker:  Container unpackerr Running 
+[2026-06-23 22:04:49] docker:  Container radarr Running 
+[2026-06-23 22:04:49] docker:  Container homarr Running 
+[2026-06-23 22:04:49] docker:  Container bazarr Running 
+[2026-06-23 22:04:49] docker:  Container prowlarr Running 
+[2026-06-23 22:04:49] Ran docker compose up -d for media stack.
+[2026-06-23 22:05:19] Sonarr check failed: Operation is not valid due to the current state of the object.
+[2026-06-23 22:05:19] Radarr HTTP 200
+[2026-06-23 22:05:19] Prowlarr check failed: Operation is not valid due to the current state of the object.
+[2026-06-23 22:05:19] Bazarr HTTP 200
+[2026-06-23 22:05:20] qBittorrent HTTP 200
+[2026-06-23 22:05:20] Tautulli HTTP 303
+[2026-06-23 22:05:20] Uptime Kuma check failed: Operation is not valid due to the current state of the object.
+[2026-06-23 22:05:21] Homarr HTTP 200
+[2026-06-23 22:05:22] Sonarr /downloads: I:\              19T  9.1T  9.2T  50% /downloads
+[2026-06-23 22:05:22] Radarr /downloads: I:\              19T  9.1T  9.2T  50% /downloads
+[2026-06-23 22:05:22] Unpackerr /downloads: I:\                      18.2T      9.0T      9.2T  50% /downloads
+[2026-06-23 22:05:22] Delayed media stack restart helper finished.
+[2026-06-23 22:06:45] Starting delayed media stack restart helper.
+[2026-06-23 22:06:46] Docker is available.
+[2026-06-23 22:06:46] I:\torrentfiles present: True
+[2026-06-23 22:06:46] I:\torrentfiles\incomplete present: True
+[2026-06-23 22:06:46] docker:  Container radarr Running 
+[2026-06-23 22:06:46] docker:  Container sonarr Running 
+[2026-06-23 22:06:46] docker:  Container homarr Running 
+[2026-06-23 22:06:46] docker:  Container prowlarr Running 
+[2026-06-23 22:06:46] docker:  Container bazarr Running 
+[2026-06-23 22:06:46] docker:  Container tautulli Running 
+[2026-06-23 22:06:46] docker:  Container uptime-kuma Running 
+[2026-06-23 22:06:46] docker:  Container unpackerr Running 
+[2026-06-23 22:06:46] Ran docker compose up -d for media stack.
+[2026-06-23 22:07:16] Sonarr HTTP 302
+[2026-06-23 22:07:16] Radarr HTTP 200
+[2026-06-23 22:07:16] Prowlarr HTTP 302
+[2026-06-23 22:07:16] Bazarr HTTP 200
+[2026-06-23 22:07:16] qBittorrent HTTP 200
+[2026-06-23 22:07:16] Tautulli HTTP 303
+[2026-06-23 22:07:16] Uptime Kuma HTTP 302
+[2026-06-23 22:07:16] Homarr HTTP 200
+[2026-06-23 22:07:16] Sonarr /downloads: I:\              19T  9.1T  9.2T  50% /downloads
+[2026-06-23 22:07:17] Radarr /downloads: I:\              19T  9.1T  9.2T  50% /downloads
+[2026-06-23 22:07:17] Unpackerr /downloads: I:\                      18.2T      9.0T      9.2T  50% /downloads
+[2026-06-23 22:07:17] Delayed media stack restart helper finished.

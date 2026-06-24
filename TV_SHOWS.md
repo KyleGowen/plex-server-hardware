@@ -35,8 +35,11 @@ Route agents to concise, show-specific records without loading the full TV libra
 
 | Exact Plex title | Year | Record |
 |---|---:|---|
+| A.P. Bio | 2018 | [`tv-shows/ap-bio.md`](tv-shows/ap-bio.md) |
+| Abbott Elementary | 2021 | [`tv-shows/abbott-elementary.md`](tv-shows/abbott-elementary.md) |
 | Bob's Burgers | 2011 | [`tv-shows/bobs-burgers.md`](tv-shows/bobs-burgers.md) |
 | Daredevil: Born Again | 2025 | [`tv-shows/daredevil-born-again.md`](tv-shows/daredevil-born-again.md) |
+| Futurama | 1999 | [`tv-shows/futurama.md`](tv-shows/futurama.md) |
 | High Potential | 2024 | [`tv-shows/high-potential.md`](tv-shows/high-potential.md) |
 | INVINCIBLE (2021) | 2021 | [`tv-shows/invincible-2021.md`](tv-shows/invincible-2021.md) |
 | It's Always Sunny in Philadelphia | 2005 | [`tv-shows/its-always-sunny-in-philadelphia.md`](tv-shows/its-always-sunny-in-philadelphia.md) |
@@ -46,4 +49,5 @@ Route agents to concise, show-specific records without loading the full TV libra
 | Tales of the Teenage Mutant Ninja Turtles | 2024 | [`tv-shows/tales-of-the-teenage-mutant-ninja-turtles.md`](tv-shows/tales-of-the-teenage-mutant-ninja-turtles.md) |
 | Teenage Mutant Ninja Turtles | 1987 | [`tv-shows/teenage-mutant-ninja-turtles-1987.md`](tv-shows/teenage-mutant-ninja-turtles-1987.md) |
 | Teenage Mutant Ninja Turtles (2012) | 2012 | [`tv-shows/teenage-mutant-ninja-turtles-2012.md`](tv-shows/teenage-mutant-ninja-turtles-2012.md) |
+| The Bear | 2022 | [`tv-shows/the-bear.md`](tv-shows/the-bear.md) |
 | The Boys | 2019 | [`tv-shows/the-boys.md`](tv-shows/the-boys.md) |

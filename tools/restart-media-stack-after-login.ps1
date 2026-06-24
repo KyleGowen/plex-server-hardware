@@ -5,6 +5,7 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $composeFile = 'C:\plex-server\docker-compose.media.yml'
+$dockerDesktopPath = 'C:\Program Files\Docker\Docker\Docker Desktop.exe'
 $logDir = 'C:\plex-server\logs'
 $logFile = Join-Path $logDir 'media-stack-after-login-restart.log'
 
@@ -65,6 +66,59 @@ function Invoke-Docker {
     }
 
     return $true
+}
+
+function Start-DockerDesktop {
+    if (-not (Test-Path -LiteralPath $dockerDesktopPath)) {
+        Write-Log "Docker Desktop executable not found at $dockerDesktopPath."
+        return
+    }
+
+    $dockerProcesses = Get-Process -Name 'Docker Desktop', 'com.docker.backend' -ErrorAction SilentlyContinue
+    if ($dockerProcesses) {
+        Write-Log 'Docker Desktop already appears to be running.'
+        return
+    }
+
+    try {
+        Start-Process -FilePath $dockerDesktopPath -WindowStyle Hidden
+        Write-Log 'Started Docker Desktop.'
+    } catch {
+        Write-Log "Failed to start Docker Desktop: $($_.Exception.Message)"
+    }
+}
+
+function Test-HttpEndpoint {
+    param(
+        [string]$Name,
+        [string]$Url
+    )
+
+    try {
+        $request = [Net.HttpWebRequest]::Create($Url)
+        $request.AllowAutoRedirect = $false
+        $request.Timeout = 10000
+        $request.UserAgent = 'PlexStartupCheck/1.0'
+        $response = $request.GetResponse()
+        try {
+            Write-Log "$Name HTTP $([int]$response.StatusCode)"
+        } finally {
+            $response.Close()
+        }
+    } catch [Net.WebException] {
+        if ($_.Exception.Response) {
+            $response = $_.Exception.Response
+            try {
+                Write-Log "$Name HTTP $([int]$response.StatusCode)"
+            } finally {
+                $response.Close()
+            }
+        } else {
+            Write-Log "$Name check failed: $($_.Exception.Message)"
+        }
+    } catch {
+        Write-Log "$Name check failed: $($_.Exception.Message)"
+    }
 }
 
 function Test-XmlConfig {
@@ -201,6 +255,10 @@ function Repair-GeneratedApiKeys {
 Write-Log 'Starting delayed media stack restart helper.'
 Start-Sleep -Seconds $InitialDelaySeconds
 
+if (-not (Invoke-Docker -Arguments @('info') -TimeoutSeconds 30 -Quiet)) {
+    Start-DockerDesktop
+}
+
 $deadline = (Get-Date).AddSeconds($DockerWaitSeconds)
 while ((Get-Date) -lt $deadline) {
     if (Invoke-Docker -Arguments @('info') -TimeoutSeconds 30 -Quiet) {
@@ -216,7 +274,9 @@ if (-not (Invoke-Docker -Arguments @('info') -TimeoutSeconds 30 -Quiet)) {
 }
 
 $torrentPathOk = Test-Path 'I:\torrentfiles'
+$incompletePathOk = Test-Path 'I:\torrentfiles\incomplete'
 Write-Log "I:\torrentfiles present: $torrentPathOk"
+Write-Log "I:\torrentfiles\incomplete present: $incompletePathOk"
 
 $stamp = Get-Date -Format 'yyyyMMdd-HHmmss'
 $corruptConfigs = @()
@@ -224,8 +284,8 @@ $corruptConfigs += Move-CorruptConfig -ServiceName 'Sonarr' -ConfigPath 'C:\medi
 $corruptConfigs += Move-CorruptConfig -ServiceName 'Radarr' -ConfigPath 'C:\media-stack\config\radarr\config.xml' -Stamp $stamp
 $corruptConfigs += Move-CorruptConfig -ServiceName 'Prowlarr' -ConfigPath 'C:\media-stack\config\prowlarr\config.xml' -Stamp $stamp
 
-Invoke-Docker -Arguments @('compose', '-f', $composeFile, 'restart') -TimeoutSeconds 240 | Out-Null
-Write-Log 'Ran docker compose restart for media stack.'
+Invoke-Docker -Arguments @('compose', '-f', $composeFile, 'up', '-d') -TimeoutSeconds 240 | Out-Null
+Write-Log 'Ran docker compose up -d for media stack.'
 
 Start-Sleep -Seconds 30
 
@@ -239,20 +299,13 @@ $checks = @(
     @{ Name = 'Prowlarr'; Url = 'http://127.0.0.1:9696/' },
     @{ Name = 'Bazarr'; Url = 'http://127.0.0.1:6767/' },
     @{ Name = 'qBittorrent'; Url = 'http://127.0.0.1:8080/' },
-    @{ Name = 'Tautulli'; Url = 'http://127.0.0.1:8181/' }
+    @{ Name = 'Tautulli'; Url = 'http://127.0.0.1:8181/' },
+    @{ Name = 'Uptime Kuma'; Url = 'http://127.0.0.1:3001/' },
+    @{ Name = 'Homarr'; Url = 'http://127.0.0.1:7575/' }
 )
 
 foreach ($check in $checks) {
-    try {
-        $response = Invoke-WebRequest -Uri $check.Url -UseBasicParsing -TimeoutSec 10 -MaximumRedirection 0 -ErrorAction Stop
-        Write-Log "$($check.Name) HTTP $([int]$response.StatusCode)"
-    } catch {
-        if ($_.Exception.Response) {
-            Write-Log "$($check.Name) HTTP $([int]$_.Exception.Response.StatusCode)"
-        } else {
-            Write-Log "$($check.Name) check failed: $($_.Exception.Message)"
-        }
-    }
+    Test-HttpEndpoint -Name $check.Name -Url $check.Url
 }
 
 try {

@@ -47,6 +47,7 @@ Route agents to the record for each Plex collection without loading the complete
 | Descendants Collection | [`collections/descendants-collection.md`](collections/descendants-collection.md) |
 | Disney Collection | [`collections/disney-collection.md`](collections/disney-collection.md) |
 | Evil Dead Collection | [`collections/evil-dead-collection.md`](collections/evil-dead-collection.md) |
+| Futurama Collection | [`collections/futurama-collection.md`](collections/futurama-collection.md) |
 | Ghostbusters Collection | [`collections/ghostbusters-collection.md`](collections/ghostbusters-collection.md) |
 | Harry Potter | [`collections/harry-potter.md`](collections/harry-potter.md) |
 | Highlander Collection | [`collections/highlander-collection.md`](collections/highlander-collection.md) |
