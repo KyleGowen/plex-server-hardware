@@ -11,7 +11,7 @@ As of `2026-05-30`, qBittorrent runs as a native Windows install. It is not part
 | Item | Value |
 |---|---|
 | Deployment | Native Windows qBittorrent |
-| Version | `5.2.1` |
+| Version | `5.2.2` |
 | Executable | `C:\Program Files\qBittorrent\qbittorrent.exe` |
 | Runtime config | `%APPDATA%\qBittorrent\qBittorrent.ini` |
 | Tracked conservative config | `C:\plex-server\config\qbittorrent\native-conservative\qBittorrent.ini` |
@@ -22,6 +22,12 @@ As of `2026-05-30`, qBittorrent runs as a native Windows install. It is not part
 | Compose service | Removed; qBittorrent is native Windows only for current operations |
 
 The tracked config intentionally omits `WebUI\Password_PBKDF2`. The apply script preserves the local WebUI password hash outside the repo.
+
+## Maintenance Log
+
+| Date | Note |
+|---|---|
+| `2026-07-03` | qBittorrent was reinstalled/updated to `5.2.2`. Reapplied the tracked conservative native profile with `C:\plex-server\tools\apply-native-qbit-conservative-config.ps1`; the local Web UI password hash was preserved. Confirmed native Web UI on `127.0.0.1:8080`, torrent TCP port `6881`, save path `I:\torrentfiles`, incomplete path `I:\torrentfiles\incomplete`, and Docker container access to native qBittorrent through `host.docker.internal:8080`. |
 
 ## Native Smoke Test
 
