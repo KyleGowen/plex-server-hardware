@@ -1,6 +1,7 @@
 .env
 .tools/
 .docker-cli/
+.tmp-*.sh
 .DS_Store
 docs/.DS_Store
 docs/crash_logs/thermal/
