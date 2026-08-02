@@ -14,7 +14,9 @@
 
     [switch]$Compact,
 
-    [int]$QueuePageSize = 50
+    [int]$QueuePageSize = 50,
+
+    [int]$RequestTimeoutSec = 30
 )
 
 $ErrorActionPreference = 'Stop'
@@ -48,17 +50,70 @@ function Get-ArrHeaders {
 
 function Invoke-ArrGet {
     param([string]$BaseUrl, [hashtable]$Headers, [string]$Path)
-    Invoke-RestMethod -Method Get -Uri "$BaseUrl$Path" -Headers $Headers
+    Invoke-RestMethod -Method Get -Uri "$BaseUrl$Path" -Headers $Headers -TimeoutSec $RequestTimeoutSec
+}
+
+function Get-ArrExceptionText {
+    param([System.Management.Automation.ErrorRecord]$ErrorRecord)
+
+    $parts = New-Object System.Collections.Generic.List[string]
+    if ($ErrorRecord.Exception.Message) { $parts.Add($ErrorRecord.Exception.Message) }
+    $response = $ErrorRecord.Exception.Response
+    if ($response) {
+        try {
+            $stream = $response.GetResponseStream()
+            if ($stream) {
+                $reader = New-Object System.IO.StreamReader($stream)
+                $body = $reader.ReadToEnd()
+                if ($body) { $parts.Add($body) }
+            }
+        }
+        catch { }
+    }
+    return ($parts -join "`n")
+}
+
+function Test-ArrTransientWriteFailure {
+    param([string]$ErrorText)
+    return ($ErrorText -match 'database is locked|SQLiteException|code\s*=\s*Busy|\(500\) Internal Server Error')
+}
+
+function Invoke-ArrWrite {
+    param(
+        [ValidateSet('Post', 'Put')]
+        [string]$Method,
+        [string]$BaseUrl,
+        [hashtable]$Headers,
+        [string]$Path,
+        [object]$Body
+    )
+
+    $attempt = 0
+    $maxAttempts = 4
+    while ($true) {
+        $attempt++
+        try {
+            return Invoke-RestMethod -Method $Method -Uri "$BaseUrl$Path" -Headers $Headers -ContentType 'application/json' -Body ($Body | ConvertTo-Json -Depth 30) -TimeoutSec $RequestTimeoutSec
+        }
+        catch {
+            $errorText = Get-ArrExceptionText -ErrorRecord $_
+            if ($attempt -lt $maxAttempts -and (Test-ArrTransientWriteFailure -ErrorText $errorText)) {
+                Start-Sleep -Seconds ([math]::Min(90, 15 * $attempt))
+                continue
+            }
+            throw
+        }
+    }
 }
 
 function Invoke-ArrPost {
     param([string]$BaseUrl, [hashtable]$Headers, [string]$Path, [object]$Body)
-    Invoke-RestMethod -Method Post -Uri "$BaseUrl$Path" -Headers $Headers -ContentType 'application/json' -Body ($Body | ConvertTo-Json -Depth 30)
+    Invoke-ArrWrite -Method Post -BaseUrl $BaseUrl -Headers $Headers -Path $Path -Body $Body
 }
 
 function Invoke-ArrPut {
     param([string]$BaseUrl, [hashtable]$Headers, [string]$Path, [object]$Body)
-    Invoke-RestMethod -Method Put -Uri "$BaseUrl$Path" -Headers $Headers -ContentType 'application/json' -Body ($Body | ConvertTo-Json -Depth 30)
+    Invoke-ArrWrite -Method Put -BaseUrl $BaseUrl -Headers $Headers -Path $Path -Body $Body
 }
 
 function Normalize-Title {

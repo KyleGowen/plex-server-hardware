@@ -64,3 +64,8 @@ The helper reads API keys from:
 It returns JSON with the selected match, add/update status, search command status, and queue matches. With `-Compact`, it omits queue row details. It does not print API keys or qBittorrent credentials.
 
 If the helper fails because the Arr API schema differs, use the same workflow manually with raw JSON responses and explicit parsing. Avoid PowerShell formatted tables for health, queue, or status decisions.
+
+## Known Transient Failures
+
+- After Docker Desktop or Sonarr restarts, Sonarr may accept HTTP but return `500 Internal Server Error` with `database is locked` / SQLite `Busy` during startup housekeeping, backup, vacuum, or refresh commands. The helper retries write calls for this specific transient condition. If it still fails, check `/api/v3/command` and wait for startup tasks to settle before retrying.
+- If Sonarr port `8989` is open but HTTP requests hang and `docker ps` says Docker Desktop is unable to start, restart the Docker Desktop backend/user processes and then run the stack health check before adding media.

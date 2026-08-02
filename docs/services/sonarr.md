@@ -59,6 +59,35 @@ As of `2026-05-30`, Sonarr runs in Docker while qBittorrent runs natively on Win
 - Do not mass-edit paths until drive letters and root folders are confirmed.
 - Do not import, move, or repair series paths under `/tv/tv2` while `H:` / TV 2 is absent. On 2026-05-30 `H:` is present again for the current test, but verify it after any crash/reboot before trusting imports.
 
+## Troubleshooting Notes
+
+### Docker Desktop backend stuck while Sonarr port is open
+
+On 2026-08-01, Sonarr API calls timed out even though TCP port `8989` was open. `docker ps` returned `Docker Desktop is unable to start`, `wsl -l -v` showed `docker-desktop` stopped, and the port listener belonged to Docker Desktop backend processes. A clean restart of the user-level Docker Desktop processes restored the WSL engine and all Arr containers without touching media drives or qBittorrent state:
+
+```powershell
+Get-Process -Name 'Docker Desktop','com.docker.backend','com.docker.proxy','docker' -ErrorAction SilentlyContinue | Stop-Process -Force
+Start-Sleep -Seconds 8
+Start-Process -FilePath 'C:\Program Files\Docker\Docker\Docker Desktop.exe' -WindowStyle Hidden
+```
+
+After Docker recovers, run the stack health check before trusting imports or adding media:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\Kyle\.codex\skills\plex-stack-health-check\scripts\Test-PlexStackHealth.ps1 -SummaryOnly
+```
+
+### Startup database lock during add
+
+Immediately after Sonarr starts, startup tasks such as housekeeping, backup, database vacuum, and refresh can briefly lock `sonarr.db`. On 2026-08-01, adding `President Curtis` returned `500 Internal Server Error` and Sonarr logged `System.Data.SQLite.SQLiteException ... database is locked` while `RefreshSeries` and startup commands were still active. Check command state and wait for startup work to settle before retrying:
+
+```powershell
+$config = [xml](Get-Content -LiteralPath 'C:\media-stack\config\sonarr\config.xml' -Raw)
+$headers = @{ 'X-Api-Key' = [string]$config.Config.ApiKey }
+Invoke-RestMethod -Method Get -Uri 'http://127.0.0.1:8989/api/v3/command' -Headers $headers |
+    Select-Object id,name,status,message
+```
+
 ## Current Gaps
 
 - Confirm completed download handling with one controlled test.
