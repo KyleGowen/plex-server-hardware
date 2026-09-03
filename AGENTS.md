@@ -19,6 +19,7 @@ For deeper context, read only the directly relevant file:
 - Thermal monitoring and crash sensor logs: `docs/thermal_monitoring.md`
 - Service details: `docs/services/*.md`
 - Skills and workflows: `docs/skills_catalog.md`
+- Weekly service updates: `docs/weekly_service_update_automation.md`
 - qBittorrent native service details: `docs/services/qbittorrent.md`
 - Hardware inventory: `docs/plex_server_hardware_inventory.md`
 
@@ -80,6 +81,7 @@ Still require explicit user confirmation for destructive storage actions, Plex l
 - For exact add requests where title, year, and media type are already clear, try the Arr lookup helper first and escalate to `media-internet-search` only if matching is ambiguous or not confident.
 - Use `add-media-to-plex` only when the user explicitly asks to add, search, download, monitor, or request local media acquisition.
 - Use `plex-collection-curator` for collection audit/create/fill/poster work, choosing the smallest mode implied by the request.
+- For an ecosystem-wide update sweep or questions about the Monday task, use `docs/weekly_service_update_automation.md`. Run all twelve update skills, preserve its Docker Desktop and shared-ledger serialization barriers, and use its report contract.
 
 ## Sonarr And Radarr Rules
 

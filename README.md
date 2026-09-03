@@ -39,6 +39,7 @@ Current deployment:
 | [docs/drive_reconnect_validation_checklist.md](docs/drive_reconnect_validation_checklist.md) | Step-by-step drive reconnect validation before trusting Docker media services. |
 | [docs/qbittorrent_startup_recovery.md](docs/qbittorrent_startup_recovery.md) | Native qBittorrent startup and path validation checklist. |
 | [docs/skills_catalog.md](docs/skills_catalog.md) | Catalog of available Codex skills and what each is for. |
+| [docs/weekly_service_update_automation.md](docs/weekly_service_update_automation.md) | Weekly update task schedule, managed skills, concurrency rules, version tracking, and report contract. |
 | [docs/plex_server_hardware_troubleshooting_history_log.md](docs/plex_server_hardware_troubleshooting_history_log.md) | Historical diagnostics from the failed ASUS platform. |
 
 ## Service Documentation
@@ -64,5 +65,5 @@ Each ecosystem service has its own reference file with purpose, deployment, and 
 - Put current crash/stability observations in the crash tracker.
 - Put confirmed component, drive, app, and service facts in the inventory or per-service docs.
 - Put current qBittorrent operational details in the qBittorrent service doc.
-- Put assistant workflow and reusable local automation notes in the skills catalog.
+- Put skill routing in the skills catalog and scheduled service-update behavior in the weekly automation runbook.
 - Keep secrets out of repo docs, generated scripts, logs intended for git, commits, and GitHub.
