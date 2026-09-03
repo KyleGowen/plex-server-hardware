@@ -11,6 +11,7 @@ Jackett is a legacy Torznab/indexer aggregation fallback. Prowlarr is the curren
 | Deployment | Optional Docker container profile |
 | Container name | `jackett` |
 | Image | `lscr.io/linuxserver/jackett:latest` |
+| Current pulled image | `v0.24.2527-ls18` |
 | Compose profile | `legacy-jackett` |
 | Config path | `C:\media-stack\config\jackett` if enabled |
 | Web UI | `http://localhost:9117` if enabled |
@@ -44,3 +45,12 @@ Jackett is a legacy Torznab/indexer aggregation fallback. Prowlarr is the curren
 - SpeedCD was configured in Jackett and Jackett search/test passed, but downloads were blocked by the same SpeedCD account restriction.
 - After SpeedCD account download access was restored, SpeedCD worked directly through Prowlarr again. Jackett was stopped and remains unnecessary for active Sonarr/Radarr routing.
 - Jackett config may exist locally because of the fallback test. Treat it as secret-bearing local state and do not commit Jackett config files.
+
+## Update History
+
+### 2026-09-03
+
+- Pulled the latest LinuxServer Jackett image, `v0.24.2527-ls18`, for the optional `legacy-jackett` profile.
+- Did not start or enable Jackett; Prowlarr remains the active indexer manager.
+- Refreshed the local image to the newer upstream digest; the reported LinuxServer version remained `v0.24.2527-ls18`.
+- Confirmed the existing Jackett container remained stopped after the refresh.

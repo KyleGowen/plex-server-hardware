@@ -1,0 +1,4 @@
+interface:
+  display_name: "Update Plex Media Server"
+  short_description: "Safely update native Windows Plex"
+  default_prompt: "Use $update-plex-media-server to check for and install the latest stable Plex Media Server update."

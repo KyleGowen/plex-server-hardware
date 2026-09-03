@@ -13,6 +13,7 @@ It does not manage media, download torrents, import files, scan Plex libraries, 
 | Deployment | Docker container |
 | Container name | `uptime-kuma` |
 | Image | `louislam/uptime-kuma:1` |
+| Current version | `1.23.17` |
 | Compose file | `C:\plex-server\docker-compose.media.yml` |
 | Config/data path | `C:\media-stack\config\uptime-kuma` |
 | Web UI | `http://localhost:3001` |
@@ -98,6 +99,14 @@ Verified after monitor creation on 2026-05-25:
 | Tautulli | Up: `200 - OK` |
 | Uptime Kuma | Up: `200 - OK` |
 | qBittorrent | Up: `200 - OK` |
+
+## Update History
+
+### 2026-09-03
+
+- Pulled the latest `louislam/uptime-kuma:1` image and recreated the container with existing persistent data.
+- Kept Uptime Kuma on the configured v1 line; upstream v2 is a breaking migration that should be planned separately.
+- Verified the container became healthy after startup.
 
 ## Operational Rules
 

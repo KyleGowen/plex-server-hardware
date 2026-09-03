@@ -1,0 +1,4 @@
+interface:
+  display_name: "Update Uptime Kuma"
+  short_description: "Update Uptime Kuma within its approved major line"
+  default_prompt: "Use $update-uptime-kuma to check for and apply a safe Uptime Kuma update within its configured major release."

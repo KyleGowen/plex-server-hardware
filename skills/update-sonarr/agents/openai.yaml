@@ -1,0 +1,4 @@
+interface:
+  display_name: "Update Sonarr"
+  short_description: "Update and verify the Sonarr container"
+  default_prompt: "Use $update-sonarr to check for and apply the latest configured Sonarr container update."

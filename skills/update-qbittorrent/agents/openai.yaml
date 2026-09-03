@@ -1,0 +1,4 @@
+interface:
+  display_name: "Update qBittorrent"
+  short_description: "Safely update native Windows qBittorrent"
+  default_prompt: "Use $update-qbittorrent to check for and install the latest stable qBittorrent update."

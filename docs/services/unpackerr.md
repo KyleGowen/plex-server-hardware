@@ -11,6 +11,7 @@ Unpackerr extracts archived completed downloads so Sonarr and Radarr can import 
 | Deployment | Docker container |
 | Container name | `unpackerr` |
 | Image | `golift/unpackerr:latest` |
+| Current version | `0.16.1` |
 | Compose file | `C:\plex-server\docker-compose.media.yml` |
 | Config path | `C:\media-stack\config\unpackerr` |
 | Web UI | None expected |
@@ -46,3 +47,10 @@ Unpackerr extracts archived completed downloads so Sonarr and Radarr can import 
 
 - Confirm watched folders and extraction destination behavior with a small non-critical archived download once `/downloads` is healthy.
 - As of the 2026-05-26 repair, Unpackerr logs showed one configured Sonarr server, one configured Radarr server, and an idle queue with zero failures.
+
+## Update History
+
+### 2026-09-03
+
+- Pulled the latest Unpackerr image and recreated the container with existing persistent configuration.
+- Verified Unpackerr reports version `0.16.1` and `/downloads` still mapped to `I:\`.

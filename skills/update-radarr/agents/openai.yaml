@@ -1,0 +1,4 @@
+interface:
+  display_name: "Update Radarr"
+  short_description: "Update and verify the Radarr container"
+  default_prompt: "Use $update-radarr to check for and apply the latest configured Radarr container update."

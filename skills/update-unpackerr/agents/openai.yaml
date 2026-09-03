@@ -1,0 +1,4 @@
+interface:
+  display_name: "Update Unpackerr"
+  short_description: "Update and verify the Unpackerr container"
+  default_prompt: "Use $update-unpackerr to check for and apply the latest configured Unpackerr container update."

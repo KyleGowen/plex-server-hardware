@@ -36,6 +36,7 @@ Route agents to concise, show-specific records without loading the full TV libra
 | Exact Plex title | Year | Record |
 |---|---:|---|
 | A.P. Bio | 2018 | [`tv-shows/ap-bio.md`](tv-shows/ap-bio.md) |
+| A Science Odyssey | 1998 | [`tv-shows/a-science-odyssey.md`](tv-shows/a-science-odyssey.md) |
 | Abbott Elementary | 2021 | [`tv-shows/abbott-elementary.md`](tv-shows/abbott-elementary.md) |
 | Bob's Burgers | 2011 | [`tv-shows/bobs-burgers.md`](tv-shows/bobs-burgers.md) |
 | Daredevil: Born Again | 2025 | [`tv-shows/daredevil-born-again.md`](tv-shows/daredevil-born-again.md) |
@@ -52,3 +53,4 @@ Route agents to concise, show-specific records without loading the full TV libra
 | Teenage Mutant Ninja Turtles (2012) | 2012 | [`tv-shows/teenage-mutant-ninja-turtles-2012.md`](tv-shows/teenage-mutant-ninja-turtles-2012.md) |
 | The Bear | 2022 | [`tv-shows/the-bear.md`](tv-shows/the-bear.md) |
 | The Boys | 2019 | [`tv-shows/the-boys.md`](tv-shows/the-boys.md) |
+| VisionQuest | 2026 | [`tv-shows/visionquest.md`](tv-shows/visionquest.md) |

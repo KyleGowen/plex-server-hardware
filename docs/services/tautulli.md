@@ -11,6 +11,7 @@ Tautulli is the Plex monitoring and history companion. It records active streams
 | Deployment | Docker container |
 | Container name | `tautulli` |
 | Image | `lscr.io/linuxserver/tautulli:latest` |
+| Current version | `2.18.1` (`v2.18.1-ls242`) |
 | Compose file | `C:\plex-server\docker-compose.media.yml` |
 | Config path | `C:\media-stack\config\tautulli` |
 | Web UI | `http://localhost:8181` |
@@ -81,3 +82,10 @@ Safe first-run order:
 - [ ] Start one controlled Plex playback and verify it appears as an active stream.
 - [ ] Stop playback and verify it lands in Tautulli history.
 - [ ] Decide whether any notifications are desired; if yes, document the destination without committing notification tokens.
+
+## Update History
+
+### 2026-09-03
+
+- Pulled the latest LinuxServer Tautulli image and recreated the container with existing persistent configuration.
+- Verified the stack health check passed after startup.

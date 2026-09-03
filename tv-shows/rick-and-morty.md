@@ -1,7 +1,7 @@
 # Rick and Morty (2013)
 
 **Created at:** 2026-05-23  
-**Updated at:** 2026-06-08
+**Updated at:** 2026-08-03
 
 ## Library Identity
 
@@ -17,7 +17,7 @@
 
 | Expected Episodes | Files Present | Missing |
 |---:|---:|---:|
-| 84 | 84 | 0 |
+| 91 | 90 | 1 |
 
 ### Seasons
 
@@ -31,7 +31,7 @@
 | 6 | Yes | 10 | 10 | 0 |
 | 7 | Yes | 10 | 10 | 0 |
 | 8 | Yes | 10 | 10 | 0 |
-| 9 | Yes | 3 | 3 | 0 |
+| 9 | Yes | 10 | 9 | 1 |
 
 ### Specials
 
@@ -54,5 +54,5 @@
 
 ## Operational Notes
 
-- Complete in Sonarr for all currently tracked episodes as of 2026-06-08.
-- Season 9 is continuing and currently has three tracked episodes; completeness is relative to Sonarr's present episode inventory.
+- Sonarr shows Season 9 has 10 tracked episodes as of 2026-08-03.
+- Missing monitored episode: `S09E10 - Field of Dreams`, aired 2026-07-26.

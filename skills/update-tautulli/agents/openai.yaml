@@ -1,0 +1,4 @@
+interface:
+  display_name: "Update Tautulli"
+  short_description: "Update and verify the Tautulli container"
+  default_prompt: "Use $update-tautulli to check for and apply the latest configured Tautulli container update."

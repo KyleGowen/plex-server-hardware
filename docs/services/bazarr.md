@@ -13,6 +13,7 @@ Bazarr missing counts are about subtitles, not missing media files.
 | Deployment | Docker container |
 | Container name | `bazarr` |
 | Image | `lscr.io/linuxserver/bazarr:latest` |
+| Current version | `1.6.0` (`v1.6.0-ls362`) |
 | Compose file | `C:\plex-server\docker-compose.media.yml` |
 | Config path | `C:\media-stack\config\bazarr` |
 | Database | `C:\media-stack\config\bazarr\db\bazarr.db` |
@@ -77,6 +78,13 @@ Verified controlled downloads:
 - TV roots are mounted as `/tv/tv1` from `J:\`, `/tv/tv2` from `H:\`, and `/tv/tv3` from `G:\`.
 - Do not refresh Plex for subtitle visibility without explicit confirmation.
 - Keep Bazarr, Sonarr, Radarr, and provider credentials out of repo docs and logs.
+
+## Update History
+
+### 2026-09-03
+
+- Pulled the latest LinuxServer Bazarr image and recreated the container with existing persistent configuration.
+- Verified the stack health check passed after startup.
 
 ## Current Gaps
 

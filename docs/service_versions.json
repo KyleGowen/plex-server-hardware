@@ -1,0 +1,127 @@
+﻿{
+    "schema_version":  1,
+    "updated_at":  "2026-09-03T11:48:09.3673581-07:00",
+    "services":  {
+                     "plex":  {
+                                  "deployment":  "native-windows",
+                                  "release_channel":  "public-stable",
+                                  "installed_version":  "1.43.3.10896",
+                                  "image":  null,
+                                  "image_digest":  null,
+                                  "last_checked_at":  "2026-09-03T11:44:55.3315519-07:00",
+                                  "last_updated_at":  "2026-09-03",
+                                  "last_result":  "current"
+                              },
+                     "qbittorrent":  {
+                                         "deployment":  "native-windows",
+                                         "release_channel":  "stable",
+                                         "installed_version":  "5.2.3",
+                                         "image":  null,
+                                         "image_digest":  null,
+                                         "last_checked_at":  "2026-09-03T11:44:56.1919578-07:00",
+                                         "last_updated_at":  "2026-07-12",
+                                         "last_result":  "current"
+                                     },
+                     "docker-desktop":  {
+                                            "deployment":  "native-windows-runtime",
+                                            "release_channel":  "stable",
+                                            "installed_version":  "4.89.0",
+                                            "engine_version":  "29.7.2",
+                                            "image":  null,
+                                            "image_digest":  null,
+                                            "last_checked_at":  "2026-09-03T11:44:54.4687716-07:00",
+                                            "last_updated_at":  "2026-09-03",
+                                            "last_result":  "current"
+                                        },
+                     "sonarr":  {
+                                    "deployment":  "docker",
+                                    "release_channel":  "latest",
+                                    "installed_version":  "4.0.19.2979-ls322",
+                                    "image":  "lscr.io/linuxserver/sonarr:latest",
+                                    "image_digest":  "sha256:c19aa4ecdf03d73e1d5c901da33744cb7eb4d921f89bafed1ca264601d7fa224",
+                                    "last_checked_at":  "2026-09-03T11:45:06.8378588-07:00",
+                                    "last_updated_at":  "2026-09-03",
+                                    "last_result":  "current"
+                                },
+                     "radarr":  {
+                                    "deployment":  "docker",
+                                    "release_channel":  "latest",
+                                    "installed_version":  "6.3.0.10514-ls314",
+                                    "image":  "lscr.io/linuxserver/radarr:latest",
+                                    "image_digest":  "sha256:119aaa4a4f7349bcd2a136c5373a0d7925b5479915c7dfe0c0ad352db2a6d438",
+                                    "last_checked_at":  "2026-09-03T11:45:17.9526782-07:00",
+                                    "last_updated_at":  "2026-09-03",
+                                    "last_result":  "current"
+                                },
+                     "prowlarr":  {
+                                      "deployment":  "docker",
+                                      "release_channel":  "latest",
+                                      "installed_version":  "2.5.2.5491-ls158",
+                                      "image":  "lscr.io/linuxserver/prowlarr:latest",
+                                      "image_digest":  "sha256:91844fa2c927ad6ede5630127183cc7868b175f6223e83e6a5da1fffea2aa782",
+                                      "last_checked_at":  "2026-09-03T11:45:29.0821278-07:00",
+                                      "last_updated_at":  "2026-09-03",
+                                      "last_result":  "current"
+                                  },
+                     "bazarr":  {
+                                    "deployment":  "docker",
+                                    "release_channel":  "latest",
+                                    "installed_version":  "v1.6.0-ls362",
+                                    "image":  "lscr.io/linuxserver/bazarr:latest",
+                                    "image_digest":  "sha256:a20fb11a440d704a9d61c283aa26462aad33dc63223b173f8d8c77d33e8e9d59",
+                                    "last_checked_at":  "2026-09-03T11:45:40.3450649-07:00",
+                                    "last_updated_at":  "2026-09-03",
+                                    "last_result":  "current"
+                                },
+                     "tautulli":  {
+                                      "deployment":  "docker",
+                                      "release_channel":  "latest",
+                                      "installed_version":  "v2.18.1-ls242",
+                                      "image":  "lscr.io/linuxserver/tautulli:latest",
+                                      "image_digest":  "sha256:13f03ecfc61a7af89d492677389771ac29682a72153ce08a5cd4faffbc0197e8",
+                                      "last_checked_at":  "2026-09-03T11:45:52.4054801-07:00",
+                                      "last_updated_at":  "2026-09-03",
+                                      "last_result":  "current"
+                                  },
+                     "uptime-kuma":  {
+                                         "deployment":  "docker",
+                                         "release_channel":  "major-v1",
+                                         "installed_version":  "1.23.17",
+                                         "image":  "louislam/uptime-kuma:1",
+                                         "image_digest":  "sha256:3d632903e6af34139a37f18055c4f1bfd9b7205ae1138f1e5e8940ddc1d176f9",
+                                         "last_checked_at":  "2026-09-03T11:46:06.1325624-07:00",
+                                         "last_updated_at":  "2026-09-03",
+                                         "last_result":  "current"
+                                     },
+                     "homarr":  {
+                                    "deployment":  "docker",
+                                    "release_channel":  "latest",
+                                    "installed_version":  "main",
+                                    "image":  "ghcr.io/homarr-labs/homarr:latest",
+                                    "image_digest":  "sha256:7d87f7fdd35f8bbee1b922b9b74fad8ce9967a1a66b8c6db1a168780c03d693b",
+                                    "last_checked_at":  "2026-09-03T11:46:17.9678221-07:00",
+                                    "last_updated_at":  "2026-09-03",
+                                    "last_result":  "current"
+                                },
+                     "unpackerr":  {
+                                       "deployment":  "docker",
+                                       "release_channel":  "latest",
+                                       "installed_version":  "0.16.1",
+                                       "image":  "golift/unpackerr:latest",
+                                       "image_digest":  "sha256:244fc45cb207308f60e8f52dd703c2b3463385752de0f9517c58ff9d331ed15e",
+                                       "last_checked_at":  "2026-09-03T11:46:27.9034036-07:00",
+                                       "last_updated_at":  "2026-09-03",
+                                       "last_result":  "current"
+                                   },
+                     "jackett":  {
+                                     "deployment":  "docker-optional",
+                                     "release_channel":  "latest",
+                                     "installed_version":  "v0.24.2527-ls18",
+                                     "image":  "lscr.io/linuxserver/jackett:latest",
+                                     "image_digest":  "sha256:140349b2f39ae9894801922786265119770b19061e8a9285d7dcc1f1451ed639",
+                                     "last_checked_at":  "2026-09-03T11:48:09.3673581-07:00",
+                                     "last_updated_at":  "2026-09-03T11:48:09.3673581-07:00",
+                                     "last_result":  "image_updated_service_left_disabled"
+                                 }
+                 }
+}

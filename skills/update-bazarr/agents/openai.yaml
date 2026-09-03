@@ -1,0 +1,4 @@
+interface:
+  display_name: "Update Bazarr"
+  short_description: "Update and verify the Bazarr container"
+  default_prompt: "Use $update-bazarr to check for and apply the latest configured Bazarr container update."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Update Jackett"
+  short_description: "Refresh the disabled legacy Jackett image"
+  default_prompt: "Use $update-jackett to check for and pull the latest Jackett image without enabling the legacy service."

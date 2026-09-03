@@ -13,6 +13,7 @@ Homarr does not acquire media, download torrents, import files, write subtitles,
 | Deployment | Docker container |
 | Container name | `homarr` |
 | Image | `ghcr.io/homarr-labs/homarr:latest` |
+| Current image label | `main` |
 | Compose file | `C:\plex-server\docker-compose.media.yml` |
 | Config/data path | `C:\media-stack\config\homarr` |
 | Web UI | `http://localhost:7575` |
@@ -83,6 +84,13 @@ The `Plex` board is the configured home board for the current Homarr user. It wa
 | Jackett | `http://localhost:9117` | `http://jackett:9117` | Optional; only useful when `legacy-jackett` profile is intentionally running |
 
 Unpackerr is not listed as a primary app tile because this deployment does not expose a normal Web UI for it. Track it through Docker status, logs, or a future controlled monitoring path.
+
+## Update History
+
+### 2026-09-03
+
+- Pulled the latest Homarr image and recreated the container with existing persistent app data.
+- Verified the stack health check passed after startup.
 
 ## Optional Integrations
 

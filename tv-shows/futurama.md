@@ -1,7 +1,7 @@
 # Futurama (1999)
 
 **Created at:** 2026-05-24  
-**Updated at:** 2026-06-22
+**Updated at:** 2026-08-13
 
 ## Library Identity
 
@@ -17,7 +17,7 @@
 
 | Expected Aired/Listed Episodes | Files Present | Missing |
 |---:|---:|---:|
-| 154 | 153 | 1 |
+| 164 | 154 | 10 |
 
 ### Seasons
 
@@ -33,7 +33,7 @@
 | 8 | Yes | 10 | 10 | 0 |
 | 9 | Yes | 10 | 10 | 0 |
 | 10 | Yes | 10 | 9 | 1 |
-| 11 | Yes | 0 aired/listed | 0 | 0 |
+| 11 | Yes | 10 | 1 | 9 |
 
 ### Specials
 
@@ -76,3 +76,4 @@
 - No Futurama posters were changed. The currently selected Plex show cover and season posters were only catalogued.
 - Sonarr search command `69902` was started on 2026-06-22 to look for the missing monitored S10E06 file and was still processing release 55/68 at final check.
 - The four Futurama direct-to-video movies were added to Radarr as movie targets and searched; see [`collections/futurama-collection.md`](../collections/futurama-collection.md).
+- On 2026-08-13, live Sonarr showed Season 11 as the latest normal season. S11E01 `Beef` and S11E02 `Catfish Hunter` were monitored and missing, while S11E03 had a file. A targeted `EpisodeSearch` for episode IDs `4146` and `4147` completed as command `181361` with no queue match immediately afterward.

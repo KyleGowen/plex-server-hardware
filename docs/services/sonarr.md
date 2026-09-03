@@ -11,6 +11,7 @@ Sonarr manages TV series acquisition and imports. It monitors series, evaluates 
 | Deployment | Docker container |
 | Container name | `sonarr` |
 | Image | `lscr.io/linuxserver/sonarr:latest` |
+| Current version | `4.0.19.2979` (`4.0.19.2979-ls322`) |
 | Compose file | `C:\plex-server\docker-compose.media.yml` |
 | Config path | `C:\media-stack\config\sonarr` |
 | Web UI | `http://localhost:8989` |
@@ -88,6 +89,13 @@ Invoke-RestMethod -Method Get -Uri 'http://127.0.0.1:8989/api/v3/command' -Heade
     Select-Object id,name,status,message
 ```
 
+## Update History
+
+### 2026-09-03
+
+- Pulled the latest LinuxServer Sonarr image and recreated the container with existing persistent configuration.
+- Verified the stack health check passed after startup and `/downloads` still mapped to `I:\`.
+
 ## Current Gaps
 
 - Confirm completed download handling with one controlled test.
@@ -99,7 +107,8 @@ Invoke-RestMethod -Method Get -Uri 'http://127.0.0.1:8989/api/v3/command' -Heade
 
 | Indexer | Source | RSS | Automatic search | Interactive search |
 |---|---|---|---|---|
-| MoreThanTV | Prowlarr | Enabled | Enabled | Enabled |
+| MoreThanTV | Prowlarr | Enabled in config | Treat as unavailable | Treat as unavailable |
 | SpeedCD | Prowlarr | Enabled | Enabled | Enabled |
 
 On 2026-05-31, SpeedCD briefly caused Sonarr searches to appear empty because SpeedCD search worked but torrent grabs returned an HTML account restriction page. Sonarr suppressed SpeedCD after repeated failures. After the SpeedCD account restriction was lifted, Prowlarr torrent-download validation passed, SpeedCD was re-enabled, and a Bob's Burgers S16E10 interactive search returned SpeedCD results. See `docs/indexer_outage_2026-05-31.md`.
+As of 2026-08-17, treat MoreThanTV as dead/unavailable until fresh evidence shows it has recovered; expect Sonarr searches to depend on SpeedCD unless another healthy indexer is added.

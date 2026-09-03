@@ -9,7 +9,7 @@ Plex is the native Windows media server. It owns the media libraries, metadata, 
 | Item | Value |
 |---|---|
 | Deployment | Native Windows application |
-| Observed version | `Plex Media Server 1.43.2.10687 (x64)` |
+| Observed version | `Plex Media Server 1.43.3.10896 (x64)` |
 | Observed data path | `C:\Users\Kyle\AppData\Local\Plex Media Server` |
 | Local Web UI | `http://localhost:32400/web` |
 | Update service | `PlexUpdateService` observed running |

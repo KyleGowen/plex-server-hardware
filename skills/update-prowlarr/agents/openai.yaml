@@ -1,0 +1,4 @@
+interface:
+  display_name: "Update Prowlarr"
+  short_description: "Update and verify the Prowlarr container"
+  default_prompt: "Use $update-prowlarr to check for and apply the latest configured Prowlarr container update."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Update Homarr"
+  short_description: "Update and verify the Homarr container"
+  default_prompt: "Use $update-homarr to check for and apply the latest configured Homarr container update."

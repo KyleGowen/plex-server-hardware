@@ -1,0 +1,4 @@
+interface:
+  display_name: "Update Docker Desktop"
+  short_description: "Update Docker Desktop and validate the media stack"
+  default_prompt: "Use $update-docker-desktop to check for and install the latest stable Docker Desktop update."

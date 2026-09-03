@@ -17,6 +17,25 @@ Catalog the skills available for this project and what they can do. Use this fil
 | `add-media-to-plex` | `tools/codex-skills/add-media-to-plex` and installed at `C:\Users\Kyle\.codex\skills\add-media-to-plex` | Mutates Arr state and can trigger searches | User asks to add/search/download a movie or show for Plex | Uses Radarr/Sonarr helper lookup first, compact output by default, and deeper queue detail only for troubleshooting |
 | `plex-collection-curator` | `skills/plex-collection-curator` and installed at `C:\Users\Kyle\.codex\skills\plex-collection-curator` | Mutates Plex/Arr only in selected modes | User asks to audit, create, update, fill, or posterize a Plex collection | Chooses the smallest mode implied by wording; complete mode only when explicitly requested |
 
+# Service Update Skills
+
+These skills check the configured stable release channel, apply an update only when needed, verify the affected service, update its service record, and maintain `docs/service_versions.json`. A skill cannot select its own model; use the listed launch model when starting the task or delegating it to a subagent.
+
+| Skill | Service | Recommended model | Update boundary |
+|---|---|---|---|
+| `update-plex-media-server` | Native Windows Plex | GPT-5.4 Mini, high | Official public Windows x64 release; block active streams by default |
+| `update-qbittorrent` | Native Windows qBittorrent | GPT-5.4 Mini, high | Stable WinGet package; no torrent mutations |
+| `update-docker-desktop` | Docker Desktop runtime | GPT-5.4 Mini, high | Stable WinGet package plus full stack validation |
+| `update-sonarr` | Sonarr container | GPT-5.4 Mini, medium | Configured `latest` image; recreate Sonarr only |
+| `update-radarr` | Radarr container | GPT-5.4 Mini, medium | Configured `latest` image; recreate Radarr only |
+| `update-prowlarr` | Prowlarr container | GPT-5.4 Mini, medium | Configured `latest` image; recreate Prowlarr only |
+| `update-bazarr` | Bazarr container | GPT-5.4 Mini, medium | Configured `latest` image; recreate Bazarr only |
+| `update-tautulli` | Tautulli container | GPT-5.4 Mini, medium | Configured `latest` image; recreate Tautulli only |
+| `update-uptime-kuma` | Uptime Kuma container | GPT-5.4 Mini, high | Stay on configured v1 line; v2 requires a separate migration approval |
+| `update-homarr` | Homarr container | GPT-5.4 Mini, medium | Configured `latest` image; recreate Homarr only |
+| `update-unpackerr` | Unpackerr container | GPT-5.4 Mini, medium | Configured `latest` image; recreate Unpackerr only |
+| `update-jackett` | Optional Jackett image | GPT-5.4 Mini, medium | Pull the legacy profile image without enabling a stopped service |
+
 ## Project Skill Rules
 
 - Read-only skills must not trigger searches, downloads, imports, refreshes, deletes, moves, torrent actions, or path repairs.
@@ -77,5 +96,17 @@ Catalog the skills available for this project and what they can do. Use this fil
   - `tools\codex-skills\add-media-to-plex` -> `C:\Users\Kyle\.codex\skills\add-media-to-plex`
   - `tools\codex-skills\media-internet-search` -> `C:\Users\Kyle\.codex\skills\media-internet-search`
   - `tools\codex-skills\overnight-media-audit` -> `C:\Users\Kyle\.codex\skills\overnight-media-audit`
+  - `skills\update-plex-media-server` -> `C:\Users\Kyle\.codex\skills\update-plex-media-server`
+  - `skills\update-qbittorrent` -> `C:\Users\Kyle\.codex\skills\update-qbittorrent`
+  - `skills\update-docker-desktop` -> `C:\Users\Kyle\.codex\skills\update-docker-desktop`
+  - `skills\update-sonarr` -> `C:\Users\Kyle\.codex\skills\update-sonarr`
+  - `skills\update-radarr` -> `C:\Users\Kyle\.codex\skills\update-radarr`
+  - `skills\update-prowlarr` -> `C:\Users\Kyle\.codex\skills\update-prowlarr`
+  - `skills\update-bazarr` -> `C:\Users\Kyle\.codex\skills\update-bazarr`
+  - `skills\update-tautulli` -> `C:\Users\Kyle\.codex\skills\update-tautulli`
+  - `skills\update-uptime-kuma` -> `C:\Users\Kyle\.codex\skills\update-uptime-kuma`
+  - `skills\update-homarr` -> `C:\Users\Kyle\.codex\skills\update-homarr`
+  - `skills\update-unpackerr` -> `C:\Users\Kyle\.codex\skills\update-unpackerr`
+  - `skills\update-jackett` -> `C:\Users\Kyle\.codex\skills\update-jackett`
 - Installed skill docs should use absolute installed script paths. Repo skill docs should use repo-relative paths.
 - After syncing, run `Get-ChildItem C:\Users\Kyle\.codex\skills -Recurse -Filter SKILL.md` and confirm expected skill names are present.

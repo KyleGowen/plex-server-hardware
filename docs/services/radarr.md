@@ -11,7 +11,7 @@ Radarr manages movie acquisition and imports. It monitors wanted movies, evaluat
 | Deployment | Docker container |
 | Container name | `radarr` |
 | Image | `lscr.io/linuxserver/radarr:latest` |
-| Current version | `6.2.1.10461` (`6.2.1.10461-ls306`) |
+| Current version | `6.3.0.10514` (`6.3.0.10514-ls314`) |
 | Compose file | `C:\plex-server\docker-compose.media.yml` |
 | Config path | `C:\media-stack\config\radarr` |
 | Web UI | `http://localhost:7878` |
@@ -81,12 +81,19 @@ On 2026-05-24, these movies were added or updated in Radarr as monitored `Ultra-
 
 | Indexer | Source | RSS | Automatic search | Interactive search |
 |---|---|---|---|---|
-| MoreThanTV | Prowlarr | Enabled | Enabled | Enabled |
+| MoreThanTV | Prowlarr | Enabled in config | Treat as unavailable | Treat as unavailable |
 | SpeedCD | Prowlarr | Enabled | Enabled | Enabled |
 
 Prowlarr remains the active indexer layer for Radarr. Jackett is not part of the active Radarr routing.
+As of 2026-08-17, treat MoreThanTV as dead/unavailable until fresh evidence shows it has recovered; expect Radarr searches to depend on SpeedCD unless another healthy indexer is added.
 
 ## Update History
+
+### 2026-09-03
+
+- Updated the LinuxServer container from Radarr `6.2.1.10461` (`6.2.1.10461-ls306`) to `6.3.0.10514` (`6.3.0.10514-ls314`).
+- Recreated the container with existing persistent configuration.
+- Verified the stack health check passed after startup and `/downloads` still mapped to `I:\`.
 
 ### 2026-06-15
 
@@ -94,3 +101,8 @@ Prowlarr remains the active indexer layer for Radarr. Jackett is not part of the
 - Recreated only the Radarr container with the existing persistent configuration.
 - Verified zero Radarr health issues after startup.
 - Verified native qBittorrent remains enabled, the `I:\torrentfiles\` to `/downloads/` remote path mapping is unchanged, and all three movie roots remain accessible.
+
+### 2026-08-17
+
+- Operational assumption changed: MoreThanTV is considered dead/unavailable and should not be counted as a working Radarr source.
+- No Radarr or Prowlarr setting was changed by this documentation update.
