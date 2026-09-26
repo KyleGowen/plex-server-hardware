@@ -46,8 +46,10 @@ Route agents to concise, show-specific records without loading the full TV libra
 | It's Always Sunny in Philadelphia | 2005 | [`tv-shows/its-always-sunny-in-philadelphia.md`](tv-shows/its-always-sunny-in-philadelphia.md) |
 | King of the Hill | 1997 | [`tv-shows/king-of-the-hill.md`](tv-shows/king-of-the-hill.md) |
 | Life, Larry and the Pursuit of Unhappiness | 2026 | [`tv-shows/life-larry-and-the-pursuit-of-unhappiness.md`](tv-shows/life-larry-and-the-pursuit-of-unhappiness.md) |
+| Pokémon | 1997 | [`tv-shows/pokemon.md`](tv-shows/pokemon.md) |
 | Rick and Morty | 2013 | [`tv-shows/rick-and-morty.md`](tv-shows/rick-and-morty.md) |
 | Rise of the Teenage Mutant Ninja Turtles | 2018 | [`tv-shows/rise-of-the-teenage-mutant-ninja-turtles.md`](tv-shows/rise-of-the-teenage-mutant-ninja-turtles.md) |
+| Star Wars: The Clone Wars | 2008 | [`tv-shows/star-wars-the-clone-wars.md`](tv-shows/star-wars-the-clone-wars.md) |
 | Tales of the Teenage Mutant Ninja Turtles | 2024 | [`tv-shows/tales-of-the-teenage-mutant-ninja-turtles.md`](tv-shows/tales-of-the-teenage-mutant-ninja-turtles.md) |
 | Teenage Mutant Ninja Turtles | 1987 | [`tv-shows/teenage-mutant-ninja-turtles-1987.md`](tv-shows/teenage-mutant-ninja-turtles-1987.md) |
 | Teenage Mutant Ninja Turtles (2012) | 2012 | [`tv-shows/teenage-mutant-ninja-turtles-2012.md`](tv-shows/teenage-mutant-ninja-turtles-2012.md) |

@@ -5,7 +5,7 @@ description: Check for and install stable Docker Desktop updates on Kyle's Windo
 
 # Update Docker Desktop
 
-Use `GPT-5.4 Mini` with `high` reasoning when selecting a model for this task. A skill cannot switch its own model; do not stop solely because the task was launched on another capable model.
+Use `GPT-5.6 Sol` with `high` reasoning when selecting a model for this task. A skill cannot switch its own model; do not stop solely because the task was launched on another capable model.
 
 ## Workflow
 
@@ -19,4 +19,4 @@ powershell -NoProfile -ExecutionPolicy Bypass -File skills\update-docker-desktop
 3. If `updated` is true, read `docs/services/docker-desktop.md`, then use `apply_patch` to update Docker Desktop and engine versions and append a dated history entry. The script updates `docs/service_versions.json` itself.
 4. If already current, do not read or edit the service document.
 
-The helper uses the stable `winget` package, waits for the engine, and runs the existing `plex-stack-health-check`. Do not change compose definitions, service settings, paths, profiles, or Docker data. If the helper fails, report the concise failure and stop.
+The helper uses the stable `winget` package, waits for the engine, and runs the existing `plex-stack-health-check`. On apply, it records the authoritative package version attempted by WinGet, installed pre-attempt version, sanitized failure signature, and recurrence count even when installation or verification fails. Do not change compose definitions, service settings, paths, profiles, or Docker data. If the helper fails, report the concise failure and stop.

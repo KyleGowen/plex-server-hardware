@@ -14,6 +14,7 @@ Homarr does not acquire media, download torrents, import files, write subtitles,
 | Container name | `homarr` |
 | Image | `ghcr.io/homarr-labs/homarr:latest` |
 | Current image label | `main` |
+| Current application release | Unknown; image label is `main` and source revision is `286abf392ad32cc339b94815c84438863c43190e` |
 | Compose file | `C:\plex-server\docker-compose.media.yml` |
 | Config/data path | `C:\media-stack\config\homarr` |
 | Web UI | `http://localhost:7575` |
@@ -87,10 +88,27 @@ Unpackerr is not listed as a primary app tile because this deployment does not e
 
 ## Update History
 
+### 2026-09-21
+
+- Refreshed the Homarr image and recreated only Homarr with existing persistent data. Service and stack health verification passed; the helper recorded the new digest and `main` image label.
+- The image source revision is the automatic v1.77.2 release commit, but the v1.77.2 tag is one subsequent metadata-only commit ahead. Source package metadata says `1.77.1` and the runtime standalone package says `0.1.0`, so the installed application release is recorded as unknown instead of inferred.
+- Official update notes: Not published/found. The [target release page](https://github.com/homarr-labs/homarr/releases/tag/v1.77.2) contains only a version/date heading and comparison link.
+
+### 2026-09-14
+
+- Updated Homarr from `1.77.0` to `1.77.1`, identified from the old and new image source revisions (`ecd02f73c0bb40654e88b64920aa8a91d63ba9b5` and `bff6ec735ee895dd40d7225eec28a09bccf9a331`). The image version label remains `main`.
+- Recreated only Homarr with existing persistent data and passed service and stack health verification. The helper recorded the new image digest in the shared ledger.
+- Official update notes: Not published/found. The [target release page](https://github.com/homarr-labs/homarr/releases/tag/v1.77.1) contains a version/date heading without substantive release notes.
+
 ### 2026-09-03
 
 - Pulled the latest Homarr image and recreated the container with existing persistent app data.
 - Verified the stack health check passed after startup.
+
+### 2026-09-07
+
+- Pulled the latest Homarr image and recreated the container with existing persistent app data.
+- Verified the stack health check passed after the update.
 
 ## Optional Integrations
 

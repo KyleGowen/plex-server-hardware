@@ -5,7 +5,7 @@ description: Check for and install stable Plex Media Server updates on Kyle's na
 
 # Update Plex Media Server
 
-Use `GPT-5.4 Mini` with `high` reasoning when selecting a model for this task. A skill cannot switch its own model; do not stop solely because the task was launched on another capable model.
+Use `GPT-5.6 Sol` with `high` reasoning when selecting a model for this task. A skill cannot switch its own model; do not stop solely because the task was launched on another capable model.
 
 ## Workflow
 
@@ -26,4 +26,4 @@ powershell -NoProfile -ExecutionPolicy Bypass -File skills\update-plex-media-ser
 
 The helper uses Plex's official Windows x64 catalog, verifies SHA-1 before installation, preserves the prior running state, and confirms the version through `/identity`. It refuses to interrupt active streams unless `-AllowActiveStreams` is explicitly approved. Do not trigger library refreshes, scans, metadata changes, or media operations.
 
-If the helper fails, report the concise failure and stop. Do not substitute an unverified download or print the Plex token.
+On apply, the helper records the attempted target, installed pre-attempt version, sanitized failure signature, and recurrence count even when installation or verification fails. If the helper fails, report the concise failure and stop. Do not substitute an unverified download or print the Plex token.

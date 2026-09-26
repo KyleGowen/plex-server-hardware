@@ -14,6 +14,7 @@ It does not manage media, download torrents, import files, scan Plex libraries, 
 | Container name | `uptime-kuma` |
 | Image | `louislam/uptime-kuma:1` |
 | Current version | `1.23.17` |
+| Current image digest | `sha256:70233f4acb5163fd2a59a49909cf01e44415cecff13dba69e3a86647a2919f83` |
 | Compose file | `C:\plex-server\docker-compose.media.yml` |
 | Config/data path | `C:\media-stack\config\uptime-kuma` |
 | Web UI | `http://localhost:3001` |
@@ -101,6 +102,11 @@ Verified after monitor creation on 2026-05-25:
 | qBittorrent | Up: `200 - OK` |
 
 ## Update History
+
+### 2026-09-21
+
+- Refreshed the approved `louislam/uptime-kuma:1` image; application version remains `1.23.17`. Recreated only Uptime Kuma and passed service and stack health verification; the helper recorded the new digest in the version ledger.
+- No v2 migration. No release-note lookup because the application version did not change.
 
 ### 2026-09-03
 

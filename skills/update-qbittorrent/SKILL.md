@@ -5,7 +5,7 @@ description: Check for and install stable qBittorrent updates on Kyle's native W
 
 # Update qBittorrent
 
-Use `GPT-5.4 Mini` with `high` reasoning when selecting a model for this task. A skill cannot switch its own model; do not stop solely because the task was launched on another capable model.
+Use `GPT-5.6 Sol` with `high` reasoning when selecting a model for this task. A skill cannot switch its own model; do not stop solely because the task was launched on another capable model.
 
 ## Workflow
 
@@ -21,4 +21,4 @@ powershell -NoProfile -ExecutionPolicy Bypass -File skills\update-qbittorrent\sc
 
 The helper uses the stable `winget` package, requires `I:\torrentfiles`, preserves whether qBittorrent was running, and verifies the native Web UI after an update. Do not start, stop, remove, move, recheck, or inspect individual torrents. Never expose Web UI credentials, cookies, tracker URLs, hashes, magnets, or passkeys.
 
-If the helper fails, report the concise failure and stop instead of improvising package or torrent operations.
+On apply, the helper records the attempted target, installed pre-attempt version, sanitized failure signature, and recurrence count even when installation or verification fails. If the helper fails, report the concise failure and stop instead of improvising package or torrent operations.

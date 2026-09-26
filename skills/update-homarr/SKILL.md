@@ -5,7 +5,7 @@ description: Check for and apply updates to Kyle's Homarr Docker container, recr
 
 # Update Homarr
 
-Use `GPT-5.4 Mini` with `medium` reasoning when selecting a model for this task. A skill cannot switch its own model; do not stop solely because the task was launched on another capable model.
+Use `GPT-5.6 Sol` with `medium` reasoning when selecting a model for this task. A skill cannot switch its own model; do not stop solely because the task was launched on another capable model.
 
 ## Workflow
 
@@ -14,4 +14,4 @@ Use `GPT-5.4 Mini` with `medium` reasoning when selecting a model for this task.
 3. When `updated` is true, read `docs/services/homarr.md`, then use `apply_patch` to update image/version details and append a dated update-history entry. The helper updates `docs/service_versions.json`.
 4. When already current, do not read or edit the service document.
 
-Do not print or modify `HOMARR_SECRET_ENCRYPTION_KEY`, dashboard configuration, users, or integrations. If the helper fails, report the concise failure and stop.
+The helper records application version, mutable image label, source revision, and digest separately. Do not infer a Homarr release from `main` when upstream source evidence is ambiguous; failed applies retain sanitized attempt and recurrence evidence. Do not print or modify `HOMARR_SECRET_ENCRYPTION_KEY`, dashboard configuration, users, or integrations. If the helper fails, report the concise failure and stop.

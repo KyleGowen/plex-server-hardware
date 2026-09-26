@@ -11,7 +11,7 @@ Radarr manages movie acquisition and imports. It monitors wanted movies, evaluat
 | Deployment | Docker container |
 | Container name | `radarr` |
 | Image | `lscr.io/linuxserver/radarr:latest` |
-| Current version | `6.3.0.10514` (`6.3.0.10514-ls314`) |
+| Current version | `6.4.4.10685` (`6.4.4.10685-ls318`) |
 | Compose file | `C:\plex-server\docker-compose.media.yml` |
 | Config path | `C:\media-stack\config\radarr` |
 | Web UI | `http://localhost:7878` |
@@ -81,19 +81,36 @@ On 2026-05-24, these movies were added or updated in Radarr as monitored `Ultra-
 
 | Indexer | Source | RSS | Automatic search | Interactive search |
 |---|---|---|---|---|
-| MoreThanTV | Prowlarr | Enabled in config | Treat as unavailable | Treat as unavailable |
+| MoreThanTV | Prowlarr | Disabled / not synced | Disabled / not synced | Disabled / not synced |
 | SpeedCD | Prowlarr | Enabled | Enabled | Enabled |
 
 Prowlarr remains the active indexer layer for Radarr. Jackett is not part of the active Radarr routing.
-As of 2026-08-17, treat MoreThanTV as dead/unavailable until fresh evidence shows it has recovered; expect Radarr searches to depend on SpeedCD unless another healthy indexer is added.
+As of 2026-09-03, MoreThanTV is disabled in Prowlarr and no longer synced to Radarr; expect Radarr searches to depend on SpeedCD unless another healthy indexer is added.
 
 ## Update History
+
+### 2026-09-21
+
+- Updated `6.3.0.10514-ls316` to `6.4.4.10685-ls318`. Recreated only Radarr and passed service and stack health verification; the helper updated the version ledger.
+- [Official release notes](https://github.com/Radarr/Radarr/releases/tag/v6.4.4.10685): hostname validation and Trusted Networks, movie-quality filtering, Jellyfin 12+ compatibility, and import/queue fixes.
+
+### 2026-09-14
+
+- Updated image build `6.3.0.10514-ls315` to `6.3.0.10514-ls316`; application version unchanged. Recreated only Radarr and passed service and stack health verification.
+- [Official image release](https://github.com/linuxserver/docker-radarr/releases/tag/6.3.0.10514-ls316) retains upstream version `6.3.0.10514`.
 
 ### 2026-09-03
 
 - Updated the LinuxServer container from Radarr `6.2.1.10461` (`6.2.1.10461-ls306`) to `6.3.0.10514` (`6.3.0.10514-ls314`).
 - Recreated the container with existing persistent configuration.
 - Verified the stack health check passed after startup and `/downloads` still mapped to `I:\`.
+- Verified Radarr health is clean after MoreThanTV was disabled in Prowlarr and application indexers were synced.
+
+### 2026-09-07
+
+- Updated the LinuxServer container from Radarr `6.3.0.10514` (`6.3.0.10514-ls314`) to `6.3.0.10514` (`6.3.0.10514-ls315`).
+- Recreated the container with existing persistent configuration.
+- Verified the stack health check passed after the update.
 
 ### 2026-06-15
 

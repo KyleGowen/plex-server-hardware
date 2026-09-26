@@ -11,7 +11,7 @@ Tautulli is the Plex monitoring and history companion. It records active streams
 | Deployment | Docker container |
 | Container name | `tautulli` |
 | Image | `lscr.io/linuxserver/tautulli:latest` |
-| Current version | `2.18.1` (`v2.18.1-ls242`) |
+| Current version | `2.18.1` (`v2.18.1-ls244`) |
 | Compose file | `C:\plex-server\docker-compose.media.yml` |
 | Config path | `C:\media-stack\config\tautulli` |
 | Web UI | `http://localhost:8181` |
@@ -85,7 +85,17 @@ Safe first-run order:
 
 ## Update History
 
+### 2026-09-14
+
+- Updated image build `v2.18.1-ls243` to `v2.18.1-ls244`; application version unchanged. Recreated only Tautulli and passed service and stack health verification.
+- [Official image release](https://github.com/linuxserver/docker-tautulli/releases/tag/v2.18.1-ls244) repeats the existing upstream 2.18.1 notes.
+
 ### 2026-09-03
 
 - Pulled the latest LinuxServer Tautulli image and recreated the container with existing persistent configuration.
 - Verified the stack health check passed after startup.
+
+### 2026-09-07
+
+- Pulled the latest LinuxServer Tautulli image and recreated the container with existing persistent configuration.
+- Verified the stack health check passed after the update and the container reported `v2.18.1-ls243`.

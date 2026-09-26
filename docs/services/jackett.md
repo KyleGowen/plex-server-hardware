@@ -11,7 +11,7 @@ Jackett is a legacy Torznab/indexer aggregation fallback. Prowlarr is the curren
 | Deployment | Optional Docker container profile |
 | Container name | `jackett` |
 | Image | `lscr.io/linuxserver/jackett:latest` |
-| Current pulled image | `v0.24.2527-ls18` |
+| Current pulled image | `v0.24.2631-ls35` |
 | Compose profile | `legacy-jackett` |
 | Config path | `C:\media-stack\config\jackett` if enabled |
 | Web UI | `http://localhost:9117` if enabled |
@@ -48,9 +48,25 @@ Jackett is a legacy Torznab/indexer aggregation fallback. Prowlarr is the curren
 
 ## Update History
 
+### 2026-09-21
+
+- Updated the pulled image from `v0.24.2586-ls28` to `v0.24.2631-ls35`; verified Jackett remained disabled. No container was enabled. The helper updated the version ledger.
+- [Official release notes](https://github.com/Jackett/Jackett/releases/tag/v0.24.2631): MySpleen categories/movie mode, LDU categories, and several indexer-domain updates.
+
+### 2026-09-14
+
+- Updated the pulled image from `v0.24.2541-ls21` to `v0.24.2586-ls28` and verified Jackett remained disabled. No container was enabled.
+- [Official target release notes](https://github.com/Jackett/Jackett/releases/tag/v0.24.2586): adds HD-Forever API support and updates Sportz247, TheBrothers categories, and CrnaBerza engine handling.
+
 ### 2026-09-03
 
 - Pulled the latest LinuxServer Jackett image, `v0.24.2527-ls18`, for the optional `legacy-jackett` profile.
 - Did not start or enable Jackett; Prowlarr remains the active indexer manager.
 - Refreshed the local image to the newer upstream digest; the reported LinuxServer version remained `v0.24.2527-ls18`.
+- Confirmed the existing Jackett container remained stopped after the refresh.
+
+### 2026-09-07
+
+- Pulled the latest LinuxServer Jackett image, `v0.24.2541-ls21`, for the optional `legacy-jackett` profile.
+- Did not start or enable Jackett; Prowlarr remains the active indexer manager.
 - Confirmed the existing Jackett container remained stopped after the refresh.

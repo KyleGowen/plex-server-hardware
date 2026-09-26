@@ -23,34 +23,35 @@ These skills check the configured stable release channel, apply an update only w
 
 | Skill | Service | Recommended model | Update boundary |
 |---|---|---|---|
-| `update-plex-media-server` | Native Windows Plex | GPT-5.4 Mini, high | Official public Windows x64 release; block active streams by default |
-| `update-qbittorrent` | Native Windows qBittorrent | GPT-5.4 Mini, high | Stable WinGet package; no torrent mutations |
-| `update-docker-desktop` | Docker Desktop runtime | GPT-5.4 Mini, high | Stable WinGet package plus full stack validation |
-| `update-sonarr` | Sonarr container | GPT-5.4 Mini, medium | Configured `latest` image; recreate Sonarr only |
-| `update-radarr` | Radarr container | GPT-5.4 Mini, medium | Configured `latest` image; recreate Radarr only |
-| `update-prowlarr` | Prowlarr container | GPT-5.4 Mini, medium | Configured `latest` image; recreate Prowlarr only |
-| `update-bazarr` | Bazarr container | GPT-5.4 Mini, medium | Configured `latest` image; recreate Bazarr only |
-| `update-tautulli` | Tautulli container | GPT-5.4 Mini, medium | Configured `latest` image; recreate Tautulli only |
-| `update-uptime-kuma` | Uptime Kuma container | GPT-5.4 Mini, high | Stay on configured v1 line; v2 requires a separate migration approval |
-| `update-homarr` | Homarr container | GPT-5.4 Mini, medium | Configured `latest` image; recreate Homarr only |
-| `update-unpackerr` | Unpackerr container | GPT-5.4 Mini, medium | Configured `latest` image; recreate Unpackerr only |
-| `update-jackett` | Optional Jackett image | GPT-5.4 Mini, medium | Pull the legacy profile image without enabling a stopped service |
+| `update-plex-media-server` | Native Windows Plex | GPT-5.6 Sol, high | Official public Windows x64 release; block active streams by default |
+| `update-qbittorrent` | Native Windows qBittorrent | GPT-5.6 Sol, high | Stable WinGet package; no torrent mutations |
+| `update-docker-desktop` | Docker Desktop runtime | GPT-5.6 Sol, high | Stable WinGet package plus full stack validation |
+| `update-sonarr` | Sonarr container | GPT-5.6 Sol, medium | Configured `latest` image; recreate Sonarr only |
+| `update-radarr` | Radarr container | GPT-5.6 Sol, medium | Configured `latest` image; recreate Radarr only |
+| `update-prowlarr` | Prowlarr container | GPT-5.6 Sol, medium | Configured `latest` image; recreate Prowlarr only |
+| `update-bazarr` | Bazarr container | GPT-5.6 Sol, medium | Configured `latest` image; recreate Bazarr only |
+| `update-tautulli` | Tautulli container | GPT-5.6 Sol, medium | Configured `latest` image; recreate Tautulli only |
+| `update-uptime-kuma` | Uptime Kuma container | GPT-5.6 Sol, high | Stay on configured v1 line; v2 requires a separate migration approval |
+| `update-homarr` | Homarr container | GPT-5.6 Sol, medium | Configured `latest` image; recreate Homarr only |
+| `update-unpackerr` | Unpackerr container | GPT-5.6 Sol, medium | Configured `latest` image; recreate Unpackerr only |
+| `update-jackett` | Optional Jackett image | GPT-5.6 Sol, medium | Pull the legacy profile image without enabling a stopped service |
 
 ## Shared Update Contract
 
 - Repo sources are under `skills/update-*`; installed copies are under `C:\Users\Kyle\.codex\skills\update-*`.
 - Each helper supports a check-only path and an apply path. An apply request runs the helper once with `-Apply`; the helper checks first and changes only an outdated target.
-- Successful checks and updates maintain `docs/service_versions.json`. Real updates also require the related `docs/services/*.md` version details and dated history entry to be updated.
+- Successful checks and updates maintain `docs/service_versions.json`. Failed apply runs record the installed pre-attempt state, attempted target, a sanitized failure signature, and the consecutive recurrence count instead of leaving an older `current` result in place. Real updates also require the related `docs/services/*.md` version details and dated history entry to be updated.
 - Container skills compare image digests and recreate only their own service. A no-op container check does not run the full stack health audit.
+- Container ledger entries keep application version, image version label, image source revision, and digest as separate evidence. Do not infer an application release from a mutable tag such as `main` when those fields disagree.
 - Docker Desktop updates require engine recovery and full stack validation. Plex verifies the official installer checksum and running identity version. qBittorrent verifies `I:\torrentfiles` and its native Web UI without acting on torrents.
 - Jackett remains disabled. Uptime Kuma remains on v1 until a separately approved migration.
 - Downloaded installers and temporary artifacts are local-only and must remain ignored by Git.
 
 ## Scheduled Update Sweep
 
-The active Codex automation `weekly-plex-ecosystem-updates` runs every Monday at 2:00 AM in the local `C:\plex-server` project. It uses GPT-5.4 Mini with high reasoning as the coordinator and delegates each skill using the model guidance above.
+The active Codex automation `weekly-plex-ecosystem-updates` runs every Monday at 2:00 AM in the local `C:\plex-server` project. It uses GPT-5.6 Sol with high reasoning as the coordinator and uses the model guidance above when delegation is supported.
 
-Checks may run concurrently, but Docker Desktop updates must complete before container mutations and writes to `docs/service_versions.json` must be serialized. The final report contains one row per service with the current version, `No` or `old -> new` upgrade status, and official upstream release notes for versions actually installed. See `docs/weekly_service_update_automation.md` for the complete execution, reporting, and maintenance contract.
+Checks may run concurrently, but Docker Desktop updates must complete before container mutations and writes to `docs/service_versions.json` must be serialized. After all apply runs finish, the coordinator batches service-document edits and official release-note lookups for changed application versions only. The final report contains one row per service with current application and image identity, `No` or `old -> new` upgrade status, and official upstream release notes for versions actually installed. See `docs/weekly_service_update_automation.md` for the complete execution, reporting, and maintenance contract.
 
 ## Project Skill Rules
 

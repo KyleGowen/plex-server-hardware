@@ -74,69 +74,120 @@ function Assert-StackHealthy {
     if (-not $health.ok) { throw "The media stack did not pass its post-update health check." }
 }
 
+function Get-SafeFailureSummary {
+    param([System.Management.Automation.ErrorRecord]$ErrorRecord)
+    $message = [string]$ErrorRecord.Exception.Message
+    $firstLine = (($message -split "`r?`n", 2)[0]).Trim()
+    $firstLine = [regex]::Replace($firstLine, 'https?://\S+', '<url>')
+    if ($firstLine.Length -gt 300) { $firstLine = $firstLine.Substring(0, 300) }
+    return $firstLine
+}
+
+function Get-FailureSignature {
+    param([string]$Failure)
+    return $Failure.ToLowerInvariant()
+}
+
 function Update-Ledger {
-    param([string]$Version, [bool]$Updated, [string]$Result)
+    param([string]$Version, [bool]$Updated, [string]$Result, [string]$AttemptedVersion, [string]$Failure)
     if ($SkipDocumentation) { return }
     if (Test-Path -LiteralPath $LedgerPath) {
         $ledger = Get-Content -Raw -LiteralPath $LedgerPath | ConvertFrom-Json
     } else {
-        $ledger = [pscustomobject]@{ schema_version = 1; updated_at = $null; services = [pscustomobject]@{} }
+        $ledger = [pscustomobject]@{ schema_version = 2; updated_at = $null; services = [pscustomobject]@{} }
     }
     $now = [DateTimeOffset]::Now.ToString("o")
     $previous = $ledger.services.PSObject.Properties["plex"]
-    $lastUpdated = if ($Updated) { $now } elseif ($previous) { $previous.Value.last_updated_at } else { $null }
+    $previousValue = if ($previous) { $previous.Value } else { $null }
+    $lastUpdated = if ($Updated) { $now } elseif ($previousValue) { $previousValue.last_updated_at } else { $null }
+    $failureSignature = if ($Failure) { Get-FailureSignature -Failure $Failure } else { $null }
+    $previousSignature = if ($previousValue -and $previousValue.PSObject.Properties["failure_signature"]) { [string]$previousValue.failure_signature } else { $null }
+    $previousFailureCount = if ($previousValue -and $previousValue.PSObject.Properties["consecutive_failures"]) { [int]$previousValue.consecutive_failures } else { 0 }
+    $consecutiveFailures = if ($Result -eq "failed") { if ($previousSignature -eq $failureSignature) { $previousFailureCount + 1 } else { 1 } } else { 0 }
+    $lastSuccessfulCheck = if ($Result -eq "failed") {
+        if ($previousValue -and $previousValue.PSObject.Properties["last_successful_check_at"]) { $previousValue.last_successful_check_at }
+        elseif ($previousValue -and $previousValue.last_result -ne "failed") { $previousValue.last_checked_at }
+        else { $null }
+    } else { $now }
+    $ledger.schema_version = 2
     $entry = [pscustomobject][ordered]@{
         deployment = "native-windows"
         release_channel = "public-stable"
         installed_version = $Version
         image = $null
         image_digest = $null
+        attempted_version = if ($Result -eq "failed") { $AttemptedVersion } else { $null }
         last_checked_at = $now
+        last_successful_check_at = $lastSuccessfulCheck
         last_updated_at = $lastUpdated
         last_result = $Result
+        last_error = $Failure
+        failure_signature = $failureSignature
+        consecutive_failures = $consecutiveFailures
     }
     if ($previous) { $previous.Value = $entry } else { $ledger.services | Add-Member -NotePropertyName "plex" -NotePropertyValue $entry }
     $ledger.updated_at = $now
     $ledger | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $LedgerPath -Encoding utf8
 }
 
-$installed = Get-InstalledVersion
-$release = Get-LatestRelease
-$latest = [string]$release.version
-$updateAvailable = (Get-CoreVersion $installed) -ne (Get-CoreVersion $latest)
+$installed = "unknown"
+$release = $null
+$latest = $null
+$updateAvailable = $false
 $updated = $false
-$resultName = if ($updateAvailable) { "update_available" } else { "current" }
-$wasRunning = [bool](Get-Process -Name "Plex Media Server" -ErrorAction SilentlyContinue)
+$resultName = "unknown"
+$wasRunning = $false
 
-if ($Apply -and $updateAvailable) {
-    Assert-NoActiveStreams
-    $tempRoot = Join-Path ([System.IO.Path]::GetTempPath()) "plex-media-server-updater"
-    New-Item -ItemType Directory -Path $tempRoot -Force | Out-Null
-    $installerPath = Join-Path $tempRoot ([System.IO.Path]::GetFileName([string]$release.url))
-    try {
-        Invoke-WebRequest -Uri ([string]$release.url) -OutFile $installerPath -UseBasicParsing -TimeoutSec 300
-        $actualHash = (Get-FileHash -LiteralPath $installerPath -Algorithm SHA1).Hash.ToLowerInvariant()
-        if ($actualHash -ne ([string]$release.checksum).ToLowerInvariant()) { throw "The Plex installer checksum did not match the official catalog." }
-
-        $process = Start-Process -FilePath $installerPath -ArgumentList "/VERYSILENT", "/NORESTART" -PassThru
-        if (-not $process.WaitForExit(600000)) { throw "The Plex installer did not finish within 10 minutes." }
-        if ($process.ExitCode -ne 0) { throw "The Plex installer exited with code $($process.ExitCode)." }
-    } finally {
-        if (Test-Path -LiteralPath $installerPath) { Remove-Item -LiteralPath $installerPath -Force }
-    }
-
+try {
     $installed = Get-InstalledVersion
-    if ((Get-CoreVersion $installed) -ne (Get-CoreVersion $latest)) { throw "Plex registry version is $installed after installing $latest." }
-    if ($wasRunning -and -not (Get-Process -Name "Plex Media Server" -ErrorAction SilentlyContinue)) {
-        Start-Process -FilePath $Executable -WindowStyle Hidden
+    $release = Get-LatestRelease
+    $latest = [string]$release.version
+    $updateAvailable = (Get-CoreVersion $installed) -ne (Get-CoreVersion $latest)
+    $resultName = if ($updateAvailable) { "update_available" } else { "current" }
+    $wasRunning = [bool](Get-Process -Name "Plex Media Server" -ErrorAction SilentlyContinue)
+
+    if ($Apply -and $updateAvailable) {
+        Assert-NoActiveStreams
+        $tempRoot = Join-Path ([System.IO.Path]::GetTempPath()) "plex-media-server-updater"
+        New-Item -ItemType Directory -Path $tempRoot -Force | Out-Null
+        $installerPath = Join-Path $tempRoot ([System.IO.Path]::GetFileName([string]$release.url))
+        try {
+            Invoke-WebRequest -Uri ([string]$release.url) -OutFile $installerPath -UseBasicParsing -TimeoutSec 300
+            $actualHash = (Get-FileHash -LiteralPath $installerPath -Algorithm SHA1).Hash.ToLowerInvariant()
+            if ($actualHash -ne ([string]$release.checksum).ToLowerInvariant()) { throw "The Plex installer checksum did not match the official catalog." }
+
+            $process = Start-Process -FilePath $installerPath -ArgumentList "/VERYSILENT", "/NORESTART" -PassThru
+            if (-not $process.WaitForExit(600000)) { throw "The Plex installer did not finish within 10 minutes." }
+            if ($process.ExitCode -ne 0) { throw "The Plex installer exited with code $($process.ExitCode)." }
+        } finally {
+            if (Test-Path -LiteralPath $installerPath) { Remove-Item -LiteralPath $installerPath -Force }
+        }
+
+        $installed = Get-InstalledVersion
+        if ((Get-CoreVersion $installed) -ne (Get-CoreVersion $latest)) { throw "Plex registry version is $installed after installing $latest." }
+        if ($wasRunning -and -not (Get-Process -Name "Plex Media Server" -ErrorAction SilentlyContinue)) {
+            Start-Process -FilePath $Executable -WindowStyle Hidden
+        }
+        if ($wasRunning) { Wait-ForPlex -ExpectedVersion $latest | Out-Null }
+        Assert-StackHealthy
+        $updated = $true
+        $resultName = "updated"
     }
-    if ($wasRunning) { Wait-ForPlex -ExpectedVersion $latest | Out-Null }
-    Assert-StackHealthy
-    $updated = $true
-    $resultName = "updated"
+    if ($Apply) { Update-Ledger -Version $installed -Updated $updated -Result $resultName }
+} catch {
+    $originalError = $_
+    $failure = Get-SafeFailureSummary -ErrorRecord $originalError
+    if ($Apply -and -not $SkipDocumentation) {
+        try {
+            try { $installed = Get-InstalledVersion } catch { }
+            Update-Ledger -Version $installed -Updated $false -Result "failed" -AttemptedVersion $latest -Failure $failure
+        } catch {
+            throw "$failure Ledger failure recording also failed: $(Get-SafeFailureSummary -ErrorRecord $_)"
+        }
+    }
+    throw $originalError
 }
 
-if ($Apply) { Update-Ledger -Version $installed -Updated $updated -Result $resultName }
 $summary = [pscustomobject][ordered]@{
     service = "plex"
     mode = if ($Apply) { "apply" } else { "check-only" }

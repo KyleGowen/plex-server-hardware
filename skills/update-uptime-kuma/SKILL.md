@@ -5,7 +5,7 @@ description: Check for and apply safe updates to Kyle's Uptime Kuma Docker conta
 
 # Update Uptime Kuma
 
-Use `GPT-5.4 Mini` with `high` reasoning when selecting a model for this task. A skill cannot switch its own model; do not stop solely because the task was launched on another capable model.
+Use `GPT-5.6 Sol` with `high` reasoning when selecting a model for this task. A skill cannot switch its own model; do not stop solely because the task was launched on another capable model.
 
 ## Workflow
 
@@ -14,4 +14,4 @@ Use `GPT-5.4 Mini` with `high` reasoning when selecting a model for this task. A
 3. When `updated` is true, read `docs/services/uptime-kuma.md`, then use `apply_patch` to update the current version and append a dated update-history entry. The helper updates `docs/service_versions.json`.
 4. When already current, do not read or edit the service document.
 
-Treat a requested v1-to-v2 move as a separate breaking migration requiring explicit approval and a backup plan. Do not change monitors, users, notifications, status pages, or stored credentials. If the helper fails, report the concise failure and stop.
+The helper records application version, image label, source revision, and digest separately; failed applies retain sanitized attempt and recurrence evidence. Treat a requested v1-to-v2 move as a separate breaking migration requiring explicit approval and a backup plan. Do not change monitors, users, notifications, status pages, or stored credentials. If the helper fails, report the concise failure and stop.

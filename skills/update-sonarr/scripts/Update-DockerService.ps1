@@ -87,26 +87,54 @@ function Get-LocalDigest {
     return ([string]$repoDigests[0] -split "@", 2)[1]
 }
 
-function Get-ImageVersion {
+function Get-ImageMetadata {
     param([string]$ImageRef)
     $result = Invoke-Captured -FilePath "docker" -Arguments @("image", "inspect", $ImageRef)
     $image = @($result.Output | ConvertFrom-Json)[0]
     $labels = $image.Config.Labels
-    $version = $null
+    $versionLabel = $null
+    $applicationVersion = $null
+    $sourceRevision = $null
 
     if ($labels -and $labels.build_version -match 'version:-\s*([^\s]+)') {
-        $version = $Matches[1]
+        $versionLabel = $Matches[1]
     } elseif ($labels -and $labels.'org.opencontainers.image.version') {
-        $version = [string]$labels.'org.opencontainers.image.version'
+        $versionLabel = [string]$labels.'org.opencontainers.image.version'
+    }
+    if ($labels -and $labels.'org.opencontainers.image.revision') {
+        $sourceRevision = [string]$labels.'org.opencontainers.image.revision'
     }
 
     if ($ServiceName -eq "uptime-kuma" -and (Get-ContainerState).Running) {
         $versionResult = Invoke-Captured -FilePath "docker" -Arguments @("exec", "uptime-kuma", "node", "-p", "require('/app/package.json').version") -AllowFailure
-        if ($versionResult.ExitCode -eq 0 -and $versionResult.Output) { $version = $versionResult.Output.Trim() }
+        if ($versionResult.ExitCode -eq 0 -and $versionResult.Output) { $applicationVersion = $versionResult.Output.Trim() }
+    } elseif ($versionLabel -match '^(v?\d+(?:\.\d+)+)(?:-ls\d+)?$') {
+        $applicationVersion = $Matches[1]
     }
 
-    if (-not $version) { $version = "unknown" }
-    return $version
+    $installedVersion = if ($versionLabel) { $versionLabel } elseif ($applicationVersion) { $applicationVersion } else { "unknown" }
+    return [pscustomobject][ordered]@{
+        InstalledVersion = $installedVersion
+        ApplicationVersion = if ($applicationVersion) { $applicationVersion } else { "unknown" }
+        ImageVersionLabel = if ($versionLabel) { $versionLabel } else { "unknown" }
+        ImageSourceRevision = $sourceRevision
+    }
+}
+
+function Get-SafeFailureSummary {
+    param([System.Management.Automation.ErrorRecord]$ErrorRecord)
+    $message = [string]$ErrorRecord.Exception.Message
+    $firstLine = (($message -split "`r?`n", 2)[0]).Trim()
+    $firstLine = [regex]::Replace($firstLine, 'https?://\S+', '<url>')
+    if ($firstLine.Length -gt 300) { $firstLine = $firstLine.Substring(0, 300) }
+    return $firstLine
+}
+
+function Get-FailureSignature {
+    param([string]$Failure)
+    $signature = $Failure.ToLowerInvariant()
+    $signature = [regex]::Replace($signature, 'sha256:[0-9a-f]+', 'sha256:<digest>')
+    return $signature
 }
 
 function Assert-DockerAvailable {
@@ -148,32 +176,53 @@ function Assert-ServiceHealthy {
 
 function Update-Ledger {
     param(
-        [string]$Version,
+        [pscustomobject]$Metadata,
         [string]$ImageRef,
         [string]$Digest,
         [bool]$Updated,
-        [string]$Result
+        [string]$Result,
+        [string]$AttemptedDigest,
+        [string]$Failure
     )
 
     if ($SkipDocumentation) { return }
     if (Test-Path -LiteralPath $LedgerPath) {
         $ledger = Get-Content -Raw -LiteralPath $LedgerPath | ConvertFrom-Json
     } else {
-        $ledger = [pscustomobject]@{ schema_version = 1; updated_at = $null; services = [pscustomobject]@{} }
+        $ledger = [pscustomobject]@{ schema_version = 2; updated_at = $null; services = [pscustomobject]@{} }
     }
 
     $now = [DateTimeOffset]::Now.ToString("o")
     $previous = $ledger.services.PSObject.Properties[$ServiceName]
-    $lastUpdated = if ($Updated) { $now } elseif ($previous) { $previous.Value.last_updated_at } else { $null }
+    $previousValue = if ($previous) { $previous.Value } else { $null }
+    $lastUpdated = if ($Updated) { $now } elseif ($previousValue) { $previousValue.last_updated_at } else { $null }
+    $failureSignature = if ($Failure) { Get-FailureSignature -Failure $Failure } else { $null }
+    $previousSignature = if ($previousValue -and $previousValue.PSObject.Properties["failure_signature"]) { [string]$previousValue.failure_signature } else { $null }
+    $previousFailureCount = if ($previousValue -and $previousValue.PSObject.Properties["consecutive_failures"]) { [int]$previousValue.consecutive_failures } else { 0 }
+    $consecutiveFailures = if ($Result -eq "failed") { if ($previousSignature -eq $failureSignature) { $previousFailureCount + 1 } else { 1 } } else { 0 }
+    $lastSuccessfulCheck = if ($Result -eq "failed") {
+        if ($previousValue -and $previousValue.PSObject.Properties["last_successful_check_at"]) { $previousValue.last_successful_check_at }
+        elseif ($previousValue -and $previousValue.last_result -ne "failed") { $previousValue.last_checked_at }
+        else { $null }
+    } else { $now }
+    $ledger.schema_version = 2
     $entry = [pscustomobject][ordered]@{
         deployment = if ($serviceSettings[$ServiceName].Optional) { "docker-optional" } else { "docker" }
         release_channel = $serviceSettings[$ServiceName].Channel
-        installed_version = $Version
+        installed_version = $Metadata.InstalledVersion
+        application_version = $Metadata.ApplicationVersion
         image = $ImageRef
         image_digest = $Digest
+        image_version_label = $Metadata.ImageVersionLabel
+        image_source_revision = $Metadata.ImageSourceRevision
+        attempted_image_digest = if ($Result -eq "failed") { $AttemptedDigest } else { $null }
         last_checked_at = $now
+        last_successful_check_at = $lastSuccessfulCheck
         last_updated_at = $lastUpdated
         last_result = $Result
+        last_error = $Failure
+        failure_signature = $failureSignature
+        consecutive_failures = $consecutiveFailures
     }
     if ($previous) {
         $previous.Value = $entry
@@ -184,47 +233,71 @@ function Update-Ledger {
     $ledger | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $LedgerPath -Encoding utf8
 }
 
-Assert-DockerAvailable
 $settings = $serviceSettings[$ServiceName]
-$imageRef = Get-ComposeImage
-if ($ServiceName -eq "uptime-kuma" -and $imageRef -notmatch ':1$') {
-    throw "Uptime Kuma is no longer configured on the approved v1 image line. Handle this as a separately approved migration."
-}
-$before = Get-ContainerState
-$deployedDigest = if ($settings.Optional -and -not $before.Running) { Get-LocalDigest -ImageRef $imageRef } else { $before.ImageDigest }
-$remoteDigest = Get-RemoteDigest -ImageRef $imageRef
-$updateAvailable = ($deployedDigest -ne $remoteDigest)
+$imageRef = $null
+$before = [pscustomobject]@{ Exists = $false; Running = $false; ImageDigest = $null }
+$deployedDigest = $null
+$remoteDigest = $null
+$finalDigest = $null
+$metadata = [pscustomobject]@{ InstalledVersion = "unknown"; ApplicationVersion = "unknown"; ImageVersionLabel = "unknown"; ImageSourceRevision = $null }
+$updateAvailable = $false
 $updated = $false
-$resultName = if ($updateAvailable) { "update_available" } else { "current" }
+$resultName = "unknown"
 
-if ($Apply) {
-    if ($updateAvailable) {
-        $willRecreate = (-not $settings.Optional -or $before.Running)
-        if ($willRecreate) { Assert-StackHealthy }
-        $pullArgs = @("compose", "-f", $ComposeFile)
-        if ($settings.Optional) { $pullArgs += @("--profile", "legacy-jackett") }
-        $pullArgs += @("pull", $ServiceName)
-        Invoke-Captured -FilePath "docker" -Arguments $pullArgs | Out-Null
-
-        if ($willRecreate) {
-            $upArgs = @("compose", "-f", $ComposeFile)
-            if ($settings.Optional) { $upArgs += @("--profile", "legacy-jackett") }
-            $upArgs += @("up", "-d", "--no-deps", $ServiceName)
-            Invoke-Captured -FilePath "docker" -Arguments $upArgs | Out-Null
-        }
-        Assert-ServiceHealthy -ExpectedRunning $before.Running
-        if ($willRecreate) { Assert-StackHealthy }
-        $updated = $true
-        $resultName = if ($settings.Optional -and -not $before.Running) { "image_updated_service_left_disabled" } else { "updated" }
-    } else {
-        Assert-ServiceHealthy -ExpectedRunning $before.Running
+try {
+    Assert-DockerAvailable
+    $imageRef = Get-ComposeImage
+    if ($ServiceName -eq "uptime-kuma" -and $imageRef -notmatch ':1$') {
+        throw "Uptime Kuma is no longer configured on the approved v1 image line. Handle this as a separately approved migration."
     }
-}
+    $before = Get-ContainerState
+    $deployedDigest = if ($settings.Optional -and -not $before.Running) { Get-LocalDigest -ImageRef $imageRef } else { $before.ImageDigest }
+    $remoteDigest = Get-RemoteDigest -ImageRef $imageRef
+    $updateAvailable = ($deployedDigest -ne $remoteDigest)
+    $resultName = if ($updateAvailable) { "update_available" } else { "current" }
 
-$finalDigest = if ($Apply) { Get-LocalDigest -ImageRef $imageRef } else { $deployedDigest }
-$version = if ($finalDigest) { Get-ImageVersion -ImageRef $imageRef } else { "not-pulled" }
-if ($Apply) {
-    Update-Ledger -Version $version -ImageRef $imageRef -Digest $finalDigest -Updated $updated -Result $resultName
+    if ($Apply) {
+        if ($updateAvailable) {
+            $willRecreate = (-not $settings.Optional -or $before.Running)
+            if ($willRecreate) { Assert-StackHealthy }
+            $pullArgs = @("compose", "-f", $ComposeFile)
+            if ($settings.Optional) { $pullArgs += @("--profile", "legacy-jackett") }
+            $pullArgs += @("pull", $ServiceName)
+            Invoke-Captured -FilePath "docker" -Arguments $pullArgs | Out-Null
+
+            if ($willRecreate) {
+                $upArgs = @("compose", "-f", $ComposeFile)
+                if ($settings.Optional) { $upArgs += @("--profile", "legacy-jackett") }
+                $upArgs += @("up", "-d", "--no-deps", $ServiceName)
+                Invoke-Captured -FilePath "docker" -Arguments $upArgs | Out-Null
+            }
+            Assert-ServiceHealthy -ExpectedRunning $before.Running
+            if ($willRecreate) { Assert-StackHealthy }
+            $updated = $true
+            $resultName = if ($settings.Optional -and -not $before.Running) { "image_updated_service_left_disabled" } else { "updated" }
+        } else {
+            Assert-ServiceHealthy -ExpectedRunning $before.Running
+        }
+    }
+
+    $finalDigest = if ($Apply) { Get-LocalDigest -ImageRef $imageRef } else { $deployedDigest }
+    if ($finalDigest) { $metadata = Get-ImageMetadata -ImageRef $imageRef }
+    if ($Apply) {
+        Update-Ledger -Metadata $metadata -ImageRef $imageRef -Digest $finalDigest -Updated $updated -Result $resultName
+    }
+} catch {
+    $originalError = $_
+    $failure = Get-SafeFailureSummary -ErrorRecord $originalError
+    if ($Apply -and -not $SkipDocumentation) {
+        try {
+            if (-not $finalDigest -and $imageRef) { $finalDigest = Get-LocalDigest -ImageRef $imageRef }
+            if ($finalDigest) { $metadata = Get-ImageMetadata -ImageRef $imageRef }
+            Update-Ledger -Metadata $metadata -ImageRef $imageRef -Digest $finalDigest -Updated $false -Result "failed" -AttemptedDigest $remoteDigest -Failure $failure
+        } catch {
+            throw "$failure Ledger failure recording also failed: $(Get-SafeFailureSummary -ErrorRecord $_)"
+        }
+    }
+    throw $originalError
 }
 
 $summary = [pscustomobject][ordered]@{
@@ -232,7 +305,10 @@ $summary = [pscustomobject][ordered]@{
     mode = if ($Apply) { "apply" } else { "check-only" }
     image = $imageRef
     release_channel = $settings.Channel
-    installed_version = $version
+    installed_version = $metadata.InstalledVersion
+    application_version = $metadata.ApplicationVersion
+    image_version_label = $metadata.ImageVersionLabel
+    image_source_revision = $metadata.ImageSourceRevision
     deployed_digest = $deployedDigest
     remote_digest = $remoteDigest
     final_digest = $finalDigest

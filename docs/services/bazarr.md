@@ -13,7 +13,7 @@ Bazarr missing counts are about subtitles, not missing media files.
 | Deployment | Docker container |
 | Container name | `bazarr` |
 | Image | `lscr.io/linuxserver/bazarr:latest` |
-| Current version | `1.6.0` (`v1.6.0-ls362`) |
+| Current version | `1.6.1` (`v1.6.1-ls364`) |
 | Compose file | `C:\plex-server\docker-compose.media.yml` |
 | Config path | `C:\media-stack\config\bazarr` |
 | Database | `C:\media-stack\config\bazarr\db\bazarr.db` |
@@ -80,6 +80,16 @@ Verified controlled downloads:
 - Keep Bazarr, Sonarr, Radarr, and provider credentials out of repo docs and logs.
 
 ## Update History
+
+### 2026-09-21
+
+- Updated `v1.6.0-ls363` to `v1.6.1-ls364`. Recreated only Bazarr and passed service and stack health verification; the helper updated the version ledger.
+- [Official release notes](https://github.com/morpheus65535/bazarr/releases/tag/v1.6.1): provider and Arr sync fixes, embedded-subtitle extraction/translation improvements, image-proxy SSRF prevention, and safer Windows postprocessing.
+
+### 2026-09-14
+
+- Updated image build `v1.6.0-ls362` to `v1.6.0-ls363`; application version unchanged. Recreated only Bazarr and passed service and stack health verification.
+- [Official image release](https://github.com/linuxserver/docker-bazarr/releases/tag/v1.6.0-ls363) includes the upstream 1.6.0 changelog; those application changes are not new relative to the prior 1.6.0 image.
 
 ### 2026-09-03
 

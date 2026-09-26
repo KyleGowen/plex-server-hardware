@@ -13,7 +13,15 @@ $HealthScript = Join-Path $ProjectRoot "skills\plex-stack-health-check\scripts\T
 function Invoke-Winget {
     param([string[]]$Arguments)
     $output = & winget @Arguments 2>&1 | Out-String
-    if ($LASTEXITCODE -ne 0) { throw "winget failed with exit code $LASTEXITCODE`: $($output.Trim())" }
+    if ($LASTEXITCODE -ne 0) {
+        $details = @()
+        $packageMatch = [regex]::Match($output, '(?m)^Found .+ Version\s+(\S+)\s*$')
+        $installerMatch = [regex]::Match($output, '(?m)Installer failed with exit code:\s*(\d+)')
+        if ($packageMatch.Success) { $details += "package version $($packageMatch.Groups[1].Value)" }
+        if ($installerMatch.Success) { $details += "installer exit $($installerMatch.Groups[1].Value)" }
+        $suffix = if ($details.Count) { " (" + ($details -join ", ") + ")" } else { "" }
+        throw "winget failed with exit code $LASTEXITCODE$suffix."
+    }
     return $output
 }
 
@@ -53,12 +61,39 @@ function Assert-StackHealthy {
     if (-not $health.ok) { throw "The media stack did not pass its post-update health check." }
 }
 
+function Get-SafeFailureSummary {
+    param([System.Management.Automation.ErrorRecord]$ErrorRecord)
+    $message = [string]$ErrorRecord.Exception.Message
+    $firstLine = (($message -split "`r?`n", 2)[0]).Trim()
+    $firstLine = [regex]::Replace($firstLine, 'https?://\S+', '<url>')
+    if ($firstLine.Length -gt 300) { $firstLine = $firstLine.Substring(0, 300) }
+    return $firstLine
+}
+
+function Get-FailureSignature {
+    param([string]$Failure)
+    $signature = $Failure.ToLowerInvariant()
+    $signature = [regex]::Replace($signature, 'package version\s+[^\s,)]+', 'package version <target>')
+    return $signature
+}
+
 function Update-Ledger {
-    param([string]$Version, [string]$EngineVersion, [bool]$Updated, [string]$Result)
+    param([string]$Version, [string]$EngineVersion, [bool]$Updated, [string]$Result, [string]$AttemptedVersion, [string]$Failure)
     if ($SkipDocumentation) { return }
-    $ledger = if (Test-Path -LiteralPath $LedgerPath) { Get-Content -Raw -LiteralPath $LedgerPath | ConvertFrom-Json } else { [pscustomobject]@{ schema_version = 1; updated_at = $null; services = [pscustomobject]@{} } }
+    $ledger = if (Test-Path -LiteralPath $LedgerPath) { Get-Content -Raw -LiteralPath $LedgerPath | ConvertFrom-Json } else { [pscustomobject]@{ schema_version = 2; updated_at = $null; services = [pscustomobject]@{} } }
     $now = [DateTimeOffset]::Now.ToString("o")
     $previous = $ledger.services.PSObject.Properties["docker-desktop"]
+    $previousValue = if ($previous) { $previous.Value } else { $null }
+    $failureSignature = if ($Failure) { Get-FailureSignature -Failure $Failure } else { $null }
+    $previousSignature = if ($previousValue -and $previousValue.PSObject.Properties["failure_signature"]) { [string]$previousValue.failure_signature } else { $null }
+    $previousFailureCount = if ($previousValue -and $previousValue.PSObject.Properties["consecutive_failures"]) { [int]$previousValue.consecutive_failures } else { 0 }
+    $consecutiveFailures = if ($Result -eq "failed") { if ($previousSignature -eq $failureSignature) { $previousFailureCount + 1 } else { 1 } } else { 0 }
+    $lastSuccessfulCheck = if ($Result -eq "failed") {
+        if ($previousValue -and $previousValue.PSObject.Properties["last_successful_check_at"]) { $previousValue.last_successful_check_at }
+        elseif ($previousValue -and $previousValue.last_result -ne "failed") { $previousValue.last_checked_at }
+        else { $null }
+    } else { $now }
+    $ledger.schema_version = 2
     $entry = [pscustomobject][ordered]@{
         deployment = "native-windows-runtime"
         release_channel = "stable"
@@ -66,33 +101,61 @@ function Update-Ledger {
         engine_version = $EngineVersion
         image = $null
         image_digest = $null
+        attempted_version = if ($Result -eq "failed") { $AttemptedVersion } else { $null }
         last_checked_at = $now
-        last_updated_at = if ($Updated) { $now } elseif ($previous) { $previous.Value.last_updated_at } else { $null }
+        last_successful_check_at = $lastSuccessfulCheck
+        last_updated_at = if ($Updated) { $now } elseif ($previousValue) { $previousValue.last_updated_at } else { $null }
         last_result = $Result
+        last_error = $Failure
+        failure_signature = $failureSignature
+        consecutive_failures = $consecutiveFailures
     }
     if ($previous) { $previous.Value = $entry } else { $ledger.services | Add-Member -NotePropertyName "docker-desktop" -NotePropertyValue $entry }
     $ledger.updated_at = $now
     $ledger | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $LedgerPath -Encoding utf8
 }
 
-$installed = Get-InstalledVersion
-$latest = Get-LatestVersion
-$engineVersion = Wait-ForDocker
-$updateAvailable = ([version]$installed -lt [version]$latest)
+$installed = "unknown"
+$latest = $null
+$engineVersion = $null
+$updateAvailable = $false
 $updated = $false
-$resultName = if ($updateAvailable) { "update_available" } else { "current" }
+$resultName = "unknown"
 
-if ($Apply -and $updateAvailable) {
-    Invoke-Winget -Arguments @("upgrade", "--id", $PackageId, "--exact", "--accept-source-agreements", "--accept-package-agreements", "--silent", "--disable-interactivity") | Out-Null
+try {
     $installed = Get-InstalledVersion
-    if ([version]$installed -lt [version]$latest) { throw "Docker Desktop remains at $installed after attempting to install $latest." }
+    $latest = Get-LatestVersion
     $engineVersion = Wait-ForDocker
-    Assert-StackHealthy
-    $updated = $true
-    $resultName = "updated"
+    $updateAvailable = ([version]$installed -lt [version]$latest)
+    $resultName = if ($updateAvailable) { "update_available" } else { "current" }
+
+    if ($Apply -and $updateAvailable) {
+        Invoke-Winget -Arguments @("upgrade", "--id", $PackageId, "--exact", "--accept-source-agreements", "--accept-package-agreements", "--silent", "--disable-interactivity") | Out-Null
+        $installed = Get-InstalledVersion
+        if ([version]$installed -lt [version]$latest) { throw "Docker Desktop remains at $installed after attempting to install $latest." }
+        $engineVersion = Wait-ForDocker
+        Assert-StackHealthy
+        $updated = $true
+        $resultName = "updated"
+    }
+    if ($Apply) { Update-Ledger -Version $installed -EngineVersion $engineVersion -Updated $updated -Result $resultName }
+} catch {
+    $originalError = $_
+    $failure = Get-SafeFailureSummary -ErrorRecord $originalError
+    $attemptedMatch = [regex]::Match($failure, 'package version\s+([^\s,)]+)')
+    if ($attemptedMatch.Success) { $latest = $attemptedMatch.Groups[1].Value }
+    if ($Apply -and -not $SkipDocumentation) {
+        try {
+            try { $installed = Get-InstalledVersion } catch { }
+            try { $engineVersion = Wait-ForDocker } catch { }
+            Update-Ledger -Version $installed -EngineVersion $engineVersion -Updated $false -Result "failed" -AttemptedVersion $latest -Failure $failure
+        } catch {
+            throw "$failure Ledger failure recording also failed: $(Get-SafeFailureSummary -ErrorRecord $_)"
+        }
+    }
+    throw $originalError
 }
 
-if ($Apply) { Update-Ledger -Version $installed -EngineVersion $engineVersion -Updated $updated -Result $resultName }
 $summary = [pscustomobject][ordered]@{
     service = "docker-desktop"
     mode = if ($Apply) { "apply" } else { "check-only" }
