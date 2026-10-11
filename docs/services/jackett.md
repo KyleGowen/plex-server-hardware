@@ -11,7 +11,7 @@ Jackett is a legacy Torznab/indexer aggregation fallback. Prowlarr is the curren
 | Deployment | Optional Docker container profile |
 | Container name | `jackett` |
 | Image | `lscr.io/linuxserver/jackett:latest` |
-| Current pulled image | `v0.24.2631-ls35` |
+| Current pulled image | `v0.24.2793-ls49` |
 | Compose profile | `legacy-jackett` |
 | Config path | `C:\media-stack\config\jackett` if enabled |
 | Web UI | `http://localhost:9117` if enabled |
@@ -47,6 +47,16 @@ Jackett is a legacy Torznab/indexer aggregation fallback. Prowlarr is the curren
 - Jackett config may exist locally because of the fallback test. Treat it as secret-bearing local state and do not commit Jackett config files.
 
 ## Update History
+
+### 2026-10-05
+
+- Updated the pulled image from `v0.24.2685-ls42` to `v0.24.2793-ls49`; Jackett remained disabled and no container was enabled.
+- [Official release notes](https://github.com/Jackett/Jackett/releases/tag/v0.24.2793): adds the FileIplay private-site definition and refreshes World-Torrent and DonTorrent domains.
+
+### 2026-09-28
+
+- Updated the pulled image from `v0.24.2631-ls35` to `v0.24.2685-ls42`; verified Jackett remained disabled. No container was enabled. The helper updated the version ledger.
+- [Official release notes](https://github.com/Jackett/Jackett/releases/tag/v0.24.2685): updates TorrentTip, TorrentSome, and Torrent9 domains and refreshes WhiteAngel selectors.
 
 ### 2026-09-21
 

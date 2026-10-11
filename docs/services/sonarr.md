@@ -11,7 +11,7 @@ Sonarr manages TV series acquisition and imports. It monitors series, evaluates 
 | Deployment | Docker container |
 | Container name | `sonarr` |
 | Image | `lscr.io/linuxserver/sonarr:latest` |
-| Current version | `4.0.20.3014` (`4.0.20.3014-ls325`) |
+| Current version | `4.0.20.3014` (`4.0.20.3014-ls326`) |
 | Compose file | `C:\plex-server\docker-compose.media.yml` |
 | Config path | `C:\media-stack\config\sonarr` |
 | Web UI | `http://localhost:8989` |
@@ -30,6 +30,7 @@ As of `2026-05-30`, Sonarr runs in Docker while qBittorrent runs natively on Win
 | TV root 1 | `/tv/tv1` mapped from `J:\` |
 | TV root 2 | `/tv/tv2` mapped from `H:\` |
 | TV root 3 | `/tv/tv3` mapped from `G:\` |
+| Lanterns audio guard | Series tag `english-audio-only` applies release profile `English audio only - block French and MULTI`, rejecting titles marked `FRENCH`, `TRUEFRENCH`, `FRE`, `VFF`, `VFQ`, or `MULTI` |
 
 ## Reads From
 
@@ -90,6 +91,11 @@ Invoke-RestMethod -Method Get -Uri 'http://127.0.0.1:8989/api/v3/command' -Heade
 ```
 
 ## Update History
+
+### 2026-09-28
+
+- Updated image build `4.0.20.3014-ls325` to `4.0.20.3014-ls326`; application version remained `4.0.20.3014`. Recreated only Sonarr and passed service and stack health verification; the helper updated the version ledger.
+- Replaced the French/MULTI `Lanterns` S01E07 file with the English-only 1080p CAKES release. Added and verified the Lanterns-scoped `english-audio-only` tag and release profile so French-marked and ambiguous `MULTI` releases are rejected for the series.
 
 ### 2026-09-21
 

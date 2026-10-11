@@ -13,7 +13,7 @@ Bazarr missing counts are about subtitles, not missing media files.
 | Deployment | Docker container |
 | Container name | `bazarr` |
 | Image | `lscr.io/linuxserver/bazarr:latest` |
-| Current version | `1.6.1` (`v1.6.1-ls364`) |
+| Current version | `1.6.2` (`v1.6.2-ls366`) |
 | Compose file | `C:\plex-server\docker-compose.media.yml` |
 | Config path | `C:\media-stack\config\bazarr` |
 | Database | `C:\media-stack\config\bazarr\db\bazarr.db` |
@@ -80,6 +80,11 @@ Verified controlled downloads:
 - Keep Bazarr, Sonarr, Radarr, and provider credentials out of repo docs and logs.
 
 ## Update History
+
+### 2026-09-28
+
+- Updated `v1.6.1-ls364` to `v1.6.2-ls366`. Recreated only Bazarr and passed service and stack health verification; the helper updated the version ledger.
+- [Official release notes](https://github.com/morpheus65535/bazarr/releases/tag/v1.6.2): fixes subtitle cutoff evaluation, duplicate history rows, unsafe subtitle deletion, and shell-injection risk in post-processing; adds a Tsukihime anime provider and Napiprojekt improvements.
 
 ### 2026-09-21
 

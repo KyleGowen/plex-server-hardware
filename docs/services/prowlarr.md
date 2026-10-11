@@ -11,7 +11,7 @@ Prowlarr is the active indexer manager for the Docker media stack. It stores tra
 | Deployment | Docker container |
 | Container name | `prowlarr` |
 | Image | `lscr.io/linuxserver/prowlarr:latest` |
-| Current version | `2.6.5.5623` (`2.6.5.5623-ls161`) |
+| Current version | `2.6.5.5623` (`2.6.5.5623-ls162`) |
 | Compose file | `C:\plex-server\docker-compose.media.yml` |
 | Config path | `C:\media-stack\config\prowlarr` |
 | Web UI | `http://localhost:9696` |
@@ -56,6 +56,10 @@ Prowlarr is the active indexer manager for the Docker media stack. It stores tra
 - Detailed outage notes are in `docs/indexer_outage_2026-05-31.md`.
 
 ## Update History
+
+### 2026-09-28
+
+- Updated image build `2.6.5.5623-ls161` to `2.6.5.5623-ls162`; application version remained `2.6.5.5623`. Recreated only Prowlarr and passed service and stack health verification; the helper updated the version ledger.
 
 ### 2026-09-21
 

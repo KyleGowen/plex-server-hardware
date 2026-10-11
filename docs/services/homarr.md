@@ -14,7 +14,7 @@ Homarr does not acquire media, download torrents, import files, write subtitles,
 | Container name | `homarr` |
 | Image | `ghcr.io/homarr-labs/homarr:latest` |
 | Current image label | `main` |
-| Current application release | Unknown; image label is `main` and source revision is `286abf392ad32cc339b94815c84438863c43190e` |
+| Current application release | Unknown; image label is `main` and source revision is `60c602072dea54f371cb923ae4828bed2496c38d` |
 | Compose file | `C:\plex-server\docker-compose.media.yml` |
 | Config/data path | `C:\media-stack\config\homarr` |
 | Web UI | `http://localhost:7575` |
@@ -87,6 +87,11 @@ The `Plex` board is the configured home board for the current Homarr user. It wa
 Unpackerr is not listed as a primary app tile because this deployment does not expose a normal Web UI for it. Track it through Docker status, logs, or a future controlled monitoring path.
 
 ## Update History
+
+### 2026-10-05
+
+- Refreshed the `main` image from source revision `286abf392ad32cc339b94815c84438863c43190e` to `60c602072dea54f371cb923ae4828bed2496c38d` and recreated only Homarr with existing persistent data. Service and stack health verification passed.
+- The mutable image label remains `main`; the application release remains unknown and was not inferred from the image revision. Official application update notes were not queried because no application-version change could be established.
 
 ### 2026-09-21
 

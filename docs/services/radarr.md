@@ -11,7 +11,7 @@ Radarr manages movie acquisition and imports. It monitors wanted movies, evaluat
 | Deployment | Docker container |
 | Container name | `radarr` |
 | Image | `lscr.io/linuxserver/radarr:latest` |
-| Current version | `6.4.4.10685` (`6.4.4.10685-ls318`) |
+| Current version | `6.4.4.10685` (`6.4.4.10685-ls319`) |
 | Compose file | `C:\plex-server\docker-compose.media.yml` |
 | Config path | `C:\media-stack\config\radarr` |
 | Web UI | `http://localhost:7878` |
@@ -88,6 +88,11 @@ Prowlarr remains the active indexer layer for Radarr. Jackett is not part of the
 As of 2026-09-03, MoreThanTV is disabled in Prowlarr and no longer synced to Radarr; expect Radarr searches to depend on SpeedCD unless another healthy indexer is added.
 
 ## Update History
+
+### 2026-10-05
+
+- Refreshed image build `6.4.4.10685-ls318` to `6.4.4.10685-ls319`; application version remained `6.4.4.10685`. Recreated only Radarr and passed service and stack health verification; the helper updated the version ledger.
+- Official application update notes were not queried because the application version did not change.
 
 ### 2026-09-21
 
